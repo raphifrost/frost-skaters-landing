@@ -7,34 +7,37 @@
     <title>Frost Skaters</title>
     <style>
       :root {
-        --bg: #070b10;
-        --bg-2: #0f172a;
-        --panel: rgba(17, 24, 39, 0.9);
-        --panel-soft: rgba(15, 23, 42, 0.7);
-        --border: rgba(255,255,255,0.08);
-        --text: #edf6ff;
-        --muted: #bfd3e4;
-        --primary: #78d6ff;
-        --primary-strong: #37b9ff;
+        --bg: #050b12;
+        --bg-2: #0d1522;
+        --panel: rgba(12, 20, 31, 0.78);
+        --panel-strong: rgba(15, 23, 42, 0.92);
+        --border: rgba(255, 255, 255, 0.09);
+        --text: #f2f8ff;
+        --muted: #c8d6ea;
+        --primary: #7ad5ff;
+        --primary-strong: #3bb6ff;
         --success: #4ade80;
-        --shadow: rgba(0, 0, 0, 0.45);
-        --accent: #facc15;
+        --accent: #fbd34d;
+        --shadow: rgba(0,0,0,0.42);
       }
 
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
+
       body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background: radial-gradient(circle at top, rgba(53, 130, 211, 0.22), transparent 32%),
-                    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        background:
+          radial-gradient(circle at top left, rgba(67, 185, 255, 0.22), transparent 28%),
+          radial-gradient(circle at bottom right, rgba(255, 214, 102, 0.12), transparent 30%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
         color: var(--text);
       }
 
       .container {
-        max-width: 1100px;
+        max-width: 1160px;
         margin: 0 auto;
-        padding: 24px;
+        padding: 28px 22px 80px;
       }
 
       .hero {
@@ -42,39 +45,43 @@
         display: grid;
         grid-template-columns: 1.08fr 0.92fr;
         align-items: center;
-        gap: 38px;
+        gap: 36px;
       }
 
       .eyebrow {
         display: inline-block;
+        padding: 8px 12px;
+        border: 1px solid rgba(122, 213, 255, 0.28);
+        border-radius: 999px;
+        background: rgba(122, 213, 255, 0.06);
+        color: var(--primary);
         font-size: 0.74rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
 
       h1 {
-        font-size: clamp(2.6rem, 7vw, 5rem);
-        line-height: 0.98;
+        font-size: clamp(2.7rem, 7vw, 5.2rem);
+        letter-spacing: -0.06em;
+        line-height: 0.96;
         margin: 0 0 18px;
-        letter-spacing: -0.04em;
       }
 
       .lead {
         color: var(--muted);
         font-size: 1.12rem;
-        line-height: 1.8;
-        max-width: 560px;
-        margin: 0 0 26px;
+        line-height: 1.82;
+        max-width: 570px;
+        margin: 0 0 28px;
       }
 
       .buttons {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px;
-        margin-bottom: 26px;
+        gap: 16px;
+        margin-bottom: 28px;
       }
 
       .btn {
@@ -82,11 +89,10 @@
         align-items: center;
         justify-content: center;
         padding: 15px 24px;
-        border-radius: 12px;
+        border-radius: 14px;
         text-decoration: none;
         font-weight: 700;
-        transition: transform 0.2s ease, opacity 0.2s ease;
-        border: 1px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
       .btn:hover {
@@ -96,17 +102,17 @@
       .btn.primary {
         background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
         color: #072131;
-        box-shadow: 0 12px 30px rgba(55, 185, 255, 0.35);
+        box-shadow: 0 12px 30px rgba(59, 182, 255, 0.35);
       }
 
       .btn.secondary {
         background: rgba(255,255,255,0.02);
         color: var(--text);
-        border-color: rgba(255,255,255,0.08);
+        border: 1px solid var(--border);
       }
 
       .phone {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         color: var(--primary);
         font-weight: 700;
       }
@@ -114,19 +120,26 @@
       .image-box {
         position: relative;
         overflow: hidden;
-        border-radius: 28px;
-        min-height: 540px;
+        border-radius: 26px;
+        min-height: 560px;
         border: 1px solid var(--border);
         box-shadow: 0 26px 70px var(--shadow);
         background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
       }
 
+      .image-box::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.08));
+      }
+
       .image-box img {
+        display: block;
         width: 100%;
         height: 100%;
-        display: block;
+        min-height: 560px;
         object-fit: cover;
-        min-height: 540px;
       }
 
       .section {
@@ -134,15 +147,15 @@
         grid-template-columns: 1fr 1fr;
         gap: 28px;
         align-items: center;
-        padding-top: 70px;
+        padding-top: 72px;
       }
 
       .card {
-        background: rgba(15, 23, 42, 0.7);
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 24px;
         padding: 28px;
-        box-shadow: 0 18px 40px var(--shadow);
+        box-shadow: 0 18px 38px var(--shadow);
       }
 
       h2 {
@@ -157,23 +170,41 @@
         font-size: 1.04rem;
       }
 
+      .qr-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
       .qr-box {
         display: flex;
-        justified-content: center;
+        justify-content: center;
         align-items: center;
-        min-height: 260px;
-        border-radius: 18px;
-        border: 1px solid var(--border);
-        background: rgba(255,255,255,0.03);
+        width: 100%;
+        min-height: 340px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        border: 2px solid var(--primary);
+        box-shadow: 0 0 40px rgba(122, 213, 255, 0.15);
       }
 
       .qr-box img {
-        width: 220px;
-        height: 220px;
+        width: 280px;
+        height: 280px;
         display: block;
         background: white;
-        padding: 12px;
-        border-radius: 16px;
+        padding: 14px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+
+      .qr-label {
+        color: var(--primary);
+        font-size: 1.1rem;
+        font-weight: 700;
+        text-align: center;
       }
 
       .copy-box {
@@ -196,7 +227,7 @@
       .copy-btn {
         margin-top: 14px;
         background: var(--success);
-        color: #042b12;
+        color: #052612;
         border: none;
         cursor: pointer;
       }
@@ -209,12 +240,21 @@
 
         .hero {
           min-height: auto;
-          padding-top: 40px;
+          padding-top: 28px;
         }
 
         .image-box,
         .image-box img {
           min-height: 420px;
+        }
+
+        .qr-box {
+          min-height: 300px;
+        }
+
+        .qr-box img {
+          width: 240px;
+          height: 240px;
         }
       }
     </style>
@@ -224,7 +264,7 @@
       <section class="hero">
         <div>
           <div class="eyebrow">Frost Skaters</div>
-          <h1>Skaten mit Style. Gemeinsam wachsen.</h1>
+          <h1>Skaten mit Style.<br />Gemeinsam wachsen.</h1>
           <p class="lead">
             Wir sind eine kleine, liebevolle Gruppe mit viel Freude, Leidenschaft und Teamgeist.
             Seit 2025 sind wir dabei und lernen jeden Tag dazu. Komm zu uns und triff uns persönlich!
@@ -255,8 +295,11 @@
         </div>
 
         <div class="card">
-          <div class="qr-box">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://wa.me/4915234646842" alt="QR Code für WhatsApp" />
+          <div class="qr-section">
+            <div class="qr-label">QR-Code scannen</div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://wa.me/4915234646842" alt="QR Code für WhatsApp" />
+            </div>
           </div>
         </div>
       </section>
