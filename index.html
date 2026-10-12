@@ -170,43 +170,6 @@
         font-size: 1.04rem;
       }
 
-      .qr-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-      }
-
-      .qr-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        min-height: 340px;
-        border-radius: 20px;
-        background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-        border: 2px solid var(--primary);
-        box-shadow: 0 0 40px rgba(122, 213, 255, 0.15);
-      }
-
-      .qr-box img {
-        width: 280px;
-        height: 280px;
-        display: block;
-        background: white;
-        padding: 14px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      }
-
-      .qr-label {
-        color: var(--primary);
-        font-size: 1.1rem;
-        font-weight: 700;
-        text-align: center;
-      }
-
       .copy-box {
         margin-top: 18px;
       }
@@ -248,14 +211,25 @@
           min-height: 420px;
         }
 
-        .qr-box {
-          min-height: 300px;
-        }
-
-        .qr-box img {
-          width: 240px;
-          height: 240px;
-        }
+      }
+      .image-box svg { display: block; width: 100%; height: auto; }
+      .image-box { min-height: 0; }
+      .image-box::after { pointer-events: none; }
+      .steps { padding-left: 24px; color: var(--muted); line-height: 1.7; }
+      .steps li { padding: 8px 0 8px 8px; }
+      .steps strong { color: var(--text); }
+      label { display: block; margin-bottom: 10px; font-weight: 700; }
+      .message-actions { margin-top: 18px; margin-bottom: 14px; }
+      .copy-btn { margin-top: 0; font: inherit; font-weight: 700; }
+      .card .hint { margin-top: 12px; font-size: .9rem; }
+      #copyStatus { color: var(--success); }
+      #mitmachen { scroll-margin-top: 24px; }
+      :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+      @media (max-width: 480px) {
+        .container { padding: 20px 16px 48px; }
+        .card { padding: 22px; }
+        .section { padding-top: 32px; }
+        .message-actions .btn { width: 100%; }
       }
     </style>
   </head>
@@ -267,65 +241,97 @@
           <h1>Skaten mit Style.<br />Gemeinsam wachsen.</h1>
           <p class="lead">
             Wir sind eine kleine, liebevolle Gruppe mit viel Freude, Leidenschaft und Teamgeist.
-            Seit 2025 sind wir dabei und lernen jeden Tag dazu. Komm zu uns und triff uns persönlich!
+            Seit 2025 sind wir dabei und lernen jeden Tag dazu. Lust mitzumachen? Schreib uns und lerne uns in einem kurzen Gespräch kennen!
           </p>
 
           <div class="buttons">
-            <a class="btn primary" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">WhatsApp schreiben</a>
+            <a class="btn primary" href="#mitmachen">Mitmachen</a>
             <a class="btn secondary" href="tel:+4915234646842">Anrufen</a>
           </div>
 
-          <div class="phone">📞 +49 15234646842</div>
+          <a class="phone" href="tel:+4915234646842">📞 +49 152 34646842</a>
         </div>
 
         <div class="image-box">
-          <img src="https://images.unsplash.com/photo-1544193210-0c3d4c5e4d53?auto=format&fit=crop&w=900&q=80" alt="Skater in Bewegung" />
+          <svg viewBox="0 0 600 640" role="img" aria-labelledby="artTitle artDesc" xmlns="http://www.w3.org/2000/svg">
+            <title id="artTitle">Frost Skaters</title>
+            <desc id="artDesc">Illustration eines Skaters auf einem Skateboard vor eisblauen Bergen.</desc>
+            <defs><linearGradient id="ice" x2="0" y2="1"><stop stop-color="#12374e"/><stop offset="1" stop-color="#050b12"/></linearGradient></defs>
+            <rect width="600" height="640" fill="url(#ice)"/>
+            <circle cx="460" cy="140" r="78" fill="#7ad5ff" opacity=".15"/>
+            <path d="M0 390 145 180 275 360 385 230 600 420V640H0Z" fill="#1d526b"/>
+            <path d="m100 245 45-65 49 67-45-20Z M350 280l35-50 48 62-48-26Z" fill="#b8eeff"/>
+            <path d="M0 485Q300 430 600 485" fill="none" stroke="#7ad5ff" stroke-width="2" opacity=".4"/>
+            <g stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="315" cy="250" r="27" fill="#fbd34d"/>
+              <path d="m303 289-43 79 83 28" fill="none" stroke="#7ad5ff" stroke-width="40"/>
+              <path d="m284 311-67 19-40-30m115 14 63 32 56-23" fill="none" stroke="#b8eeff" stroke-width="17"/>
+              <path d="m278 377-49 51-51 18m158-53 29 41-6 31" fill="none" stroke="#f2f8ff" stroke-width="24"/>
+              <path d="m162 449 35 1m145 20 37 1" stroke="#fbd34d" stroke-width="15"/>
+              <path d="M155 475q115 25 237 0" fill="none" stroke="#7ad5ff" stroke-width="12"/>
+              <circle cx="197" cy="496" r="11" fill="#fbd34d"/><circle cx="352" cy="496" r="11" fill="#fbd34d"/>
+            </g>
+            <text x="40" y="565" fill="#f2f8ff" font-family="Arial, sans-serif" font-size="49" font-weight="900" letter-spacing="-2">FROST SKATERS</text>
+            <text x="43" y="600" fill="#7ad5ff" font-family="Arial, sans-serif" font-size="15" letter-spacing="4">ZUSAMMEN. AUF DEM BOARD.</text>
+          </svg>
         </div>
       </section>
 
       <section class="section">
         <div class="card">
           <h2>Über uns</h2>
-          <p>
-            Wir sind eine Gruppe mit Zusammenhalt, viel Freude und Motivation. Wir lernen viel,
-            unterstützen uns gegenseitig und haben seit 2025 angefangen, ein bisschen mehr zu wachsen
-            und immer weiter zu kommen. Wir sind noch klein, aber voller Energie und Leidenschaft.
-            Komm zu uns und trete uns bei!
-          </p>
+          <p>Wir sind Frost Skaters – eine kleine Gruppe, die seit 2025 zusammen skatet.
+            Bei uns zählen Zusammenhalt, Spaß und gegenseitige Unterstützung.
+            Wir lernen gemeinsam und freuen uns auf neue Leute!</p>
         </div>
 
         <div class="card">
-          <div class="qr-section">
-            <div class="qr-label">QR-Code scannen</div>
-            <div class="qr-box">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://wa.me/4915234646842" alt="QR Code für WhatsApp" />
-            </div>
-          </div>
+          <h2>So kommst du dazu</h2>
+          <ol class="steps">
+            <li><strong>Schreib uns.</strong> Kopiere die Nachricht oder öffne sie direkt in WhatsApp.</li>
+            <li><strong>Lern uns kennen.</strong> Wir vereinbaren ein kurzes Gespräch – höchstens 10 Minuten.</li>
+            <li><strong>Mach mit.</strong> Dabei klären wir deine Fragen und besprechen deine Anmeldung.</li>
+          </ol>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section" id="mitmachen">
         <div class="card" style="grid-column: 1 / -1;">
-          <h2>Nachricht kopieren</h2>
+          <h2>Dein erster Schritt zu uns</h2>
+          <p>Passe die Nachricht an und schick sie uns. Wir vereinbaren dann zusammen einen Termin.</p>
           <div class="copy-box">
-            <textarea id="copyText">Hallo, ich habe den QR-Code gescannt und habe Interesse. Kannst du mir alles zeigen? Ich würde gerne mehr über Frost Skaters erfahren.</textarea>
+            <label for="copyText">Deine Nachricht</label>
+            <textarea id="copyText">Hey Frost Skaters! Ich habe eure Karte mit dem QR-Code gesehen und würde gerne mitmachen. Habt ihr Zeit für ein kurzes Kennenlernen (max. 10 Minuten)? Ich möchte mehr über euch und die Anmeldung erfahren. Ich heiße … und hätte am … Zeit.</textarea>
           </div>
-          <button class="btn copy-btn" onclick="copyMessage()">Text kopieren</button>
+          <div class="buttons message-actions">
+            <button class="btn copy-btn" id="copyButton" type="button">Text kopieren</button>
+            <a class="btn primary" id="whatsappLink" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">Per WhatsApp senden ↗</a>
+          </div>
+          <p id="copyStatus" role="status" aria-live="polite"></p>
+          <p class="hint">WhatsApp öffnet sich mit deiner Nachricht. Du entscheidest dort, wann du sie sendest.</p>
         </div>
       </section>
     </div>
 
     <script>
-      function copyMessage() {
-        const text = document.getElementById('copyText').value;
-        navigator.clipboard.writeText(text)
-          .then(() => {
-            alert('Text kopiert!');
-          })
-          .catch(() => {
-            alert('Kopieren nicht möglich. Bitte markiere den Text manuell und kopiere ihn.');
-          });
+      const message = document.getElementById('copyText');
+      const whatsapp = document.getElementById('whatsappLink');
+      const status = document.getElementById('copyStatus');
+      function updateWhatsApp() {
+        whatsapp.href = 'https://wa.me/4915234646842?text=' + encodeURIComponent(message.value);
       }
+      message.addEventListener('input', updateWhatsApp);
+      updateWhatsApp();
+      document.getElementById('copyButton').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(message.value);
+          status.textContent = 'Kopiert! Du kannst die Nachricht jetzt in WhatsApp einfügen.';
+        } catch {
+          message.focus();
+          message.select();
+          status.textContent = 'Bitte kopiere den markierten Text über das Menü deines Geräts.';
+        }
+      });
     </script>
   </body>
 </html>
