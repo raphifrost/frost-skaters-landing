@@ -48,18 +48,13 @@
         gap: 36px;
       }
 
-      .eyebrow {
-        display: inline-block;
-        padding: 8px 12px;
-        border: 1px solid rgba(122, 213, 255, 0.28);
-        border-radius: 999px;
-        background: rgba(122, 213, 255, 0.06);
-        color: var(--primary);
-        font-size: 0.74rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        font-weight: 700;
-        margin-bottom: 18px;
+      .brand-logo {
+        display: block;
+        width: 260px;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 24px;
+        border-radius: 16px;
       }
 
       h1 {
@@ -118,28 +113,18 @@
       }
 
       .image-box {
-        position: relative;
+        margin: 0;
         overflow: hidden;
         border-radius: 26px;
-        min-height: 560px;
         border: 1px solid var(--border);
         box-shadow: 0 26px 70px var(--shadow);
-        background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      }
-
-      .image-box::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.08));
+        background: var(--panel);
       }
 
       .image-box img {
         display: block;
         width: 100%;
-        height: 100%;
-        min-height: 560px;
-        object-fit: cover;
+        height: auto;
       }
 
       .section {
@@ -206,15 +191,7 @@
           padding-top: 28px;
         }
 
-        .image-box,
-        .image-box img {
-          min-height: 420px;
-        }
-
       }
-      .image-box svg { display: block; width: 100%; height: auto; }
-      .image-box { min-height: 0; }
-      .image-box::after { pointer-events: none; }
       .steps { padding-left: 24px; color: var(--muted); line-height: 1.7; }
       .steps li { padding: 8px 0 8px 8px; }
       .steps strong { color: var(--text); }
@@ -237,7 +214,7 @@
     <div class="container">
       <section class="hero">
         <div>
-          <div class="eyebrow">Frost Skaters</div>
+          <img class="brand-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters – Logo mit pinken Flammen, türkisen Eiszapfen und der Jahreszahl 2025" width="1280" height="799" />
           <h1>Skaten mit Style.<br />Gemeinsam wachsen.</h1>
           <p class="lead">
             Wir sind eine kleine, liebevolle Gruppe mit viel Freude, Leidenschaft und Teamgeist.
@@ -252,29 +229,9 @@
           <a class="phone" href="tel:+4915234646842">📞 +49 152 34646842</a>
         </div>
 
-        <div class="image-box">
-          <svg viewBox="0 0 600 640" role="img" aria-labelledby="artTitle artDesc" xmlns="http://www.w3.org/2000/svg">
-            <title id="artTitle">Frost Skaters</title>
-            <desc id="artDesc">Illustration eines Skaters auf einem Skateboard vor eisblauen Bergen.</desc>
-            <defs><linearGradient id="ice" x2="0" y2="1"><stop stop-color="#12374e"/><stop offset="1" stop-color="#050b12"/></linearGradient></defs>
-            <rect width="600" height="640" fill="url(#ice)"/>
-            <circle cx="460" cy="140" r="78" fill="#7ad5ff" opacity=".15"/>
-            <path d="M0 390 145 180 275 360 385 230 600 420V640H0Z" fill="#1d526b"/>
-            <path d="m100 245 45-65 49 67-45-20Z M350 280l35-50 48 62-48-26Z" fill="#b8eeff"/>
-            <path d="M0 485Q300 430 600 485" fill="none" stroke="#7ad5ff" stroke-width="2" opacity=".4"/>
-            <g stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="315" cy="250" r="27" fill="#fbd34d"/>
-              <path d="m303 289-43 79 83 28" fill="none" stroke="#7ad5ff" stroke-width="40"/>
-              <path d="m284 311-67 19-40-30m115 14 63 32 56-23" fill="none" stroke="#b8eeff" stroke-width="17"/>
-              <path d="m278 377-49 51-51 18m158-53 29 41-6 31" fill="none" stroke="#f2f8ff" stroke-width="24"/>
-              <path d="m162 449 35 1m145 20 37 1" stroke="#fbd34d" stroke-width="15"/>
-              <path d="M155 475q115 25 237 0" fill="none" stroke="#7ad5ff" stroke-width="12"/>
-              <circle cx="197" cy="496" r="11" fill="#fbd34d"/><circle cx="352" cy="496" r="11" fill="#fbd34d"/>
-            </g>
-            <text x="40" y="565" fill="#f2f8ff" font-family="Arial, sans-serif" font-size="49" font-weight="900" letter-spacing="-2">FROST SKATERS</text>
-            <text x="43" y="600" fill="#7ad5ff" font-family="Arial, sans-serif" font-size="15" letter-spacing="4">ZUSAMMEN. AUF DEM BOARD.</text>
-          </svg>
-        </div>
+        <figure class="image-box">
+          <img src="assets/frost-skaters-team.jpg" alt="Drei Mitglieder von Frost Skaters mit ihren Team-Hoodies im Schnee" width="640" height="640" />
+        </figure>
       </section>
 
       <section class="section">
