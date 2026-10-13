@@ -51,3 +51,14 @@
 .member-stat span{font-size:.77rem;color:#c0c7d6}
 @media(max-width:690px){.member-grid{grid-template-columns:1fr}.member-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-card-main{align-items:flex-start}.member-qr{margin-top:8px}}
 @media print{body{background:#fff!important}.site-header,.member-layout> :not(#approvedSection),#approvedSection h2,#approvedSection>p,#approvedSection>.member-actions,.member-hint{display:none!important}#approvedSection{border:0;box-shadow:none;margin:0;padding:0}.member-card{box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+/* Privacy acknowledgement and owner-only conversation appointment */
+.member-privacy-check{display:flex;align-items:flex-start;gap:10px;margin-top:14px;line-height:1.5;font-size:.94rem;color:var(--frost-muted)}
+.member-privacy-check input{width:19px;height:19px;flex:none;margin-top:4px;accent-color:#5ce6f1}
+.member-privacy-check a,.member-panel a{color:#86f1fc}
+.member-card.is-passive{border-color:#f1bd65;background:radial-gradient(circle at 0 0,#e9b72c22,transparent 40%),linear-gradient(125deg,#251d0c,#091622)}
+.member-talk-dialog{border:1px solid #81e7f4;border-radius:22px;padding:0;color:#fff;background:#151626;max-width:min(620px,calc(100vw - 24px));width:100%;max-height:90vh;overflow:auto}
+.member-talk-dialog::backdrop{background:#010712ce}
+.member-talk-dialog .member-panel{box-shadow:none}
+.member-talk-dialog textarea{min-height:110px;resize:vertical}
+@media print{.member-talk-dialog{display:none!important}}
