@@ -1,6 +1,6 @@
 # Frost Skaters: Mitgliedsanträge, Owner-Freigabe & QR-Karten
 
-**Status vom 13.10.2026:** Das Supabase-Projekt **Frost Skaters** in Frankfurt (`eu-central-1`) wurde angelegt. Die Datenbankmigration wurde erfolgreich ausgeführt und `assets/frost-members-config.js` enthält bereits die öffentliche Projekt-URL und den sicheren **publishable** API-Key. **Wichtig: Es existiert noch kein Admin-Account**; bis zu dessen Freischaltung kann niemand eingehende Anträge im Dashboard annehmen.
+**Status vom 13.10.2026:** Das Supabase-Projekt **Frost Skaters** in Frankfurt (`eu-central-1`) wurde angelegt. Die Datenbankmigration wurde erfolgreich ausgeführt und `assets/frost-members-config.js` enthält bereits die öffentliche Projekt-URL und den sicheren **publishable** API-Key. **Wichtig: Der Owner muss sich noch auf der Website registrieren, seine E-Mail bestätigen und freigeschaltet werden.** Bis dahin kann niemand eingehende Anträge im Dashboard annehmen.
 
 Dieses System besteht aus drei Bereichen:
 
@@ -16,20 +16,26 @@ Das Projekt wurde bereits angelegt, der SQL-Code wurde erfolgreich ausgeführt. 
 
 Damit entstehen die private Antragstabelle, die Admin-Liste und eine Funktion, die nur bereits genehmigte Karten über ihren schwer erratbaren Code abruft.
 
-## Schritt 2: Owner-Account einrichten
+## Schritt 2: Owner-Account einrichten – NUR BESTÄTIGUNG NOCH OFFEN
 
-1. Unter **Authentication → Users** einen Benutzer für den Owner anlegen (E-Mail + starkes eigenes Passwort).
-2. Kopiere dessen **User UUID**.
-3. Im **SQL Editor** folgenden Befehl ausführen und die UUID durch deine eigene ersetzen:
+1. Öffne [dein Owner-Dashboard](https://raphifrost.github.io/frost-skaters-landing/mitglieder-admin.html).
+2. Klappe **„Zum ersten Mal hier? Owner-Account erstellen“** auf.
+3. Gib **deine eigene E-Mail-Adresse** und ein selbst gewähltes starkes Passwort (mindestens 12 Zeichen) ein.
+4. Öffne dein E-Mail-Postfach, überprüfe auch Spam und **bestätige den Link**. Das Passwort bleibt geheim; gib es niemandem, auch nicht ChatGPT.
+5. Kehre in den Chat zurück und schreibe **„E-Mail bestätigt“**. Die Owner-Rolle wird dann **separat nach Prüfung des bestätigten Accounts** durch den bereits verbundenen Supabase-Zugriff freigegeben.
+
+Nach Bestätigung kann der berechtigte Administrator die User-UUID in der Supabase-Datenbank in `public.frost_admins` freischalten, zum Beispiel:
 
 ```sql
 insert into public.frost_admins(user_id)
-values ('DEINE-ECHTE-USER-UUID') on conflict do nothing;
+values ('DIE-ECHTE-VERIFIZIERTE-USER-UUID') on conflict do nothing;
 ```
 
-Das Passwort niemals in GitHub, in Chats oder in Formularfeldern außerhalb des echten Owner-Logins teilen.
+**WICHTIG:** Durch eine Registrierung allein wird niemand automatisch Owner. Freischaltung erst nach Prüfung des E-Mail-verifizierten Users.
 
-**Wichtig:** Falls offene Registrierung unter Authentication möglich ist, sind neue Supabase-Benutzer dadurch **nicht** automatisch Owner. Die Datenbankrechte gelten ausschließlich für ausdrücklich in `frost_admins` eingetragene Accounts.
+**E-Mail-Weiterleitung:** In einem neuen Supabase-Projekt muss unter **Authentication → URL Configuration** gegebenenfalls die Website als Site URL und als erlaubte Redirect URL eingetragen werden:
+`https://raphifrost.github.io/frost-skaters-landing/mitglieder-admin.html`.
+Ohne diese Einstellung kann der Bestätigungslink auf eine localhost-Adresse umleiten. Die Bestätigung kann dennoch erfolgreich gewesen sein. Öffne dann das Owner-Dashboard wieder direkt.
 
 ## Schritt 3: Website mit dem Projekt verbinden – ERLEDIGT
 
