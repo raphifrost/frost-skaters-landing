@@ -1,29 +1,64 @@
-# frost-skaters-landing
-Frost Skaters - Landingpage mit QR-Code, WhatsApp und Kontakt
+# ❄️ Frost Skaters 3.0
 
+Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skaters**.
 
-Die persönliche PC-/Handy-Startseite liegt unter [`desktop/`](desktop/README.md).
+- Öffentliche Startseite: `index.html`
+- Community (Deutsch): `community.html`
+- Community (English): `community-en.html`
+- Mitgliedskarten: `mitglieder.html`
+- Geschützter Owner-Bereich für Mitgliedskarten: `mitglieder-admin.html`
+- Geschützte Team-Zentrale für Beiträge und Aufgaben: `hub-admin.html`
+- Eishallen-Links: `eishallen.html`
+- Jahresrückblick: `jahresrueckblick.html`
+- Datenschutzhinweise: `datenschutz.html`
 
-Das Anmeldeformular der Landingpage verwendet FormSubmit. Vor dem ersten verlässlichen E-Mail-Empfang muss die Empfängeradresse über FormSubmits Bestätigungsmail aktiviert werden. Browser-Tests können Formular-POSTs abfangen; sie prüfen dabei keine echte E-Mail-Zustellung.
+## Funktionen
 
-Der Shop unter `shop.html` bietet die Personalisierung eines selbst mitgebrachten Hoodies für 25 €: großes Rückenlogo und Name auf dem linken Arm. Anfragen werden vom Besucher über WhatsApp versendet; die Website verarbeitet keine Zahlung. Die gemeinsame Navigation liegt in `assets/site-menu.css` und `assets/site-menu.js`.
+### Öffentlich
 
-`leitung.html` stellt die drei Leitungsrollen öffentlich vor. `organisation.html` öffnet den internen Plan mit einem gemeinsamen Leitungspasswort. Alle Planinhalte liegen ausschließlich verschlüsselt in `assets/organisation.enc.json` (AES-GCM-256 mit PBKDF2-SHA-256). Passwort und Klartext dürfen niemals in diesem Repository, in URLs oder in öffentlichen Downloads stehen.
+- Neuigkeiten, Ausflüge und freiwillige Challenges von der Leitung
+- Event-Anfragen mit Vornamen und privatem Link zur Prüfung des Bearbeitungsstatus
+- Einfache Community-Umfragen (eine Stimme pro Browser, **nicht manipulationssicher**)
+- Anonyme Ideen-/Feedbackbox (bitte keine privaten oder identifizierenden Details eingeben)
+- Galerie ausschließlich mit geprüften Foto-Freigaben
+- Saison-Countdown, Crew-Geschichte, Jahresrückblick, Sicherheitstipps
+- Regionale Eishallen-Suchlinks (keine Live-Öffnungszeiten oder garantierten Preise)
+- Digitale aktive/passive Mitgliedskarten mit QR-Code und freiwilligen Abzeichen
 
-Dies sind keine individuellen Benutzerkonten: Wer das gemeinsame Passwort kennt, kann den Plan entschlüsseln. Nur an Owner, Co-Owner/in und Managerin weitergeben. Einzelne Personen können damit nicht getrennt freigeschaltet oder gesperrt werden. Für solche Rollenrechte ist ein zusätzlicher Authentifizierungsdienst erforderlich.
+### Intern
 
-Zum Aktualisieren den privaten Plan und das Zufallspasswort außerhalb des Checkouts aufbewahren und neu verschlüsseln:
+- Owner: private Mitgliedsanträge, Gesprächsnotizen und Mitgliedshistorie
+- Owner: Event-Anfragen, Teilnahme-/Anwesenheitsstatus, Feedback, Badge-Vergabe, Teamrollen
+- Freigeschaltetes Team: Beiträge, Umfragen, Aufgaben, Checklisten und Ausrüstungsverleih
+- Ausflugskostenrechner mit selbst eingegebenen Schätzpreisen
+- Benachrichtigung für neue Community-Anfragen **während das Dashboard geöffnet ist**; kein iOS-Hintergrund-Pushdienst
+- Zwei iPhone-Startbildschirm-Verknüpfungen über `owner.webmanifest` und `hub.webmanifest`
 
-```sh
-node tools/encrypt-organisation.mjs \
-  --plan /PRIVATE_DIRECTORY/organisation-plan.json \
-  --password-file /PRIVATE_DIRECTORY/leitung-passwort.txt \
-  --minimum-password-length 7 \
-  --output assets/organisation.enc.json
+## Technik
+
+- Statische Dateien auf GitHub Pages
+- Supabase für Datenbank, Authentifizierung und Row-Level Security (RLS)
+- `assets/frost-members-config.js` enthält ausschließlich Projekt-URL und **öffentlichen** Publishable Key.
+- Passwörter, geheime API-Keys und service-role Keys **niemals** im Repository oder im Chat weitergeben.
+- Owner- und Team-Rechte werden in der Datenbank kontrolliert, nicht nur über Schaltflächen.
+- Das separate `organisation.html` nutzt weiterhin einen lokal verschlüsselten Plan. Dessen gemeinsames Passwort ist unabhängig von den personenbezogenen Supabase-Konten; das gemeinsame Passwort darf nicht veröffentlicht werden.
+
+## Entwicklung und Prüfungen
+
+GitHub Actions startet nach jedem Push die Integritätsprüfung:
+
+```bash
+node tools/check-frost-site.mjs
 ```
 
-Der Nutzer hat ausdrücklich ein Passwort mit sieben zufälligen Zeichen gewünscht. Dafür ist die oben gezeigte Ausnahme nötig; ohne diese Option verlangt das Tool weiterhin mindestens 32 Zeichen. Ein längeres Zufallspasswort bietet mehr Schutz gegen das Erraten des herunterladbaren verschlüsselten Plans.
+Geprüft werden lokale Links, JavaScript-Syntax, wichtige HTML-Elemente, fehlende Dateien, alte Shop-Links und offensichtliche Geheimnisse in der Browser-Konfiguration.
 
-Das private JSON hat `title`, `intro` und sechs `sections` mit jeweils `tag`, `title`, `description` und `nextStep`. Das Tool erzeugt bei jedem Aufruf einen neuen Salt und eine neue IV. Veröffentlicht wird nur die verschlüsselte Ausgabe. Beim Passwortwechsel ebenfalls neu verschlüsseln und die Versionsquery des Skripts in `organisation.html` sowie der JSON-Anfrage in `assets/organisation.js` erhöhen, damit alte Cache-Einträge umgangen werden. Früher heruntergeladene Fassungen lassen sich nicht nachträglich zurückholen.
+**Grenzen der Prüfung:** Ohne echte Test-Accounts und Live-Browser werden Login, Mitgliedsanträge, Benachrichtigungen, Karten-QR, Löschvorgänge, E-Mail-Empfang und mobile Darstellung nicht vollständig Ende-zu-Ende verifiziert. Die Integritätsprüfung ersetzt weder Sicherheits-Audit noch Datenschutzprüfung.
 
-Der entschlüsselte Plan bleibt nur in diesem Browser-Tab. Abmelden, Neuladen und Zurück-/Vorwärtsnavigation sperren ihn erneut. Es wird kein Passwort, Plan oder Loginzustand in Webspeichern abgelegt; der Service Worker unter `desktop/` betrifft diesen Bereich nicht. Zugriff erfordert HTTPS und WebCrypto. Lokale Tests funktionieren über `http://127.0.0.1`.
+Eine manuelle Test-Checkliste steht in `MITGLIEDER-SETUP.md`. Der ehemalige Kleidungsshop wurde entfernt und soll entfernt bleiben.
+
+## Schutz von Minderjährigen und Datenschutz
+
+Nur notwendige Angaben verarbeiten, grundsätzlich keine Nachnamen, Geburtsdaten, Fotos ohne Freigaben oder privaten Kontaktdaten speichern. Niemals Kartenlinks veröffentlichen, denn Personen mit dem Link können die Kartendaten abrufen.
+
+Die öffentlich sichtbaren Datenschutzinformationen sind ein **Entwurf**, keine bestätigte rechtlich vollständige Erklärung. Es fehlen noch die gesetzlich nötigen vollständigen Angaben zur verantwortlichen volljährigen Person und eine Prüfung der Rechtsgrundlagen, Aufbewahrungsfristen, Dienstleister und Einwilligungen. Erwachsene Verantwortliche vor weitergehender Nutzung einbeziehen.
