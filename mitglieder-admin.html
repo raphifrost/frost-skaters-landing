@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Member-Verwaltung | Frost Skaters</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css">
+<link rel="stylesheet" href="assets/frost-theme.css?v=1">
+<link rel="stylesheet" href="assets/frost-members.css?v=1">
+</head><body class="frost-page">
+<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><a href="mitglieder.html" style="color:#78e9f1;text-decoration:none">← Mitgliedskarten</a></header>
+<main class="member-layout">
+<p class="member-topline">Owner-Verwaltung · Nur berechtigte Personen</p>
+<h1 class="member-title">👑 Member-Dashboard</h1>
+<p class="member-intro">Hier entscheidest du selbst, wer eine offizielle Frost Skaters Mitgliedskarte erhält. Offene Anträge sind nicht öffentlich. Niemand wird ohne deine Freigabe automatisch Mitglied.</p>
+
+<section class="member-panel" id="signInPanel">
+<h2>🔒 Owner-Login</h2>
+<form id="adminLogin">
+<label for="ownerEmail" class="member-label">Admin-E-Mail</label><input id="ownerEmail" type="email" class="member-input" autocomplete="username" required>
+<label for="ownerPassword" class="member-label">Passwort</label><input id="ownerPassword" type="password" class="member-input" autocomplete="current-password" required>
+<div class="member-actions"><button type="submit" id="loginButton" class="member-btn">Einloggen</button></div>
+</form><p class="member-hint">Dein Login muss vorher in der geschützten Datenbank als Owner freigeschaltet werden. Das Passwort steht nicht im GitHub-Code.</p>
+<div id="loginFeedback" role="status" aria-live="polite"></div>
+</section>
+
+<section id="dashboard" hidden>
+<div class="member-actions"><button type="button" class="member-btn secondary" id="signOut">Abmelden</button><button type="button" class="member-btn secondary" id="reloadMembers">Liste aktualisieren</button></div>
+<section class="member-panel">
+<h2>📊 Deine Übersicht</h2>
+<div class="member-stat-grid">
+<div class="member-stat"><strong id="statAll">0</strong><span>Anträge gesamt</span></div>
+<div class="member-stat"><strong id="statPending">0</strong><span>Offen</span></div>
+<div class="member-stat"><strong id="statApproved">0</strong><span>Aktive Karten</span></div>
+<div class="member-stat"><strong id="statOther">0</strong><span>Abgelehnt / gesperrt</span></div>
+</div>
+</section>
+
+<section class="member-panel">
+<h2>➕ Mitglied direkt eintragen</h2>
+<p>Wenn du jemanden bereits kennst, kannst du hier selbst eine bestätigte Mitgliedskarte erstellen. Der persönliche Karten-Link erscheint nach dem Speichern und kann direkt an das Mitglied weitergegeben werden.</p>
+<form id="addMember">
+<label for="manualName" class="member-label">Name oder Spitzname</label>
+<input type="text" id="manualName" class="member-input" minlength="2" maxlength="40" required placeholder="z. B. Alina">
+<label for="manualRole" class="member-label">Rolle</label>
+<select id="manualRole" class="member-select"><option value="MEMBER">Mitglied</option><option value="MODERATOR">Moderator/in</option><option value="CO-OWNER">Co-Owner</option><option value="OWNER">Owner</option></select>
+<div class="member-actions"><button class="member-btn" type="submit" id="manualButton">Mitglied eintragen &amp; Karte erstellen</button></div>
+</form>
+<div id="manualFeedback" role="status" aria-live="polite"></div>
+</section>
+
+<section class="member-panel">
+<h2>📥 Alle Mitglieder und Anträge</h2>
+<p>Du kannst eingegangene Anträge annehmen oder ablehnen. Bei aktiven Mitgliedern lässt sich die Karte später sperren. Ein gesperrter QR-Code zeigt keine gültige Karte mehr.</p>
+<div class="member-filters">
+<div><label class="member-label" for="filterStatus">Status</label>
+<select id="filterStatus" class="member-select">
+<option value="all">Alle</option><option value="pending">Offene Anträge</option><option value="approved">Aktive Mitglieder</option><option value="rejected">Abgelehnt</option><option value="revoked">Gesperrt</option>
+</select></div>
+<div><label class="member-label" for="filterName">Name suchen</label><input id="filterName" class="member-input" placeholder="Nach Namen suchen"></div>
+</div>
+<div id="tableFeedback" role="status" aria-live="polite"></div>
+<div class="member-table-wrap">
+<table class="member-table"><thead><tr><th>Name</th><th>Status</th><th>Rolle</th><th>Mitgliedsnummer</th><th>Datum</th><th>Aktionen</th></tr></thead><tbody id="memberRows"></tbody></table>
+</div>
+</section>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="assets/frost-members-config.js"></script>
+<script src="assets/frost-members-admin.js"></script>
+</body></html>
