@@ -41,8 +41,25 @@
       }
       :focus-visible { outline: 3px solid #fbd34d; outline-offset: 5px; }
     </style>
+    <link rel="stylesheet" href="assets/site-menu.css" />
+    <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
   </head>
-  <body>
+  <body class="frost-page" data-page="thanks">
+    <header class="site-header">
+      <a class="site-brand" href="index.html">FROST SKATERS</a>
+      <div class="site-nav">
+        <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+        <nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
+          <a href="index.html">Startseite</a>
+          <a href="events.html">Events</a>
+          <a href="training.html">Training</a>
+          <a href="shop.html">Shop</a>
+          <a href="index.html#mitmachen">Mitmachen</a>
+          <a href="index.html#fragen">Fragen</a>
+        </nav>
+      </div>
+    </header>
     <main>
       <img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters" width="1280" height="799" />
       <h1>Danke für dein Interesse!</h1>
@@ -50,5 +67,6 @@
       <p>Für einen Termin oder weitere Fragen erreichst du Raphi <a href="index.html#whatsapp">über WhatsApp</a> oder telefonisch unter <a href="tel:+4915234646842">+49 152 34646842</a>.</p>
       <a class="button" href="index.html">Zurück zur Website</a>
     </main>
+    <script src="assets/site-menu.js"></script>
   </body>
 </html>

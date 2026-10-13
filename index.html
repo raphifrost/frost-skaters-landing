@@ -228,8 +228,16 @@
       }
     </style>
     <link rel="stylesheet" href="assets/site-menu.css" />
+    <link rel="canonical" href="https://raphifrost.github.io/frost-skaters-landing/" />
+    <meta property="og:title" content="Frost Skaters – Zusammen wachsen." />
+    <meta property="og:description" content="Unsere Crew, unser Team-Look und der nächste Termin. Lerne Frost Skaters kennen." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://raphifrost.github.io/frost-skaters-landing/" />
+    <meta property="og:image" content="https://raphifrost.github.io/frost-skaters-landing/assets/frost-skaters-team.jpg" />
+    <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
   </head>
-  <body>
+  <body class="frost-page" data-page="home">
     <header class="site-header">
       <a class="site-brand" href="index.html">FROST SKATERS</a>
       <div class="site-nav">
@@ -240,14 +248,16 @@
           <a href="training.html">Training</a>
           <a href="shop.html">Shop</a>
           <a href="index.html#mitmachen">Mitmachen</a>
+          <a href="index.html#fragen">Fragen</a>
         </nav>
       </div>
     </header>
-    <div class="container">
+    <main class="container">
       <section class="hero">
         <div>
           <img class="brand-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters – Logo mit pinken Flammen, türkisen Eiszapfen und der Jahreszahl 2025" width="1280" height="799" />
-          <h1>Skaten mit Style.<br />Gemeinsam wachsen.</h1>
+          <p class="hero-eyebrow">FROST SKATERS · SEIT 2025</p>
+          <h1>Skaten.<br /><span>Zusammen wachsen.</span></h1>
           <p class="lead">
             Wir sind eine kleine, liebevolle Gruppe mit viel Freude, Leidenschaft und Teamgeist.
             Seit 2025 sind wir dabei und lernen jeden Tag dazu. Lust mitzumachen? Schreib uns und lerne uns in einem kurzen Gespräch kennen!
@@ -255,7 +265,7 @@
 
           <div class="buttons">
             <a class="btn primary" href="#mitmachen">Mitmachen</a>
-            <a class="btn secondary" href="tel:+4915234646842">Anrufen</a>
+            <a class="btn secondary" href="#entdecken">Entdecken</a>
           </div>
 
           <a class="phone" href="tel:+4915234646842">📞 +49 152 34646842</a>
@@ -263,11 +273,31 @@
 
         <figure class="image-box">
           <img src="assets/frost-skaters-team.jpg" alt="Drei Mitglieder von Frost Skaters mit ihren Team-Hoodies im Schnee" width="640" height="640" />
+          <figcaption class="hero-photo-caption"><span>UNSERE CREW</span><strong>Zusammen. Seit 2025.</strong></figcaption>
         </figure>
+      </section>
+
+      <section class="discover-section" id="entdecken" aria-labelledby="discoverTitle">
+        <div class="section-topline"><div><p class="section-eyebrow">DEIN PLATZ IM TEAM</p><h2 id="discoverTitle">Was geht bei Frost?</h2></div><span class="section-note">Vom ersten Hallo bis zum Team-Look.</span></div>
+        <div class="quick-grid">
+          <a class="quick-card quick-event" href="events.html">
+            <span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18m-12 5 2 2 4-4"/></svg></span>
+            <span class="quick-category">EVENTS</span><h3>Ab nach Heilbronn.</h3><p>Unser gemeinsamer Termin am <strong>3. Januar</strong>.</p><span class="quick-cta">Event ansehen <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="quick-card quick-shop" href="shop.html">
+            <span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m8 3-5 4-2 6 4 2 1-4v10h12V11l1 4 4-2-2-6-5-4"/><path d="M8 3c0 5 8 5 8 0M9 16h6"/></svg></span>
+            <span class="quick-category">TEAM-LOOK · 25 €</span><h3>Dein Hoodie. Dein Name.</h3><p>Großes Rückenlogo und Name am linken Arm. <strong>Hoodie selbst mitbringen.</strong></p><span class="quick-cta">Zum Shop <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="quick-card quick-training" href="training.html">
+            <span class="quick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 15c4 2 12 2 16 0M5 15l-2-3m16 3 2-3"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="m13 3-3 6 5 2-2 4M10 9 6 8"/></svg></span>
+            <span class="quick-category">TRAINING</span><h3>Hier geht’s bald weiter.</h3><p>Die Trainingsseite ist noch in Arbeit.</p><span class="quick-status">Not finished – in work</span><span class="quick-cta">Stand ansehen <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
       </section>
 
       <section class="section">
         <div class="card">
+          <p class="section-eyebrow">ZUSAMMEN STATT ALLEIN</p>
           <h2>Über uns</h2>
           <p>Wir sind Frost Skaters – eine kleine Gruppe, die seit 2025 zusammen skatet.
             Bei uns zählen Zusammenhalt, Spaß und gegenseitige Unterstützung.
@@ -275,6 +305,7 @@
         </div>
 
         <div class="card">
+          <p class="section-eyebrow">DEIN ERSTER SCHRITT</p>
           <h2>So kommst du dazu</h2>
           <ol class="steps">
             <li><strong>Melde dich an.</strong> Fülle das Formular aus oder schreib uns über WhatsApp.</li>
@@ -286,7 +317,8 @@
 
       <section class="section" id="mitmachen">
         <div class="card" style="grid-column: 1 / -1;">
-          <h2>Melde dich bei Frost Skaters an</h2>
+          <p class="section-eyebrow">LUST MITZUMACHEN?</p>
+          <h2>Dein erstes Hallo.</h2>
           <p id="registrationInfo">Sag uns, wie du heißt und unter welcher Nummer Raphi dich erreichen kann. Er meldet sich bei dir, um euch kennenzulernen. Name und Telefonnummer sind Pflichtfelder.</p>
           <form class="registration-form" action="https://formsubmit.co/raphi.leibssle@gmx.de" method="POST" accept-charset="UTF-8" aria-describedby="registrationInfo registrationPrivacy">
             <input type="hidden" name="_subject" value="Frost Skaters – Neue Anmeldung" />
@@ -327,13 +359,28 @@
           </div>
           <div class="buttons message-actions">
             <button class="btn copy-btn" id="copyButton" type="button">Text kopieren</button>
-            <a class="btn primary" id="whatsappLink" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">Per WhatsApp senden ↗</a>
+            <a class="btn primary" id="whatsappLink" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">Per WhatsApp senden <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
           </div>
           <p id="copyStatus" role="status" aria-live="polite"></p>
           <p class="hint">WhatsApp öffnet sich mit deiner Nachricht. Du entscheidest dort, wann du sie sendest.</p>
         </div>
       </section>
-    </div>
+      <section class="faq-section" id="fragen" aria-labelledby="faqTitle">
+        <div class="section-topline"><div><p class="section-eyebrow">KURZ GEFRAGT</p><h2 id="faqTitle">Noch Fragen?</h2></div><span class="section-note">Die wichtigsten Infos auf einen Blick.</span></div>
+        <div class="faq-list">
+          <details class="faq-item"><summary>Wie kann ich bei Frost Skaters mitmachen?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Nutze unser <a href="#mitmachen">Anmeldeformular</a> oder <a href="#whatsapp">schreib uns über WhatsApp</a>. Dann besprechen wir ein kurzes Kennenlernen und deine Anmeldung.</p></details>
+          <details class="faq-item"><summary>Wie lange dauert das Kennenlernen?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Höchstens zehn Minuten. Dabei kannst du deine Fragen stellen und mehr über uns erfahren.</p></details>
+          <details class="faq-item"><summary>Was bekomme ich für die 25 € im Shop?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Die Personalisierung deines eigenen Hoodies: das große Frost-Skaters-Logo auf dem Rücken und deinen Namen am linken Arm. <strong>Den Hoodie bringst du selbst mit.</strong> Die Anfrage kannst du im <a href="shop.html">Shop</a> vorbereiten.</p></details>
+          <details class="faq-item"><summary>Wann geht es nach Heilbronn?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Am 3. Januar. Uhrzeit und Treffpunkt folgen noch. Den Termin findest du unter <a href="events.html">Events</a>.</p></details>
+          <details class="faq-item"><summary>Wo finde ich Infos zum Training?<span class="faq-plus" aria-hidden="true">+</span></summary><p>Unsere <a href="training.html">Training-Seite</a> ist noch in Arbeit. Dort steht aktuell „Not finished – in work“.</p></details>
+        </div>
+      </section>
+      <section class="share-section" aria-labelledby="shareTitle">
+        <div><p class="section-eyebrow">GUTE LEUTE MITBRINGEN</p><h2 id="shareTitle">Frost teilen.</h2><p>Kennst du jemanden, der zu uns passt? Gib unseren Website-Link weiter.</p><a class="contact-link" href="tel:+4915234646842">+49 152 34646842</a></div>
+        <div class="share-controls"><button class="btn primary" id="shareSite" type="button"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4m-6 8 6 4"/></svg>Website teilen</button><p id="shareStatus" role="status" aria-live="polite"></p><div id="shareFallback" hidden><label for="shareLink">Website-Adresse zum Kopieren</label><input id="shareLink" type="text" readonly /></div><span class="share-hint">In Chrome, Safari und anderen Browsern öffnen.</span></div>
+      </section>
+      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="training.html">Training</a><a href="shop.html">Shop</a><a href="#fragen">Fragen</a></nav><span>Zusammen seit 2025.</span></footer>
+    </main>
 
     <script>
       const message = document.getElementById('copyText');
@@ -356,5 +403,6 @@
       });
     </script>
     <script src="assets/site-menu.js"></script>
+    <script src="assets/site-share.js"></script>
   </body>
 </html>
