@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080911">
+<meta name="description" content="Frost Skaters Jahresrückblick: veröffentlichte Events und Highlights der Community nach Jahr.">
+<title>Unser Jahresrückblick | Frost Skaters</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css"><link rel="stylesheet" href="assets/frost-hub.css?v=1">
+<style>
+.recap-animate{animation:recap-in .7s ease-out both}
+@keyframes recap-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.recap-year{font-size:clamp(3.5rem,11vw,8rem);line-height:1;font-weight:1000;letter-spacing:-.08em;color:#71edf7;margin:0 0 16px}
+.recap-record{border-left:3px solid #7eedf3;padding-left:18px;margin:14px 0}
+.recap-record h3{margin:0 0 8px}
+@media(prefers-reduced-motion:reduce){.recap-animate{animation:none}}
+@media print{.site-header,#recapPrint,.fh-menu{display:none!important}}
+</style></head><body class="frost-hub"><header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><a href="community.html" style="color:#76e3ef">← Community</a></header>
+<main class="fh-wrap">
+<section class="fh-head fh-hero"><div><p class="fh-eye">Frost Skaters · Seit 2025</p><h1>❄️ Unser Jahresrückblick</h1><p>Unsere gemeinsame Geschichte und die auf der Website veröffentlichten Aktivitäten. Nur tatsächlich veröffentlichte Inhalte werden gezählt, keine erfundenen Erfolge.</p></div><img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters" class="fh-logo"></section>
+<div class="fh-panel fh-no-print">
+<label class="fh-field" for="recapYear">Welches Jahr möchtest du ansehen?<select id="recapYear" class="fh-input"></select></label>
+<div class="fh-actions"><button id="recapPrint" type="button" class="fh-btn alt">🖨️ Rückblick drucken</button><a href="community.html#history" class="fh-btn alt">📖 Geschichte ansehen</a></div>
+</div>
+<div id="recapOutput" class="recap-animate" aria-live="polite">
+<h2 class="recap-year" id="recapNumber">2025</h2>
+<p class="fh-alert" id="recapIntro">Seit 2025 wächst unsere Community zusammen.</p>
+<div class="fh-grid" id="recapStats"></div>
+<section class="fh-sec"><h2>🌟 Unsere veröffentlichten Highlights</h2><div id="recapEntries" class="fh-timeline"><p>Highlights laden …</p></div></section>
+</div>
+<footer><a href="community.html">❄️ Zur Community</a> · <a href="index.html">🏠 Startseite</a></footer></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="assets/frost-members-config.js"></script>
+<script src="assets/frost-recap.js?v=1"></script></body></html>
