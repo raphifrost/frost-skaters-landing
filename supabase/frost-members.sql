@@ -31,7 +31,7 @@ revoke all on public.frost_admins from anon, authenticated;
 revoke all on public.frost_member_requests from anon, authenticated;
 grant select on public.frost_admins to authenticated;
 grant insert on public.frost_member_requests to anon;
-grant select, update on public.frost_member_requests to authenticated;
+grant select, insert, update on public.frost_member_requests to authenticated;
 
 drop policy if exists "frost_admin_self_read" on public.frost_admins;
 create policy "frost_admin_self_read" on public.frost_admins
@@ -43,6 +43,11 @@ create policy "frost_apply_only" on public.frost_member_requests
     status = 'pending' and role = 'MEMBER'
     and member_no is null and processed_at is null
   );
+
+drop policy if exists "frost_owner_insert" on public.frost_member_requests;
+create policy "frost_owner_insert" on public.frost_member_requests
+  for insert to authenticated
+  with check (exists (select 1 from public.frost_admins a where a.user_id = (select auth.uid())));
 
 drop policy if exists "frost_owner_read" on public.frost_member_requests;
 create policy "frost_owner_read" on public.frost_member_requests
