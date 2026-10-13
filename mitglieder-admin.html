@@ -21,6 +21,21 @@
 <label for="ownerPassword" class="member-label">Passwort</label><input id="ownerPassword" type="password" class="member-input" autocomplete="current-password" required>
 <div class="member-actions"><button type="submit" id="loginButton" class="member-btn">Einloggen</button></div>
 </form><p class="member-hint">Dein Login muss vorher in der geschützten Datenbank als Owner freigeschaltet werden. Das Passwort steht nicht im GitHub-Code.</p>
+<details style="margin-top:22px" id="signupDetails">
+<summary style="cursor:pointer;color:#83edf4;font-weight:800;padding:12px 0">👑 Zum ersten Mal hier? Owner-Account erstellen</summary>
+<p>Gib hier deine E-Mail und ein eigenes sicheres Passwort ein. Diese Daten gehen direkt an Supabase und nicht an ChatGPT oder GitHub. Anschließend bestätigst du die E-Mail über den Link in deinem Postfach. Die Freischaltung als Owner erfolgt erst nach einer Prüfung.</p>
+<form id="adminSignup">
+<label for="signupEmail" class="member-label">Deine E-Mail-Adresse</label>
+<input id="signupEmail" type="email" class="member-input" autocomplete="email" required maxlength="254">
+<label for="signupPassword" class="member-label">Neues Passwort (mindestens 12 Zeichen)</label>
+<input id="signupPassword" type="password" class="member-input" minlength="12" autocomplete="new-password" required>
+<label for="signupPasswordRepeat" class="member-label">Passwort wiederholen</label>
+<input id="signupPasswordRepeat" type="password" class="member-input" minlength="12" autocomplete="new-password" required>
+<div class="member-actions"><button class="member-btn" id="signupButton" type="submit">Owner-Zugang beantragen</button></div>
+</form>
+<div id="signupFeedback" role="status" aria-live="polite"></div>
+<p class="member-hint">Dieser Schritt erstellt nur deinen privaten Login. Die Berechtigung zum Annehmen von Mitgliedern erhältst du erst nach einer gesonderten Freigabe.</p>
+</details>
 <div id="loginFeedback" role="status" aria-live="polite"></div>
 </section>
 
