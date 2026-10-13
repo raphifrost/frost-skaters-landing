@@ -1,84 +1,38 @@
-# Frost Skaters: Mitgliedsanträge, Owner-Freigabe & QR-Karten
+# Frost Skaters 3.0 – Einrichtung und Tests
 
-**Status vom 13.10.2026:** Das Supabase-Projekt **Frost Skaters** in Frankfurt (`eu-central-1`) wurde angelegt. Die Datenbankmigration wurde erfolgreich ausgeführt und `assets/frost-members-config.js` enthält bereits die öffentliche Projekt-URL und den sicheren **publishable** API-Key. **Wichtig: Der Owner muss sich noch auf der Website registrieren, seine E-Mail bestätigen und freigeschaltet werden.** Bis dahin kann niemand eingehende Anträge im Dashboard annehmen.
+**Aktueller Stand:** GitHub-Pages-Repository `raphifrost/frost-skaters-landing`, Supabase-Projekt `chjkciknwutqdvefxhnl`. Die Owner-Rolle ist für genau ein existierendes Konto freigeschaltet. **Kein weiterer Owner-Account und keine zweite Datenbank notwendig.**
 
-Dieses System besteht aus drei Bereichen:
+## 1. Geschützte Zugänge
 
-- **Mitgliederseite:** `mitglieder.html` – Besucher können einen Spitznamen eingeben und einen Antrag schicken. Es wird ein zufälliger, privater Karten-Code erzeugt. Dieser ist automatisch auf dem anfragenden Gerät gespeichert, sofern lokale Speicherung erlaubt ist; den angezeigten Link sollte man zusätzlich sichern.
-- **Owner-Dashboard:** `mitglieder-admin.html` – Nur ein freigeschalteter Supabase-Auth-Account kann alle Anträge sehen, Mitglieder annehmen, ablehnen, sperren, selbst neu eintragen und aktive Kartenlinks kopieren.
-- **Bestätigte Karte:** Auf `mitglieder.html?code=…` erscheinen Name/Spitzname, Rolle, Mitgliedsnummer, Status und ein QR-Code mit demselben Karten-Link. Vor der Freigabe und nach Sperrung erscheint **keine** gültige Karte.
+- Mitgliederverwaltung: `mitglieder-admin.html`
+- Team-Zentrale: `hub-admin.html`
+- Öffentlichkeit: `community.html`, `mitglieder.html`
+- Teammitglieder registrieren sich mit einer eigenen E-Mail und einem eigenen, geheimen Passwort; der Owner genehmigt sie über ihre Supabase Benutzer-ID. Nur der Owner darf Team-Berechtigungen vergeben.
+- Der gemeinsame verschlüsselte `organisation.html`-Plan hat einen getrennten Passwortschutz und gewährt **keinen** Zugriff auf Supabase-Daten.
 
-Die GitHub Pages Website hostet nur HTML, CSS und JavaScript, nicht die Datenbank und nicht den Auth-Server. Die Supabase-Verbindung wurde eingerichtet. **Für Freigaben fehlt noch der Owner-Account** (siehe Schritt 2). Das Formular sollte Anträge an die Datenbank senden können; ein vollständiger Browser-End-to-End-Test steht noch aus.
+Falls eine E-Mail-Bestätigung auf `localhost:3000` zeigt, muss unter Supabase Authentication → URL Configuration die korrekte Site-/Redirect-URL freigegeben werden. Gegebenenfalls war die Bestätigung trotzdem erfolgreich. Keine Passwörter per Chat verschicken.
 
-## Schritt 1: Supabase-Projekt und Datenbank – ERLEDIGT
+## 2. Manuelle Prüfung (Testdaten und Vornamen, keine echten privaten Daten)
 
-Das Projekt wurde bereits angelegt, der SQL-Code wurde erfolgreich ausgeführt. Bitte **nicht ein zweites Projekt** erstellen.
+1. Öffentliche Startseite, Community, englische Version, Datenschutz und Eishallen-Finder öffnen.
+2. Als Besucher eine Community-Idee ohne Namen absenden. Im Owner-Dashboard prüfen, ob sie ausschließlich im geschützten Posteingang erscheint.
+3. Als Owner einen News-Beitrag und ein Event als Entwurf anlegen. Öffentlich darf der Entwurf nicht erscheinen. Dann freigeben und Verfügbarkeit prüfen.
+4. Event mit erfundenem Vornamen anfragen. Privaten Beleg-Link speichern. Owner bestätigt. Den Status über denselben Link kontrollieren.
+5. Eine Umfrage veröffentlichen, als Besucher abstimmen und die Ergebnisanzeige überprüfen. Bei demselben Browser darf eine zweite Stimme nicht gespeichert werden. Die Abstimmung ist trotzdem nicht fälschungssicher.
+6. Als Owner Aufgaben/Checklisten/Ausrüstungsverleih und Kostenrechner testen; als Co-Owner mit eigenem freigeschalteten Account versuchen, vertrauliche Anträge und Gesprächsdaten aufzurufen: **muss verweigert werden**.
+7. Die bereits vorhandenen Mitgliedskarten und privaten QR-Links prüfen: vor Freigabe ungültig, nach Freigabe gültig, PASSIV korrekt markiert, nach Sperrung nicht mehr gültig.
+8. Abzeichen auf eine bestehende Karte vergeben, Link öffnen und Badge anzeigen lassen.
+9. Löschanfrage mit Testdaten durchführen; sicherstellen, dass private Anträge und ihre Historie entfernt werden.
+10. iPhone: Safari, Startbildschirm-Shortcut, Login, Mobilmenüs, Formulare, Druck der Mitgliedskarte. Optional Browser-Benachrichtigung beim **geöffneten** Owner-Hub ausprobieren.
+11. Nach jeder Änderung GitHub Actions → `Frost Skaters checks` und `pages build and deployment` kontrollieren.
 
-Damit entstehen die private Antragstabelle, die Admin-Liste und eine Funktion, die nur bereits genehmigte Karten über ihren schwer erratbaren Code abruft.
+## 3. Was vor breiter öffentlicher Nutzung fehlt
 
-## Schritt 2: Owner-Account einrichten – NUR BESTÄTIGUNG NOCH OFFEN
+- Rechtlich vollständige Angaben zur verantwortlichen erwachsenen Person und fachliche Prüfung der Datenschutzhinweise.
+- Angemessener Spam-/Missbrauchsschutz der öffentlich zugänglichen Formulare; aktuell ist kein serverseitiges CAPTCHA/Limitsystem integriert.
+- Freigaben für alle veröffentlichten Fotos, besonders von Minderjährigen.
+- Verlässliche Bestätigung der FormSubmit-E-Mail-Zustellung; nur die Datenbank ist maßgebend.
+- Ein wirklicher Browser-Ende-zu-Ende-Test mit den passenden Testaccounts.
+- Echte Push-Nachrichten bei geschlossener iPhone-App sind **nicht** eingerichtet.
 
-1. Öffne [dein Owner-Dashboard](https://raphifrost.github.io/frost-skaters-landing/mitglieder-admin.html).
-2. Klappe **„Zum ersten Mal hier? Owner-Account erstellen“** auf.
-3. Gib **deine eigene E-Mail-Adresse** und ein selbst gewähltes starkes Passwort (mindestens 12 Zeichen) ein.
-4. Öffne dein E-Mail-Postfach, überprüfe auch Spam und **bestätige den Link**. Das Passwort bleibt geheim; gib es niemandem, auch nicht ChatGPT.
-5. Kehre in den Chat zurück und schreibe **„E-Mail bestätigt“**. Die Owner-Rolle wird dann **separat nach Prüfung des bestätigten Accounts** durch den bereits verbundenen Supabase-Zugriff freigegeben.
-
-Nach Bestätigung kann der berechtigte Administrator die User-UUID in der Supabase-Datenbank in `public.frost_admins` freischalten, zum Beispiel:
-
-```sql
-insert into public.frost_admins(user_id)
-values ('DIE-ECHTE-VERIFIZIERTE-USER-UUID') on conflict do nothing;
-```
-
-**WICHTIG:** Durch eine Registrierung allein wird niemand automatisch Owner. Freischaltung erst nach Prüfung des E-Mail-verifizierten Users.
-
-**E-Mail-Weiterleitung:** In einem neuen Supabase-Projekt muss unter **Authentication → URL Configuration** gegebenenfalls die Website als Site URL und als erlaubte Redirect URL eingetragen werden:
-`https://raphifrost.github.io/frost-skaters-landing/mitglieder-admin.html`.
-Ohne diese Einstellung kann der Bestätigungslink auf eine localhost-Adresse umleiten. Die Bestätigung kann dennoch erfolgreich gewesen sein. Öffne dann das Owner-Dashboard wieder direkt.
-
-## Schritt 3: Website mit dem Projekt verbinden – ERLEDIGT
-
-Unter **Project Settings → API Keys** (je nach Supabase-Oberfläche auch **Connect / API Keys**) findest du den öffentlichen `anon`- oder `publishable`-Key. Die Projekt-URL liegt unter **Project Settings → API**.
-
-Die Datei `assets/frost-members-config.js` ist bereits korrekt mit dem **publishable Key** verbunden. Dies ist nur ein Beispiel, falls du sie später erneut konfigurieren musst:
-
-```js
-window.FROST_MEMBERS_CONFIG = {
-  supabaseUrl: "https://DEIN-PROJEKT.supabase.co",
-  supabaseAnonKey: "DEIN-OEFFENTLICHER-PUBLISHABLE-ODER-ANON-KEY"
-};
-```
-
-**Niemals einen `service_role`-Key, `secret`-Key oder das Owner-Passwort in JavaScript / GitHub speichern.** Der öffentliche Key ist nur dank Row-Level Security (RLS) sicher; daher die SQL-Richtlinien unbedingt vollständig einrichten.
-
-## Schritt 4: Testen
-
-1. Öffne die Live-Website unter `https://raphifrost.github.io/frost-skaters-landing/mitglieder.html`.
-2. Stelle einen Testantrag mit einem ausgedachten Spitznamen und sichere den privaten Karten-Link.
-3. Der Link zeigt vor der Annahme keine gültige Karte.
-4. Öffne `https://raphifrost.github.io/frost-skaters-landing/mitglieder-admin.html` und melde dich mit dem Owner-Account an.
-5. Der offene Antrag erscheint im Dashboard. Klicke auf **Annehmen**.
-6. Öffne den privaten Karten-Link erneut. Er zeigt jetzt eine gültige Karte mit lokal erzeugtem QR-Code.
-7. Teste auch **Sperren**. Danach darf die Karte nicht mehr als aktiv angezeigt werden.
-8. Teste **Mitglied direkt eintragen** und kopiere dessen Karten-Link.
-
-## Datenschutz und Sicherheit
-
-- Verwende am besten **Spitznamen**. Bewahre keine Telefonnummern, Adressen, vollständigen Geburtsdaten oder sensible Infos in diesem System auf.
-- Offene Anträge sind durch RLS nur für berechtigte Admin-Accounts lesbar. Der zufällig generierte Kartencode ist wie ein privater Link: Wer ihn erhält, kann den freigegebenen Spitznamen und die Rolle sehen.
-- Mitglieder müssen ihren Karten-Link privat aufbewahren. Keine offenen Kartenlisten auf der Website.
-- Das Admin-Login speichert die Sitzung bewusst nicht dauerhaft. Nach einem Neuladen ist eine erneute Anmeldung notwendig.
-- Das System benötigt bei öffentlicher Nutzung zusätzliche Maßnahmen gegen Spam, etwa eine geeignete CAPTCHA- oder Rate-Limit-Lösung. Sonst könnten fremde Personen viele sinnlose Anträge absenden.
-- Wenn du Anträge von Minderjährigen sammelst, erkläre datensparsam und verständlich, wie Daten verwendet werden, und hol bei Bedarf Unterstützung durch eine volljährige Vertrauensperson.
-- Bildkarten oder QR-Codes sind **keine amtlichen Ausweise**. Sie zeigen nur den Community-Status.
-
-## Häufige Fehler
-
-- **System wird eingerichtet:** `frost-members-config.js` enthält noch Platzhalter oder eines der externen JavaScript-Module konnte nicht geladen werden.
-- **Antrag kann nicht gesendet werden:** Projekt-URL und öffentlichen Key kontrollieren; SQL-Richtlinien prüfen; Browser-Konsole auf Fehlermeldungen ansehen.
-- **Login geht, aber kein Dashboard:** Die User-UUID fehlt in `frost_admins`.
-- **Karte bleibt ungültig:** Im Dashboard Status prüfen. Nur `approved` wird öffentlich angezeigt.
-- **QR-Code fehlt:** Externes QRCode-Skript ist nicht geladen. Der Karten-Link kann weiterhin benutzt werden.
-
-Dateien: `mitglieder.html`, `mitglieder-admin.html`, `assets/frost-members.css`, `assets/frost-members.js`, `assets/frost-members-admin.js`, `assets/frost-members-config.js`, `supabase/frost-members.sql`.
+**Keine Passwörter oder geheimen Schlüssel auf GitHub speichern. Der ehemalige Kleidungsshop wurde entfernt.**
