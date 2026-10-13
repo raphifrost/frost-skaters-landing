@@ -94,13 +94,17 @@ $('adminLogin').addEventListener('submit',async event=>{
   if(!client){feedback('loginFeedback','Das Mitgliedersystem ist noch nicht mit der Datenbank verbunden. Bitte zuerst Supabase einrichten.',true);return;}
   const btn=$('loginButton');btn.disabled=true;btn.textContent='Prüfe Zugang …';
   try{
-    const {error}=await client.auth.signInWithPassword({email:$('ownerEmail').value.trim(),password:$('ownerPassword').value});
+    const {data:loginData,error}=await client.auth.signInWithPassword({email:$('ownerEmail').value.trim(),password:$('ownerPassword').value});
     $('ownerPassword').value='';
     if(error)throw error;
-    const {data,error:checkErr}=await client.from('frost_admins').select('user_id').limit(1);
-    if(checkErr||!data?.length){await client.auth.signOut();throw new Error('Zugang nicht für diese Person freigeschaltet');}
+    const {data:roles,error:checkErr}=await client.from('frost_admins').select('user_id').limit(1);
+    if(checkErr||!roles?.length){
+      await client.auth.signOut();
+      feedback('loginFeedback','Dein Login hat funktioniert! Der Account ist aber noch nicht als Owner freigeschaltet.\\n\\nKopiere diese Benutzer-ID und teile sie zur Freischaltung mit dem Website-Verwalter (niemals dein Passwort):\\n'+(loginData?.user?.id||'Nicht verfügbar'));
+      return;
+    }
     signedIn=true;$('signInPanel').hidden=true;$('dashboard').hidden=false;await reload();
-  }catch(e){feedback('loginFeedback','Login nicht möglich. Zugangsdaten prüfen oder den Admin-Account in Supabase freischalten.',true);console.error(e);}
+  }catch(e){feedback('loginFeedback','Login nicht möglich. Bitte kontrolliere die E-Mail und das Passwort. Wenn du gerade auf localhost:3000 gelandet bist, kann die Bestätigung trotzdem erfolgreich gewesen sein — probiere deinen Login hier erneut.',true);console.error(e);}
   finally{btn.disabled=false;btn.textContent='Einloggen';}
 });
 $('signOut').addEventListener('click',async()=>{
