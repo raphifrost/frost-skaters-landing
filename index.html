@@ -159,10 +159,9 @@
         margin-top: 18px;
       }
 
+      input:not([type="hidden"]),
       textarea {
         width: 100%;
-        min-height: 120px;
-        resize: vertical;
         border-radius: 12px;
         border: 1px solid var(--border);
         background: rgba(2, 6, 23, 0.8);
@@ -171,6 +170,23 @@
         font-size: 1rem;
         font-family: Arial, Helvetica, sans-serif;
       }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .registration-form { margin-top: 24px; }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+      .form-field { min-width: 0; }
+      .form-field.full-width { grid-column: 1 / -1; }
+      .card .form-note { margin: 20px 0; font-size: .9rem; }
+      .form-note a { color: var(--primary); overflow-wrap: anywhere; }
+      .submit-btn { border: 0; cursor: pointer; font: inherit; font-weight: 700; }
 
       .copy-btn {
         margin-top: 14px;
@@ -182,7 +198,8 @@
 
       @media (max-width: 820px) {
         .hero,
-        .section {
+        .section,
+        .form-grid {
           grid-template-columns: 1fr;
         }
 
@@ -206,7 +223,8 @@
         .container { padding: 20px 16px 48px; }
         .card { padding: 22px; }
         .section { padding-top: 32px; }
-        .message-actions .btn { width: 100%; }
+        .message-actions .btn,
+        .submit-btn { width: 100%; }
       }
     </style>
   </head>
@@ -245,7 +263,7 @@
         <div class="card">
           <h2>So kommst du dazu</h2>
           <ol class="steps">
-            <li><strong>Schreib uns.</strong> Kopiere die Nachricht oder öffne sie direkt in WhatsApp.</li>
+            <li><strong>Melde dich an.</strong> Fülle das Formular aus oder schreib uns über WhatsApp.</li>
             <li><strong>Lern uns kennen.</strong> Wir vereinbaren ein kurzes Gespräch – höchstens 10 Minuten.</li>
             <li><strong>Mach mit.</strong> Dabei klären wir deine Fragen und besprechen deine Anmeldung.</li>
           </ol>
@@ -254,7 +272,40 @@
 
       <section class="section" id="mitmachen">
         <div class="card" style="grid-column: 1 / -1;">
-          <h2>Dein erster Schritt zu uns</h2>
+          <h2>Melde dich bei Frost Skaters an</h2>
+          <p id="registrationInfo">Sag uns, wie du heißt und unter welcher Nummer Raphi dich erreichen kann. Er meldet sich bei dir, um euch kennenzulernen. Name und Telefonnummer sind Pflichtfelder.</p>
+          <form class="registration-form" action="https://formsubmit.co/raphi.leibssle@gmx.de" method="POST" accept-charset="UTF-8" aria-describedby="registrationInfo registrationPrivacy">
+            <input type="hidden" name="_subject" value="Frost Skaters – Neue Anmeldung" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://raphifrost.github.io/frost-skaters-landing/anmeldung-danke.html" />
+            <input type="text" name="_honey" hidden tabindex="-1" autocomplete="off" />
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="applicantName">Dein Name (Pflichtfeld)</label>
+                <input id="applicantName" name="Name" type="text" autocomplete="name" maxlength="100" pattern=".*\S.*" title="Bitte gib deinen Namen ein." required />
+              </div>
+              <div class="form-field">
+                <label for="applicantPhone">Deine Telefonnummer (Pflichtfeld)</label>
+                <input id="applicantPhone" name="Telefonnummer" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" pattern="(?=(?:[^0-9]*[0-9]){6})[0-9\s\+\(\)\.\/\-]{6,40}" title="Mindestens 6 Ziffern; Leerzeichen und die Zeichen + ( ) - . / sind erlaubt." placeholder="z. B. +49 152 12345678" required />
+              </div>
+              <div class="form-field full-width">
+                <label for="callbackTime">Wann passt dir ein Rückruf? (optional)</label>
+                <input id="callbackTime" name="Rückrufzeit" type="text" maxlength="120" placeholder="z. B. werktags ab 17 Uhr" />
+              </div>
+              <div class="form-field full-width">
+                <label for="applicantMessage">Deine Nachricht (optional)</label>
+                <textarea id="applicantMessage" name="Nachricht" rows="4" maxlength="2000" placeholder="Was möchtest du uns noch sagen?"></textarea>
+              </div>
+            </div>
+            <p class="form-note" id="registrationPrivacy">Mit dem Absenden werden deine Angaben über FormSubmit per E-Mail an Raphi (<a href="mailto:raphi.leibssle@gmx.de">raphi.leibssle@gmx.de</a>) gesendet, damit er dich zur Anmeldung kontaktieren kann.</p>
+            <button class="btn primary submit-btn" type="submit">Anmeldung absenden</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="whatsapp">
+        <div class="card" style="grid-column: 1 / -1;">
+          <h2>Lieber per WhatsApp?</h2>
           <p>Passe die Nachricht an und schick sie uns. Wir vereinbaren dann zusammen einen Termin.</p>
           <div class="copy-box">
             <label for="copyText">Deine Nachricht</label>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14191f" />
+    <meta name="description" content="Dein persönlicher Space für Apps, Spiele, Aufgaben und Erinnerungen. Lokal auf PC und Handy." />
+    <title>Mein Space · Leon</title>
+    <link rel="stylesheet" href="styles.css" />
+      <meta name="theme-color" content="#101419" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+      <symbol id="icon-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 0 0-5.7-1.3A3.8 3.8 0 0 0 3 7.5c0 .5.1 1 .3 1.4a4.2 4.2 0 0 0 0 7.2A3.8 3.8 0 0 0 7 21a3 3 0 0 0 5-2V5Zm0 0a3 3 0 0 1 5.7-1.3A3.8 3.8 0 0 1 21 7.5c0 .5-.1 1-.3 1.4a4.2 4.2 0 0 1 0 7.2A3.8 3.8 0 0 1 17 21a3 3 0 0 1-5-2"/><path d="M7 9c3 0 5 2 5 4m5-4c-3 0-5 2-5 4M7 17c0-2 2-3 3-3m7 3c0-2-2-3-3-3"/></symbol>
+      <symbol id="icon-bag" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a22 22 0 0 0 18 0M12 11v4"/></symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24"><path d="m9.6 3-.5 2a7.7 7.7 0 0 0-2 1.2L5.2 6 3 9.8l1.4 1.5a7.2 7.2 0 0 0 0 2.4L3 15.2 5.2 19l1.9-.6a7.7 7.7 0 0 0 2 1.2l.5 2h4.8l.5-2a7.7 7.7 0 0 0 2-1.2l1.9.6 2.2-3.8-1.4-1.5a7.2 7.2 0 0 0 0-2.4L21 9.8 18.8 6l-1.9.6a7.7 7.7 0 0 0-2-1.2l-.5-2H9.6Z"/><circle cx="12" cy="12.5" r="3"/></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24"><path d="M13 5h6v6m0-6L9 15m10 0v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/></symbol>
+      <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="m12 3 2.8 6.2L21 12l-6.2 2.8L12 21l-2.8-6.2L3 12l6.2-2.8L12 3Z"/></symbol>
+      <symbol id="icon-note" viewBox="0 0 24 24"><path d="M14 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V10l-7-7Z"/><path d="M14 3v7h7M7 14h10M7 17h6"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-command" viewBox="0 0 24 24"><path d="M8 8H5a3 3 0 1 1 3-3v14a3 3 0 1 1-3-3h14a3 3 0 1 1-3 3V5a3 3 0 1 1 3 3H8Z"/></symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+
+    <div class="desktop-shell">
+      <aside class="sidebar" aria-label="Hauptnavigation">
+        <a class="brand" href="#overview" aria-label="Mein Space – Übersicht">
+          <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 36 36" fill="none"><rect x="4.5" y="5.5" width="27" height="20" rx="5" stroke="currentColor" stroke-width="2"/><path d="M12 31h12M18 25.5V31M11 12h8M11 17h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span class="brand-copy"><strong>Mein Space<span class="brand-dot">.</span></strong><span>Ein Platz für alles.</span></span>
+        </a>
+
+        <div class="nav-label">DEIN SPACE</div>
+        <nav class="navigation" aria-label="Bereiche">
+          <button class="nav-button is-active" type="button" data-view="overview" aria-current="page"><svg class="icon"><use href="#icon-grid"/></svg><span>Übersicht</span><span class="nav-indicator" aria-hidden="true"></span></button>
+          <button class="nav-button" type="button" data-view="memory"><svg class="icon"><use href="#icon-brain"/></svg><span>Gedächtnis</span></button>
+          <button class="nav-button" type="button" data-view="work"><svg class="icon"><use href="#icon-bag"/></svg><span>Schule & Arbeit</span></button>
+          <button class="nav-button" type="button" data-view="settings"><svg class="icon"><use href="#icon-settings"/></svg><span>Einstellungen</span></button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-note">
+            <span class="sidebar-note-icon"><svg class="icon"><use href="#icon-shield"/></svg></span>
+            <strong>Dein Space. Ganz privat.</strong>
+            <p>Deine Notizen bleiben in diesem Browser.</p>
+            <button class="sidebar-link" type="button" data-action="export">Backup herunterladen <svg class="icon"><use href="#icon-arrow"/></svg></button>
+          </div>
+          <div class="sidebar-profile">
+            <div class="profile-avatar" aria-hidden="true">D</div>
+            <div><strong id="display-name">Dein Desktop</strong><span>Für deinen Alltag gemacht</span></div>
+            <svg class="icon profile-heart" aria-hidden="true"><use href="#icon-heart"/></svg>
+          </div>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <div class="global-search-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
+            <label class="sr-only" for="global-search">Apps und Erinnerungen durchsuchen</label>
+            <input id="global-search" type="search" autocomplete="off" placeholder="Finde, was du gerade brauchst …" />
+            <span class="search-hint" aria-hidden="true">Strg K</span>
+          </div>
+          <div class="topbar-date">
+            <span id="clock-time" class="clock-time">--:--</span>
+            <span id="clock-date" class="clock-date">Dein Tag im Überblick</span>
+          </div>
+          <span class="topbar-avatar" aria-label="Dein persönlicher Space">D</span>
+        </header>
+
+        <main id="main-content" class="main-content">
+          <section class="view" data-view="overview" aria-labelledby="greeting">
+            <div class="view-heading">
+              <div><p class="eyebrow">DEIN PERSÖNLICHER SPACE</p><h1 id="greeting">Schön, dass du da bist.</h1><p class="view-subtitle">Deine Apps, deine Gedanken, dein Tag.</p></div>
+              <button class="button button-secondary heading-action" type="button" data-action="add-memory"><svg class="icon"><use href="#icon-plus"/></svg>Neue Erinnerung</button>
+            </div>
+
+            <div class="hero-card">
+              <div class="hero-content">
+                <div class="hero-eyebrow"><span class="leon-small-icon" aria-hidden="true"><svg class="icon"><use href="#icon-sparkle"/></svg></span><span>LEON · DEIN ASSISTENT</span></div>
+                <h2>Alles, was du brauchst.<br /><span>Ein Ort.</span></h2>
+                <p>Von der nächsten Runde bis zur nächsten guten Idee.<br class="desktop-break" /> Hier beginnt dein digitaler Alltag.</p>
+                <div class="hero-actions">
+                  <a class="button button-primary" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#icon-sparkle"/></svg>Mit Leon chatten<svg class="icon button-arrow"><use href="#icon-external"/></svg></a>
+                  <button class="button button-ghost" type="button" data-action="open-memory">Dein Gedächtnis öffnen<svg class="icon"><use href="#icon-arrow"/></svg></button>
+                </div>
+                <span class="hero-caption">Öffnet ChatGPT in einem neuen Tab.</span>
+                <button class="home-screen-button" type="button" data-install><svg class="icon"><use href="#icon-plus"/></svg>Auf deinem Startbildschirm</button>
+              </div>
+              <div class="hero-art" aria-hidden="true">
+                <span class="art-cross art-cross-one">+</span><span class="art-cross art-cross-two">+</span>
+                <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+                <span class="orbit-point orbit-point-one"></span><span class="orbit-point orbit-point-two"></span>
+                <div class="leon-core"><svg viewBox="0 0 108 108" fill="none"><path d="M34 29v42a9 9 0 0 0 9 9h33" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="m69 28 3.5 8.5L81 40l-8.5 3.5L69 52l-3.5-8.5L57 40l8.5-3.5L69 28Z" fill="currentColor"/></svg></div>
+                <div class="art-label"><span class="small-dot"></span>Ein bisschen mehr Kopf frei.</div>
+              </div>
+            </div>
+
+            <div class="dashboard-stats" aria-label="Dein Desktop in Zahlen">
+              <div class="stat"><span class="stat-icon stat-icon-lime"><svg class="icon"><use href="#icon-grid"/></svg></span><span class="stat-copy"><strong id="app-count">0</strong><span>Apps & Games</span></span><span class="stat-detail">Ein Klick entfernt</span></div>
+              <div class="stat"><span class="stat-icon stat-icon-cyan"><svg class="icon"><use href="#icon-brain"/></svg></span><span class="stat-copy"><strong id="memory-count">0</strong><span>Erinnerungen</span></span><span class="stat-detail">Gedanken mit Zuhause</span></div>
+              <div class="stat"><span class="stat-icon stat-icon-peach"><svg class="icon"><use href="#icon-check-circle"/></svg></span><span class="stat-copy"><strong id="task-count">0</strong><span>Offene Aufgaben</span></span><span class="stat-detail">Schritt für Schritt</span></div>
+            </div>
+
+            <section class="apps-section" aria-labelledby="apps-title">
+              <div class="section-heading"><div class="section-title-wrap"><h2 id="apps-title">Deine Apps & Games</h2><span class="section-caption">Direkt loslegen</span></div><button class="text-button" type="button" data-action="add-app"><svg class="icon"><use href="#icon-plus"/></svg>Shortcut hinzufügen</button></div>
+              <div class="app-filters" role="group" aria-label="Apps filtern">
+                <button type="button" data-app-filter="alle" class="is-active" aria-pressed="true">Alles</button>
+                <button type="button" data-app-filter="social" aria-pressed="false">Social</button>
+                <button type="button" data-app-filter="games" aria-pressed="false">Games</button>
+                <button type="button" data-app-filter="arbeit" aria-pressed="false">Arbeit</button>
+                <button type="button" data-app-filter="ki" aria-pressed="false">Leon</button>
+              </div>
+              <div id="app-grid" class="app-grid" aria-label="Deine App-Shortcuts"></div>
+            </section>
+
+            <div class="dashboard-lower">
+              <section class="panel memories-panel" aria-labelledby="recent-title">
+                <div class="panel-heading"><div><span class="panel-eyebrow">FÜR SPÄTER FESTGEHALTEN</span><h2 id="recent-title">Dein Gedächtnis</h2></div><button class="icon-button" type="button" data-action="add-memory" aria-label="Erinnerung hinzufügen"><svg class="icon"><use href="#icon-plus"/></svg></button></div>
+                <div id="recent-memories" class="recent-memories"></div>
+                <div class="panel-footer"><span>Gute Gedanken gehen nicht verloren.</span><button class="text-button" type="button" data-action="open-memory">Alle ansehen<svg class="icon"><use href="#icon-arrow"/></svg></button></div>
+              </section>
+              <section class="panel tasks-panel" aria-labelledby="tasks-title">
+                <div class="panel-heading"><div><span class="panel-eyebrow">EIN KLEINER SCHRITT WEITER</span><h2 id="tasks-title">Dein nächster Schritt</h2></div><span class="panel-heading-icon"><svg class="icon"><use href="#icon-check-circle"/></svg></span></div>
+                <ul id="task-list" class="task-list"></ul>
+                <form id="task-form" class="task-form"><label class="sr-only" for="task-input">Neue Aufgabe</label><input id="task-input" name="task" type="text" placeholder="Was möchtest du erledigen?" maxlength="180" required autocomplete="off" /><button class="icon-button task-add" type="submit" aria-label="Aufgabe hinzufügen"><svg class="icon"><use href="#icon-plus"/></svg></button></form>
+              </section>
+            </div>
+            <div class="desktop-footer"><span><span class="footer-dot"></span> Dein Alltag. Dein Tempo.</span><span>Ein persönlicher Platz auf PC und Handy.</span></div>
+          </section>
+
+          <section class="view" data-view="memory" aria-labelledby="memory-view-title" hidden>
+            <div class="view-heading"><div><p class="eyebrow">IDEEN HABEN EIN ZUHAUSE</p><h1 id="memory-view-title">Dein Gedächtnis<span class="heading-dot">.</span></h1><p class="view-subtitle">Notizen, gute Gedanken und vergangene Chats. Wiederfinden statt vergessen.</p></div><button class="button button-primary" type="button" data-action="add-memory"><svg class="icon"><use href="#icon-plus"/></svg>Erinnerung hinzufügen</button></div>
+            <div class="memory-toolbar"><div class="section-search"><svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg><label class="sr-only" for="memory-search">Erinnerungen durchsuchen</label><input id="memory-search" type="search" placeholder="In deinen Erinnerungen suchen …" autocomplete="off" /></div><button class="button button-secondary" type="button" data-action="import"><svg class="icon"><use href="#icon-upload"/></svg>Chats importieren</button></div>
+            <div class="memory-privacy"><span class="privacy-icon"><svg class="icon"><use href="#icon-shield"/></svg></span><div><strong>Deine Gedanken bleiben bei dir.</strong><p>Deine Notizen und importierten Chats bleiben in diesem Browser. ChatGPT-Chats kannst du als Export importieren – als ZIP oder conversations.json.</p></div></div>
+            <div id="memory-list" class="memory-list"></div>
+          </section>
+
+          <section class="view" data-view="work" aria-labelledby="work-title" hidden>
+            <div class="view-heading"><div><p class="eyebrow">PLATZ FÜR DEINEN FOKUS</p><h1 id="work-title">Schule & Arbeit<span class="heading-dot">.</span></h1><p class="view-subtitle">Ein klarer Kopf beginnt mit einem kleinen Überblick.</p></div><span class="view-badge"><svg class="icon"><use href="#icon-bag"/></svg>In deinem Tempo</span></div>
+            <div class="work-layout">
+              <a class="sdui-card" href="https://sdui.app/" target="_blank" rel="noopener noreferrer"><div class="sdui-topline"><span class="sdui-logo" aria-hidden="true">s<span>dui</span></span><span class="external-round"><svg class="icon"><use href="#icon-external"/></svg></span></div><span class="panel-eyebrow">DEIN SCHULALLTAG</span><h2>Alles aus deiner<br />Schule im Blick.</h2><p>Nachrichten, Stundenplan und Neuigkeiten findest du direkt in SDUI.</p><span class="sdui-cta">SDUI öffnen<svg class="icon"><use href="#icon-arrow"/></svg></span><div class="sdui-decoration" aria-hidden="true"><span></span><span></span><span></span></div></a>
+              <section class="panel work-tasks-panel" aria-labelledby="work-tasks-title"><div class="panel-heading"><div><span class="panel-eyebrow">GUT GEPLANT IST HALB GESCHAFFT</span><h2 id="work-tasks-title">Deine Aufgaben</h2></div><span class="panel-heading-icon"><svg class="icon"><use href="#icon-check-circle"/></svg></span></div><p class="panel-description">Hausaufgaben, Abgaben oder kleine To-dos – halte fest, was als Nächstes ansteht.</p><ul id="work-task-list" class="task-list"></ul><form id="work-task-form" class="task-form"><label class="sr-only" for="work-task-input">Neue Aufgabe für Schule oder Arbeit</label><input id="work-task-input" name="task" type="text" placeholder="Eine Aufgabe festhalten …" maxlength="180" required autocomplete="off" /><button class="icon-button task-add" type="submit" aria-label="Aufgabe hinzufügen"><svg class="icon"><use href="#icon-plus"/></svg></button></form></section>
+            </div>
+            <div class="focus-note"><span class="focus-symbol" aria-hidden="true"><svg class="icon"><use href="#icon-sparkle"/></svg></span><div><h2>Du musst nicht alles auf einmal schaffen.</h2><p>Such dir einen nächsten Schritt aus. Der Rest kann kurz warten.</p></div></div>
+          </section>
+
+          <section class="view" data-view="settings" aria-labelledby="settings-title" hidden>
+            <div class="view-heading"><div><p class="eyebrow">SO, WIE ES ZU DIR PASST</p><h1 id="settings-title">Dein Desktop<span class="heading-dot">.</span></h1><p class="view-subtitle">Mach diesen Platz zu deinem. Und behalte deine Daten bei dir.</p></div></div>
+            <div class="settings-grid">
+              <section class="panel settings-panel"><div class="settings-section-icon stat-icon-lime"><svg class="icon"><use href="#icon-heart"/></svg></div><h2>Ein bisschen persönlicher</h2><p>Wie soll dein Desktop dich nennen?</p><form id="profile-form" class="profile-form"><label for="profile-name">Dein Name</label><div class="profile-input-row"><input id="profile-name" name="name" type="text" placeholder="Dein Name" maxlength="40" autocomplete="given-name" /><button class="button button-primary" type="submit">Speichern</button></div></form></section>
+              <section class="panel settings-panel"><div class="settings-section-icon stat-icon-cyan"><svg class="icon"><use href="#icon-shield"/></svg></div><h2>Deine Daten, dein Backup</h2><p>Speichere deine Shortcuts, Aufgaben und Erinnerungen als Datei. Ein Backup kannst du hier wieder importieren.</p><div class="settings-actions"><a class="button button-secondary" href="Mein-Space.html" download="Mein-Space.html">PC-Datei herunterladen</a><button class="button button-secondary" type="button" data-action="export"><svg class="icon"><use href="#icon-download"/></svg>Backup exportieren</button><button class="button button-ghost" type="button" data-action="import"><svg class="icon"><use href="#icon-upload"/></svg>Importieren</button></div><p id="storage-state" class="storage-state"><span class="small-dot"></span>Gespeichert in diesem Browser</p></section>
+            </div>
+            <section class="panel faq-panel" aria-labelledby="faq-title"><div class="panel-heading"><div><span class="panel-eyebrow">GUT ZU WISSEN</span><h2 id="faq-title">Ein paar Antworten</h2></div></div><details open><summary>Wo chatte ich mit Leon?<svg class="icon"><use href="#icon-plus"/></svg></summary><p>„Mit Leon chatten“ öffnet ChatGPT. Leon ist dein Name für deinen Assistenten dort. Dein Desktop bietet dir den direkten Weg zu ChatGPT; neue KI-Antworten entstehen in ChatGPT.</p></details><details><summary>Wie erinnert sich mein Desktop an alte Chats?<svg class="icon"><use href="#icon-plus"/></svg></summary><p>Importiere deinen ChatGPT-Export als ZIP oder conversations.json, oder speichere wichtige Inhalte als eigene Notiz. Im Gedächtnis kannst du diese Texte durchsuchen und wieder öffnen. Deine ChatGPT-Gespräche werden nicht automatisch synchronisiert. PC und Handy speichern getrennt; mit einem Backup überträgst du dein Gedächtnis zwischen den Geräten.</p></details><details><summary>Was funktioniert ohne Internet?<svg class="icon"><use href="#icon-plus"/></svg></summary><p>Deine gespeicherten Notizen, Shortcuts und Aufgaben kannst du auch offline nutzen. Für ChatGPT, SDUI und Online-Spiele brauchst du die jeweilige Verbindung zum Internet.</p></details><details><summary>Was passiert, wenn ich Browserdaten lösche?<svg class="icon"><use href="#icon-plus"/></svg></summary><p>Dein Desktop speichert Daten in diesem Browser. Beim Löschen der Browserdaten können sie verloren gehen. Lade deshalb gelegentlich ein Backup herunter. Auf einem anderen Browser oder PC kannst du es wieder importieren.</p></details></section>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <dialog id="install-dialog" class="app-dialog" aria-labelledby="install-title">
+      <div class="dialog-heading"><span class="dialog-symbol stat-icon-lime"><svg class="icon"><use href="#icon-grid"/></svg></span><button class="icon-button" type="button" data-close="install-dialog" aria-label="Schließen"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+      <h2 id="install-title">Dein Space. Ein Fingertipp entfernt.</h2>
+      <div class="install-instructions"><p><strong>iPhone:</strong> Öffne die Seite in Safari. Tippe auf Teilen und dann auf „Zum Home-Bildschirm“.</p><p><strong>Android:</strong> Öffne die Seite in Chrome. Tippe im Menü auf „App installieren“ oder „Zum Startbildschirm hinzufügen“.</p><p><strong>PC:</strong> Nutze das Installieren-Symbol in Edge oder Chrome – oder öffne deine heruntergeladene HTML-Datei direkt.</p></div>
+      <div class="dialog-actions"><button class="button button-primary" type="button" data-close="install-dialog">Alles klar</button></div>
+    </dialog>
+    <input id="import-file" type="file" accept=".zip,.json,.txt,.md,application/zip,application/json,text/plain,text/markdown" hidden />
+
+    <dialog id="app-dialog" class="app-dialog" aria-labelledby="app-dialog-title">
+      <div class="dialog-heading"><span class="dialog-symbol stat-icon-lime"><svg class="icon"><use href="#icon-grid"/></svg></span><button class="icon-button dialog-close" type="button" data-close="app-dialog" aria-label="Dialog schließen"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+      <h2 id="app-dialog-title">Ein Klick zu deinem Lieblingsplatz.</h2><p class="dialog-description">Füge eine Website oder einen App-Link zu deinem Desktop hinzu.</p>
+      <form id="app-form" class="dialog-form"><label for="app-name">Name<input id="app-name" name="name" type="text" placeholder="Zum Beispiel: Spotify" maxlength="50" required autocomplete="off" /></label><label for="app-url">Website oder App-Link<input id="app-url" name="url" type="text" placeholder="https://… oder ein App-Link" required autocomplete="off" spellcheck="false" /></label><label for="app-color" class="color-field"><span>Deine Farbe<span class="field-hint">Für einen persönlichen Akzent</span></span><input id="app-color" name="color" type="color" value="#b7eb80" /></label><div class="dialog-actions"><button class="button button-secondary" type="button" data-close="app-dialog">Abbrechen</button><button class="button button-primary" type="submit"><svg class="icon"><use href="#icon-plus"/></svg>Shortcut hinzufügen</button></div></form>
+    </dialog>
+
+    <dialog id="memory-dialog" class="memory-dialog" aria-labelledby="memory-dialog-title">
+      <div class="dialog-heading"><span class="dialog-symbol stat-icon-cyan"><svg class="icon"><use href="#icon-brain"/></svg></span><button class="icon-button dialog-close" type="button" data-close="memory-dialog" aria-label="Dialog schließen"><svg class="icon"><use href="#icon-close"/></svg></button></div>
+      <h2 id="memory-dialog-title">Ein Gedanke für später.</h2><p class="dialog-description">Eine Idee, ein Gespräch, etwas Wichtiges. Hier bleibt es griffbereit.</p>
+      <form id="memory-form" class="dialog-form"><label for="memory-title">Titel<input id="memory-title" name="title" type="text" placeholder="Woran möchtest du dich erinnern?" maxlength="140" required autocomplete="off" /></label><label for="memory-content">Deine Erinnerung<textarea id="memory-content" name="content" placeholder="Schreib deine Gedanken auf oder füge einen Chat ein …" rows="7" required></textarea></label><label for="memory-tags">Tags <span class="field-optional">optional</span><input id="memory-tags" name="tags" type="text" placeholder="Zum Beispiel: Schule, Idee, Gaming" maxlength="200" autocomplete="off" /></label><p class="form-privacy"><svg class="icon"><use href="#icon-shield"/></svg>Bleibt in diesem Browser.</p><div class="dialog-actions"><button class="button button-secondary" type="button" data-close="memory-dialog">Abbrechen</button><button class="button button-primary" type="submit"><svg class="icon"><use href="#icon-check"/></svg>Erinnerung speichern</button></div></form>
+    </dialog>
+
+    <dialog id="reader-dialog" class="reader-dialog" aria-labelledby="reader-title">
+      <div class="dialog-heading"><span class="dialog-symbol stat-icon-cyan"><svg class="icon"><use href="#icon-note"/></svg></span><button class="icon-button dialog-close" type="button" data-close="reader-dialog" aria-label="Erinnerung schließen"><svg class="icon"><use href="#icon-close"/></svg></button></div><h2 id="reader-title">Deine Erinnerung</h2><div id="reader-meta" class="reader-meta"></div><div id="reader-content" class="reader-content"></div><div class="dialog-actions reader-actions"><button id="reader-delete" class="button button-danger" type="button">Erinnerung löschen</button><button class="button button-secondary" type="button" data-close="reader-dialog">Schließen</button></div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <noscript><div class="noscript-note">Bitte aktiviere JavaScript, damit dein persönlicher Desktop Apps, Aufgaben und Erinnerungen anzeigen und speichern kann.</div></noscript>
+    <script src="storage.js"></script>
+    <script src="memory.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+MEIN SPACE · MIT LEON
+
+1. Speichere „Mein-Space.html“ auf deinem PC.
+2. Öffne die Datei per Doppelklick mit Microsoft Edge oder Google Chrome.
+   Eine Installation oder ein lokaler Webserver ist nicht nötig.
+3. Wenn du das ZIP heruntergeladen hast, entpacke es zuerst.
+
+DEINE APPS
+Discord, Roblox, Snapchat, TikTok, Instagram, YouTube, Spotify, WhatsApp,
+SDUI und ChatGPT öffnen ihre Websites.
+Counter-Strike 2 startet über Steam.
+Fortnite startet über den Epic Games Launcher.
+Für die Spiele müssen der jeweilige Launcher und das Spiel installiert sein.
+Über die drei Punkte auf einer Kachel kannst du den Link ändern.
+Du kannst beispielsweise den Link zu einem bestimmten ChatGPT-Chat eintragen.
+Deine normalen Anmeldungen erledigst du auf den jeweiligen Websites.
+
+DEIN GEDÄCHTNIS
+Notizen, importierte Chats, Aufgaben und Schnellzugriffe werden lokal in
+diesem Browser auf deinem PC gespeichert. Sie werden nicht von dieser
+Website an einen Server geschickt.
+
+Die Website enthält keine privaten Gespräche. Deine ChatGPT-Exporte kannst du lokal importieren.
+PC und Handy speichern getrennt; über ein Backup kannst du deine Daten übertragen.
+
+CHATGPT-CHATS IMPORTIEREN
+1. In ChatGPT: Einstellungen > Datenkontrollen > Daten exportieren.
+2. Lade deinen Export herunter.
+3. In Mein Space: Gedächtnis > Chats importieren.
+4. Wähle das Export-ZIP oder die enthaltene conversations.json.
+   Auch Textdateien, Markdown und Mein-Space-Backups werden unterstützt.
+
+Leon ist der Name deines KI-Assistenten. „Mit Leon chatten“ öffnet ChatGPT.
+Das lokale Gedächtnis durchsucht deine gespeicherten Notizen und Chats;
+es erzeugt keine eigenen KI-Antworten.
+
+BACKUP
+Unter Einstellungen kannst du ein JSON-Backup herunterladen.
+Es enthält deine Chats, Notizen, Aufgaben, Namen und Schnellzugriffe.
+Beim Import werden Einträge ergänzt und doppelte Erinnerungen vermieden.
+Erstelle ein Backup vor einem Browserwechsel, dem Löschen von Browserdaten
+oder dem Verschieben der HTML-Datei.
+
+DATEN BLEIBEN IN DEINEM BROWSER
+Die lokale Speicherung ist an diesen Browser und die Datei/Adresse gebunden.
+Ein anderer Browser sieht sie nicht automatisch. Wer Zugriff auf dein
+Windows-Konto und diesen Browser hat, kann auch die gespeicherten Daten sehen.
+Für Online-Apps und ChatGPT brauchst du Internet; lokale Notizen und Aufgaben
+funktionieren ohne Internet.
+
+IMPORTGRENZEN
+Bis 100 MB je Datei bzw. entpackter conversations.json, höchstens 5.000
+Einträge pro Import und 200.000 Zeichen pro Erinnerung. Zu große Inhalte
+werden mit einer Meldung abgelehnt und nicht still gekürzt.
+
+AUF DEM HANDY
+Öffne https://raphifrost.github.io/frost-skaters-landing/desktop/.
+iPhone: In Safari Teilen > Zum Home-Bildschirm.
+Android: In Chrome das Menü > App installieren / Zum Startbildschirm hinzufügen.
