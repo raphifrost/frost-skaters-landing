@@ -322,33 +322,12 @@
         <div class="card" style="grid-column: 1 / -1;">
           <p class="section-eyebrow">LUST MITZUMACHEN?</p>
           <h2>Dein erstes Hallo.</h2>
-          <p id="registrationInfo">Sag uns, wie du heißt und unter welcher Nummer Raphi dich erreichen kann. Er meldet sich bei dir, um euch kennenzulernen. Name und Telefonnummer sind Pflichtfelder.</p>
-          <form class="registration-form" action="https://formsubmit.co/raphi.leibssle@gmx.de" method="POST" accept-charset="UTF-8" aria-describedby="registrationInfo registrationPrivacy">
-            <input type="hidden" name="_subject" value="Frost Skaters – Neue Anmeldung" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="https://raphifrost.github.io/frost-skaters-landing/anmeldung-danke.html" />
-            <input type="text" name="_honey" hidden tabindex="-1" autocomplete="off" />
-            <div class="form-grid">
-              <div class="form-field">
-                <label for="applicantName">Dein Name (Pflichtfeld)</label>
-                <input id="applicantName" name="Name" type="text" autocomplete="name" maxlength="100" pattern=".*\S.*" title="Bitte gib deinen Namen ein." required />
-              </div>
-              <div class="form-field">
-                <label for="applicantPhone">Deine Telefonnummer (Pflichtfeld)</label>
-                <input id="applicantPhone" name="Telefonnummer" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" pattern="(?=(?:[^0-9]*[0-9]){6})[0-9\s\+\(\)\.\/\-]{6,40}" title="Mindestens 6 Ziffern; Leerzeichen und die Zeichen + ( ) - . / sind erlaubt." placeholder="z. B. +49 152 12345678" required />
-              </div>
-              <div class="form-field full-width">
-                <label for="callbackTime">Wann passt dir ein Rückruf? (optional)</label>
-                <input id="callbackTime" name="Rückrufzeit" type="text" maxlength="120" placeholder="z. B. werktags ab 17 Uhr" />
-              </div>
-              <div class="form-field full-width">
-                <label for="applicantMessage">Deine Nachricht (optional)</label>
-                <textarea id="applicantMessage" name="Nachricht" rows="4" maxlength="2000" placeholder="Was möchtest du uns noch sagen?"></textarea>
-              </div>
-            </div>
-            <p class="form-note" id="registrationPrivacy">Mit dem Absenden werden deine Angaben über FormSubmit per E-Mail an Raphi (<a href="mailto:raphi.leibssle@gmx.de">raphi.leibssle@gmx.de</a>) gesendet, damit er dich zur Anmeldung kontaktieren kann.</p>
-            <button class="btn primary submit-btn" type="submit">Anmeldung absenden</button>
-          </form>
+          <p id="registrationInfo">Du möchtest bei Frost Skaters mitmachen? Für die Anmeldung brauchst du <strong>nur deinen Vornamen</strong>. Nach dem Absenden bekommt Raphi den Antrag und entscheidet persönlich. Anschließend kannst du deinen Kartenstatus über deinen persönlichen QR-Link abrufen.</p>
+          <div class="buttons" style="margin-top:24px">
+            <a class="btn primary" href="mitglieder.html#applySection">❄️ Mit Vornamen anmelden</a>
+            <a class="btn secondary" href="datenschutz.html">🔒 Datenschutz ansehen</a>
+          </div>
+          <p class="form-note">Für einen kurzen Gesprächstermin (höchstens 10 Minuten) kannst du auch <a href="#whatsapp">per WhatsApp schreiben</a>. Private Terminnotizen verwaltet nur der Owner.</p>
         </div>
       </section>
 
@@ -382,7 +361,7 @@
         <div><p class="section-eyebrow">GUTE LEUTE MITBRINGEN</p><h2 id="shareTitle">Frost teilen.</h2><p>Kennst du jemanden, der zu uns passt? Gib unseren Website-Link weiter.</p><a class="contact-link" href="tel:+4915234646842">+49 152 34646842</a></div>
         <div class="share-controls"><button class="btn primary" id="shareSite" type="button"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4m-6 8 6 4"/></svg>Website teilen</button><p id="shareStatus" role="status" aria-live="polite"></p><div id="shareFallback" hidden><label for="shareLink">Website-Adresse zum Kopieren</label><input id="shareLink" type="text" readonly /></div><span class="share-hint">In Chrome, Safari und anderen Browsern öffnen.</span></div>
       </section>
-      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="training.html">Training</a><a href="shop.html">Shop</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="#fragen">Fragen</a></nav><span>Zusammen seit 2025.</span></footer>
+      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="training.html">Training</a><a href="shop.html">Shop</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="#fragen">Fragen</a></nav><span>Zusammen seit 2025.</span></footer>
     </main>
 
     <script>
