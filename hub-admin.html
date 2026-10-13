@@ -40,7 +40,15 @@
 <section id="hubDashboard" hidden>
 <div class="fh-actions"><span id="hubRoleText" class="fh-chip">Anmeldung</span><button class="fh-btn alt" id="hubRefresh" type="button">🔄 Daten aktualisieren</button><button class="fh-btn warn" id="hubLogout" type="button">Abmelden</button></div>
 <nav class="fh-menu" aria-label="Interne Funktionen"><a href="#editor">Veröffentlichen</a><a href="#contentList">Beiträge</a><a href="#hubSubmissions" data-owner-only>Teilnahmen / Feedback</a><a href="#hubWork">Team-Aufgaben</a><a href="#hubBadges" data-owner-only>Abzeichen</a><a href="#hubHistory" data-owner-only>Änderungsverlauf</a><a href="#hubSettings" data-owner-only>Einstellungen</a><a href="#hubStaff" data-owner-only>Team-Rechte</a><a href="#calculator">Kostenrechner</a></nav>
+<div class="fh-panel" id="ownerInboxAlert" data-owner-only>
+<h3>🔔 Neue Anfragen</h3>
+<p>Während dein Owner-Dashboard geöffnet ist, können neue Event-Anmeldungen und Ideen automatisch angezeigt werden. Benachrichtigungen außerhalb der geöffneten App sind noch kein Push-Dienst.</p>
+<div class="fh-actions"><button id="hubNotificationsEnable" class="fh-btn alt" type="button">🔔 Browser-Benachrichtigung erlauben</button>
+<span id="hubNewSubmissionCount" class="fh-chip">Keine neuen Meldungen</span></div>
+<p id="hubIncomingMessage" class="fh-status" role="status" aria-live="polite"></p>
+</div>
 <div id="hubDashboardFeedback" class="fh-status" role="status"></div>
+<div class="fh-alert" style="margin-top:14px">👑 Nur der Owner sieht hier Teilnehmernamen, Feedback und Mitgliederdaten. Zugelassene Co-Owner können öffentliche Beiträge und Aufgaben bearbeiten, jedoch keine vertraulichen Gespräche oder Anträge.</div>
 <section class="fh-sec" id="hubOverview"><h2>📊 Live-Übersicht</h2>
 <div class="fh-grid" id="hubMetrics"><article class="fh-panel">Daten werden geladen …</article></div>
 </section>
@@ -119,5 +127,5 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-hub-admin.js?v=1"></script>
+<script src="assets/frost-hub-admin.js?v=2"></script>
 </body></html>
