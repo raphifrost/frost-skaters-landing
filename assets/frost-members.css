@@ -62,3 +62,6 @@
 .member-talk-dialog .member-panel{box-shadow:none}
 .member-talk-dialog textarea{min-height:110px;resize:vertical}
 @media print{.member-talk-dialog{display:none!important}}
+
+.member-badge-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px;font-size:.86rem;color:#d4e1ee}
+.member-badge{display:inline-flex;align-items:center;padding:6px 9px;border-radius:99px;border:1px solid #6de9f388;background:#57e8eb18;color:#b2eff8;font-size:.8rem;font-weight:750}
