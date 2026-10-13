@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="assets/frost-theme.css?v=1">
 <link rel="stylesheet" href="assets/frost-members.css?v=1">
 </head><body class="frost-page">
-<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><a href="mitglieder.html" style="color:#78e9f1;text-decoration:none">← Mitgliedskarten</a></header>
+<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:15px;flex-wrap:wrap"><a href="index.html" style="color:#78e9f1">🏠 Startseite</a><a href="mitglieder.html" style="color:#78e9f1">← Mitgliedskarten</a></nav></header>
 <main class="member-layout">
 <p class="member-topline">Owner-Verwaltung · Nur berechtigte Personen</p>
 <h1 class="member-title">👑 Member-Dashboard</h1>
@@ -55,16 +55,18 @@
 <div class="member-stat"><strong id="statAll">0</strong><span>Anträge gesamt</span></div>
 <div class="member-stat"><strong id="statPending">0</strong><span>Offen</span></div>
 <div class="member-stat"><strong id="statApproved">0</strong><span>Aktive Karten</span></div>
-<div class="member-stat"><strong id="statOther">0</strong><span>Abgelehnt / gesperrt</span></div>
+<div class="member-stat"><strong id="statOther">0</strong><span>Passiv / andere</span></div>
 </div>
 </section>
 
 <section class="member-panel">
-<h2>➕ Mitglied direkt eintragen</h2>
-<p>Wenn du jemanden bereits kennst, kannst du hier selbst eine bestätigte Mitgliedskarte erstellen. Der persönliche Karten-Link erscheint nach dem Speichern und kann direkt an das Mitglied weitergegeben werden.</p>
+<h2>➕ Aktive oder passive Karte erstellen</h2>
+<p>Trage nur den Vornamen ein. Aktive Karten bestätigen eine Mitgliedschaft, passive Karten zeigen den Status PASSIV und keine aktive Mitgliedschaft. Der private Karten-Link erscheint anschließend.</p>
 <form id="addMember">
-<label for="manualName" class="member-label">Name oder Spitzname</label>
+<label for="manualName" class="member-label">Vorname</label>
 <input type="text" id="manualName" class="member-input" minlength="2" maxlength="40" required placeholder="z. B. Alina">
+<label for="manualStatus" class="member-label">Kartenstatus</label>
+<select id="manualStatus" class="member-select"><option value="approved">Aktiv</option><option value="passive">Passiv</option></select>
 <label for="manualRole" class="member-label">Rolle</label>
 <select id="manualRole" class="member-select"><option value="MEMBER">Mitglied</option><option value="MODERATOR">Moderator/in</option><option value="CO-OWNER">Co-Owner</option><option value="OWNER">Owner</option></select>
 <div class="member-actions"><button class="member-btn" type="submit" id="manualButton">Mitglied eintragen &amp; Karte erstellen</button></div>
@@ -76,11 +78,11 @@
 <h2>📥 Alle Mitglieder und Anträge</h2>
 <p class="member-hint">Neue Anträge werden bei geöffnetem Dashboard automatisch angezeigt. Falls dein Handy die Seite im Hintergrund anhält, siehst du sie beim nächsten Öffnen.</p>
 <div id="incomingFeedback" role="status" aria-live="polite"></div>
-<p>Du kannst eingegangene Anträge annehmen oder ablehnen. Bei aktiven Mitgliedern lässt sich die Karte später sperren. Ein gesperrter QR-Code zeigt keine gültige Karte mehr.</p>
+<p>Du kannst eingegangene Anträge annehmen oder ablehnen. Du kannst aktive oder passive Karten verwalten und für jede Person ein privates Gespräch eintragen. Nur eingeloggte Owner sehen diese Angaben. Ein gesperrter QR-Code zeigt keine gültige Karte mehr.</p>
 <div class="member-filters">
 <div><label class="member-label" for="filterStatus">Status</label>
 <select id="filterStatus" class="member-select">
-<option value="all">Alle</option><option value="pending">Offene Anträge</option><option value="approved">Aktive Mitglieder</option><option value="rejected">Abgelehnt</option><option value="revoked">Gesperrt</option>
+<option value="all">Alle</option><option value="pending">Offene Anträge</option><option value="approved">Aktive Mitglieder</option><option value="rejected">Abgelehnt</option><option value="revoked">Gesperrt</option><option value="passive">Passiv</option>
 </select></div>
 <div><label class="member-label" for="filterName">Name suchen</label><input id="filterName" class="member-input" placeholder="Nach Namen suchen"></div>
 </div>
@@ -89,9 +91,30 @@
 <table class="member-table"><thead><tr><th>Name</th><th>Status</th><th>Rolle</th><th>Mitgliedsnummer</th><th>Datum</th><th>Aktionen</th></tr></thead><tbody id="memberRows"></tbody></table>
 </div>
 </section>
+<section class="member-panel">
+  <h2>🗣 Gespräch nur für Owner</h2>
+  <p>Über „Gespräch“ bei einer Person kannst du einen Gesprächstermin und eine kurze private Notiz hinterlegen. Diese Informationen erscheinen nicht auf öffentlichen QR-Karten.</p>
+  <div id="conversationFeedback" role="status" aria-live="polite"></div>
 </section>
+</section>
+<dialog id="talkDialog" class="member-talk-dialog" aria-labelledby="talkHeading">
+  <form id="talkForm" class="member-panel" style="margin:0">
+    <h2 id="talkHeading">🗣 Privatgespräch</h2>
+    <p id="talkForName"></p>
+    <label for="talkAt" class="member-label">Wann findet das Gespräch statt? (optional)</label>
+    <input id="talkAt" type="datetime-local" class="member-input" />
+    <label for="talkNote" class="member-label">Private Notiz (optional, keine sensiblen Angaben)</label>
+    <textarea id="talkNote" class="member-input" maxlength="350" rows="4" placeholder="z. B. Termin mit Person abstimmen"></textarea>
+    <div class="member-actions">
+      <button class="member-btn" type="submit" id="talkSaveButton">Gespräch speichern</button>
+      <button class="member-btn secondary" type="button" id="talkCancelButton">Abbrechen</button>
+    </div>
+    <p id="talkFeedback" role="status" aria-live="polite"></p>
+  </form>
+</dialog>
+<footer style="max-width:1050px;margin:0 auto;padding:15px 20px 40px"><a href="index.html">🏠 Startseite</a> · <a href="datenschutz.html">Datenschutz</a></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-members-admin.js?v=4"></script>
+<script src="assets/frost-members-admin.js?v=5"></script>
 </body></html>
