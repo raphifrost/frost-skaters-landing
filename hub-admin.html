@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#080911">
+<title>Frost Hub · Team-Verwaltung</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css">
+<link rel="stylesheet" href="assets/frost-hub.css?v=1">
+</head><body class="frost-hub">
+<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:12px;flex-wrap:wrap"><a href="community.html" style="color:#8beaf4">Community</a><a href="mitglieder-admin.html" style="color:#8beaf4">Mitgliederdashboard</a></nav></header>
+<main class="fh-wrap">
+<section class="fh-head fh-hero"><div><p class="fh-eye">Frost Skaters · Geschützter Bereich</p><h1>👑 Team-Zentrale</h1><p>Veröffentliche Community-Beiträge, verwalte Aktivitäten und Team-Aufgaben. Berechtigungen werden von Supabase geprüft, nicht nur durch das Ausblenden von Buttons.</p></div><img class="fh-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo"></section>
+<section class="fh-panel" id="hubLoginPanel">
+<h2>🔐 Anmelden</h2><p>Melde dich mit deinem vorhandenen Supabase Owner-Konto an. Zugelassene Co-Owner und Manager können ihren eigenen Zugang nutzen.</p>
+<form id="hubLoginForm">
+<label class="fh-field">E-Mail<input id="hubEmail" class="fh-input" type="email" required autocomplete="username"></label>
+<label class="fh-field">Passwort<input id="hubPassword" class="fh-input" type="password" required autocomplete="current-password"></label>
+<button class="fh-btn" id="hubLoginButton" type="submit">👑 Sicher einloggen</button>
+<p class="fh-status" id="hubLoginFeedback" role="status"></p>
+</form>
+<details style="margin-top:20px"><summary style="cursor:pointer;font-weight:700">👥 Team-Konto neu beantragen</summary>
+<p>Nur der Owner kann einen neuen Account anschließend als Co-Owner oder Manager freischalten. Passwörter werden nicht auf GitHub gespeichert.</p>
+<form id="hubSignupForm">
+<label class="fh-field">E-Mail<input id="hubSignupEmail" class="fh-input" type="email" autocomplete="email" required></label>
+<label class="fh-field">Eigenes Passwort (mindestens 12 Zeichen)<input id="hubSignupPass" class="fh-input" type="password" minlength="12" required autocomplete="new-password"></label>
+<label class="fh-field">Passwort wiederholen<input id="hubSignupRepeat" class="fh-input" type="password" minlength="12" required autocomplete="new-password"></label>
+<button class="fh-btn alt" type="submit" id="hubSignupButton">Team-Zugang beantragen</button>
+<p class="fh-status" id="hubSignupFeedback" role="status"></p>
+</form></details>
+</section>
+<section id="hubDashboard" hidden>
+<div class="fh-actions"><span id="hubRoleText" class="fh-chip">Anmeldung</span><button class="fh-btn alt" id="hubRefresh" type="button">🔄 Daten aktualisieren</button><button class="fh-btn warn" id="hubLogout" type="button">Abmelden</button></div>
+<nav class="fh-menu" aria-label="Interne Funktionen"><a href="#editor">Veröffentlichen</a><a href="#contentList">Beiträge</a><a href="#hubSubmissions" data-owner-only>Teilnahmen / Feedback</a><a href="#hubWork">Team-Aufgaben</a><a href="#hubBadges" data-owner-only>Abzeichen</a><a href="#hubHistory" data-owner-only>Änderungsverlauf</a><a href="#hubSettings" data-owner-only>Einstellungen</a><a href="#hubStaff" data-owner-only>Team-Rechte</a><a href="#calculator">Kostenrechner</a></nav>
+<div id="hubDashboardFeedback" class="fh-status" role="status"></div>
+<section class="fh-sec" id="hubOverview"><h2>📊 Live-Übersicht</h2>
+<div class="fh-grid" id="hubMetrics"><article class="fh-panel">Daten werden geladen …</article></div>
+</section>
+<section class="fh-sec" id="editor"><h2>✍️ Community-Inhalte erstellen</h2>
+<p>Beiträge bleiben zunächst Entwürfe. Du kannst sie danach bewusst veröffentlichen.</p>
+<div class="fh-staff-grid"><div class="fh-panel"><form id="hubItemForm">
+<input id="editItemId" type="hidden">
+<label class="fh-field">Art des Inhalts<select id="itemKind" class="fh-input" required><option value="news">📢 Neuigkeit</option><option value="event">📅 Ausflug / Event</option><option value="poll">🗳️ Umfrage</option><option value="gallery">📸 Foto / Galerie</option><option value="challenge">🏅 Challenge</option><option value="history">📖 Crew-Geschichte</option></select></label>
+<label class="fh-field">Titel<input id="itemTitle" class="fh-input" type="text" minlength="3" maxlength="110" required></label>
+<label class="fh-field">Beschreibung<textarea id="itemBody" class="fh-input" maxlength="1100" rows="5" placeholder="Beschreibung oder Ankündigung"></textarea></label>
+<div id="eventEditorFields" hidden>
+<label class="fh-field">Datum &amp; Uhrzeit (optional)<input id="itemEventAt" class="fh-input" type="datetime-local"></label>
+<label class="fh-field">Ort (optional)<input id="itemPlace" class="fh-input" type="text" maxlength="100" placeholder="z. B. Eishalle Reutlingen"></label>
+</div>
+<div id="pollEditorFields" hidden>
+<label class="fh-field">Umfrage-Antworten: 2 bis 4 Zeilen<textarea id="itemOptions" class="fh-input" maxlength="240" rows="4" placeholder="Heilbronn&#10;Reutlingen&#10;Stuttgart"></textarea></label>
+<p class="fh-hint">Antworten lassen sich bei einer laufenden Umfrage nicht nachträglich bearbeiten, damit bestehende Stimmen korrekt bleiben.</p>
+</div>
+<div id="galleryEditorFields" hidden>
+<label class="fh-field">Bildpfad aus dem GitHub-Ordner assets/<input id="itemMediaSrc" class="fh-input" type="text" maxlength="250" placeholder="assets/euer-foto.jpg"></label>
+<label class="fh-field" style="flex-direction:row;align-items:start;font-weight:400"><input id="imageConsent" type="checkbox"> <span>Ich habe die erforderlichen Freigaben aller erkennbaren Personen für die Veröffentlichung geprüft.</span></label>
+</div>
+<label class="fh-field" style="flex-direction:row;align-items:center"><input id="itemVisible" type="checkbox"> <span>Sofort öffentlich anzeigen (sonst Entwurf)</span></label>
+<div class="fh-actions"><button class="fh-btn" id="hubItemSave" type="submit">Beitrag speichern</button><button class="fh-btn alt" id="hubItemReset" type="button">Zurücksetzen</button></div><p id="hubItemStatus" class="fh-status" role="status"></p>
+</form></div>
+<aside class="fh-panel"><h3>⚠️ Beim Veröffentlichen beachten</h3>
+<p>Teile keine Privatadressen, privaten Telefonnummern oder persönlichen Gespräche. Poste Bilder von Minderjährigen nur mit passenden Freigaben. Umfragen sind informell; wer das Browsergerät wechselt, kann theoretisch erneut abstimmen.</p>
+<p>Nur der Owner kann Mitgliederdaten, Gesprächsnotizen und Team-Berechtigungen verwalten. Freigeschaltete Co-Owner dürfen öffentliche Community-Inhalte und Team-Aufgaben bearbeiten.</p></aside></div>
+</section>
+<section class="fh-sec" id="contentList"><h2>📚 Beiträge und Entwürfe</h2>
+<div class="fh-filter"><label class="fh-field">Filtern<select class="fh-input" id="hubItemFilter"><option value="all">Alle Inhalte</option><option value="news">Neuigkeiten</option><option value="event">Events</option><option value="poll">Umfragen</option><option value="gallery">Galerie</option><option value="challenge">Challenges</option><option value="history">Geschichte</option></select></label></div>
+<div id="hubItemsList" class="fh-grid"></div></section>
+<section class="fh-sec" id="hubSubmissions" data-owner-only><h2>📥 Teilnahmen, Challenges &amp; Ideen</h2>
+<p>Nur für Owner. Du kannst Anfragen prüfen, bestätigen, ablehnen oder löschen. Der Vorname wird nicht öffentlich gezeigt.</p>
+<div class="fh-filter"><label class="fh-field">Art<select id="hubSubFilter" class="fh-input"><option value="all">Alle Eingänge</option><option value="event">Event-Teilnahmen</option><option value="challenge">Challenges</option><option value="idea">Ideen</option><option value="feedback">Feedback</option></select></label><label class="fh-field">Status<select id="hubSubState" class="fh-input"><option value="all">Alle Status</option><option value="pending">Offen</option><option value="approved">Bestätigt</option><option value="declined">Abgelehnt</option><option value="attended">Anwesend</option></select></label></div>
+<div id="hubSubmissionsList" class="fh-grid"></div></section>
+<section class="fh-sec" id="hubWork"><h2>✅ Team-Aufgaben, Checklisten &amp; Ausrüstungsverleih</h2><p>Nur für freigeschaltete Teammitglieder sichtbar.</p>
+<div class="fh-staff-grid"><div class="fh-panel"><form id="hubWorkForm">
+<label class="fh-field">Art<select class="fh-input" id="workKind"><option value="task">Team-Aufgabe</option><option value="checklist">Event-Checkliste</option><option value="loan">Ausrüstungsverleih</option></select></label>
+<label class="fh-field">Beschreibung<input class="fh-input" id="workTitle" type="text" minlength="2" maxlength="130" required placeholder="z. B. Gruppentickets organisieren"></label>
+<label class="fh-field">Vorname der zuständigen Person (optional)<input class="fh-input" id="workPerson" type="text" maxlength="40" placeholder="Nur Vorname"></label>
+<button type="submit" class="fh-btn" id="hubWorkSave">Hinzufügen</button><p id="hubWorkStatus" class="fh-status" role="status"></p></form></div>
+<div id="hubWorkList" class="fh-panel"></div></div>
+</section>
+<section class="fh-sec" id="hubBadges" data-owner-only><h2>🏅 Digitale Abzeichen</h2>
+<p>Vergib freiwillige Community-Abzeichen nur an Personen mit bereits bestätigter oder passiver Karte. Der Linkcode ist vertraulich und wird nicht öffentlich aufgelistet.</p>
+<form id="hubBadgeForm" class="fh-panel">
+<label class="fh-field">Persönlicher Karten-Code (UUID)<input id="badgeMemberCode" class="fh-input" type="text" maxlength="36" required placeholder="z. B. 00000000-0000-4000-8000-000000000000"></label>
+<label class="fh-field">Abzeichen<select id="badgeKind" class="fh-input"><option>SEIT 2025</option><option>ERSTER AUSFLUG</option><option>TEAMHELFER</option><option>SLALOM</option><option>RUECKWAERTS</option><option>FROST CREW</option></select></label>
+<button class="fh-btn" type="submit" id="badgeSave">Abzeichen vergeben</button><p class="fh-status" id="badgeFeedback" role="status"></p></form>
+<div id="hubBadgeList" class="fh-grid"></div>
+</section>
+<section class="fh-sec" id="hubHistory" data-owner-only><h2>🕒 Änderungsverlauf der Mitgliedskarten</h2><p>Zeigt wann ein Mitglied erstellt, aktiviert, passiv gestellt oder gelöscht wurde. Nur für Owner.</p><div id="hubHistoryList" class="fh-panel"></div></section>
+<section class="fh-sec" id="hubSettings" data-owner-only><h2>⚙️ Community-Einstellungen</h2><form id="hubSettingsForm" class="fh-panel">
+<label class="fh-field">Nächster Saisonstart<input id="settingsSeason" class="fh-input" type="date"></label>
+<label class="fh-field">Begrüßungstext<textarea id="settingsWelcome" class="fh-input" maxlength="1400"></textarea></label>
+<label class="fh-field">Community-Regeln<textarea id="settingsRules" class="fh-input" maxlength="1400" rows="5"></textarea></label>
+<button class="fh-btn" type="submit" id="hubSettingsSave">Einstellungen speichern</button><p id="hubSettingsStatus" class="fh-status" role="status"></p></form></section>
+<section class="fh-sec" id="hubStaff" data-owner-only><h2>🛡️ Co-Owner- &amp; Manager-Zugänge</h2>
+<p>Neue Teammitglieder müssen sich zunächst mit E-Mail und eigenem Passwort registrieren und ihre E-Mail bestätigen. Als Owner kannst du deren Supabase Benutzer-ID freischalten. Gib niemandem dein Passwort.</p>
+<form id="hubStaffForm" class="fh-panel">
+<label class="fh-field">Supabase Benutzer-ID des Teammitglieds<input id="staffUserId" class="fh-input" type="text" maxlength="36" required></label>
+<label class="fh-field">Rolle<select id="staffRole" class="fh-input"><option value="coowner">Co-Owner</option><option value="manager">Manager</option></select></label>
+<button class="fh-btn" type="submit" id="staffSave">Zugang freischalten</button><p id="staffFeedback" class="fh-status" role="status"></p></form>
+<div id="hubStaffList" class="fh-grid"></div></section>
+<section class="fh-sec" id="calculator"><h2>🧮 Kostenrechner für Gruppenausflüge</h2>
+<div class="fh-grid"><form class="fh-panel" id="costForm">
+<label class="fh-field">Teilnehmende Personen<input id="costPeople" class="fh-input" type="number" min="1" max="100" value="8" required></label>
+<label class="fh-field">Eintritt pro Person (€)<input id="costEntry" class="fh-input" type="number" step="0.01" min="0" max="1000" value="8" required></label>
+<label class="fh-field">Gruppenticket insgesamt (€)<input id="costTravel" class="fh-input" type="number" step="0.01" min="0" max="10000" value="40" required></label>
+<label class="fh-field">Weitere gemeinsame Kosten (€)<input id="costExtra" class="fh-input" type="number" step="0.01" min="0" max="10000" value="0" required></label>
+<button class="fh-btn" type="submit">Kosten ausrechnen</button></form>
+<div class="fh-panel"><h3>Ergebnis</h3><p id="costResult" class="fh-metric">–</p><p class="fh-hint">Die Beträge sind frei eingegebene Schätzungen und keine bestätigten Ticketpreise. Geld und Buchungen am besten mit einer erwachsenen Begleitperson organisieren.</p></div></div></section>
+<footer style="border-top:1px solid #50627c;padding-top:24px"><a href="community.html">← Zur öffentlichen Community</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="index.html">Startseite</a></footer>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="assets/frost-members-config.js"></script>
+<script src="assets/frost-hub-admin.js?v=1"></script>
+</body></html>
