@@ -72,6 +72,22 @@ async function checkCode(code,showErrors=true){
     $('cardStatus').textContent=passive?'● PASSIV':'● AKTIV';
     $('cardStatus').style.color=passive?'#facc7a':'#66efb7';
     $('memberCard').classList.toggle('is-passive',passive);
+    const badgeTarget=$('cardBadges');
+    badgeTarget.textContent='Abzeichen werden geladen …';
+    try {
+      const {data:earned,error:badgeError}=await client.rpc('frost_hub_member_badges',{p_code:code});
+      if(badgeError)throw badgeError;
+      badgeTarget.replaceChildren();
+      const names={ 'SEIT 2025':'❄️ Seit 2025', 'ERSTER AUSFLUG':'🚌 Erster Ausflug',TEAMHELFER:'🤝 Teamhelfer',SLALOM:'⛸️ Slalom',RUECKWAERTS:'↩️ Rückwärtsfahren','FROST CREW':'👑 Frost Crew'};
+      if(!earned?.length)badgeTarget.textContent='Noch keine Abzeichen';
+      else (earned||[]).forEach(entry=>{
+        const badge=document.createElement('span');
+        badge.className='member-badge';
+        badge.textContent=names[entry.badge]||entry.badge;
+        badgeTarget.append(badge);
+      });
+    }catch(error){console.warn('Abzeichen nicht geladen',error);badgeTarget.textContent='Abzeichen momentan nicht verfügbar';}
+
     activeCardLink=cardLink(code);
     $('cardQr').replaceChildren();
     if(window.QRCode){new window.QRCode($('cardQr'),{text:activeCardLink,width:150,height:150,colorDark:'#050505',colorLight:'#ffffff',correctLevel:window.QRCode.CorrectLevel.M});}
