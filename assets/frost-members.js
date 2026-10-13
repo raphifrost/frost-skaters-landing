@@ -22,8 +22,9 @@ const localKey = 'frost-member-card-code';
 const apply = $('applyForm');
 apply.addEventListener('submit',async event=>{
   event.preventDefault();
-  const display_name = $('displayName').value.trim().replace(/\s+/g,' ');
-  if(display_name.length<2 || display_name.length>40){show('applyFeedback','Bitte nutze einen Namen mit 2 bis 40 Zeichen.',true);return;}
+  const display_name = $('displayName').value.trim();
+  if(!/^[\p{L}][\p{L}'’-]{1,39}$/u.test(display_name)){show('applyFeedback','Bitte nur deinen Vornamen eingeben (2–40 Zeichen, ohne Leerzeichen).',true);return;}
+  if(!$('privacyConsent').checked){show('applyFeedback','Bitte lies zuerst die Datenschutzhinweise.',true);return;}
   if(!client){show('applyFeedback','Anträge sind noch nicht freigeschaltet. Raphi richtet das System gerade ein.',true);return;}
   const button = $('applyButton');
   button.disabled=true;button.textContent='Wird gesendet …';
@@ -50,7 +51,7 @@ apply.addEventListener('submit',async event=>{
     $('lookupCode').value=request_code;
     const link=cardLink(request_code);
     show('applyFeedback','Antrag erfolgreich verschickt! Raphi muss dich erst annehmen.\n\nDein persönlicher Karten-Link:\n'+link+'\n\nSpeichere den Link sicher. Du kannst darüber später nachschauen, ob deine Karte freigeschaltet wurde.');
-    $('displayName').value='';
+    $('displayName').value='';$('privacyConsent').checked=false;
   }catch(e){show('applyFeedback','Der Antrag konnte nicht gesendet werden. Bitte versuche es später erneut.',true);console.error('Antrag fehlgeschlagen',e);}
   finally{button.disabled=false;button.textContent='Antrag an Raphi schicken';}
 });
@@ -61,12 +62,16 @@ async function checkCode(code,showErrors=true){
   try{
     const {data,error}=await client.rpc('frost_find_member',{p_code:code});
     if(error)throw error;
-    if(!data?.length){show('lookupFeedback','Noch keine aktive Karte gefunden. Dein Antrag ist möglicherweise noch in Prüfung oder wurde nicht angenommen. Frage bei der Leitung nach.');return;}
+    if(!data?.length){show('lookupFeedback','Noch keine freigegebene Karte gefunden. Dein Antrag ist möglicherweise noch in Prüfung, abgelehnt oder gesperrt.');return;}
     const member=data[0];
     $('cardName').textContent=member.display_name;
     const roleNames={MEMBER:'MEMBER',MODERATOR:'MODERATOR','CO-OWNER':'CO-OWNER',OWNER:'OWNER'};
     $('cardRole').textContent=roleNames[member.role]||'MEMBER';
     $('cardNumber').textContent=member.member_no||'';
+    const passive=member.status==='passive';
+    $('cardStatus').textContent=passive?'● PASSIV':'● AKTIV';
+    $('cardStatus').style.color=passive?'#facc7a':'#66efb7';
+    $('memberCard').classList.toggle('is-passive',passive);
     activeCardLink=cardLink(code);
     $('cardQr').replaceChildren();
     if(window.QRCode){new window.QRCode($('cardQr'),{text:activeCardLink,width:150,height:150,colorDark:'#050505',colorLight:'#ffffff',correctLevel:window.QRCode.CorrectLevel.M});}
