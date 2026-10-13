@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050b12" />
+    <meta name="description" content="Frost Skaters Events: Am 3. Januar geht es nach Heilbronn." />
+    <title>Events · Frost Skaters</title>
+    <link rel="stylesheet" href="assets/site-menu.css" />
+    <link rel="stylesheet" href="assets/info-pages.css" />
+    <style>
+      .event-card { display:grid; grid-template-columns:140px 1fr; gap:32px; align-items:start; }
+      .date-tile { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:150px; padding:20px; background:linear-gradient(150deg,#7ad5ff15,#ff63da0c); border:1px solid #7ad5ff30; border-radius:22px; }
+      .date-tile strong { font-size:4rem; line-height:1; letter-spacing:-.07em; color:var(--primary); }
+      .date-tile span { margin-top:9px; letter-spacing:.15em; font-weight:700; font-size:.82rem; }
+      .event-type { margin:3px 0 14px; font-size:.75rem; font-weight:700; letter-spacing:.14em; color:var(--turquoise); text-transform:uppercase; }
+      .event-date { margin:0 0 20px; color:var(--text); font-size:1.1rem; font-weight:700; }
+      .event-copy { margin:0 0 20px; max-width:540px; }
+      .event-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+      .event-note { margin:0; font-size:.9rem; }
+      @media(max-width:600px) { .event-card { grid-template-columns:1fr; gap:26px; } .date-tile { width:120px; min-height:126px; } .date-tile strong { font-size:3.4rem; } .event-actions .button { width:100%; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-brand" href="index.html">FROST SKATERS</a>
+      <div class="site-nav">
+        <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+        <nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
+          <a href="index.html">Startseite</a>
+          <a href="events.html" aria-current="page">Events</a>
+          <a href="training.html">Training</a>
+          <a href="shop.html">Shop</a>
+          <a href="index.html#mitmachen">Mitmachen</a>
+        </nav>
+      </div>
+    </header>
+    <main class="info-container">
+      <div class="page-intro">
+        <p class="eyebrow">Frost Skaters · Events</p>
+        <h1>Zusammen <span>unterwegs.</span></h1>
+        <p class="intro-copy">Hier findest du unseren nächsten Termin.</p>
+      </div>
+      <article class="info-card event-card" aria-labelledby="heilbronn-title" data-event>
+        <div class="date-tile" aria-hidden="true"><strong>03</strong><span>JANUAR</span></div>
+        <div>
+          <p class="event-type">Unser nächstes Event</p>
+          <h2 id="heilbronn-title">Ab nach Heilbronn</h2>
+          <p class="event-date"><time datetime="2027-01-03">3. Januar</time> · Heilbronn</p>
+          <p class="muted event-copy">Am 3. Januar geht es mit Frost Skaters nach Heilbronn.</p>
+          <p class="muted event-note">Uhrzeit und Treffpunkt folgen noch.</p>
+          <div class="event-actions">
+            <a class="button" id="eventInquiry" href="https://wa.me/4915234646842?text=Hey%20Frost%20Skaters!%20Ich%20habe%20Interesse%20am%20Event%20in%20Heilbronn%20am%203.%20Januar.%20Habt%20ihr%20weitere%20Infos%20zu%20Uhrzeit%20und%20Treffpunkt%3F" target="_blank" rel="noopener noreferrer">Zum Event nachfragen</a>
+            <a class="button secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Heilbronn" target="_blank" rel="noopener noreferrer">Heilbronn auf der Karte</a>
+          </div>
+        </div>
+      </article>
+      <footer class="site-footer"><p>Frost Skaters · Zusammen unterwegs</p><a href="index.html">Zur Startseite</a></footer>
+    </main>
+    <script src="assets/site-menu.js"></script>
+  </body>
+</html>
