@@ -4,7 +4,7 @@ const $ = id => document.getElementById(id);
 const cfg=window.FROST_MEMBERS_CONFIG||{};
 const ready=/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(cfg.supabaseUrl||'') && /^(eyJ|sb_publishable_)/.test(cfg.supabaseAnonKey||'') && Boolean(window.supabase);
 const client=ready?window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey,{
- auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}
+ auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}
 }):null;
 const feedback=(id,message,error=false)=>{
   const n=$(id);n.textContent=message;n.className='member-alert'+(error?' error':'');
