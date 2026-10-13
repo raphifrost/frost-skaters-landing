@@ -38,7 +38,7 @@ $('changeOwnerEmail').addEventListener('click',()=>{
 });
 
 const dateFormat=d=>d?new Intl.DateTimeFormat('de-DE',{dateStyle:'medium'}).format(new Date(d)):'—';
-const safeStatus=s=>({pending:'Offen',approved:'Aktiv',rejected:'Abgelehnt',revoked:'Gesperrt'}[s]||s);
+const safeStatus=s=>({pending:'Offen',approved:'Aktiv',rejected:'Abgelehnt',revoked:'Gesperrt',passive:'Passiv'}[s]||s);
 const memberNumber=id=>'FS-'+id.slice(0,8).toUpperCase();
 const button=(label,action,css='secondary')=>{
   const b=document.createElement('button');b.type='button';b.className='member-btn '+css;b.textContent=label;
@@ -48,7 +48,7 @@ function render(){
   $('statAll').textContent=rows.length;
   $('statPending').textContent=rows.filter(r=>r.status==='pending').length;
   $('statApproved').textContent=rows.filter(r=>r.status==='approved').length;
-  $('statOther').textContent=rows.filter(r=>['rejected','revoked'].includes(r.status)).length;
+  $('statOther').textContent=rows.filter(r=>['rejected','revoked','passive'].includes(r.status)).length;
   const filter=$('filterStatus').value,search=$('filterName').value.trim().toLocaleLowerCase('de');
   const data=rows.filter(r=>(filter==='all'||r.status===filter)&&r.display_name.toLocaleLowerCase('de').includes(search));
   $('memberRows').replaceChildren();
@@ -67,13 +67,22 @@ function render(){
     const td=document.createElement('td'),actions=document.createElement('div');actions.className='member-row-actions';
     if(r.status==='pending'){
       actions.append(button('✅ Annehmen',()=>updateStatus(r,'approved',true)));
+      actions.append(button('⏸ Passivkarte',()=>updateStatus(r,'passive',true)));
       actions.append(button('❌ Ablehnen',()=>updateStatus(r,'rejected',false),'danger'));
     }else if(r.status==='approved'){
-      actions.append(button('🔗 Link kopieren',()=>copyLink(r.request_code)));
+      actions.append(button('🔗 Karten-Link',()=>copyLink(r.request_code)));
+      actions.append(button('⏸ Passiv stellen',()=>updateStatus(r,'passive',false)));
+      actions.append(button('🔒 Sperren',()=>updateStatus(r,'revoked',false),'danger'));
+    }else if(r.status==='passive'){
+      actions.append(button('🔗 Karten-Link',()=>copyLink(r.request_code)));
+      actions.append(button('▶ Aktivieren',()=>updateStatus(r,'approved',true)));
       actions.append(button('🔒 Sperren',()=>updateStatus(r,'revoked',false),'danger'));
     }else {
       actions.append(button('✅ Freigeben',()=>updateStatus(r,'approved',true)));
+      actions.append(button('⏸ Passivkarte',()=>updateStatus(r,'passive',true)));
     }
+    actions.append(button('🗣 Gespräch',()=>editConversation(r)));
+    actions.append(button('🗑 Löschen',()=>deleteMember(r),'danger'));
     td.append(actions);tr.append(td);$('memberRows').append(tr);
   });
 }
@@ -82,7 +91,7 @@ async function reload(){
   feedback('tableFeedback','Mitglieder werden geladen …');
   try{
     const {data,error}=await client.from('frost_member_requests')
-      .select('id,request_code,display_name,status,role,member_no,created_at,processed_at')
+      .select('id,request_code,display_name,status,role,member_no,created_at,processed_at,talk_at,talk_note')
       .order('created_at',{ascending:false}).limit(1000);
     if(error)throw error;
     rows=data||[];
@@ -102,9 +111,10 @@ async function reload(){
   }catch(e){feedback('tableFeedback','Die Übersicht konnte nicht geladen werden.',true);console.error(e);}
 }
 async function updateStatus(r,status,approve){
-  if(!window.confirm('Möchtest du '+r.display_name+' wirklich '+(status==='approved'?'freigeben':status==='rejected'?'ablehnen':'sperren')+'?'))return;
+  const action={approved:'aktivieren',passive:'passiv stellen',rejected:'ablehnen',revoked:'sperren'}[status]||'ändern';
+  if(!window.confirm('Möchtest du die Karte von '+r.display_name+' wirklich '+action+'?'))return;
   const changes={status,processed_at:new Date().toISOString()};
-  if(approve)changes.member_no=r.member_no||memberNumber(r.request_code);
+  if(approve||status==='passive')changes.member_no=r.member_no||memberNumber(r.request_code);
   try{
     const {data,error}=await client.from('frost_member_requests').update(changes).eq('id',r.id).eq('status',r.status).select('id,request_code');
     if(error)throw error;
@@ -113,9 +123,53 @@ async function updateStatus(r,status,approve){
     else feedback('tableFeedback','Status geändert: '+safeStatus(status));
     await reload();
     // reload clears the feedback, so restore the confirmation.
-    if(approve)feedback('tableFeedback','Mitglied freigegeben! Karten-Link:\n'+codeLink(r.request_code));
+    if(approve||status==='passive')feedback('tableFeedback','Kartenstatus gespeichert! Privater Karten-Link:\n'+codeLink(r.request_code));
     else feedback('tableFeedback','Status gespeichert: '+safeStatus(status));
   }catch(e){feedback('tableFeedback','Änderung fehlgeschlagen. Versuche es später erneut.',true);console.error(e);}
+}
+let selectedTalkId=null;
+function editConversation(r){
+  if(!signedIn)return;
+  selectedTalkId=r.id;
+  $('talkForName').textContent='Gespräch mit '+r.display_name;
+  const t=r.talk_at?new Date(r.talk_at):null;
+  if(t&&!Number.isNaN(t.valueOf())){
+    const local=new Date(t.getTime()-t.getTimezoneOffset()*60000);
+    $('talkAt').value=local.toISOString().slice(0,16);
+  }else $('talkAt').value='';
+  $('talkNote').value=r.talk_note||'';
+  $('talkFeedback').textContent='';
+  $('talkDialog').showModal();
+}
+$('talkCancelButton').addEventListener('click',()=>{$('talkDialog').close();selectedTalkId=null;});
+$('talkForm').addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!signedIn||!selectedTalkId)return;
+  const note=$('talkNote').value.trim();
+  const input=$('talkAt').value;
+  let talk_at=null;
+  if(input){
+    const parsed=new Date(input);
+    if(Number.isNaN(parsed.valueOf())){feedback('talkFeedback','Bitte eine gültige Zeit angeben.',true);return;}
+    talk_at=parsed.toISOString();
+  }
+  const btn=$('talkSaveButton');btn.disabled=true;
+  try{
+    const {error}=await client.from('frost_member_requests').update({talk_at,talk_note:note||null}).eq('id',selectedTalkId);
+    if(error)throw error;
+    $('talkDialog').close();selectedTalkId=null;
+    await reload();
+    feedback('tableFeedback','Privater Gesprächstermin gespeichert.');
+  }catch(e){feedback('talkFeedback','Gespräch konnte nicht gespeichert werden.',true);console.error(e);}
+  finally{btn.disabled=false;}
+});
+async function deleteMember(r){
+  if(!signedIn||!window.confirm('Antrag, Mitgliedskarte und Gesprächsnotiz für '+r.display_name+' endgültig löschen?'))return;
+  try{
+    const {error}=await client.from('frost_member_requests').delete().eq('id',r.id);
+    if(error)throw error;
+    await reload();feedback('tableFeedback','Datensatz gelöscht.');
+  }catch(e){feedback('tableFeedback','Löschen fehlgeschlagen.',true);console.error(e);}
 }
 async function copyLink(code){
   const link=codeLink(code);
@@ -174,19 +228,20 @@ $('addMember').addEventListener('submit',async event=>{
   event.preventDefault();
   if(!signedIn)return;
   const display_name=$('manualName').value.trim().replace(/\s+/g,' ');
-  if(display_name.length<2||display_name.length>40){feedback('manualFeedback','Name muss 2 bis 40 Zeichen lang sein.',true);return;}
+  if(!/^[\p{L}][\p{L}'’-]{1,39}$/u.test(display_name)){feedback('manualFeedback','Nur einen Vornamen mit 2 bis 40 Zeichen eingeben.',true);return;}
   const request_code=crypto.randomUUID();
   const role=$('manualRole').value;
+  const status=$('manualStatus').value;
   const btn=$('manualButton');btn.disabled=true;
   try{
     const {error}=await client.from('frost_member_requests').insert({
-      request_code,display_name,role,status:'approved',
+      request_code,display_name,role,status,
       member_no:memberNumber(request_code),processed_at:new Date().toISOString()
     });
     if(error)throw error;
-    $('manualName').value='';$('manualRole').value='MEMBER';
+    $('manualName').value='';$('manualRole').value='MEMBER';$('manualStatus').value='approved';
     await reload();
-    feedback('manualFeedback','Mitglied eingetragen und Karte aktiviert! Schicke diesen Link direkt an die Person:\n'+codeLink(request_code));
+    feedback('manualFeedback','Karte '+(status==='passive'?'passiv':'aktiv')+' erstellt! Privater Link:\n'+codeLink(request_code));
   }catch(e){feedback('manualFeedback','Karte konnte nicht erstellt werden. Prüfe die Admin-Berechtigung und Datenbankkonfiguration.',true);console.error(e);}
   finally{btn.disabled=false;}
 });
