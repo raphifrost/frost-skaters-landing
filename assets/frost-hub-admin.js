@@ -3,8 +3,32 @@
 const $=id=>document.getElementById(id);
 const cfg=window.FROST_MEMBERS_CONFIG||{};
 const configured=/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(cfg.supabaseUrl||'')&&/^(sb_publishable_|eyJ)/.test(cfg.supabaseAnonKey||'')&&Boolean(window.supabase);
-const client=configured?window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}}):null;
+const client=configured?window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey,{auth:{persistSession:false,autoRefreshToken:true,detectSessionInUrl:false}}):null;
 let owner=false,staff=false,user=null,items=[],submissions=[],work=[],badges=[],people=[],settings={},membersHistory=[];
+let hubInboxChannel=null;
+let lastSubIds=new Set();
+let inboxInitialized=false;
+let newSubmissionCount=0;
+const supportsAlerts=('Notification' in window)&&window.isSecureContext;
+function stopInbox(){
+ if(hubInboxChannel&&client)client.removeChannel(hubInboxChannel);
+ hubInboxChannel=null;inboxInitialized=false;lastSubIds=new Set();newSubmissionCount=0;
+ $('hubNewSubmissionCount').textContent='Keine neuen Meldungen';
+ $('hubIncomingMessage').textContent='';
+}
+function startInbox(){
+ if(!owner||!client||hubInboxChannel)return;
+ hubInboxChannel=client.channel('frost-private-owner-inbox').on(
+  'postgres_changes',{event:'INSERT',schema:'public',table:'frost_hub_submissions'},
+  ()=>{if(owner)loadSubmissions().catch(console.error);}
+ ).subscribe();
+}
+$('hubNotificationsEnable').addEventListener('click',async()=>{
+ if(!supportsAlerts){notice('hubIncomingMessage','Auf diesem Gerät werden Browser-Benachrichtigungen nicht unterstützt. Neue Eingänge erscheinen bei geöffnetem Dashboard.',true);return;}
+ const choice=await Notification.requestPermission();
+ notice('hubIncomingMessage',choice==='granted'?'Benachrichtigungen bei geöffnetem Dashboard sind aktiviert.':'Benachrichtigungen sind nicht freigegeben.');
+});
+
 const ownerBlocks=()=>document.querySelectorAll('[data-owner-only]');
 const make=(tag,cls,txt)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=String(txt);return node;};
 const notice=(id,message,error=false)=>{const n=$(id);if(!n)return;n.textContent=message;n.className='fh-status'+(error?' error':'');};
@@ -28,7 +52,7 @@ async function ownerOrStaffLogin(loginData){
  $('hubRoleText').textContent=owner?'👑 Owner · Vollzugriff':'⛸️ Team-Zugang · nur Community & Aufgaben';
  $('hubLoginPanel').hidden=true;$('hubDashboard').hidden=false;
  ownerBlocks().forEach(n=>n.hidden=!owner);
- await reloadAll();
+ await reloadAll();if(owner)startInbox();
 }
 $('hubLoginForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!client){notice('hubLoginFeedback','Verbindung zur Datenbank fehlt.',true);return;}
@@ -57,7 +81,7 @@ $('hubSignupForm').addEventListener('submit',async e=>{
  }catch(error){console.error(error);notice('hubSignupFeedback','Anmeldung fehlgeschlagen. Bitte später versuchen.',true);}
  finally{btn.disabled=false;}
 });
-$('hubLogout').addEventListener('click',async()=>{if(client)await client.auth.signOut();owner=false;staff=false;user=null;items=[];submissions=[];work=[];$('hubDashboard').hidden=true;$('hubLoginPanel').hidden=false;});
+$('hubLogout').addEventListener('click',async()=>{stopInbox();if(client)await client.auth.signOut();owner=false;staff=false;user=null;items=[];submissions=[];work=[];$('hubDashboard').hidden=true;$('hubLoginPanel').hidden=false;});
 $('hubRefresh').addEventListener('click',reloadAll);
 async function reloadAll(){
  if(!staff)return;
@@ -206,9 +230,28 @@ $('hubWorkForm').addEventListener('submit',async e=>{
 async function loadSubmissions(){
  if(!owner)return;
  const {data,error}=await client.from('frost_hub_submissions').select('id,kind,item_id,first_name,message,state,created_at').order('created_at',{ascending:false}).limit(500);
- if(error)throw error;submissions=data||[];renderSubmissions();
+ if(error)throw error;
+ submissions=data||[];
+ const currentIds=new Set(submissions.map(x=>x.id));
+ if(inboxInitialized){
+  const newEntries=submissions.filter(x=>!lastSubIds.has(x.id)&&x.state==='pending');
+  if(newEntries.length){
+   newSubmissionCount+=newEntries.length;
+   $('hubNewSubmissionCount').textContent=newSubmissionCount+' neue Anfragen';
+   const lastKind=newEntries[0].kind;
+   notice('hubIncomingMessage','📥 '+newEntries.length+' neue Anfrage(n) eingegangen: '+(kindNames[lastKind]||lastKind)+'.');
+   if(supportsAlerts&&Notification.permission==='granted'&&document.visibilityState==='visible'){
+    try{new Notification('Frost Skaters: neue Anfrage',{body:newEntries.length+' neue Anfrage(n) im Owner-Dashboard. Keine Namen werden in der Mitteilung gezeigt.'});}catch{}
+   }
+  }
+ }
+ inboxInitialized=true;lastSubIds=currentIds;
+ renderSubmissions();
 }
 function renderSubmissions(){
+ newSubmissionCount=0;
+ $('hubNewSubmissionCount').textContent='Keine ungelesenen Meldungen';
+
  const kind=$('hubSubFilter').value,state=$('hubSubState').value;
  const set=submissions.filter(x=>(kind==='all'||x.kind===kind)&&(state==='all'||x.state===state));
  const target=$('hubSubmissionsList');target.replaceChildren();
