@@ -23,7 +23,11 @@
 <section class="fh-sec" id="season"><h2>⏳ Nächste Saison</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">Der nächste Saisontermin wird von der Leitung bekanntgegeben.</p><p id="welcomeText"></p></div></section>
 <section class="fh-sec" id="news"><h2>📢 Neuigkeiten</h2><p>Offizielle Mitteilungen der Leitung.</p><div id="newsItems" class="fh-grid"><p class="fh-hint">Noch keine aktuellen Beiträge.</p></div></section>
 <section class="fh-sec" id="events"><h2>📅 Events &amp; Teilnahme</h2><p>Du kannst dich unverbindlich mit deinem Vornamen für ein veröffentlichtes Event vormerken lassen. Die Leitung muss die Teilnahme bestätigen. Bei Minderjährigen müssen die Erziehungsberechtigten einen Ausflug erlauben.</p><div id="eventItems" class="fh-grid"><p class="fh-hint">Events werden geladen.</p></div></section>
-<section class="fh-sec" id="polls"><h2>🗳️ Crew-Abstimmungen</h2><p>Entscheidet gemeinsam, welche Ideen als Nächstes drankommen. Eine Stimme pro Browser und Abstimmung; die Ergebnisse sind informell und nicht manipulationssicher.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Umfragen werden geladen.</p></div></section>
+<section class="fh-sec" id="requestStatus"><h2>📨 Meine Event-Anmeldung prüfen</h2>
+ <p>Nach deiner Anmeldung bekommst du einen persönlichen Status-Link. Heb ihn sicher auf. Du musst deinen Vornamen nicht erneut eingeben.</p>
+ <form class="fh-panel" id="requestStatusForm"><label class="fh-field">Dein privater Anmeldecode oder Link<input class="fh-input" id="requestStatusCode" type="text" autocomplete="off" required placeholder="Anmeldecode oder Link einfügen"></label>
+ <button class="fh-btn" type="submit">Anmeldestatus prüfen</button><p id="requestStatusFeedback" class="fh-status" role="status"></p></form></section>
+ <section class="fh-sec" id="polls"><h2>🗳️ Crew-Abstimmungen</h2><p>Entscheidet gemeinsam, welche Ideen als Nächstes drankommen. Eine Stimme pro Browser und Abstimmung; die Ergebnisse sind informell und nicht manipulationssicher.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Umfragen werden geladen.</p></div></section>
 <section class="fh-sec" id="challenges"><h2>🏅 Freiwillige Challenges</h2><p>Probiere einfache Eislauf-Übungen in deinem Tempo. Kein Wettbewerb und kein Leistungsdruck – bitte beachte die Regeln der Eishalle.</p><div id="challengeItems" class="fh-grid"><div class="fh-panel"><h3>Erste Runde ⛸️</h3><p>Fahre eine ruhige Runde, bleib aufmerksam und hab Spaß.</p></div></div></section>
 <section class="fh-sec" id="gallery"><h2>📸 Community-Galerie</h2><p>Hier erscheinen nur Fotos, für deren Veröffentlichung alle erkennbaren Personen zugestimmt haben. Insbesondere bei Minderjährigen braucht es geeignete Freigaben.</p><div id="galleryItems" class="fh-grid"><p class="fh-hint">Noch keine freigegebenen Fotos.</p></div></section>
 <section class="fh-sec" id="history"><h2>📖 Unsere Geschichte</h2><div class="fh-timeline"><div class="fh-panel"><span class="fh-meta">2025</span><h3>Gründung von Frost Skaters ❄️</h3><p>Seit 2025 wachsen wir als Eislauf-Community zusammen.</p></div><div id="historyItems"></div></div></section>
@@ -49,5 +53,5 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-hub-public.js?v=3"></script>
+<script src="assets/frost-hub-public.js?v=4"></script>
 </body></html>
