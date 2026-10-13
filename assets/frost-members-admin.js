@@ -12,6 +12,31 @@ const feedback=(id,message,error=false)=>{
 const codeLink=code=>new URL('mitglieder.html?code='+encodeURIComponent(code),location.href).href;
 let rows=[];
 let signedIn=false;
+const savedAccountKey='frost-skaters-owner-email';
+function saveOwnerEmail(email){
+  const clean=String(email||'').trim();
+  if(!clean)return;
+  try{localStorage.setItem(savedAccountKey,clean);}catch{}
+  showSavedAccount(clean);
+}
+function showSavedAccount(email){
+  const remembered=Boolean(email);
+  const emailField=$('ownerEmail'),block=$('ownerEmailBlock');
+  $('ownerAccountRemembered').hidden=!remembered;
+  block.hidden=remembered;
+  emailField.required=!remembered;
+  if(remembered)emailField.value=email;
+}
+let rememberedEmail='';
+try{rememberedEmail=localStorage.getItem(savedAccountKey)||'';}catch{}
+showSavedAccount(rememberedEmail);
+$('changeOwnerEmail').addEventListener('click',()=>{
+  try{localStorage.removeItem(savedAccountKey);}catch{}
+  $('ownerEmail').value='';
+  showSavedAccount('');
+  $('ownerEmail').focus();
+});
+
 const dateFormat=d=>d?new Intl.DateTimeFormat('de-DE',{dateStyle:'medium'}).format(new Date(d)):'—';
 const safeStatus=s=>({pending:'Offen',approved:'Aktiv',rejected:'Abgelehnt',revoked:'Gesperrt'}[s]||s);
 const memberNumber=id=>'FS-'+id.slice(0,8).toUpperCase();
@@ -97,6 +122,7 @@ $('adminLogin').addEventListener('submit',async event=>{
     const {data:loginData,error}=await client.auth.signInWithPassword({email:$('ownerEmail').value.trim(),password:$('ownerPassword').value});
     $('ownerPassword').value='';
     if(error)throw error;
+    saveOwnerEmail(loginData?.user?.email||$('ownerEmail').value);
     const {data:roles,error:checkErr}=await client.from('frost_admins').select('user_id').limit(1);
     if(checkErr||!roles?.length){
       await client.auth.signOut();
@@ -149,6 +175,7 @@ signupForm.addEventListener('submit',async event=>{
     });
     $('signupPassword').value='';$('signupPasswordRepeat').value='';
     if(error)throw error;
+    saveOwnerEmail(email);
     if(data?.session)await client.auth.signOut();
     feedback('signupFeedback','Anfrage gesendet! Schau in deinem E-Mail-Postfach (auch Spam) nach und bestätige deine Adresse. Danach muss dein Account einmalig als Owner freigeschaltet werden. Öffne anschließend hier den Login.');
     $('ownerEmail').value=email;
