@@ -2,7 +2,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const cfg = window.FROST_MEMBERS_CONFIG || {};
-const ready = /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(cfg.supabaseUrl || '') && /^eyJ/.test(cfg.supabaseAnonKey || '') && Boolean(window.supabase);
+const ready = /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(cfg.supabaseUrl || '') && /^(eyJ|sb_publishable_)/.test(cfg.supabaseAnonKey || '') && Boolean(window.supabase);
 const client = ready ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
   auth: {persistSession:false, autoRefreshToken:false, detectSessionInUrl:false}
 }) : null;
