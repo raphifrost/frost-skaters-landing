@@ -17,9 +17,17 @@
 <section class="member-panel" id="signInPanel">
 <h2>🔒 Owner-Login</h2>
 <form id="adminLogin">
-<label for="ownerEmail" class="member-label">Admin-E-Mail</label><input id="ownerEmail" type="email" class="member-input" autocomplete="username" required>
-<label for="ownerPassword" class="member-label">Passwort</label><input id="ownerPassword" type="password" class="member-input" autocomplete="current-password" required>
-<div class="member-actions"><button type="submit" id="loginButton" class="member-btn">Einloggen</button></div>
+<div id="ownerAccountRemembered" hidden>
+  <p class="member-hint" style="margin:2px 0 7px">👑 Dein Owner-Konto ist auf diesem Gerät gemerkt. Du brauchst nur dein Passwort.</p>
+  <button id="changeOwnerEmail" class="member-btn secondary" type="button" style="font-size:.84rem;padding:9px 12px">Anderes Konto verwenden</button>
+</div>
+<div id="ownerEmailBlock">
+  <label for="ownerEmail" class="member-label">E-Mail (nur beim ersten Login auf diesem Gerät)</label>
+  <input id="ownerEmail" type="email" class="member-input" autocomplete="username" required>
+  <p class="member-hint">Wir merken uns nur deine E-Mail auf diesem Gerät. Dein Passwort wird nicht gespeichert.</p>
+</div>
+<label for="ownerPassword" class="member-label">Dein Passwort</label><input id="ownerPassword" type="password" class="member-input" autocomplete="current-password" required>
+<div class="member-actions"><button type="submit" id="loginButton" class="member-btn">👑 Als Owner einloggen</button></div>
 </form><p class="member-hint"><strong>Landest du nach der E-Mail-Bestätigung auf localhost:3000?</strong> Deine E-Mail kann trotzdem erfolgreich bestätigt worden sein. Öffne danach einfach wieder diese Seite und melde dich oben an. Du musst nicht erneut einen Account erstellen.</p><p class="member-hint">Dein Login muss vorher in der geschützten Datenbank als Owner freigeschaltet werden. Das Passwort steht nicht im GitHub-Code.</p>
 <details style="margin-top:22px" id="signupDetails">
 <summary style="cursor:pointer;color:#83edf4;font-weight:800;padding:12px 0">👑 Zum ersten Mal hier? Owner-Account erstellen</summary>
