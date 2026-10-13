@@ -227,8 +227,20 @@
         .submit-btn { width: 100%; }
       }
     </style>
+    <link rel="stylesheet" href="assets/site-menu.css" />
   </head>
   <body>
+    <header class="site-header">
+      <a class="site-brand" href="index.html">FROST SKATERS</a>
+      <div class="site-nav">
+        <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+        <nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
+          <a href="index.html" aria-current="page">Startseite</a>
+          <a href="shop.html">Shop</a>
+          <a href="index.html#mitmachen">Mitmachen</a>
+        </nav>
+      </div>
+    </header>
     <div class="container">
       <section class="hero">
         <div>
@@ -341,5 +353,6 @@
         }
       });
     </script>
+    <script src="assets/site-menu.js"></script>
   </body>
 </html>

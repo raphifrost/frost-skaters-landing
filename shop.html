@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Deinen eigenen Hoodie für 25 € personalisieren lassen: Frost Skaters Logo auf dem Rücken und dein Name auf dem linken Arm. Anfrage per WhatsApp." />
+    <meta name="theme-color" content="#050b12" />
+    <title>Dein Team-Hoodie · Frost Skaters Shop</title>
+    <link rel="stylesheet" href="assets/site-menu.css" />
+    <style>
+      :root {
+        --bg: #050b12;
+        --bg-2: #0d1522;
+        --panel: rgba(12, 20, 31, 0.85);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: #f2f8ff;
+        --muted: #c8d6ea;
+        --primary: #7ad5ff;
+        --primary-strong: #3bb6ff;
+        --pink: #ff63da;
+        --turquoise: #36eee7;
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(67, 185, 255, 0.18), transparent 32%),
+          radial-gradient(circle at 95% 40%, rgba(230, 31, 186, 0.09), transparent 30%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      }
+      a { color: var(--primary); }
+      button, input { font: inherit; }
+      :focus-visible { outline: 3px solid var(--turquoise); outline-offset: 5px; }
+      .container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 28px 22px 40px; }
+      .skip-link { position: absolute; top: 8px; left: 8px; z-index: 100; padding: 12px; border-radius: 8px; background: var(--text); color: var(--bg); transform: translateY(-160%); }
+      .skip-link:focus { transform: translateY(0); }
+      .shop-intro { padding: 58px 0 32px; }
+      .eyebrow { margin: 0 0 16px; color: var(--pink); font-size: .8rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+      h1 { margin: 0 0 18px; font-size: clamp(2.45rem, 5.7vw, 4.8rem); line-height: 1.02; letter-spacing: -.055em; }
+      h1 span { color: var(--primary); }
+      .intro-copy { max-width: 590px; margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
+      .product { display: grid; grid-template-columns: 1.06fr 1fr; gap: 28px; align-items: start; }
+      .product-visual { min-width: 0; }
+      .team-photo { margin: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 24px; background: var(--panel); box-shadow: 0 24px 65px rgba(0, 0, 0, .3); }
+      .team-photo img { display: block; width: 100%; height: auto; }
+      .team-photo figcaption { padding: 19px 22px 22px; color: var(--muted); font-size: .93rem; line-height: 1.6; }
+      .team-photo figcaption strong { display: block; margin-bottom: 3px; color: var(--text); }
+      .logo-detail { display: flex; align-items: center; gap: 18px; margin-top: 18px; padding: 18px; border: 1px solid var(--border); border-radius: 18px; background: rgba(12, 20, 31, .62); }
+      .logo-detail img { display: block; width: 112px; height: auto; flex: 0 0 auto; border-radius: 9px; }
+      .logo-detail p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+      .logo-detail strong { display: block; margin-bottom: 4px; color: var(--text); }
+      .offer { min-width: 0; padding: 30px; border: 1px solid var(--border); border-radius: 24px; background: var(--panel); box-shadow: 0 24px 65px rgba(0, 0, 0, .25); }
+      .product-type { margin: 0 0 12px; color: var(--turquoise); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      h2 { margin: 0; font-size: clamp(1.65rem, 3vw, 2.25rem); line-height: 1.16; letter-spacing: -.025em; }
+      .price-row { display: flex; align-items: center; gap: 18px; margin: 23px 0; }
+      .price { margin: 0; font-size: 3.4rem; line-height: 1; font-weight: 700; letter-spacing: -.055em; white-space: nowrap; }
+      .price-note { max-width: 190px; margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+      .bring-hoodie { margin-bottom: 24px; padding: 16px 18px; border: 1px solid rgba(54, 238, 231, .32); border-radius: 14px; background: rgba(54, 238, 231, .055); }
+      .bring-hoodie strong { display: block; color: var(--turquoise); font-size: 1.06rem; }
+      .bring-hoodie p { margin: 7px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+      .placements { display: grid; gap: 15px; margin: 0 0 26px; }
+      .placement { display: block; }
+      .placement-number { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border: 1px solid var(--border); border-radius: 9px; color: var(--pink); font-size: .75rem; font-weight: 700; }
+      .placement dt { display: flex; align-items: center; gap: 13px; margin-bottom: 5px; font-weight: 700; }
+      .placement dd { margin: 0 0 0 43px; color: var(--muted); font-size: .93rem; line-height: 1.55; }
+      .name-form { padding-top: 24px; border-top: 1px solid var(--border); }
+      .name-form label { display: block; margin-bottom: 10px; font-weight: 700; line-height: 1.5; }
+      .name-form input { width: 100%; min-width: 0; padding: 15px 16px; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; background: rgba(2, 6, 23, .75); color: var(--text); font-size: 1rem; }
+      .name-form input::placeholder { color: #96a6bf; }
+      .field-hint { margin: 9px 0 0; color: var(--muted); font-size: .82rem; line-height: 1.6; }
+      .name-preview { margin: 16px 0; color: var(--muted); font-size: .88rem; line-height: 1.6; overflow-wrap: anywhere; }
+      .name-preview strong { color: var(--text); }
+      .whatsapp-cta { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 56px; padding: 15px 18px; border-radius: 13px; background: linear-gradient(135deg, var(--primary), var(--primary-strong)); color: #072131; font-weight: 700; line-height: 1.4; text-align: center; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+      .whatsapp-cta:not([aria-disabled="true"]):hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(59, 182, 255, .22); }
+      .whatsapp-cta[aria-disabled="true"] { background: #283e50; color: #d4e4f1; cursor: not-allowed; }
+      .whatsapp-cta svg { flex: 0 0 20px; }
+      .request-status { margin: 12px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.6; }
+      .request-note { margin: 13px 0 0; color: var(--muted); font-size: .82rem; line-height: 1.7; }
+      noscript p { padding: 12px; border: 1px solid var(--border); border-radius: 10px; line-height: 1.6; }
+      .next-steps { margin-top: 48px; padding: 30px; border: 1px solid var(--border); border-radius: 24px; background: rgba(12, 20, 31, .6); }
+      .next-steps h2 { margin-bottom: 23px; font-size: 1.5rem; }
+      .next-steps ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 0; padding: 0; list-style: none; counter-reset: steps; }
+      .next-steps li { position: relative; padding-left: 33px; color: var(--muted); font-size: .93rem; line-height: 1.7; counter-increment: steps; }
+      .next-steps li::before { content: "0" counter(steps); position: absolute; left: 0; top: 0; color: var(--turquoise); font-size: .78rem; font-weight: 700; }
+      .next-steps strong { display: block; margin-bottom: 5px; color: var(--text); }
+      .shop-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--border); color: var(--muted); font-size: .85rem; line-height: 1.6; }
+      .shop-footer p { margin: 0; }
+      .shop-footer a { text-decoration: none; }
+      .shop-footer a:hover { text-decoration: underline; }
+      @media (max-width: 820px) {
+        .shop-intro { padding-top: 38px; }
+        .product { grid-template-columns: 1fr; gap: 22px; }
+        .product-visual { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); align-items: start; gap: 18px; }
+        .logo-detail { display: block; margin-top: 0; }
+        .logo-detail img { width: 100%; max-width: 210px; margin: 0 0 18px; }
+        .next-steps ol { grid-template-columns: 1fr; gap: 20px; }
+      }
+      @media (max-width: 540px) {
+        .container { padding: 20px 16px 28px; }
+        .shop-intro { padding: 32px 0 26px; }
+        .intro-copy { font-size: 1rem; }
+        .product-visual { display: block; }
+        .logo-detail { display: flex; margin-top: 16px; gap: 14px; padding: 15px; }
+        .logo-detail img { width: 90px; margin: 0; }
+        .logo-detail p { font-size: .85rem; }
+        .offer { padding: 22px; }
+        .price-row { gap: 14px; }
+        .price { font-size: 3rem; }
+        .price-note { font-size: .85rem; }
+        .team-photo figcaption { padding: 16px 18px; }
+        .next-steps { margin-top: 28px; padding: 22px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#shop">Zum Shop-Inhalt</a>
+    <header class="site-header">
+        <a class="site-brand" href="index.html">FROST SKATERS</a>
+        <div class="site-nav">
+          <button id="menuToggle" class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Menü öffnen">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </button>
+          <nav id="siteMenu" class="site-menu" hidden aria-label="Hauptnavigation">
+            <a href="index.html">Startseite</a>
+            <a href="shop.html" aria-current="page">Shop</a>
+            <a href="index.html#mitmachen">Mitmachen</a>
+          </nav>
+        </div>
+    </header>
+    <div class="container">
+      <main id="shop">
+        <div class="shop-intro">
+          <p class="eyebrow">Frost Skaters · Shop</p>
+          <h1>Dein Hoodie.<br /><span>Unser Team.</span></h1>
+          <p class="intro-copy">Mach deinen eigenen Hoodie zum Frost Skaters Team-Hoodie – mit unserem Logo auf dem Rücken und deinem Namen auf dem linken Arm.</p>
+        </div>
+
+        <section class="product" aria-labelledby="product-title">
+          <div class="product-visual">
+            <figure class="team-photo">
+              <img src="assets/frost-skaters-team.jpg" alt="Drei Frost Skaters von hinten mit großen pink-türkisen Frost Skaters Logos auf ihren Hoodies." width="640" height="640" fetchpriority="high" />
+              <figcaption><strong>So sieht unser Team-Look aus.</strong>Das Foto zeigt das große Frost Skaters Logo auf dem Rücken.</figcaption>
+            </figure>
+            <div class="logo-detail">
+              <img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo mit pinken Flammen, türkisen Eiszapfen und der Jahreszahl 2025." width="1280" height="799" loading="lazy" />
+              <p><strong>Unser Logo. Dein Team.</strong>Pink, Türkis und jede Menge Frost Skaters Gefühl.</p>
+            </div>
+          </div>
+
+          <div class="offer">
+            <p class="product-type">Hoodie-Personalisierung</p>
+            <h2 id="product-title">Dein persönlicher<br />Frost Skaters Look</h2>
+            <div class="price-row">
+              <p class="price">25 €</p>
+              <p class="price-note">für Logo und Namen auf deinem eigenen Hoodie</p>
+            </div>
+
+            <div class="bring-hoodie">
+              <strong>Hoodie selbst mitbringen</strong>
+              <p>Die 25 € gelten für die Personalisierung. Ein Hoodie ist im Preis nicht enthalten.</p>
+            </div>
+
+            <dl class="placements">
+              <div class="placement">
+                <dt><span class="placement-number" aria-hidden="true">01</span>Großes Logo auf dem Rücken</dt>
+                <dd>Das Frost Skaters Logo – wie auf unserem Teamfoto.</dd>
+              </div>
+              <div class="placement">
+                <dt><span class="placement-number" aria-hidden="true">02</span>Dein Name auf dem linken Arm</dt>
+                <dd>Dein persönlicher Name gehört mit dazu.</dd>
+              </div>
+            </dl>
+
+            <form id="hoodieForm" class="name-form">
+              <label for="hoodieName">Dein Name auf dem linken Arm</label>
+              <input id="hoodieName" name="name" type="text" placeholder="z. B. Alex" required autocomplete="given-name" aria-describedby="nameHint requestStatus" />
+              <p id="nameHint" class="field-hint">Schreib den Namen so, wie er auf deinem Hoodie stehen soll.</p>
+              <p class="name-preview">Auf deinem linken Arm: <strong id="namePreview">dein Name</strong></p>
+              <a id="whatsappRequest" class="whatsapp-cta" role="link" tabindex="0" aria-disabled="true" aria-describedby="requestStatus" target="_blank" rel="noopener noreferrer">
+                Personalisierung anfragen
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+              <p id="requestStatus" class="request-status" aria-live="polite">Trage deinen Namen ein, um die WhatsApp-Anfrage zu öffnen.</p>
+              <p class="request-note">Wir stimmen die Personalisierung und Übergabe per WhatsApp ab. Dort kannst du die vorbereitete Nachricht prüfen und selbst senden.</p>
+              <noscript><p>Für die vorbereitete Anfrage aktiviere JavaScript oder <a href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">schreib uns direkt per WhatsApp</a>. Nenne deinen Namen für den linken Arm und die Personalisierung deines mitgebrachten Hoodies für 25 € mit großem Rückenlogo.</p></noscript>
+            </form>
+          </div>
+        </section>
+
+        <section class="next-steps" aria-labelledby="steps-title">
+          <h2 id="steps-title">So kommt dein Name ins Team.</h2>
+          <ol>
+            <li><strong>Namen eintragen</strong>Gib deinen Namen für den linken Arm ein und öffne die WhatsApp-Anfrage.</li>
+            <li><strong>Mit uns abstimmen</strong>Sende deine Nachricht in WhatsApp. Wir besprechen die Personalisierung und Übergabe mit dir.</li>
+            <li><strong>Hoodie mitbringen</strong>Du stellst den Hoodie. Wir ergänzen das Rückenlogo und deinen Namen für 25 €.</li>
+          </ol>
+        </section>
+      </main>
+
+      <footer class="shop-footer">
+        <p>Frost Skaters · Zusammen unterwegs seit 2025</p>
+        <a href="index.html#mitmachen">Lerne unser Team kennen →</a>
+      </footer>
+    </div>
+    <script src="assets/site-menu.js"></script>
+    <script>
+      (() => {
+        const form = document.getElementById('hoodieForm');
+        const nameInput = document.getElementById('hoodieName');
+        const namePreview = document.getElementById('namePreview');
+        const requestLink = document.getElementById('whatsappRequest');
+        const status = document.getElementById('requestStatus');
+
+        const updateRequest = () => {
+          const name = nameInput.value.trim();
+          namePreview.textContent = name || 'dein Name';
+          nameInput.setCustomValidity(name ? '' : 'Bitte gib deinen Namen für den linken Arm ein.');
+          requestLink.setAttribute('aria-disabled', String(!name));
+          if (!name) {
+            requestLink.removeAttribute('href');
+            status.textContent = 'Trage deinen Namen ein, um die WhatsApp-Anfrage zu öffnen.';
+            return;
+          }
+          const message = `Hallo Frost Skaters! Ich möchte meinen eigenen Hoodie für 25 € personalisieren lassen. Ich bringe den Hoodie selbst mit. Bitte das große Frost Skaters Logo auf den Rücken und meinen Namen „${name}“ auf den linken Arm. Können wir die Personalisierung und Übergabe per WhatsApp abstimmen?`;
+          requestLink.href = `https://wa.me/4915234646842?text=${encodeURIComponent(message)}`;
+          status.textContent = 'Deine Anfrage ist bereit. Weiter geht’s in WhatsApp.';
+        };
+
+        nameInput.addEventListener('input', updateRequest);
+        nameInput.addEventListener('change', updateRequest);
+        requestLink.addEventListener('click', (event) => {
+          updateRequest();
+          if (!nameInput.value.trim()) {
+            event.preventDefault();
+            nameInput.focus();
+            nameInput.reportValidity();
+          }
+        });
+        requestLink.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' && requestLink.getAttribute('aria-disabled') === 'true') {
+            event.preventDefault();
+            requestLink.click();
+          }
+        });
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+          updateRequest();
+          if (form.reportValidity()) requestLink.click();
+        });
+        window.addEventListener('pageshow', updateRequest);
+        updateRequest();
+      })();
+    </script>
+  </body>
+</html>
