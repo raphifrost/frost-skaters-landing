@@ -1,0 +1,6 @@
+# Private organisation sources and credentials must remain outside this checkout.
+.private/
+organisation-plan.json
+Leitungszugang.txt
+*passwort*.txt
+*password*.txt

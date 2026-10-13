@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#080911" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+    <title>Interner Bereich · Frost Skaters</title>
+    <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="assets/site-menu.css" />
+    <link rel="stylesheet" href="assets/info-pages.css" />
+    <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
+    <link rel="stylesheet" href="assets/organisation.css" />
+  </head>
+  <body class="frost-page" data-page="organisation">
+    <header class="site-header">
+      <a class="site-brand" href="index.html">FROST SKATERS</a>
+      <div class="site-nav">
+        <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+        <nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
+          <a href="index.html">Startseite</a>
+          <a href="events.html">Events</a>
+          <a href="training.html">Training</a>
+          <a href="shop.html">Shop</a>
+          <a href="leitung.html">Leitung</a>
+          <a href="index.html#mitmachen">Mitmachen</a>
+          <a href="index.html#fragen">Fragen</a>
+        </nav>
+      </div>
+    </header>
+    <main class="info-container organisation-container">
+      <section class="info-card access-card" id="accessPanel" aria-labelledby="accessTitle">
+        <div class="access-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="11" rx="3" /><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" /></svg></div>
+        <p class="eyebrow">Frost Skaters · Intern</p>
+        <h1 id="accessTitle">Nur für die <span>Leitung.</span></h1>
+        <p class="intro-copy">Euer Organisationsplan wartet hier. Öffne ihn mit dem gemeinsamen Leitungspasswort.</p>
+        <div class="access-roles" aria-label="Vorgesehene Zugriffsrollen"><span>Owner</span><span>Co-Owner/in</span><span>Managerin</span></div>
+        <form class="access-form" id="accessForm" aria-describedby="accessNote accessStatus">
+          <label for="leadershipPassword">Leitungspasswort</label>
+          <div class="password-input">
+            <input id="leadershipPassword" type="password" autocomplete="current-password" spellcheck="false" autocapitalize="none" autocorrect="off" required disabled />
+            <button class="password-toggle" id="passwordToggle" type="button" aria-label="Passwort anzeigen" aria-pressed="false" disabled><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></svg></button>
+          </div>
+          <button class="button access-submit" id="unlockPlan" type="submit" disabled>Plan öffnen</button>
+          <p class="access-status" id="accessStatus" role="status" aria-live="polite"></p>
+        </form>
+        <p class="access-note" id="accessNote">Gebt das Passwort nur an Owner, Co-Owner/in und Managerin weiter. Mit „Abmelden“ wird der Plan auf diesem Gerät wieder geschlossen.</p>
+        <noscript><p class="access-status">Bitte aktiviere JavaScript, um den verschlüsselten Plan zu öffnen.</p></noscript>
+      </section>
+      <section id="protectedPanel" hidden aria-label="Organisationsplan der Leitung">
+        <div class="organisation-toolbar"><p class="eyebrow">Frost Skaters · Leitungsbereich</p><button class="button secondary lock-button" id="lockPlan" type="button">Abmelden</button></div>
+        <div id="organisationContent"></div>
+        <p class="organisation-session-note">Der geöffnete Plan bleibt nur in diesem Tab sichtbar. Nach dem Neuladen oder Abmelden brauchst du das Leitungspasswort erneut.</p>
+      </section>
+      <footer class="site-footer"><p>Frost Skaters · Zusammen seit 2025</p><a href="leitung.html">Zur Leitung</a></footer>
+    </main>
+    <template id="crownTemplate"><svg aria-hidden="true" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m4 9 7 6 5-10 5 10 7-6-3 15H7L4 9ZM8 28h16" /></svg></template>
+    <script src="assets/site-menu.js"></script>
+    <script src="assets/organisation.js"></script>
+  </body>
+</html>

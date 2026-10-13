@@ -1,0 +1,89 @@
+.frost-page[data-page="leadership"] .leadership-intro {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 200px;
+  align-items:center;
+  gap:36px;
+  margin-bottom:42px;
+}
+.leadership-logo {
+  display:block;
+  width:100%;
+  height:auto;
+  mix-blend-mode:screen;
+}
+.leadership-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.frost-page .role-card {
+  position:relative;
+  min-width:0;
+  padding:28px;
+  overflow:hidden;
+}
+.role-card::after {
+  content:"";
+  position:absolute;
+  height:2px;
+  bottom:0;
+  left:28px;
+  right:28px;
+  background:linear-gradient(90deg,var(--role-color),transparent);
+}
+.role-owner { --role-color:#ff83e8; }
+.role-coowner { --role-color:#72e9f3; }
+.role-manager { --role-color:#bba5ff; }
+.role-icon {
+  display:grid;
+  place-items:center;
+  width:60px;
+  height:60px;
+  margin-bottom:30px;
+  border:1px solid #abb7dc2a;
+  border-radius:18px;
+  color:var(--role-color);
+  background:#ffffff04;
+}
+.role-icon svg { display:block; width:32px; height:32px; }
+.role-label {
+  margin:0 0 9px;
+  font-size:.62rem;
+  line-height:1.6;
+  font-weight:750;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--role-color);
+}
+.frost-page .role-card h2 { margin:0 0 17px; font-size:1.65rem; line-height:1.25; }
+.role-name { margin:0 0 18px; font-size:.95rem; color:#e7eafa; }
+.role-description { margin:0; color:var(--muted); font-size:.9rem; line-height:1.8; }
+.frost-page .leadership-internal {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  margin-top:28px;
+  background:radial-gradient(ellipse at 0% 0%,#ff20d80b,transparent 70%),#151725;
+}
+.leadership-internal .eyebrow { margin-bottom:12px; }
+.frost-page .leadership-internal h2 { margin-bottom:12px; font-size:clamp(1.65rem,4vw,2.15rem); }
+.leadership-internal .muted { margin:0; font-size:.92rem; }
+.leadership-internal .button { flex-shrink:0; text-align:center; }
+.leadership-internal .button svg { width:21px; height:21px; flex-shrink:0; }
+#leitung { scroll-margin-top:90px; }
+@media (max-width:850px) {
+  .frost-page[data-page="leadership"] .leadership-intro { grid-template-columns:minmax(0,1fr) 140px; gap:20px; }
+  .leadership-grid { grid-template-columns:1fr; }
+  .role-icon { margin-bottom:22px; }
+  .role-description { max-width:420px; }
+  .frost-page .leadership-internal { flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:600px) {
+  .frost-page[data-page="leadership"] .leadership-intro { grid-template-columns:1fr; gap:25px; margin-bottom:30px; }
+  .leadership-logo { width:132px; }
+  .frost-page .role-card { padding:25px; }
+  .frost-page .role-card h2 { font-size:1.65rem; }
+  .frost-page .leadership-internal { gap:23px; margin-top:22px; }
+  .leadership-internal .button { width:100%; padding-left:16px; padding-right:16px; }
+}
