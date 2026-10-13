@@ -86,6 +86,17 @@ async function reload(){
       .order('created_at',{ascending:false}).limit(1000);
     if(error)throw error;
     rows=data||[];
+    const currentPending=new Set(rows.filter(r=>r.status==='pending').map(r=>r.id));
+    if(initializedPending){
+      const fresh=rows.filter(r=>r.status==='pending'&&!lastPendingIds.has(r.id));
+      if(fresh.length){
+        feedback('incomingFeedback',fresh.length===1?'📥 Neuer Mitgliedsantrag eingegangen!':'📥 '+fresh.length+' neue Mitgliedsanträge eingegangen!');
+        if(document.visibilityState==='visible'&&'Notification' in window&&Notification.permission==='granted'){
+          try{new Notification('Frost Skaters',{body:fresh.length===1?'Neuer Mitgliedsantrag eingegangen':fresh.length+' neue Mitgliedsanträge'});}catch{}
+        }
+      }
+    }
+    initializedPending=true;lastPendingIds=currentPending;
     render();
     $('tableFeedback').textContent=rows.length>=1000?'Hinweis: Es werden nur die neuesten 1000 Einträge angezeigt.':'';
   }catch(e){feedback('tableFeedback','Die Übersicht konnte nicht geladen werden.',true);console.error(e);}
@@ -114,6 +125,28 @@ async function copyLink(code){
 $('filterStatus').addEventListener('change',render);
 $('filterName').addEventListener('input',render);
 $('reloadMembers').addEventListener('click',reload);
+
+// New applications arrive instantly while the Owner dashboard is open.
+// Realtime is accompanied by periodic refresh in case a mobile connection drops.
+let requestsChannel=null;
+let refreshInterval=null;
+let lastPendingIds=new Set();
+let initializedPending=false;
+function startRequestUpdates(){
+  if(!client||requestsChannel)return;
+  requestsChannel=client.channel('frost-owner-requests').on(
+    'postgres_changes',
+    {event:'INSERT',schema:'public',table:'frost_member_requests'},
+    ()=>{if(signedIn)reload();}
+  ).subscribe();
+  refreshInterval=setInterval(()=>{if(signedIn&&!document.hidden)reload();},20000);
+}
+function stopRequestUpdates(){
+  if(refreshInterval!==null){clearInterval(refreshInterval);refreshInterval=null;}
+  if(requestsChannel){client.removeChannel(requestsChannel);requestsChannel=null;}
+  initializedPending=false;lastPendingIds=new Set();
+}
+
 $('adminLogin').addEventListener('submit',async event=>{
   event.preventDefault();
   if(!client){feedback('loginFeedback','Das Mitgliedersystem ist noch nicht mit der Datenbank verbunden. Bitte zuerst Supabase einrichten.',true);return;}
@@ -129,13 +162,13 @@ $('adminLogin').addEventListener('submit',async event=>{
       feedback('loginFeedback','Dein Login hat funktioniert! Der Account ist aber noch nicht als Owner freigeschaltet.\\n\\nKopiere diese Benutzer-ID und teile sie zur Freischaltung mit dem Website-Verwalter (niemals dein Passwort):\\n'+(loginData?.user?.id||'Nicht verfügbar'));
       return;
     }
-    signedIn=true;$('signInPanel').hidden=true;$('dashboard').hidden=false;await reload();
+    signedIn=true;$('signInPanel').hidden=true;$('dashboard').hidden=false;await reload();startRequestUpdates();
   }catch(e){feedback('loginFeedback','Login nicht möglich. Bitte kontrolliere die E-Mail und das Passwort. Wenn du gerade auf localhost:3000 gelandet bist, kann die Bestätigung trotzdem erfolgreich gewesen sein — probiere deinen Login hier erneut.',true);console.error(e);}
   finally{btn.disabled=false;btn.textContent='Einloggen';}
 });
 $('signOut').addEventListener('click',async()=>{
   if(client)await client.auth.signOut();
-  signedIn=false;rows=[];$('dashboard').hidden=true;$('signInPanel').hidden=false;$('memberRows').replaceChildren();
+  stopRequestUpdates();signedIn=false;rows=[];$('dashboard').hidden=true;$('signInPanel').hidden=false;$('memberRows').replaceChildren();
 });
 $('addMember').addEventListener('submit',async event=>{
   event.preventDefault();
