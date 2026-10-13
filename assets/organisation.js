@@ -89,7 +89,7 @@
     status.textContent = 'Zugang wird geprüft …';
     let plaintext;
     try {
-      const response = await fetch('assets/organisation.enc.json', { cache: 'no-store', credentials: 'omit' });
+      const response = await fetch('assets/organisation.enc.json?v=2', { cache: 'no-store', credentials: 'omit' });
       if (!response.ok) throw new Error('Load failed');
       const envelope = await response.json();
       if (envelope.version !== 1 || envelope.iterations !== 600000) throw new Error('Invalid encrypted data');

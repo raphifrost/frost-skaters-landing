@@ -12,15 +12,18 @@ Der Shop unter `shop.html` bietet die Personalisierung eines selbst mitgebrachte
 
 Dies sind keine individuellen Benutzerkonten: Wer das gemeinsame Passwort kennt, kann den Plan entschlüsseln. Nur an Owner, Co-Owner/in und Managerin weitergeben. Einzelne Personen können damit nicht getrennt freigeschaltet oder gesperrt werden. Für solche Rollenrechte ist ein zusätzlicher Authentifizierungsdienst erforderlich.
 
-Zum Aktualisieren den privaten Plan und das starke Zufallspasswort außerhalb des Checkouts aufbewahren und neu verschlüsseln:
+Zum Aktualisieren den privaten Plan und das Zufallspasswort außerhalb des Checkouts aufbewahren und neu verschlüsseln:
 
 ```sh
 node tools/encrypt-organisation.mjs \
   --plan /PRIVATE_DIRECTORY/organisation-plan.json \
   --password-file /PRIVATE_DIRECTORY/leitung-passwort.txt \
+  --minimum-password-length 7 \
   --output assets/organisation.enc.json
 ```
 
-Das private JSON hat `title`, `intro` und sechs `sections` mit jeweils `tag`, `title`, `description` und `nextStep`. Das Tool erzeugt bei jedem Aufruf einen neuen Salt und eine neue IV. Veröffentlicht wird nur die verschlüsselte Ausgabe. Beim Passwortwechsel ebenfalls neu verschlüsseln; früher heruntergeladene Fassungen lassen sich nicht nachträglich zurückholen.
+Der Nutzer hat ausdrücklich ein Passwort mit sieben zufälligen Zeichen gewünscht. Dafür ist die oben gezeigte Ausnahme nötig; ohne diese Option verlangt das Tool weiterhin mindestens 32 Zeichen. Ein längeres Zufallspasswort bietet mehr Schutz gegen das Erraten des herunterladbaren verschlüsselten Plans.
+
+Das private JSON hat `title`, `intro` und sechs `sections` mit jeweils `tag`, `title`, `description` und `nextStep`. Das Tool erzeugt bei jedem Aufruf einen neuen Salt und eine neue IV. Veröffentlicht wird nur die verschlüsselte Ausgabe. Beim Passwortwechsel ebenfalls neu verschlüsseln und die Versionsquery des Skripts in `organisation.html` sowie der JSON-Anfrage in `assets/organisation.js` erhöhen, damit alte Cache-Einträge umgangen werden. Früher heruntergeladene Fassungen lassen sich nicht nachträglich zurückholen.
 
 Der entschlüsselte Plan bleibt nur in diesem Browser-Tab. Abmelden, Neuladen und Zurück-/Vorwärtsnavigation sperren ihn erneut. Es wird kein Passwort, Plan oder Loginzustand in Webspeichern abgelegt; der Service Worker unter `desktop/` betrifft diesen Bereich nicht. Zugriff erfordert HTTPS und WebCrypto. Lokale Tests funktionieren über `http://127.0.0.1`.

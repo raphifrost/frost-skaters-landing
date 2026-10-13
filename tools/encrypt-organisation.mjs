@@ -8,6 +8,10 @@ for (let i = 2; i < process.argv.length; i += 2) {
 const planPath = options.get('--plan');
 const passwordPath = options.get('--password-file');
 const outputPath = options.get('--output');
+const minimumPasswordLength = Number(options.get('--minimum-password-length') ?? 32);
+if (!Number.isSafeInteger(minimumPasswordLength) || minimumPasswordLength < 7) {
+  throw new Error('The minimum password length must be an integer of at least 7.');
+}
 if (!planPath || !passwordPath || !outputPath) {
   console.error('Usage: node tools/encrypt-organisation.mjs --plan PRIVATE_JSON --password-file PRIVATE_TEXT --output assets/organisation.enc.json');
   process.exit(1);
@@ -23,7 +27,9 @@ if (typeof plan.title !== 'string' || !plan.title.length || plan.title.length > 
   throw new Error('Invalid private plan format.');
 }
 const password = (await readFile(passwordPath, 'utf8')).trim();
-if (password.length < 32) throw new Error('Use a randomly generated password with at least 32 characters.');
+if (password.length < minimumPasswordLength) {
+  throw new Error(`Use a randomly generated password with at least ${minimumPasswordLength} characters.`);
+}
 const salt = randomBytes(16);
 const iv = randomBytes(12);
 const iterations = 600000;
