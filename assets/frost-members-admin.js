@@ -127,5 +127,29 @@ $('addMember').addEventListener('submit',async event=>{
   }catch(e){feedback('manualFeedback','Karte konnte nicht erstellt werden. Prüfe die Admin-Berechtigung und Datenbankkonfiguration.',true);console.error(e);}
   finally{btn.disabled=false;}
 });
+const signupForm=$('adminSignup');
+signupForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!client){feedback('signupFeedback','Das System ist gerade nicht erreichbar. Versuche es bitte später.',true);return;}
+  const email=$('signupEmail').value.trim();
+  const password=$('signupPassword').value;
+  const repeat=$('signupPasswordRepeat').value;
+  if(password.length<12){feedback('signupFeedback','Bitte ein Passwort mit mindestens 12 Zeichen auswählen.',true);return;}
+  if(password!==repeat){feedback('signupFeedback','Die beiden Passwörter stimmen nicht überein.',true);return;}
+  const btn=$('signupButton');
+  btn.disabled=true;btn.textContent='Zugang wird beantragt …';
+  try{
+    const {data,error}=await client.auth.signUp({
+      email,password,
+      options:{ emailRedirectTo:new URL('mitglieder-admin.html',location.href).href }
+    });
+    $('signupPassword').value='';$('signupPasswordRepeat').value='';
+    if(error)throw error;
+    if(data?.session)await client.auth.signOut();
+    feedback('signupFeedback','Anfrage gesendet! Schau in deinem E-Mail-Postfach (auch Spam) nach und bestätige deine Adresse. Danach muss dein Account einmalig als Owner freigeschaltet werden. Öffne anschließend hier den Login.');
+    $('ownerEmail').value=email;
+  }catch(e){feedback('signupFeedback','Registrierung momentan nicht möglich: '+(e?.message||'Unbekannter Fehler')+'. Prüfe die E-Mail-Adresse und versuche es später erneut.',true);}
+  finally{btn.disabled=false;btn.textContent='Owner-Zugang beantragen';}
+});
 if(!ready)feedback('loginFeedback','Die Website muss noch mit Supabase verbunden werden. In assets/frost-members-config.js sind die öffentlichen Projektangaben einzutragen. Bis dahin werden keine Anträge gesammelt.',true);
 })();
