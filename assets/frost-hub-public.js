@@ -41,7 +41,16 @@ function buildJoin(item,type){
     const value=name.value.trim();
     if(!firstName.test(value)){notice(status,tr('Nur einen Vornamen mit 2–40 Zeichen eingeben.','Please enter only your first name (2–40 characters).'),true);return;}
     if(!check.checked){notice(status,tr('Bitte zunächst die Datenschutzhinweise lesen.','Please read the privacy notice first.'),true);return;}
-    const ok=await submitPublic({kind:type,item_id:item.id,first_name:value,message:''},send,status,tr(tr('Deine Anfrage ist eingegangen. Die Leitung prüft sie persönlich.','Request received. The team will review it personally.'),'Request received! The team will review it personally.'));
+    const receiptId=crypto.randomUUID();
+    const ok=await submitPublic({id:receiptId,kind:type,item_id:item.id,first_name:value,message:''},send,status,tr('Deine Anfrage ist eingegangen. Die Leitung prüft sie persönlich.','Request received! The team will review it personally.'));
+    if(ok){
+      const url=new URL(location.pathname,location.origin);
+      url.searchParams.set('request',receiptId);
+      const label=el('p','fh-hint',tr('Dein persönlicher Anmeldelink:','Your private signup status link:'));
+      const link=el('a','',url.href);link.href=url.href;link.style.wordBreak='break-all';
+      status.append(label,link);
+      $('requestStatusCode').value=receiptId;
+    }
     if(ok){form.reset();}
   });
   return form;
@@ -141,6 +150,35 @@ async function loadStats(){
   const labels=[['events',tr('Events','Events')],['challenges',tr('Challenges','Challenges')],['gallery',tr('Fotos','Photos')],['news',tr('Neuigkeiten','News')]];
   $('statsItems').replaceChildren(...labels.map(([key,title])=>{const n=el('article','fh-panel');n.append(el('span','fh-metric',Number(stats[key]||0)),el('span','fh-mini',title));return n;}));
 }
+
+function cleanRequestCode(raw){
+  let code=String(raw||'').trim();
+  if(code.includes('?')){try{code=new URL(code).searchParams.get('request')||code;}catch{}}
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(code)?code:null;
+}
+async function checkRequestStatus(code){
+  const feedback=$('requestStatusFeedback');
+  if(!code){notice(feedback,tr('Bitte einen gültigen Anmeldecode eingeben.','Please enter a valid request code.'),true);return;}
+  if(!client){notice(feedback,tr('Die Datenbank ist gerade nicht erreichbar.','The database is unavailable.'),true);return;}
+  const {data,error}=await client.rpc('frost_hub_request_status',{p_code:code});
+  if(error){console.error('Request status',error);notice(feedback,tr('Status momentan nicht verfügbar.','Status currently unavailable.'),true);return;}
+  const request=data?.[0];
+  if(!request){notice(feedback,tr('Keine Anmeldung zu diesem Code gefunden.','No signup found for this code.'),true);return;}
+  const states={
+    pending:tr('Offen – die Leitung prüft deinen Antrag.','Pending – the team is reviewing your request.'),
+    approved:tr('Bestätigt – bitte kläre bei Minderjährigkeit die Teilnahme mit deinen Eltern.','Confirmed – if you are a minor, please arrange parental permission.'),
+    declined:tr('Abgelehnt – die Teilnahme wurde nicht bestätigt.','Declined – your participation was not confirmed.'),
+    attended:tr('Teilnahme bestätigt – du warst dabei. ❄️','Attendance recorded. ❄️')
+  };
+  notice(feedback,(request.title||'Frost Skaters')+': '+(states[request.state]||request.state));
+}
+$('requestStatusForm').addEventListener('submit',ev=>{
+  ev.preventDefault();
+  const code=cleanRequestCode($('requestStatusCode').value);
+  checkRequestStatus(code);
+});
+const linkedRequest=cleanRequestCode(new URLSearchParams(location.search).get('request'));
+if(linkedRequest){$('requestStatusCode').value=linkedRequest;checkRequestStatus(linkedRequest);}
 $('ideaForm').addEventListener('submit',async ev=>{
   ev.preventDefault();const message=$('ideaMessage').value.trim();
   if(message.length<5||message.length>400){notice($('ideaStatus'),tr('Bitte 5 bis 400 Zeichen eingeben.','Please enter between 5 and 400 characters.'),true);return;}
