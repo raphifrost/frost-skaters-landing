@@ -1,18 +1,18 @@
 # Frost Skaters: Mitgliedsanträge, Owner-Freigabe & QR-Karten
 
+**Status vom 13.10.2026:** Das Supabase-Projekt **Frost Skaters** in Frankfurt (`eu-central-1`) wurde angelegt. Die Datenbankmigration wurde erfolgreich ausgeführt und `assets/frost-members-config.js` enthält bereits die öffentliche Projekt-URL und den sicheren **publishable** API-Key. **Wichtig: Es existiert noch kein Admin-Account**; bis zu dessen Freischaltung kann niemand eingehende Anträge im Dashboard annehmen.
+
 Dieses System besteht aus drei Bereichen:
 
 - **Mitgliederseite:** `mitglieder.html` – Besucher können einen Spitznamen eingeben und einen Antrag schicken. Es wird ein zufälliger, privater Karten-Code erzeugt. Dieser ist automatisch auf dem anfragenden Gerät gespeichert, sofern lokale Speicherung erlaubt ist; den angezeigten Link sollte man zusätzlich sichern.
 - **Owner-Dashboard:** `mitglieder-admin.html` – Nur ein freigeschalteter Supabase-Auth-Account kann alle Anträge sehen, Mitglieder annehmen, ablehnen, sperren, selbst neu eintragen und aktive Kartenlinks kopieren.
 - **Bestätigte Karte:** Auf `mitglieder.html?code=…` erscheinen Name/Spitzname, Rolle, Mitgliedsnummer, Status und ein QR-Code mit demselben Karten-Link. Vor der Freigabe und nach Sperrung erscheint **keine** gültige Karte.
 
-Die GitHub Pages Website hostet nur HTML, CSS und JavaScript, nicht die Datenbank und nicht den Auth-Server. Solange die Supabase-Verbindung fehlt, funktionieren echte Anträge und Freigaben **noch nicht**. Das Formular zeigt in diesem Fall einen erklärenden Hinweis.
+Die GitHub Pages Website hostet nur HTML, CSS und JavaScript, nicht die Datenbank und nicht den Auth-Server. Die Supabase-Verbindung wurde eingerichtet. **Für Freigaben fehlt noch der Owner-Account** (siehe Schritt 2). Das Formular sollte Anträge an die Datenbank senden können; ein vollständiger Browser-End-to-End-Test steht noch aus.
 
-## Schritt 1: Supabase-Projekt anlegen
+## Schritt 1: Supabase-Projekt und Datenbank – ERLEDIGT
 
-1. Melde dich bei [Supabase](https://supabase.com/) an und erstelle ein Projekt für Frost Skaters.
-2. Öffne im Projekt **SQL Editor**.
-3. Füge den **gesamten Inhalt** aus `supabase/frost-members.sql` ein und führe ihn aus.
+Das Projekt wurde bereits angelegt, der SQL-Code wurde erfolgreich ausgeführt. Bitte **nicht ein zweites Projekt** erstellen.
 
 Damit entstehen die private Antragstabelle, die Admin-Liste und eine Funktion, die nur bereits genehmigte Karten über ihren schwer erratbaren Code abruft.
 
@@ -31,11 +31,11 @@ Das Passwort niemals in GitHub, in Chats oder in Formularfeldern außerhalb des 
 
 **Wichtig:** Falls offene Registrierung unter Authentication möglich ist, sind neue Supabase-Benutzer dadurch **nicht** automatisch Owner. Die Datenbankrechte gelten ausschließlich für ausdrücklich in `frost_admins` eingetragene Accounts.
 
-## Schritt 3: Website mit dem Projekt verbinden
+## Schritt 3: Website mit dem Projekt verbinden – ERLEDIGT
 
 Unter **Project Settings → API Keys** (je nach Supabase-Oberfläche auch **Connect / API Keys**) findest du den öffentlichen `anon`- oder `publishable`-Key. Die Projekt-URL liegt unter **Project Settings → API**.
 
-Trage ausschließlich diese **öffentlichen** Werte in `assets/frost-members-config.js` ein:
+Die Datei `assets/frost-members-config.js` ist bereits korrekt mit dem **publishable Key** verbunden. Dies ist nur ein Beispiel, falls du sie später erneut konfigurieren musst:
 
 ```js
 window.FROST_MEMBERS_CONFIG = {
