@@ -44,7 +44,7 @@ for(const asset of ['assets/frost-hub-admin.js','assets/frost-hub-public.js','as
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
-const headers={'apikey':cfg.supabaseAnonKey,'Accept':'application/json','Origin':origin};
+const headers={'apikey':cfg.supabaseAnonKey,'Accept':'application/json','Origin':new URL(origin).origin};
 async function api(path,method='GET',body=null){
  const opts={method,headers:{...headers,...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})};
  const res=await request(cfg.supabaseUrl+path,opts);
