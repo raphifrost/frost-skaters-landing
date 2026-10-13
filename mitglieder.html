@@ -25,7 +25,7 @@
 <form id="applyForm">
 <label class="member-label" for="displayName">Name oder Spitzname</label>
 <input class="member-input" id="displayName" name="displayName" type="text" minlength="2" maxlength="40" autocomplete="nickname" placeholder="z. B. Max" required>
-<p class="member-hint">Mit dem Abschicken wird dein Spitzname an das Frost Skaters Mitgliedersystem übermittelt und dort für die Bearbeitung gespeichert. Nur die berechtigte Leitung kann offene Anträge sehen. Nach der Freigabe können Personen mit deinem persönlichen Kartenlink deinen Spitznamen sehen.</p>
+<p class="member-hint">Mit dem Abschicken wird dein Spitzname an das Frost Skaters Mitgliedersystem übermittelt und dort für die Bearbeitung gespeichert. Zusätzlich wird der Spitzname für eine Benachrichtigungs-E-Mail über den Dienst FormSubmit an die Frost Skaters Leitung gesendet. Nur die berechtigte Leitung kann offene Anträge in der Datenbank sehen. Nach der Freigabe können Personen mit deinem persönlichen Kartenlink deinen Spitznamen sehen.</p>
 <div class="member-actions"><button class="member-btn" type="submit" id="applyButton">Antrag an Raphi schicken</button></div>
 </form>
 <div id="applyFeedback" role="status" aria-live="polite"></div>
@@ -70,6 +70,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-members.js?v=2"></script>
+<script src="assets/frost-members.js?v=3"></script>
 <script src="assets/site-menu.js"></script>
 </body></html>
