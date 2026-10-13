@@ -1,0 +1,18 @@
+{
+  "name": "Frost Skaters Owner-Dashboard",
+  "short_name": "Frost Owner",
+  "description": "Frost Skaters Mitglieder, Anträge und Gesprächstermine verwalten",
+  "start_url": "./mitglieder-admin.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080911",
+  "theme_color": "#080911",
+  "icons": [
+    {
+      "src": "./assets/frost-skaters-logo.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
