@@ -25,7 +25,8 @@ function startInbox(){
 }
 $('hubNotificationsEnable').addEventListener('click',async()=>{
  if(!supportsAlerts){notice('hubIncomingMessage','Auf diesem Gerät werden Browser-Benachrichtigungen nicht unterstützt. Neue Eingänge erscheinen bei geöffnetem Dashboard.',true);return;}
- const choice=await Notification.requestPermission();
+ let choice='denied';
+ try{choice=await Notification.requestPermission();}catch{choice='denied';}
  notice('hubIncomingMessage',choice==='granted'?'Benachrichtigungen bei geöffnetem Dashboard sind aktiviert.':'Benachrichtigungen sind nicht freigegeben.');
 });
 
@@ -249,8 +250,6 @@ async function loadSubmissions(){
  renderSubmissions();
 }
 function renderSubmissions(){
- newSubmissionCount=0;
- $('hubNewSubmissionCount').textContent='Keine ungelesenen Meldungen';
 
  const kind=$('hubSubFilter').value,state=$('hubSubState').value;
  const set=submissions.filter(x=>(kind==='all'||x.kind===kind)&&(state==='all'||x.state===state));
@@ -293,6 +292,9 @@ function printCertificate(entry,item){
  win.document.close();
  win.focus();win.print();
 }
+document.querySelector('a[href="#hubSubmissions"]')?.addEventListener('click',()=>{
+  newSubmissionCount=0;$('hubNewSubmissionCount').textContent='Keine ungelesenen Meldungen';
+});
 $('hubSubFilter').addEventListener('change',renderSubmissions);
 $('hubSubState').addEventListener('change',renderSubmissions);
 async function loadBadges(){
