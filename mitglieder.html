@@ -17,15 +17,16 @@
 <main class="member-layout">
 <p class="member-topline">Frost Skaters · Mitgliedersystem</p>
 <h1 class="member-title">Deine <span style="color:#71edf7">Member Card</span> ❄️</h1>
-<p class="member-intro">Schick uns deinen Namen oder Spitznamen. Raphi prüft die Anfrage persönlich. Erst nach seiner Freigabe erhältst du eine gültige Frost Skaters Mitgliedskarte mit persönlichem QR-Code.</p>
+<p class="member-intro">Melde dich nur mit deinem Vornamen an. Raphi prüft deinen Antrag persönlich. Danach bekommst du eine aktive oder passive Frost Skaters Community-Karte mit deinem privaten QR-Link.</p>
 
 <section class="member-panel" id="applySection">
 <h2>🪪 Mitgliedskarte beantragen</h2>
-<p>Bitte nur einen Namen oder Spitznamen angeben, keine Adresse, Handynummer oder andere privaten Angaben.</p>
+<p>Bitte nur deinen Vornamen eingeben. Keine Nachnamen, Spitznamen, Telefonnummern, Adressen oder andere persönlichen Angaben.</p>
 <form id="applyForm">
-<label class="member-label" for="displayName">Name oder Spitzname</label>
-<input class="member-input" id="displayName" name="displayName" type="text" minlength="2" maxlength="40" autocomplete="nickname" placeholder="z. B. Max" required>
-<p class="member-hint">Mit dem Abschicken wird dein Spitzname an das Frost Skaters Mitgliedersystem übermittelt und dort für die Bearbeitung gespeichert. Zusätzlich wird der Spitzname für eine Benachrichtigungs-E-Mail über den Dienst FormSubmit an die Frost Skaters Leitung gesendet. Nur die berechtigte Leitung kann offene Anträge in der Datenbank sehen. Nach der Freigabe können Personen mit deinem persönlichen Kartenlink deinen Spitznamen sehen.</p>
+<label class="member-label" for="displayName">Dein Vorname</label>
+<input class="member-input" id="displayName" name="displayName" type="text" minlength="2" maxlength="40" autocomplete="given-name" placeholder="z. B. Max" pattern="[^\\s]+" required>
+<p class="member-hint">Dein Vorname und ein zufälliger Karten-Code werden über Supabase gespeichert. Eine Benachrichtigung mit deinem Vornamen wird über FormSubmit an die Leitung gesendet. Neue Anträge und Gesprächstermine sehen nur berechtigte Owner. Wer deinen persönlichen Kartenlink erhält, kann deinen Vornamen, den Kartenstatus und die Rolle sehen.</p>
+<label class="member-privacy-check"><input id="privacyConsent" type="checkbox" required> <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> gelesen und möchte eine Frost Skaters Community-Karte beantragen.</span></label>
 <div class="member-actions"><button class="member-btn" type="submit" id="applyButton">Antrag an Raphi schicken</button></div>
 </form>
 <div id="applyFeedback" role="status" aria-live="polite"></div>
@@ -33,7 +34,7 @@
 
 <section class="member-panel" id="findSection">
 <h2>🔎 Meine Karte ansehen</h2>
-<p>Hast du schon einen Antrag gestellt? Deinen privaten Karten-Code kannst du hier einfügen. Wenn du angenommen wurdest, erscheint deine Karte automatisch.</p>
+<p>Hast du schon einen Antrag gestellt? Mit deinem privaten Karten-Code oder Link kannst du jederzeit sehen, ob deine Karte aktiv oder passiv ist.</p>
 <form id="lookupForm">
 <label class="member-label" for="lookupCode">Dein Karten-Code oder Karten-Link</label>
 <input class="member-input" id="lookupCode" type="text" autocomplete="off" spellcheck="false" placeholder="Dein persönlicher Code oder Link" required>
@@ -42,15 +43,15 @@
 </section>
 
 <section class="member-panel" id="approvedSection" hidden>
-<h2>✅ Deine bestätigte Karte</h2>
-<p>Dein QR-Code führt auf diese Karte. Die Karte ist nur gültig, solange Raphi dich als Mitglied freigeschaltet hat.</p>
+<h2>🪪 Deine Community-Karte</h2>
+<p>Dein QR-Code führt auf diese Karte. Eine passive Karte zeigt keine aktive Mitgliedschaft an. Es handelt sich nicht um einen amtlichen Ausweis.</p>
 <div class="member-card" id="memberCard">
 <div class="member-card-head"><img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo"><div><div class="member-card-title">OFFICIAL<br>MEMBER CARD</div><div class="member-card-sub">FROST SKATERS · SEIT 2025</div></div></div>
 <div class="member-card-main"><div>
 <div class="member-card-detail"><span class="member-card-key">NAME</span><strong id="cardName" class="member-card-value"></strong></div>
 <div class="member-card-detail"><span class="member-card-key">ROLLE</span><strong id="cardRole" class="member-card-value">MEMBER</strong></div>
 <div class="member-card-detail"><span class="member-card-key">MITGLIEDSNUMMER</span><strong id="cardNumber" class="member-card-value"></strong></div>
-<div class="member-card-detail"><span class="member-card-key">STATUS</span><strong class="member-status">● AKTIV</strong></div>
+<div class="member-card-detail"><span class="member-card-key">STATUS</span><strong id="cardStatus" class="member-status">● AKTIV</strong></div>
 </div><div id="cardQr" class="member-qr" aria-label="Persönlicher QR-Code"></div></div>
 </div>
 <div class="member-actions">
@@ -65,11 +66,11 @@
 <h2>💬 Fragen?</h2><p>Wenn du Probleme beim Beantragen oder Abrufen der Karte hast, schreib der Leitung. Dein Code ist privat und sollte nicht in öffentliche Chats gepostet werden.</p>
 <a class="member-btn" style="display:inline-block;text-decoration:none" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">Frost Skaters kontaktieren</a>
 </section>
-<p class="member-hint"><a href="mitglieder-admin.html" style="color:#8eeefa">Nur für die Leitung: Admin-Bereich</a></p>
+<p class="member-hint"><a href="index.html" style="color:#8eeefa">🏠 Zur Startseite</a> · <a href="datenschutz.html" style="color:#8eeefa">Datenschutz</a> · <a href="mitglieder-admin.html" style="color:#8eeefa">Nur für die Leitung: Owner-Login</a></p>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-members.js?v=3"></script>
+<script src="assets/frost-members.js?v=4"></script>
 <script src="assets/site-menu.js"></script>
 </body></html>
