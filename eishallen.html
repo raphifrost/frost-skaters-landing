@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Eishallen-Finder für Frost Skaters: Eislaufmöglichkeiten in Reutlingen, Heilbronn, Stuttgart und Umgebung.">
+<meta name="theme-color" content="#080911"><title>Eishallen-Finder | Frost Skaters</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css"><link rel="stylesheet" href="assets/frost-hub.css?v=1"></head>
+<body class="frost-hub"><header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><a href="community.html" style="color:#7cdef2">← Community</a></header>
+<main class="fh-wrap">
+<section class="fh-head fh-hero"><div><span class="fh-eye">Frost Skaters · Ausflugsplanung</span><h1>📍 Eishallen finden</h1><p>Ideen für gemeinsame Eislaufausflüge in Baden-Württemberg. Öffnungszeiten, Veranstaltungen und Preise können sich ändern – prüfe sie beim jeweiligen Betreiber, bevor du losfährst.</p></div><img src="assets/frost-skaters-logo.jpg" class="fh-logo" alt="Frost Skaters Logo"></section>
+<div class="fh-panel"><label class="fh-field" for="citySearch">Region durchsuchen<input id="citySearch" class="fh-input" type="search" placeholder="Stadt oder Region eingeben"></label><p id="cityInfo" class="fh-hint" role="status">Wähle einen Ort. Die Suchlinks führen zu externen Karten, nicht zu einer bestätigten Eishallen-Reservierung.</p></div>
+<div id="hallList" class="fh-grid">
+<article class="fh-panel" data-city="reutlingen"><span class="fh-chip">Reutlingen</span><h3>⛸️ Eislaufen in Reutlingen</h3><p>Suche Eishallen und aktuelle Termine in Reutlingen.</p><a class="fh-btn alt" href="https://www.google.com/maps/search/?api=1&amp;query=Eishalle+Reutlingen" target="_blank" rel="noopener noreferrer">Auf Google Maps suchen ↗</a></article>
+<article class="fh-panel" data-city="heilbronn"><span class="fh-chip">Heilbronn</span><h3>⛸️ Eislaufen in Heilbronn</h3><p>Unser geplanter gemeinsamer Ausflug führt nach Heilbronn. Aktuelle Verfügbarkeit und Eintritt bitte beim Betreiber prüfen.</p><a class="fh-btn alt" href="https://www.google.com/maps/search/?api=1&amp;query=Eishalle+Heilbronn" target="_blank" rel="noopener noreferrer">Auf Google Maps suchen ↗</a></article>
+<article class="fh-panel" data-city="stuttgart"><span class="fh-chip">Stuttgart</span><h3>⛸️ Eislaufen in Stuttgart</h3><p>Suche weitere Eislaufangebote in Stuttgart und informiere dich über die Anreise.</p><a class="fh-btn alt" href="https://www.google.com/maps/search/?api=1&amp;query=Eislaufhalle+Stuttgart" target="_blank" rel="noopener noreferrer">Auf Google Maps suchen ↗</a></article>
+<article class="fh-panel" data-city="tübingen moessingen mössingen"><span class="fh-chip">Tübingen &amp; Umgebung</span><h3>⛸️ Eislaufen in der Region</h3><p>Finde saisonale Angebote in und um Tübingen. Nicht an jedem Ort gibt es eine dauerhaft geöffnete Eishalle.</p><a class="fh-btn alt" href="https://www.google.com/maps/search/?api=1&amp;query=Eislaufen+Tuebingen" target="_blank" rel="noopener noreferrer">Auf Google Maps suchen ↗</a></article>
+</div>
+<section class="fh-sec"><h2>🎒 Ausflug vorbereiten</h2><div class="fh-grid">
+<article class="fh-panel"><h3>Checkliste</h3><ul class="fh-list"><li>Geöffnete Laufzeit beim Betreiber prüfen</li><li>Eintritt und Leihschuhe vergleichen</li><li>Tickets oder Gruppentarif klären</li><li>Treffpunkt und Rückfahrt vereinbaren</li><li>Bei Minderjährigen Erziehungsberechtigte informieren</li></ul></article>
+<article class="fh-panel"><h3>Gemeinsam abstimmen</h3><p>Wohin soll Frost Skaters das nächste Mal fahren? Auf der Community-Seite kannst du bei veröffentlichten Umfragen mitmachen.</p><a href="community.html#polls" class="fh-btn">Zur Abstimmung</a></article>
+</div></section>
+<footer><a href="community.html">❄️ Community</a> · <a href="hub-admin.html">👑 Team-Verwaltung</a> · <a href="index.html">Startseite</a></footer></main>
+<script>
+(()=>{
+const input=document.getElementById('citySearch');
+const entries=[...document.querySelectorAll('#hallList [data-city]')];
+input.addEventListener('input',()=>{
+ const search=input.value.trim().toLocaleLowerCase('de');
+ let found=0;
+ for(const card of entries){const visible=!search||card.dataset.city.includes(search)||card.textContent.toLocaleLowerCase('de').includes(search);card.hidden=!visible;if(visible)found++;}
+ document.getElementById('cityInfo').textContent=found+' Regionen gefunden. Preise und Öffnungszeiten müssen vor Ort geprüft werden.';
+});
+})();
+</script>
+</body></html>
