@@ -1,5 +1,7 @@
 name: Frost Skaters live smoke
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
@@ -8,7 +10,7 @@ permissions:
   contents: read
 jobs:
   public-live-check:
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
