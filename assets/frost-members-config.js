@@ -1,7 +1,7 @@
-/* Frost Skaters Mitglieder: public Supabase project configuration.
-   Trage ausschließlich Project URL und den PUBLIC/ANON oder sb_publishable Key ein.
-   NIEMALS service_role / secret keys oder Passwörter hier hinterlegen. */
+/* Frost Skaters: public browser client configuration.
+   Only the Supabase publishable key is allowed here.
+   Never add a secret/service_role key or a password. */
 window.FROST_MEMBERS_CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: ""
+  supabaseUrl: "https://chjkciknwutqdvefxhnl.supabase.co",
+  supabaseAnonKey: "sb_publishable_6ps83hgA-OylFy6mqPVLMA_eu7mA8lS"
 };
