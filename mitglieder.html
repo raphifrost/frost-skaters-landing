@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mitgliedskarten | Frost Skaters</title>
+<meta name="description" content="Beantrage deine Frost Skaters Mitgliedskarte. Jede Karte wird vor der Ausgabe durch die Leitung freigegeben.">
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css">
+<link rel="stylesheet" href="assets/frost-theme.css?v=1">
+<link rel="stylesheet" href="assets/frost-members.css?v=1">
+</head>
+<body class="frost-page" data-page="mitglieder">
+<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a>
+<div class="site-nav"><button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span></span><span></span><span></span></button>
+<nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
+<a href="index.html">Startseite</a><a href="events.html">Events</a><a href="training.html">Training</a><a href="shop.html">Shop</a><a href="leitung.html">Leitung</a><a href="mitglieder.html" aria-current="page">Mitgliedskarten</a><a href="index.html#mitmachen">Mitmachen</a><a href="index.html#fragen">Fragen</a>
+</nav></div></header>
+<main class="member-layout">
+<p class="member-topline">Frost Skaters · Mitgliedersystem</p>
+<h1 class="member-title">Deine <span style="color:#71edf7">Member Card</span> ❄️</h1>
+<p class="member-intro">Schick uns deinen Namen oder Spitznamen. Raphi prüft die Anfrage persönlich. Erst nach seiner Freigabe erhältst du eine gültige Frost Skaters Mitgliedskarte mit persönlichem QR-Code.</p>
+
+<section class="member-panel" id="applySection">
+<h2>🪪 Mitgliedskarte beantragen</h2>
+<p>Bitte nur einen Namen oder Spitznamen angeben, keine Adresse, Handynummer oder andere privaten Angaben.</p>
+<form id="applyForm">
+<label class="member-label" for="displayName">Name oder Spitzname</label>
+<input class="member-input" id="displayName" name="displayName" type="text" minlength="2" maxlength="40" autocomplete="nickname" placeholder="z. B. Max" required>
+<p class="member-hint">Mit dem Abschicken wird dein Spitzname an das Frost Skaters Mitgliedersystem übermittelt und dort für die Bearbeitung gespeichert. Nur die berechtigte Leitung kann offene Anträge sehen. Nach der Freigabe können Personen mit deinem persönlichen Kartenlink deinen Spitznamen sehen.</p>
+<div class="member-actions"><button class="member-btn" type="submit" id="applyButton">Antrag an Raphi schicken</button></div>
+</form>
+<div id="applyFeedback" role="status" aria-live="polite"></div>
+</section>
+
+<section class="member-panel" id="findSection">
+<h2>🔎 Meine Karte ansehen</h2>
+<p>Hast du schon einen Antrag gestellt? Deinen privaten Karten-Code kannst du hier einfügen. Wenn du angenommen wurdest, erscheint deine Karte automatisch.</p>
+<form id="lookupForm">
+<label class="member-label" for="lookupCode">Dein Karten-Code oder Karten-Link</label>
+<input class="member-input" id="lookupCode" type="text" autocomplete="off" spellcheck="false" placeholder="Dein persönlicher Code oder Link" required>
+<div class="member-actions"><button class="member-btn" type="submit">Karte überprüfen</button></div>
+</form><div id="lookupFeedback" role="status" aria-live="polite"></div>
+</section>
+
+<section class="member-panel" id="approvedSection" hidden>
+<h2>✅ Deine bestätigte Karte</h2>
+<p>Dein QR-Code führt auf diese Karte. Die Karte ist nur gültig, solange Raphi dich als Mitglied freigeschaltet hat.</p>
+<div class="member-card" id="memberCard">
+<div class="member-card-head"><img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo"><div><div class="member-card-title">OFFICIAL<br>MEMBER CARD</div><div class="member-card-sub">FROST SKATERS · SEIT 2025</div></div></div>
+<div class="member-card-main"><div>
+<div class="member-card-detail"><span class="member-card-key">NAME</span><strong id="cardName" class="member-card-value"></strong></div>
+<div class="member-card-detail"><span class="member-card-key">ROLLE</span><strong id="cardRole" class="member-card-value">MEMBER</strong></div>
+<div class="member-card-detail"><span class="member-card-key">MITGLIEDSNUMMER</span><strong id="cardNumber" class="member-card-value"></strong></div>
+<div class="member-card-detail"><span class="member-card-key">STATUS</span><strong class="member-status">● AKTIV</strong></div>
+</div><div id="cardQr" class="member-qr" aria-label="Persönlicher QR-Code"></div></div>
+</div>
+<div class="member-actions">
+<button class="member-btn" id="printCard" type="button">🖨️ Als PDF speichern / Drucken</button>
+<button class="member-btn secondary" id="copyCardLink" type="button">🔗 Karten-Link kopieren</button>
+</div>
+<p class="member-hint">Teile deinen Karten-Link nur mit Personen, die deinen Mitgliedsnamen sehen dürfen. Ein QR-Code ersetzt keinen amtlichen Ausweis.</p>
+<div id="cardFeedback" role="status" aria-live="polite"></div>
+</section>
+
+<section class="member-panel">
+<h2>💬 Fragen?</h2><p>Wenn du Probleme beim Beantragen oder Abrufen der Karte hast, schreib der Leitung. Dein Code ist privat und sollte nicht in öffentliche Chats gepostet werden.</p>
+<a class="member-btn" style="display:inline-block;text-decoration:none" href="https://wa.me/4915234646842" target="_blank" rel="noopener noreferrer">Frost Skaters kontaktieren</a>
+</section>
+<p class="member-hint"><a href="mitglieder-admin.html" style="color:#8eeefa">Nur für die Leitung: Admin-Bereich</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="assets/frost-members-config.js"></script>
+<script src="assets/frost-members.js"></script>
+<script src="assets/site-menu.js"></script>
+</body></html>
