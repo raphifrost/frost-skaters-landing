@@ -23,7 +23,11 @@
 <section class="fh-sec" id="season"><h2>⏳ Next season</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">The next season date will be announced by the team.</p><p id="welcomeText"></p></div></section>
 <section class="fh-sec" id="news"><h2>📢 News</h2><p>Official updates from the team.</p><div id="newsItems" class="fh-grid"><p class="fh-hint">No news has been published yet.</p></div></section>
 <section class="fh-sec" id="events"><h2>📅 Events &amp; signups</h2><p>You can request a place at a published event using only your first name. The team must confirm your participation. Minors need permission from their parent or guardian for group trips.</p><div id="eventItems" class="fh-grid"><p class="fh-hint">Loading events …</p></div></section>
-<section class="fh-sec" id="polls"><h2>🗳️ Crew polls</h2><p>Vote together on what should happen next. One vote per browser per poll; polls are informal and not tamper-proof.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Loading polls …</p></div></section>
+<section class="fh-sec" id="requestStatus"><h2>📨 Check your signup status</h2>
+ <p>After sending an event request, you receive a private reference link. Keep it somewhere safe. You don't need to enter your name again.</p>
+ <form class="fh-panel" id="requestStatusForm"><label class="fh-field">Your private request code or link<input class="fh-input" id="requestStatusCode" type="text" autocomplete="off" required placeholder="Paste your request code or link"></label>
+ <button class="fh-btn" type="submit">Check status</button><p id="requestStatusFeedback" class="fh-status" role="status"></p></form></section>
+ <section class="fh-sec" id="polls"><h2>🗳️ Crew polls</h2><p>Vote together on what should happen next. One vote per browser per poll; polls are informal and not tamper-proof.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Loading polls …</p></div></section>
 <section class="fh-sec" id="challenges"><h2>🏅 Optional challenges</h2><p>Try simple skating activities at your own pace. No competition or pressure — always follow rink safety rules.</p><div id="challengeItems" class="fh-grid"><div class="fh-panel"><h3>First lap ⛸️</h3><p>Skate a relaxed lap, stay alert and have fun.</p></div></div></section>
 <section class="fh-sec" id="gallery"><h2>📸 Community gallery</h2><p>Only photos with appropriate permission from everyone pictured may appear here, especially where minors are involved.</p><div id="galleryItems" class="fh-grid"><p class="fh-hint">No approved photos yet.</p></div></section>
 <section class="fh-sec" id="history"><h2>📖 Our history</h2><div class="fh-timeline"><div class="fh-panel"><span class="fh-meta">2025</span><h3>Frost Skaters founded ❄️</h3><p>Our ice-skating community has been growing together since 2025.</p></div><div id="historyItems"></div></div></section>
@@ -49,5 +53,5 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-hub-public.js?v=3"></script>
+<script src="assets/frost-hub-public.js?v=4"></script>
 </body></html>
