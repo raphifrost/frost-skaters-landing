@@ -118,7 +118,7 @@
     if (/(ausflug|event|heilbronn|eishalle|n[aä]chst(e|er|es) treff|wo geht es hin|wann fahren)/.test(q)) return 'event';
     if (/(kontakt|whatsapp|anschreiben|schreiben|nachricht|erreich|telefon|nummer)/.test(q)) return 'contact';
     if (/(beitrage|news|neuigkeit|ankuendig|aktuelles|community post)/.test(q)) return 'news';
-    if (/(anmeld|beitret|mitglied werden|mitmachen|aufnehm|registrier|dabei sein|teilnehmen|join)/.test(q)) return 'join';
+    if (/(anmeld|melde ich mich an|mich anmelden|beitret|mitglied werden|mitmachen|aufnehm|registrier|dabei sein|teilnehmen|join)/.test(q)) return 'join';
     if (/(chef|owner|co owner|manager|supporter|leitung|team lounge|wer seid ihr|wer ist|was ist frost|frost skaters)/.test(q)) return 'team';
     return 'unknown';
   }
