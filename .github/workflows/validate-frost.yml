@@ -20,3 +20,5 @@ jobs:
           node-version: '22'
       - name: Validate HTML links, page IDs and JavaScript
         run: node tools/check-frost-site.mjs
+      - name: Validate Frost FAQ responses and privacy
+        run: node tools/check-frost-faq.mjs
