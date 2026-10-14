@@ -3,7 +3,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Frost Skaters community: ice-skating events, optional challenges, polls, crew history and ideas.">
 <meta name="theme-color" content="#080911">
-<title>Frost Skaters Community 3.0 | English</title>
+<title>Frost Skaters | News & Events | English</title>
 <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="assets/site-menu.css">
 <link rel="stylesheet" href="assets/frost-hub.css?v=1">
@@ -11,26 +11,44 @@
 <header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:14px;flex-wrap:wrap"><a href="mitglieder.html" style="color:#76e5ec;text-decoration:none;font-weight:800">🪪 Member Card</a><a href="community.html" style="color:#76e5ec;font-weight:800">🇩🇪 Deutsch</a></nav></header>
 <main class="fh-wrap">
 <section class="fh-head fh-hero">
-<div><p class="fh-eye">Frost Skaters · Community 3.0</p><h1>More than <span style="color:#68eaf1">ice skating.</span> ❄️</h1>
-<p>Our events, ideas, polls, crew history and useful tips — all in one place. Together, fairly and with fun on the ice.</p>
-<div class="fh-actions"><a class="fh-btn" href="mitglieder.html">🪪 Member card</a><a class="fh-btn alt" href="#events">📅 Events</a><a class="fh-btn alt" href="#feedback">💬 Idea box</a></div></div>
+<div><p class="fh-eye">Frost Skaters · News & Events</p><h1>News from <span style="color:#68eaf1">Frost Skaters.</span> ❄️</h1>
+<p>Our latest events, news and opportunities to take part.</p>
+<div class="fh-actions"><a class="fh-btn" href="#events">📅 Events</a><a class="fh-btn alt" href="mitglieder.html">🪪 Member card</a></div></div>
 <img class="fh-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo">
 </section>
-<nav class="fh-menu" aria-label="Community-Bereiche">
-<a href="#news">News</a><a href="#events">Trips</a><a href="#polls">Polls</a><a href="#challenges">Challenges</a><a href="#gallery">Gallery</a><a href="#history">History</a><a href="#learn">Skating tips</a><a href="#feedback">Ideas</a><a href="#stats">Stats</a><a href="eishallen.html">📍 Ice-rink finder</a><a href="jahresrueckblick.html">🎞️ Year in review</a><a href="#rules">Rules</a>
-</nav>
-<div class="fh-actions"><a href="eishallen.html" class="fh-btn alt">📍 Explore ice rinks</a><a href="jahresrueckblick.html" class="fh-btn alt">🎞️ Year in review ansehen</a><a href="hub-admin.html" class="fh-btn alt">👑 Staff dashboard</a></div><div class="fh-alert" id="hubConnection">Loading current community content …</div>
-<section class="fh-sec" id="season"><h2>⏳ Next season</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">The next season date will be announced by the team.</p><p id="welcomeText"></p></div></section>
+<nav class="fh-menu" aria-label="Community sections"><a href="#news">News</a><a href="#events">Events</a><a href="#polls">Polls</a><a href="#feedback">Ideas & feedback</a></nav>
+<div class="fh-alert" id="hubConnection">Loading current community content …</div>
 <section class="fh-sec" id="news"><h2>📢 News</h2><p>Official updates from the team.</p><div id="newsItems" class="fh-grid"><p class="fh-hint">No news has been published yet.</p></div></section>
+
 <section class="fh-sec" id="events"><h2>📅 Events &amp; signups</h2><p>You can request a place at a published event using only your first name. The team must confirm your participation. Minors need permission from their parent or guardian for group trips.</p><div id="eventItems" class="fh-grid"><p class="fh-hint">Loading events …</p></div></section>
+
+<details class="fh-panel fh-more" id="statusDetails"><summary>📨 Check my signup status</summary>
 <section class="fh-sec" id="requestStatus"><h2>📨 Check your signup status</h2>
  <p>After sending an event request, you receive a private reference link. Keep it somewhere safe. You don't need to enter your name again.</p>
  <form class="fh-panel" id="requestStatusForm"><label class="fh-field">Your private request code or link<input class="fh-input" id="requestStatusCode" type="text" autocomplete="off" required placeholder="Paste your request code or link"></label>
  <button class="fh-btn" type="submit">Check status</button><p id="requestStatusFeedback" class="fh-status" role="status"></p></form></section>
- <section class="fh-sec" id="polls"><h2>🗳️ Crew polls</h2><p>Vote together on what should happen next. One vote per browser per poll; polls are informal and not tamper-proof.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Loading polls …</p></div></section>
+</details>
+
+<section class="fh-sec" id="polls"><h2>🗳️ Crew polls</h2><p>Vote together on what should happen next. One vote per browser per poll; polls are informal and not tamper-proof.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Loading polls …</p></div></section>
+
+<section class="fh-sec" id="feedback"><h2>💬 Ideas &amp; feedback</h2><p>Have a suggestion? You can send it anonymously. Please do not enter names, phone numbers or other personal information.</p>
+<div class="fh-grid"><div class="fh-panel"><h3>Your idea</h3>
+<form id="ideaForm"><label class="fh-field">Type of message<select class="fh-input" id="ideaKind"><option value="idea">New idea</option><option value="feedback">Feedback</option></select></label>
+<label class="fh-field">Your message<textarea class="fh-input" id="ideaMessage" maxlength="400" minlength="5" required placeholder="What would make Frost Skaters better?"></textarea></label>
+<label class="fh-field" style="display:flex;flex-direction:row;align-items:start;font-weight:400"><input type="checkbox" required> <span>I have read the <a href="datenschutz.html">privacy notice</a>. Please do not include personal details.</span></label>
+<button class="fh-btn" type="submit" id="ideaSend">Send to team</button><p id="ideaStatus" role="status" class="fh-status"></p></form></div>
+<div class="fh-panel"><h3>🫶 Better together</h3><p>Your idea is not published automatically. Only the team can review it and decide whether to create an activity from it.</p><a class="fh-btn alt" href="index.html#whatsapp">Contact the team</a></div></div></section>
+
+<details class="fh-panel fh-more" id="moreArea"><summary>❄️ More about Frost Skaters</summary>
+<div class="fh-more-inner">
+<section class="fh-sec" id="season"><h2>⏳ Next season</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">The next season date will be announced by the team.</p><p id="welcomeText"></p></div></section>
+
 <section class="fh-sec" id="challenges"><h2>🏅 Optional challenges</h2><p>Try simple skating activities at your own pace. No competition or pressure — always follow rink safety rules.</p><div id="challengeItems" class="fh-grid"><div class="fh-panel"><h3>First lap ⛸️</h3><p>Skate a relaxed lap, stay alert and have fun.</p></div></div></section>
+
 <section class="fh-sec" id="gallery"><h2>📸 Community gallery</h2><p>Only photos with appropriate permission from everyone pictured may appear here, especially where minors are involved.</p><div id="galleryItems" class="fh-grid"><p class="fh-hint">No approved photos yet.</p></div></section>
+
 <section class="fh-sec" id="history"><h2>📖 Our history</h2><div class="fh-timeline"><div class="fh-panel"><span class="fh-meta">2025</span><h3>Frost Skaters founded ❄️</h3><p>Our ice-skating community has been growing together since 2025.</p></div><div id="historyItems"></div></div></section>
+
 <section class="fh-sec" id="learn"><h2>📚 Skating tips &amp; guide</h2>
 <div class="fh-grid">
 <article class="fh-panel"><span class="fh-chip">For new members</span><h3>Your first steps</h3><p>Apply using your first name, request a community card, read the rink rules and treat others respectfully. Questions? Ask the team.</p><a href="mitglieder.html" class="fh-btn alt">Apply for a member card</a></article>
@@ -38,17 +56,15 @@
 <article class="fh-panel"><span class="fh-chip">Safety</span><h3>Skate carefully</h3><p>Keep a safe distance, watch out for beginners, use permitted areas and ask for help if unsure. Wear suitable protective equipment.</p></article>
 <article class="fh-panel"><span class="fh-chip">For trips</span><h3>Checklist</h3><ul class="fh-list"><li>Skates or rentals</li><li>Suitable clothing and gloves</li><li>Travel ticket and entry fee</li><li>Water for the journey</li><li>Parent/guardian permission for minors</li></ul></article>
 </div></section>
-<section class="fh-sec" id="feedback"><h2>💬 Ideas &amp; feedback</h2><p>Have a suggestion? You can send it anonymously. Please do not enter names, phone numbers or other personal information.</p>
-<div class="fh-grid"><div class="fh-panel"><h3>Your idea</h3>
-<form id="ideaForm"><label class="fh-field">Type of message<select class="fh-input" id="ideaKind"><option value="idea">New idea</option><option value="feedback">Feedback</option></select></label>
-<label class="fh-field">Your message<textarea class="fh-input" id="ideaMessage" maxlength="400" minlength="5" required placeholder="What would make Frost Skaters better?"></textarea></label>
-<label class="fh-field" style="display:flex;flex-direction:row;align-items:start;font-weight:400"><input type="checkbox" required> <span>I have read the <a href="datenschutz.html">privacy notice</a>  . Please do not include personal details.</span></label>
-<button class="fh-btn" type="submit" id="ideaSend">Send to team</button><p id="ideaStatus" role="status" class="fh-status"></p></form></div>
-<div class="fh-panel"><h3>🫶 Better together</h3><p>Your idea wird nicht automatisch öffentlich angezeigt. Die Leitung sieht die Einsendung im geschützten Bereich und entscheidet, ob daraus ein Projekt wird.</p><a class="fh-btn alt" href="index.html#whatsapp">Contact the team</a></div></div></section>
+
 <section class="fh-sec" id="stats"><h2>📈 Our season in numbers</h2><p>Statistics about public community activities — never ratings of individual members.</p><div class="fh-grid" id="statsItems"><div class="fh-panel">Loading figures …</div></div></section>
-<section class="fh-sec" id="rules"><h2>🛡️ Our rules</h2><div class="fh-panel"><p id="communityRules">Alle respektieren. Eishallenregeln befolgen. Skate carefully. Vor Fotos immer fragen.</p><p class="fh-hint">In case of an accident, tell rink staff and a responsible adult immediately. In an emergency, call 112.</p></div></section>
+
+<section class="fh-sec" id="rules"><h2>🛡️ Our rules</h2><div class="fh-panel"><p id="communityRules">Respect everyone. Follow the rink rules. Skate carefully. Always ask before taking photos.</p><p class="fh-hint">In case of an accident, tell rink staff and a responsible adult immediately. In an emergency, call 112.</p></div></section>
+
 <section class="fh-sec"><h2>🌍 German &amp; English</h2><p>You can read the most important information in English too.</p>
 <details class="fh-panel"><summary style="cursor:pointer;font-weight:800">🇬🇧 English quick guide</summary><p>Frost Skaters is an independent ice-skating community. Check events, share feedback, and apply for a community card with your first name only. Respect everyone, follow rink rules and ask permission before taking or sharing photos. Minors need parental permission for group trips.</p></details></section>
+<p class="fh-hint fh-more-links"><a href="eishallen.html">📍 Ice-rink finder</a> · <a href="jahresrueckblick.html">🎞️ Year in review</a> · <a href="hub-admin.html">🔒 Team dashboard</a></p>
+</div></details>
 <footer style="border-top:1px solid #485c73;padding-top:22px;display:flex;flex-wrap:wrap;gap:17px"><a href="index.html">🏠 Home</a><a href="mitglieder.html">Member cards</a><a href="datenschutz.html">Privacy</a><a href="hub-admin.html">🔒 Team dashboard</a></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
