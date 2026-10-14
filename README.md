@@ -99,10 +99,12 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Jitsi wird **nicht** innerhalb des GitHub-/Supabase-Datenschutzbereichs betrieben. Die Audio-/Video-Verbindungen laufen über den externen Anbieter; dessen Datenschutzbedingungen beachten. Keine Gespräche heimlich aufnehmen.
 - Automatische Code- und öffentliche Zugriffsprüfungen laufen via GitHub Actions. Ein vollständiger browserbasierter Live-Test mit echten Teamkonten steht vor dem produktiven Einsatz noch aus.
 
-## ❄️ Kurzes Startseiten-Intro mit Eis-Sound
+## ❄️ Startseiten-Intro mit eigenem Eis-Sound
 
-- `index.html` zeigt beim ersten Einstieg in einer Browser-Tab-Sitzung ein ungefähr vier Sekunden langes animiertes Frost-Skaters-Logo mit eisiger Leucht- und Schneepartikel-Animation.
-- Der Button **„🔊 Eis-Sound abspielen“** erzeugt direkt per Web Audio API einen kurzen dezenten Eis-Knister-/Whoosh-Effekt ohne externe Audiodatei, Werbung oder urheberrechtlich geschützte Musik. Auf iOS und anderen Browsern ist hierfür das **aktive Antippen** notwendig, weil Autoplay-Ton blockiert wird.
-- **„Weiter zur Website →“** überspringt die Animation sofort. Für Nutzer mit `prefers-reduced-motion` oder für gezielt aufgerufene Abschnittslinks (#...) wird das Intro nicht angezeigt.
-- Erneute Anzeige zum Prüfen möglich über `https://raphifrost.github.io/frost-skaters-landing/?intro=1`. Mit `?intro=0` wird es übersprungen. Ansonsten pro Tab-Sitzung nur einmal, damit wiederholte Besuche nicht nerven.
-- Styles und Code sind lokal in `assets/frost-intro.css` und `assets/frost-intro.js`. Die restliche Homepage, Mitgliederverwaltung, das QR-Anmeldesystem sowie die internen Team-/Owner-Seiten werden dadurch nicht geändert.
+- Beim ersten Besuch der öffentlichen Frost Skaters Startseite pro Browser-Tab öffnet sich ein kurzer Willkommensbildschirm mit dem bestehenden Logo, Eisglanz und Polarlicht-Effekten.
+- Besucher wählen **„▶ Intro mit Sound starten“** oder **„Ohne Ton weiter →“**. Beim Start gibt es eine circa 3,5-sekündige Animation mit einem selbst synthetisierten Eis-/Elektro-Jingle aus der Web Audio API. Die Lautstärke ist bewusst moderat.
+- **Kein Ton ohne Antippen!** Das ist bei iPhones und modernen Browsern technisch erforderlich und verhindert unerwünschte Autoplay-Geräusche.
+- Auf der Startseite steht außerdem der kleine Button **„❄️ Intro nochmal abspielen“**, sodass man die Animation jederzeit erneut starten kann.
+- Direktaufrufe auf einen Abschnitt (`#…`), Nutzer mit reduzierter Animation und Wiederbesuche im gleichen Tab öffnen sofort die Website. `?intro=1` zeigt das Intro zum Testen unabhängig von der Session; `?intro=0` überspringt es.
+- Der Sound wird lokal im Browser erzeugt, ohne Downloads, externe Player, personenbezogene Daten oder urheberrechtlich geschützte Musik. Es gibt einen sichtbaren Skip-Button und man kann per Esc schließen.
+- Code und Animation: `assets/frost-intro.js` und `assets/frost-intro.css`. Bestehende Anmeldungen, Owner Lounge und Team Lounge bleiben unverändert.
