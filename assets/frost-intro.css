@@ -84,3 +84,47 @@
 @keyframes frost-intro-spark{0%{opacity:0;transform:scale(.6) rotate(0deg)}45%{opacity:1}100%{opacity:0;transform:scale(1.2) rotate(12deg)}}
 @media(max-width:520px){.frost-intro__controls{flex-direction:column;width:100%}.frost-intro__button{min-width:175px}.frost-intro__emblem{width:160px}.frost-intro__tagline{letter-spacing:.1em}}
 @media(prefers-reduced-motion:reduce){.frost-intro,.frost-intro *{animation:none!important;transition:none!important}.frost-intro__eyebrow,.frost-intro__emblem,.frost-intro__title,.frost-intro__tagline{opacity:1;transform:none}.frost-intro__line::before{transform:scaleX(1)}}
+
+/* A visitor chooses sound or silence before the cinematic sequence plays.
+   Default state remains fully readable while they decide. */
+.frost-intro:not(.is-playing) .frost-intro__eyebrow,
+.frost-intro:not(.is-playing) .frost-intro__emblem,
+.frost-intro:not(.is-playing) .frost-intro__title,
+.frost-intro:not(.is-playing) .frost-intro__tagline{
+  opacity:1;transform:none;animation:none;
+}
+.frost-intro:not(.is-playing) .frost-intro__line::before{
+  animation:none;transform:scaleX(0);
+}
+.frost-intro:not(.is-playing) .frost-intro__spark{animation:none;opacity:0}
+.frost-intro__button--start{
+  color:#071421;
+  border-color:#83f2fa;
+  background:linear-gradient(115deg,#8af4f8,#60d6ed 55%,#c2b6ff);
+  box-shadow:0 10px 29px #48deee35;
+  font-weight:900;
+}
+.frost-intro__button--start:hover,
+.frost-intro__button--start:focus-visible{
+  background:linear-gradient(115deg,#bcfbfc,#82eaff,#e6c5fb);
+  border-color:#b5fcff;
+}
+.frost-intro__hint{
+  font-size:.76rem;color:#b8cad8;
+  line-height:1.4;letter-spacing:.035em;margin:6px 0 0;
+}
+.frost-intro-replay-wrap{margin:-6px 0 22px}
+.frost-intro-replay{
+  display:inline-flex;align-items:center;min-height:40px;
+  padding:7px 10px;background:transparent;color:#a9eaf2;
+  border:1px solid #79dbe54f;border-radius:10px;
+  font:750 .86rem system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  cursor:pointer;
+}
+.frost-intro-replay:hover,.frost-intro-replay:focus-visible{
+  color:#fff;border-color:#94f6fe;background:#6fe5f51b;
+}
+@media(max-width:520px){
+  .frost-intro__hint{max-width:230px;font-size:.68rem}
+  .frost-intro-replay-wrap{margin:-10px 0 18px}
+}
