@@ -8,17 +8,22 @@
 <meta name="apple-mobile-web-app-title" content="Frost Owner">
 <link rel="apple-touch-icon" href="assets/frost-skaters-logo.jpg">
 <link rel="manifest" href="owner.webmanifest">
-<title>Member-Verwaltung | Frost Skaters</title>
+<title>Owner Lounge | Frost Skaters</title>
 <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="assets/site-menu.css">
 <link rel="stylesheet" href="assets/frost-theme.css?v=1">
 <link rel="stylesheet" href="assets/frost-members.css?v=3">
+<link rel="stylesheet" href="assets/frost-card-premium.css?v=1">
+<link rel="stylesheet" href="assets/frost-owner-lounge.css?v=1">
 </head><body class="frost-page">
 <header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:15px;flex-wrap:wrap"><a href="index.html" style="color:#78e9f1">🏠 Startseite</a><a href="mitglieder.html" style="color:#78e9f1">← Mitgliedskarten</a><a href="hub-admin.html" style="color:#78e9f1">👑 Weitere Owner-Funktionen</a><a href="qr-karten.html" style="color:#78e9f1">🪪 QR-Karten drucken</a></nav></header>
 <main class="member-layout">
-<p class="member-topline">Owner-Verwaltung · Nur berechtigte Personen</p>
-<h1 class="member-title">👑 Member-Dashboard</h1>
-<p class="member-intro">Hier entscheidest du selbst, wer eine offizielle Frost Skaters Mitgliedskarte erhält. Offene Anträge sind nicht öffentlich. Niemand wird ohne deine Freigabe automatisch Mitglied.</p>
+<section class="lounge-hero">
+<span class="lounge-kicker">❄ Frost Skaters · Exklusiv für den Owner</span>
+<h1>👑 Deine <span>Owner Lounge.</span></h1>
+<p>Alle Mitglieder an einem Ort. Neue Anmeldungen prüfen, Mitglieder selbst hinzufügen, digitale Karten anschauen und den Überblick behalten. Persönliche Angaben bleiben geschützt.</p>
+<div class="lounge-links"><a href="#loungeRoster">👥 Mitglieder</a><a href="#loungeNew">➕ Hinzufügen</a><a href="#loungeRequests">📥 Anträge</a><a href="#loungeMail">✉️ GMX-Nachrichten</a><a href="hub-admin.html">⚙️ Weitere Verwaltung</a></div>
+</section>
 <details class="member-panel" style="margin:18px 0">
 <summary style="cursor:pointer;font-weight:800;color:#9af3fb">📱 Owner-Dashboard als App zum Startbildschirm hinzufügen</summary>
 <p>Öffne diese Seite im <strong>Safari-Browser</strong> auf deinem iPhone. Tippe auf <strong>Teilen</strong> (Quadrat mit Pfeil) und dann auf <strong>„Zum Home-Bildschirm“</strong> oder „Zum Home-Bildschirm hinzufügen“. Gib dem Symbol den Namen „Frost Owner“ und tippe auf „Hinzufügen“.</p>
@@ -59,9 +64,10 @@
 </section>
 
 <section id="dashboard" hidden>
+<div class="lounge-inbox"><strong>🔒 Nur für dich.</strong> Mitgliederdaten, Gesprächsnotizen und Karten-Links sind erst nach Owner-Login verfügbar.</div>
 <div class="member-actions"><button type="button" class="member-btn secondary" id="signOut">Abmelden</button><button type="button" class="member-btn secondary" id="reloadMembers">Liste aktualisieren</button></div>
-<section class="member-panel">
-<h2>📊 Deine Übersicht</h2>
+<section class="member-panel" id="loungeOverview">
+<h2>📊 Deine Lounge auf einen Blick</h2>
 <div class="member-stat-grid">
 <div class="member-stat"><strong id="statAll">0</strong><span>Anträge gesamt</span></div>
 <div class="member-stat"><strong id="statPending">0</strong><span>Offen</span></div>
@@ -70,8 +76,8 @@
 </div>
 </section>
 
-<section class="member-panel">
-<h2>➕ Aktive oder passive Karte erstellen</h2>
+<section class="member-panel" id="loungeNew">
+<h2>➕ Neues Mitglied hinzufügen</h2>
 <p>Trage nur den Vornamen ein. Aktive Karten bestätigen eine Mitgliedschaft, passive Karten zeigen den Status PASSIV und keine aktive Mitgliedschaft. Der private Karten-Link erscheint anschließend.</p>
 <form id="addMember">
 <label for="manualName" class="member-label">Vorname</label>
@@ -85,8 +91,19 @@
 <div id="manualFeedback" role="status" aria-live="polite"></div>
 </section>
 
-<section class="member-panel">
-<h2>📥 Alle Mitglieder und Anträge</h2>
+<section class="member-panel" id="loungeRoster">
+  <div class="lounge-subhead"><div><h2>👥 Deine Mitglieder</h2><p class="member-hint">Alle vorhandenen Karten – übersichtlich dargestellt. Tippe bei aktiven Mitgliedern auf „Karte ansehen“, um die neue Gestaltung und den persönlichen QR-Code zu prüfen.</p></div><a class="member-btn secondary" href="qr-karten.html" style="text-decoration:none">🪪 Werbe-QR-Karten</a></div>
+  <div id="loungeMemberTiles" class="lounge-member-grid" aria-live="polite"></div>
+</section>
+<section class="member-panel" id="loungeMail">
+<details class="lounge-mail-panel" open><summary>✉️ Automatische GMX-Benachrichtigungen</summary>
+<p>Neue Anträge lösen eine E-Mail an dein GMX-Postfach aus. Sobald du eine Karte freigibst, wird eine zweite E-Mail mit dem <strong>privaten Karten-Link</strong> angefordert. Der QR-Code erscheint beim Öffnen dieses Links.</p>
+<p class="member-hint"><strong>Wichtig:</strong> FormSubmit muss deine GMX-Adresse bestätigt haben. Die Liste zeigt beauftragte Nachrichten, keine Garantie der Zustellung. Bitte auch den Spamordner prüfen.</p>
+<div id="loungeMailFeed" class="lounge-mail-list"><p class="member-hint">Nachrichten werden geladen …</p></div>
+</details>
+</section>
+<section class="member-panel" id="loungeRequests">
+<h2>📥 Alle Einträge &amp; Anträge</h2>
 <p class="member-hint">Neue Anträge werden bei geöffnetem Dashboard automatisch angezeigt. Falls dein Handy die Seite im Hintergrund anhält, siehst du sie beim nächsten Öffnen.</p>
 <div id="incomingFeedback" role="status" aria-live="polite"></div>
 <p>Du kannst eingegangene Anträge annehmen oder ablehnen. Du kannst aktive oder passive Karten verwalten und für jede Person ein privates Gespräch eintragen. Nur eingeloggte Owner sehen diese Angaben. Ein gesperrter QR-Code zeigt keine gültige Karte mehr.</p>
@@ -123,9 +140,31 @@
     <p id="talkFeedback" role="status" aria-live="polite"></p>
   </form>
 </dialog>
+<dialog class="lounge-preview" id="loungePreviewDialog" aria-labelledby="loungePreviewTitle">
+<div class="lounge-subhead"><h2 id="loungePreviewTitle">❄ Persönliche Frost Skaters Karte</h2><button class="member-btn secondary" id="loungePreviewClose" type="button">✕ Schließen</button></div>
+<div class="member-card frost-premium" id="loungePreviewCard">
+<div class="member-card-head">
+<div class="frost-card-brand"><img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo"><div><div class="member-card-title">FROST<br>SKATERS</div><div class="member-card-sub">OFFICIAL COMMUNITY · 2025</div></div></div>
+<div class="frost-card-snow" aria-hidden="true">❄<small>MEMBER CARD</small></div>
+</div>
+<div class="member-card-main">
+<div>
+<div class="member-card-detail"><span class="member-card-key">DEIN NAME</span><strong id="loungePreviewName" class="member-card-value frost-card-name"></strong></div>
+<div class="member-card-detail"><span class="member-card-key">DEINE ROLLE</span><strong id="loungePreviewRole" class="member-card-value frost-card-role"></strong></div>
+<div class="member-card-detail"><span class="member-card-key">MITGLIEDSNUMMER</span><strong id="loungePreviewNumber" class="member-card-value frost-card-number"></strong></div>
+<div class="member-card-detail"><span class="member-card-key">STATUS</span><strong id="loungePreviewStatus" class="member-status"></strong></div>
+</div>
+<div class="frost-qr-frame"><div class="member-qr" id="loungePreviewQr" aria-label="Privater Mitgliedskarten QR-Code"></div><div class="frost-qr-note">SCAN TO VERIFY</div></div>
+</div><div class="frost-card-footer"><span>ICE · CREW · COMMUNITY</span><span>EST. 2025 · ❄️</span></div>
+</div>
+<p class="member-hint">Der persönliche Link ist privat. Teile die Karte nur mit dem entsprechenden Mitglied.</p>
+<div class="member-actions"><button class="member-btn" id="loungePreviewCopy" type="button">🔗 Karten-Link kopieren</button><a id="loungePreviewOpen" class="member-btn secondary" href="mitglieder.html" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Karte zum Drucken öffnen ↗</a></div>
+<div id="loungePreviewFeedback" role="status"></div>
+</dialog>
 <footer style="max-width:1050px;margin:0 auto;padding:15px 20px 40px"><a href="index.html">🏠 Startseite</a> · <a href="datenschutz.html">Datenschutz</a></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-members-admin.js?v=5"></script>
+<script src="assets/frost-members-admin.js?v=6"></script>
 </body></html>
