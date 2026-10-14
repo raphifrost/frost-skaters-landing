@@ -1,4 +1,4 @@
-# ❄️ Frost Skaters 3.0
+# ❄️ Frost Skaters
 
 Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skaters**.
 
