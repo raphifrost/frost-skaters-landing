@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Privater Terminkalender für das Frost Skaters Leitungsteam.">
+  <meta name="theme-color" content="#080d19">
+  <title>Team-Kalender | Frost Skaters</title>
+  <link rel="icon" type="image/jpeg" href="assets/frost-skaters-logo.jpg">
+  <link rel="stylesheet" href="assets/frost-team-talk.css?v=1">
+  <link rel="stylesheet" href="assets/frost-team-calendar.css?v=1">
+</head>
+<body>
+  <header class="tt-top">
+    <a class="tt-brand" href="index.html">❄️ FROST SKATERS</a>
+    <a class="tc-return" href="team-talk.html">← Team Lounge</a>
+  </header>
+
+  <main class="tt-wrap tc-layout">
+    <section class="tc-hero">
+      <div>
+        <span class="tt-eyebrow">❄ FROST SKATERS · NUR FÜR DAS TEAM</span>
+        <h1>Unser <span>Team-Kalender.</span></h1>
+        <p>Ausflüge, Teamtreffen, Training und Besprechungen – alle Termine an einem Ort.</p>
+        <div class="tt-tag-row"><span>🔒 Intern</span><span>📅 Monatsübersicht</span><span>👥 Für eure Crew</span></div>
+      </div>
+      <img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="tc-hero-logo">
+    </section>
+
+    <section id="tcLogin" class="tt-panel tt-auth">
+      <span class="tt-section-kicker">🔐 GESCHÜTZTER TEAM-ZUGANG</span>
+      <h2>Bitte einloggen</h2>
+      <p>Dieser Kalender ist für Owner, Co-Owner, Managerin und Team-Supporter. Andere Besucher sehen keine Termine.</p>
+      <form id="tcLoginForm" class="tt-form">
+        <label for="tcEmail">Team-E-Mail</label>
+        <input id="tcEmail" type="email" required autocomplete="username" placeholder="deine@email.de">
+        <label for="tcPassword">Passwort</label>
+        <input id="tcPassword" type="password" required autocomplete="current-password">
+        <button id="tcLoginButton" class="tt-button tt-primary" type="submit">🔓 Zum Team-Kalender</button>
+        <p id="tcLoginFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <p class="tc-help">Noch kein Teamkonto? <a href="team-talk.html">In der Team Lounge registrieren</a>. Danach muss der Owner deine Benutzer-ID freischalten.</p>
+    </section>
+
+    <section id="tcPrivate" hidden>
+      <div class="tc-privatebar">
+        <div><span class="tt-live-pill"><span class="tt-dot"></span> TEAM-INTERN</span><strong id="tcRoleLabel">Dein Team-Zugang</strong></div>
+        <div class="tc-bar-actions">
+          <button id="tcReload" class="tt-button tt-outline tt-small" type="button">↻ Aktualisieren</button>
+          <button id="tcLogout" class="tt-button tt-muted tt-small" type="button">Abmelden</button>
+        </div>
+      </div>
+      <p id="tcFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+
+      <section class="tc-summary" aria-labelledby="tcNextHeading">
+        <div>
+          <span class="tt-section-kicker">✦ ALS NÄCHSTES</span>
+          <h2 id="tcNextHeading">Euer nächster Termin</h2>
+          <p id="tcNextDescription">Termine werden geladen …</p>
+        </div>
+        <div class="tc-summary-icon" aria-hidden="true">❄️</div>
+      </section>
+
+      <div class="tc-columns">
+        <div class="tc-column-main">
+          <section class="tt-panel tc-month-panel" aria-labelledby="tcMonthLabel">
+            <div class="tc-month-header">
+              <div>
+                <span class="tt-section-kicker">KALENDERÜBERSICHT</span>
+                <h2 id="tcMonthLabel">Kalender</h2>
+              </div>
+              <div class="tc-month-buttons">
+                <button id="tcPrev" class="tt-button tt-outline tt-small tc-arrow" type="button" aria-label="Vorheriger Monat">‹</button>
+                <button id="tcToday" class="tt-button tt-muted tt-small" type="button">Heute</button>
+                <button id="tcNext" class="tt-button tt-outline tt-small tc-arrow" type="button" aria-label="Nächster Monat">›</button>
+              </div>
+            </div>
+            <div class="tc-month-controls">
+              <label for="tcFilter">Anzeigen:</label>
+              <select id="tcFilter" class="tc-select">
+                <option value="all">Alle Termine</option>
+                <option value="outing">⛸️ Ausflüge</option>
+                <option value="meeting">👑 Teamtreffen</option>
+                <option value="training">❄️ Training</option>
+                <option value="other">📌 Sonstiges</option>
+              </select>
+            </div>
+            <div class="tc-weekdays" aria-hidden="true"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+            <div id="tcGrid" class="tc-days" role="group" aria-label="Kalendertage"></div>
+            <div class="tc-calendar-legend"><span><i class="tc-legend-dot outing"></i> Ausflug</span><span><i class="tc-legend-dot meeting"></i> Treffen</span><span><i class="tc-legend-dot training"></i> Training</span><span><i class="tc-legend-dot other"></i> Sonstiges</span></div>
+          </section>
+
+          <section class="tt-panel tc-day-panel" aria-labelledby="tcSelectedLabel">
+            <div class="tc-day-heading">
+              <div><span class="tt-section-kicker">AUSGEWÄHLTER TAG</span><h2 id="tcSelectedLabel">Termine</h2></div>
+              <button id="tcNewOnDay" class="tt-button tt-primary tt-small" type="button" hidden>＋ Neuer Termin</button>
+            </div>
+            <div id="tcDayEntries" class="tc-event-stack" aria-live="polite"><p class="tt-hint">Kalender wird geladen …</p></div>
+          </section>
+        </div>
+
+        <aside class="tc-column-side">
+          <section class="tt-panel tc-next-panel" aria-labelledby="tcUpcomingLabel">
+            <span class="tt-section-kicker">📅 IM BLICK</span>
+            <h2 id="tcUpcomingLabel">Demnächst</h2>
+            <p class="tt-hint">Anstehende Termine eures Teams.</p>
+            <div id="tcUpcoming" class="tc-upcoming-list" aria-live="polite"></div>
+          </section>
+          <section class="tt-panel tc-info-panel">
+            <span class="tt-section-kicker">👑 GUTE ORGANISATION</span>
+            <h2>Gemeinsam planen.</h2>
+            <p><strong>Owner, Co-Owner und Managerin</strong> können Termine anlegen, ändern und löschen. <strong>Team-Supporter</strong> können alle Termine ansehen.</p>
+            <p>Neue Termine starten als <strong>„In Planung“</strong>. Erst wenn ihr sie wirklich abgestimmt habt, stellt ihr sie auf „Bestätigt“.</p>
+            <p class="tt-hint">Die angegebenen Uhrzeiten gelten als lokale Uhrzeit in Deutschland. Bitte keine privaten Wohnadressen oder personenbezogenen Notizen eintragen.</p>
+            <a class="tt-button tt-outline tc-backlink" href="team-talk.html">🎙️ Zur Team Lounge</a>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <dialog id="tcDialog" class="tc-dialog" aria-labelledby="tcDialogHeading">
+      <div class="tc-dialog-head"><span class="tt-section-kicker">❄️ INTERNER KALENDER</span><button id="tcDialogClose" type="button" class="tc-dialog-cross" aria-label="Schließen">✕</button></div>
+      <h2 id="tcDialogHeading">Termin eintragen</h2>
+      <form id="tcEventForm" class="tt-form">
+        <label for="tcTitle">Titel</label>
+        <input id="tcTitle" maxlength="100" minlength="3" type="text" placeholder="z. B. Besprechung für Heilbronn" required>
+        <div class="tc-form-grid">
+          <div><label for="tcKind">Kategorie</label>
+            <select id="tcKind" required>
+              <option value="meeting">👑 Teamtreffen</option>
+              <option value="outing">⛸️ Ausflug</option>
+              <option value="training">❄️ Training</option>
+              <option value="other">📌 Sonstiges</option>
+            </select>
+          </div>
+          <div><label for="tcState">Stand</label>
+            <select id="tcState" required>
+              <option value="planning">In Planung</option>
+              <option value="confirmed">Bestätigt</option>
+              <option value="cancelled">Abgesagt</option>
+            </select>
+          </div>
+        </div>
+        <div class="tc-form-grid">
+          <div><label for="tcDate">Datum</label><input id="tcDate" type="date" required></div>
+          <div><label for="tcTime">Uhrzeit (optional)</label><input id="tcTime" type="time"></div>
+        </div>
+        <label for="tcPlace">Treffpunkt / Ort (optional)</label>
+        <input id="tcPlace" maxlength="100" type="text" placeholder="z. B. Eishalle Reutlingen">
+        <label for="tcNotes">Kurze Infos (optional)</label>
+        <textarea id="tcNotes" maxlength="500" rows="3" placeholder="Was muss das Team wissen?"></textarea>
+        <div class="tc-form-actions">
+          <button id="tcSave" class="tt-button tt-primary" type="submit">💾 Termin speichern</button>
+          <button id="tcCancel" class="tt-button tt-muted" type="button">Abbrechen</button>
+        </div>
+        <p id="tcDialogFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <footer class="tt-footer"><a href="team-talk.html">← Team Lounge</a><a href="datenschutz.html">Datenschutz</a><span>❄ Frost Skaters Team-Kalender</span></footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+  <script src="assets/frost-members-config.js"></script>
+  <script src="assets/frost-team-calendar.js?v=1"></script>
+</body>
+</html>
