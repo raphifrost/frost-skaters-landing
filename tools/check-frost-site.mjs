@@ -66,10 +66,22 @@ const mustExist=[
  'assets/frost-hub-public.js','assets/frost-hub-admin.js','assets/frost-members.js',
  'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest',
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
+ 'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
  'assets/frost-intro.js','assets/frost-intro.css',
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
+// Make sure the protected calendar has its own login and is linked only from staff pages.
+const calendar=textFile('team-kalender.html');
+for(const id of ['tcLogin','tcPrivate','tcLoginForm','tcGrid','tcDayEntries','tcUpcoming','tcEventForm','tcDialog'])
+ if(!getIds(calendar).includes(id))fail('team-kalender.html missing calendar element #'+id);
+if(!calendar.includes('assets/frost-team-calendar.js')||!calendar.includes('assets/frost-team-calendar.css'))
+ fail('Team calendar JS/CSS not linked');
+if(!textFile('team-talk.html').includes('href="team-kalender.html"'))
+ fail('Missing private calendar entry from Team Lounge');
+for(const page of ['index.html','community.html','mitglieder.html','anmelden.html'])
+ if(/href=["']team-kalender\.html["']/.test(textFile(page)))
+  fail('Private Team-Kalender should not appear in public menu on '+page);
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
