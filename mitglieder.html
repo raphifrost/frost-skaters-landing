@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="assets/site-menu.css">
 <link rel="stylesheet" href="assets/frost-theme.css?v=1">
 <link rel="stylesheet" href="assets/frost-members.css?v=3">
+<link rel="stylesheet" href="assets/frost-card-premium.css?v=1">
 </head>
 <body class="frost-page" data-page="mitglieder">
 <header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a>
@@ -44,17 +45,27 @@
 </section>
 
 <section class="member-panel" id="approvedSection" hidden>
-<h2>🪪 Deine Community-Karte</h2>
+<h2>🪪 Deine Frost Skaters Karte</h2>
 <p>Dein QR-Code führt auf diese Karte. Eine passive Karte zeigt keine aktive Mitgliedschaft an. Es handelt sich nicht um einen amtlichen Ausweis.</p>
-<div class="member-card" id="memberCard">
-<div class="member-card-head"><img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo"><div><div class="member-card-title">OFFICIAL<br>MEMBER CARD</div><div class="member-card-sub">FROST SKATERS · SEIT 2025</div></div></div>
-<div class="member-card-main"><div>
-<div class="member-card-detail"><span class="member-card-key">NAME</span><strong id="cardName" class="member-card-value"></strong></div>
-<div class="member-card-detail"><span class="member-card-key">ROLLE</span><strong id="cardRole" class="member-card-value">MEMBER</strong></div>
-<div class="member-card-detail"><span class="member-card-key">MITGLIEDSNUMMER</span><strong id="cardNumber" class="member-card-value"></strong></div>
-<div class="member-card-detail"><span class="member-card-key">STATUS</span><strong id="cardStatus" class="member-status">● AKTIV</strong></div>
-<div class="member-card-detail"><span class="member-card-key">ABZEICHEN</span><div id="cardBadges" class="member-badge-list">Noch keine Abzeichen</div></div>
-</div><div id="cardQr" class="member-qr" aria-label="Persönlicher QR-Code"></div></div>
+<div class="member-card frost-premium" id="memberCard">
+<div class="member-card-head">
+  <div class="frost-card-brand">
+    <img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo">
+    <div><div class="member-card-title">FROST<br>SKATERS</div><div class="member-card-sub">OFFICIAL COMMUNITY · 2025</div></div>
+  </div>
+  <div class="frost-card-snow" aria-hidden="true">❄<small>MEMBER CARD</small></div>
+</div>
+<div class="member-card-main">
+  <div class="frost-card-details">
+    <div class="member-card-detail"><span class="member-card-key">DEIN NAME</span><strong id="cardName" class="member-card-value frost-card-name"></strong></div>
+    <div class="member-card-detail"><span class="member-card-key">DEINE ROLLE</span><strong id="cardRole" class="member-card-value frost-card-role">MEMBER</strong></div>
+    <div class="member-card-detail"><span class="member-card-key">MITGLIEDSNUMMER</span><strong id="cardNumber" class="member-card-value frost-card-number"></strong></div>
+    <div class="member-card-detail"><span class="member-card-key">STATUS</span><strong id="cardStatus" class="member-status">● AKTIV</strong></div>
+    <div class="member-card-detail"><span class="member-card-key">ABZEICHEN</span><div id="cardBadges" class="member-badge-list">Noch keine Abzeichen</div></div>
+  </div>
+  <div class="frost-qr-frame"><div id="cardQr" class="member-qr" aria-label="Persönlicher Mitgliedskarten-QR-Code"></div><div class="frost-qr-note">SCAN TO VERIFY</div></div>
+</div>
+<div class="frost-card-footer"><span>ICE · CREW · COMMUNITY</span><span>EST. 2025 · ❄️</span></div>
 </div>
 <div class="member-actions">
 <button class="member-btn" id="printCard" type="button">🖨️ Als PDF speichern / Drucken</button>
@@ -73,6 +84,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
-<script src="assets/frost-members.js?v=5"></script>
+<script src="assets/frost-members.js?v=6"></script>
 <script src="assets/site-menu.js"></script>
 </body></html>
