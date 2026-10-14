@@ -1,0 +1,32 @@
+.frost-join{background:radial-gradient(ellipse at 10% 2%,#59e9f01a,transparent 40%),radial-gradient(ellipse at 92% 60%,#f362d212,transparent 35%),#080911;color:#f6fbff}
+.join-top-links{display:flex;gap:17px;align-items:center;flex-wrap:wrap}
+.join-top-links a,.join-footer a{color:#92ecf3;text-decoration:none}
+.join-top-links a:hover,.join-footer a:hover{text-decoration:underline}
+.join-wrap{max-width:1060px;margin:auto;padding:40px 22px 85px}
+.join-intro{display:flex;align-items:center;gap:28px;margin:20px 0 30px}
+.join-logo{width:175px;max-width:29vw;height:auto;object-fit:contain;border-radius:18px;flex-shrink:0}
+.join-intro h1{font-size:clamp(2.5rem,6vw,4.8rem);letter-spacing:-.055em;line-height:1.04;margin:12px 0 18px}
+.join-intro h1 em{font-style:normal;color:#78eaf3}
+.join-intro p,.join-bottom p{line-height:1.75;color:#c0cedd;max-width:680px}
+.join-choice,.join-buttons{display:flex;gap:11px;flex-wrap:wrap}
+.join-choice{margin:14px 0 28px}
+.join-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;align-items:start}
+.join-panel{padding:28px;scroll-margin-top:90px}
+.join-panel h2{font-size:clamp(1.6rem,3.2vw,2.2rem);margin:13px 0 12px}
+.join-panel>p,.join-panel>form+p{color:#c2cfde;line-height:1.7}
+.join-panel .fh-field{margin-top:20px;margin-bottom:20px;color:#e8f5ff}
+.join-panel textarea{min-height:180px;font-weight:400;line-height:1.5}
+.join-consent{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;line-height:1.6;color:#d0dbe8;margin:0 0 22px;font-weight:400}
+.join-consent input{margin-top:5px;flex-shrink:0;accent-color:#54e0e6;width:17px;height:17px}
+.join-consent a{color:#8cedf7}
+.join-panel button[disabled]{opacity:.5;cursor:wait}
+.join-feedback{white-space:pre-wrap;word-break:break-word;margin:15px 0}
+.join-saved{margin:15px 0;padding:16px;background:#0b2831;border:1px solid #66e8f355;border-radius:14px}
+.join-saved p{margin:0 0 10px}
+.join-card-link{display:block;color:#8feaf7;overflow-wrap:anywhere;margin:10px 0 14px;font-size:.9rem}
+.join-bottom{margin:40px 0 30px;padding:23px 25px;background:#141c2b;border:1px solid #60738a55;border-radius:20px}
+.join-bottom h2{font-size:1.5rem}
+.join-bottom .fh-btn{margin-top:9px}
+.join-footer{border-top:1px solid #74839f35;padding-top:23px;color:#98a9b8}
+@media(max-width:730px){.join-wrap{padding:25px 16px 65px}.join-intro{align-items:flex-start;gap:12px;flex-direction:column}.join-logo{max-width:none;width:118px}.join-cols{grid-template-columns:1fr}.join-panel{padding:21px}.join-choice .fh-btn{flex:1;white-space:nowrap;font-size:.85rem;padding:11px}}
+@media print{body{background:#fff!important;color:#111}.join-panel,.join-bottom{border:1px solid #777;color:#111}}
