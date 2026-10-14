@@ -40,9 +40,11 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
  check('GitHub Pages '+page,response.status===200,'HTTP '+response.status);
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
  if(page==='team-kalender.html'){
+   check('Live calendar assets are linked',body.includes('assets/frost-team-calendar.js')&&body.includes('assets/frost-team-calendar.css'));
    check('Team-Kalender protected login markup',body.includes('id="tcLogin"')&&body.includes('id="tcPrivate"'));
    check('Team-Kalender month navigation and event form',body.includes('id="tcGrid"')&&body.includes('id="tcEventForm"'));
  }
+ if(page==='team-talk.html')check('Team Lounge calendar shortcut is present',body.includes('href="team-kalender.html"'));
  if(page==='index.html'){
    check('Frost Skaters entry intro markup',body.includes('id="frostWelcomeIntro"')&&body.includes('id="frostIntroSkip"')&&body.includes('id="frostIntroSound"'));
    check('Visitors can choose intro sound or skip',body.includes('Intro mit Sound starten')&&body.includes('Ohne Ton weiter'));
