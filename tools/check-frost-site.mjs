@@ -41,7 +41,7 @@ for(const file of pages){
  for(const match of html.matchAll(/<script\b([^>]+)\bsrc=["'](assets\/[^"']+\.js)(?:\?[^"']*)?["'][^>]*><\/script>/g)){
   const asset=match[2];
   if(!exists(asset))continue;
-  if(!/frost-(?:hub|members|recap)/.test(asset))continue;
+  if(!/frost-(?:hub|members|recap|team-talk)/.test(asset))continue;
   const code=textFile(asset);
   for(const ref of new Set([...code.matchAll(/\$\(['"]([A-Za-z][A-Za-z0-9_-]*)['"]\)/g)].map(x=>x[1]))){
     verifiedPageIds++;
@@ -64,7 +64,8 @@ const mustExist=[
  'community.html','community-en.html','hub-admin.html','eishallen.html','jahresrueckblick.html',
  'mitglieder.html','mitglieder-admin.html','datenschutz.html','index.html',
  'assets/frost-hub-public.js','assets/frost-hub-admin.js','assets/frost-members.js',
- 'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest'
+ 'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest',
+ 'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
