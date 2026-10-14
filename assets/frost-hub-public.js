@@ -178,7 +178,14 @@ $('requestStatusForm').addEventListener('submit',ev=>{
   checkRequestStatus(code);
 });
 const linkedRequest=cleanRequestCode(new URLSearchParams(location.search).get('request'));
-if(linkedRequest){$('requestStatusCode').value=linkedRequest;checkRequestStatus(linkedRequest);}
+if(linkedRequest){$('requestStatusCode').value=linkedRequest;$('statusDetails')?.setAttribute('open','');checkRequestStatus(linkedRequest);}
+function revealExtraSectionFromHash(){
+  const hash=location.hash;
+  if(['#season','#challenges','#gallery','#history','#learn','#stats','#rules'].includes(hash))$('moreArea')?.setAttribute('open','');
+  if(hash==='#requestStatus')$('statusDetails')?.setAttribute('open','');
+}
+window.addEventListener('hashchange',revealExtraSectionFromHash);
+revealExtraSectionFromHash();
 $('ideaForm').addEventListener('submit',async ev=>{
   ev.preventDefault();const message=$('ideaMessage').value.trim();
   if(message.length<5||message.length>400){notice($('ideaStatus'),tr('Bitte 5 bis 400 Zeichen eingeben.','Please enter between 5 and 400 characters.'),true);return;}
