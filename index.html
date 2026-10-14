@@ -236,7 +236,7 @@
     <meta property="og:image" content="https://raphifrost.github.io/frost-skaters-landing/assets/frost-skaters-team.jpg" />
     <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
-    <link rel="stylesheet" href="assets/frost-intro.css?v=1" />
+    <link rel="stylesheet" href="assets/frost-intro.css?v=2" />
   </head>
   <body class="frost-page" data-page="home">
     <!-- Non-blocking first-visit animation; hidden unless the local intro script starts it. -->
@@ -251,9 +251,10 @@
         <div class="frost-intro__line" aria-hidden="true"></div>
         <div class="frost-intro__spark" aria-hidden="true"></div>
         <div class="frost-intro__controls">
-          <button class="frost-intro__button" type="button" id="frostIntroSound" aria-label="Eis-Sound abspielen">🔊 Eis-Sound abspielen</button>
-          <button class="frost-intro__button frost-intro__button--skip" type="button" id="frostIntroSkip">Weiter zur Website →</button>
+          <button class="frost-intro__button frost-intro__button--start" type="button" id="frostIntroSound" aria-label="Frost Skaters Intro mit Sound starten">▶ Intro mit Sound starten</button>
+          <button class="frost-intro__button frost-intro__button--skip" type="button" id="frostIntroSkip">Ohne Ton weiter →</button>
         </div>
+        <p class="frost-intro__hint">Original Frost-Sound · Erst nach deinem Tipp hörbar</p>
       </div>
     </div>
     <header class="site-header">
@@ -286,6 +287,9 @@
             <a class="btn primary" href="anmelden.html">Mitmachen</a>
             <a class="btn secondary" href="#entdecken">Entdecken</a>
             <a class="btn secondary" href="mitglieder.html#findSection">🪪 Meine Karte</a>
+          </div>
+          <div class="frost-intro-replay-wrap">
+            <button id="frostReplayIntro" class="frost-intro-replay" type="button">❄️ Intro nochmal abspielen</button>
           </div>
 
           <a class="phone" href="tel:+4915234646842">📞 +49 152 34646842</a>
@@ -346,6 +350,6 @@
 
     <script src="assets/site-menu.js"></script>
     <script src="assets/site-share.js"></script>
-    <script src="assets/frost-intro.js?v=1"></script>
+    <script src="assets/frost-intro.js?v=2"></script>
   </body>
 </html>
