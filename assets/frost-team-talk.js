@@ -119,8 +119,21 @@ function startLive(){
  listChannel=client.channel('frost-team-room-updates').on('postgres_changes',
   {event:'*',schema:'public',table:'frost_team_rooms'},()=>{if(me)loadRooms().catch(console.warn);}
  ).subscribe();
- pollTimer=setInterval(()=>{
+ let intervalCount=0;
+ pollTimer=setInterval(async()=>{
   if(!me||document.hidden)return;
+  intervalCount++;
+  if(intervalCount%3===0){
+   try{
+    const {data:currentRole,error}=await client.rpc('frost_team_my_role');
+    if(!error&&currentRole!==role){
+     await client.auth.signOut();logoutUI();
+     notify('ttLoginFeedback','Dein Team-Zugang wurde geändert oder entfernt. Bitte melde dich erneut an.',true);
+     return;
+    }
+   }catch(e){console.warn('Team role refresh',e);}
+  }
+  if(!me)return;
   loadRooms().catch(console.warn);
   if(selectedRoom)loadMessages().catch(console.warn);
  },20000);
