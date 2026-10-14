@@ -37,6 +37,72 @@ $('changeOwnerEmail').addEventListener('click',()=>{
   $('ownerEmail').focus();
 });
 
+let previewMember=null;
+const create=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=String(txt);return n;};
+function renderLoungeTiles(data){
+ const target=$('loungeMemberTiles');target.replaceChildren();
+ if(!data.length){target.append(create('div','lounge-empty','Noch keine Einträge. Neue Mitglieder kannst du oben selbst hinzufügen.'));return;}
+ const ordered=[...data].sort((a,b)=>{
+  const level={approved:0,passive:1,pending:2,rejected:3,revoked:4};
+  return (level[a.status]??5)-(level[b.status]??5) || a.display_name.localeCompare(b.display_name,'de');
+ });
+ for(const r of ordered){
+   const card=create('article','lounge-member '+r.status);
+   const pill=create('span','member-status-pill '+r.status,safeStatus(r.status));
+   card.append(pill,create('h3','',r.display_name),create('p','',r.role+' · '+(r.member_no||'Noch ohne Mitgliedsnummer')),create('p','', 'Seit '+dateFormat(r.created_at)));
+   const actions=create('div','member-row-actions');
+   if(['approved','passive'].includes(r.status)){
+      actions.append(button('🎨 Karte ansehen',()=>openLoungePreview(r)));
+      actions.append(button('🔗 Link',()=>copyLink(r.request_code)));
+   }else if(r.status==='pending'){
+      actions.append(button('✅ Annehmen',()=>updateStatus(r,'approved',true)));
+      actions.append(button('⏸ Passiv',()=>updateStatus(r,'passive',true)));
+   }
+   actions.append(button('🗣 Gespräch',()=>editConversation(r)));
+   card.append(actions);
+   target.append(card);
+ }
+}
+function openLoungePreview(r){
+ if(!signedIn||!['approved','passive'].includes(r.status))return;
+ previewMember=r;
+ $('loungePreviewName').textContent=r.display_name;
+ $('loungePreviewRole').textContent=r.role;
+ $('loungePreviewNumber').textContent=r.member_no||memberNumber(r.request_code);
+ $('loungePreviewStatus').textContent=r.status==='approved'?'● AKTIV':'● PASSIV';
+ $('loungePreviewStatus').style.color=r.status==='approved'?'#83f9cd':'#f6cf8a';
+ $('loungePreviewCard').classList.toggle('is-passive',r.status==='passive');
+ const qr=$('loungePreviewQr');qr.replaceChildren();
+ if(window.QRCode){
+   new window.QRCode(qr,{text:codeLink(r.request_code),width:150,height:150,colorDark:'#080c17',colorLight:'#ffffff',correctLevel:window.QRCode.CorrectLevel.M});
+ }else qr.textContent='QR-Code zurzeit nicht verfügbar';
+ $('loungePreviewOpen').href=codeLink(r.request_code);
+ $('loungePreviewFeedback').textContent='';
+ $('loungePreviewDialog').showModal();
+}
+$('loungePreviewClose').addEventListener('click',()=>$('loungePreviewDialog').close());
+$('loungePreviewCopy').addEventListener('click',async()=>{
+ if(!previewMember)return;
+ try{await navigator.clipboard.writeText(codeLink(previewMember.request_code));feedback('loungePreviewFeedback','Link kopiert. Gib ihn nur dem richtigen Mitglied.');}
+ catch{feedback('loungePreviewFeedback','Privater Link: '+codeLink(previewMember.request_code));}
+});
+async function loadOwnerMailFeed(){
+ const target=$('loungeMailFeed');if(!signedIn)return;
+ try{
+   const {data,error}=await client.from('frost_owner_mail_log').select('member_id,kind,request_id,created_at').order('created_at',{ascending:false}).limit(15);
+   if(error)throw error;target.replaceChildren();
+   if(!data?.length){target.append(create('p','member-hint','Noch keine automatischen Benachrichtigungen aufgezeichnet.'));return;}
+   for(const log of data){
+     const person=rows.find(r=>r.id===log.member_id);
+     const entry=create('div','lounge-mail-entry');
+     const text=create('div');
+     text.append(create('strong','',log.kind==='application'?'📥 Neuen Antrag gemeldet':'🪪 Karten-Link an GMX gesendet / beauftragt'));
+     text.append(create('small','',(person?person.display_name:'Mitglied nicht mehr vorhanden')+' · '+dateFormat(log.created_at)));
+     entry.append(text,create('small','',log.request_id?'An Versanddienst übergeben':'Noch nicht übergeben'));
+     target.append(entry);
+   }
+ }catch(e){console.warn('Mail feed',e);target.replaceChildren(create('p','member-hint','Die Mail-Übersicht konnte gerade nicht geladen werden.')); }
+}
 const dateFormat=d=>d?new Intl.DateTimeFormat('de-DE',{dateStyle:'medium'}).format(new Date(d)):'—';
 const safeStatus=s=>({pending:'Offen',approved:'Aktiv',rejected:'Abgelehnt',revoked:'Gesperrt',passive:'Passiv'}[s]||s);
 const memberNumber=id=>'FS-'+id.slice(0,8).toUpperCase();
@@ -52,6 +118,7 @@ function render(){
   const filter=$('filterStatus').value,search=$('filterName').value.trim().toLocaleLowerCase('de');
   const data=rows.filter(r=>(filter==='all'||r.status===filter)&&r.display_name.toLocaleLowerCase('de').includes(search));
   $('memberRows').replaceChildren();
+  renderLoungeTiles(data);
   if(!data.length){
     const td=document.createElement('td');td.colSpan=6;td.textContent='Keine Einträge in dieser Auswahl.';
     const tr=document.createElement('tr');tr.append(td);$('memberRows').append(tr);return;
@@ -70,10 +137,12 @@ function render(){
       actions.append(button('⏸ Passivkarte',()=>updateStatus(r,'passive',true)));
       actions.append(button('❌ Ablehnen',()=>updateStatus(r,'rejected',false),'danger'));
     }else if(r.status==='approved'){
+      actions.append(button('🎨 Karte ansehen',()=>openLoungePreview(r)));
       actions.append(button('🔗 Karten-Link',()=>copyLink(r.request_code)));
       actions.append(button('⏸ Passiv stellen',()=>updateStatus(r,'passive',false)));
       actions.append(button('🔒 Sperren',()=>updateStatus(r,'revoked',false),'danger'));
     }else if(r.status==='passive'){
+      actions.append(button('🎨 Karte ansehen',()=>openLoungePreview(r)));
       actions.append(button('🔗 Karten-Link',()=>copyLink(r.request_code)));
       actions.append(button('▶ Aktivieren',()=>updateStatus(r,'approved',true)));
       actions.append(button('🔒 Sperren',()=>updateStatus(r,'revoked',false),'danger'));
@@ -107,6 +176,7 @@ async function reload(){
     }
     initializedPending=true;lastPendingIds=currentPending;
     render();
+    void loadOwnerMailFeed();
     $('tableFeedback').textContent=rows.length>=1000?'Hinweis: Es werden nur die neuesten 1000 Einträge angezeigt.':'';
   }catch(e){feedback('tableFeedback','Die Übersicht konnte nicht geladen werden.',true);console.error(e);}
 }
@@ -222,7 +292,10 @@ $('adminLogin').addEventListener('submit',async event=>{
 });
 $('signOut').addEventListener('click',async()=>{
   if(client)await client.auth.signOut();
-  stopRequestUpdates();signedIn=false;rows=[];$('dashboard').hidden=true;$('signInPanel').hidden=false;$('memberRows').replaceChildren();
+  stopRequestUpdates();signedIn=false;rows=[];previewMember=null;
+  $('loungePreviewDialog').close?.();
+  $('dashboard').hidden=true;$('signInPanel').hidden=false;
+  $('memberRows').replaceChildren();$('loungeMemberTiles').replaceChildren();$('loungeMailFeed').replaceChildren();
 });
 $('addMember').addEventListener('submit',async event=>{
   event.preventDefault();
