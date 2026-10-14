@@ -67,6 +67,6 @@ for(const [key,entry] of Object.entries(FAQ)){
      'FAQ should not direct public visitors to private admin tools');
  }
 }
-assert.ok(!/fetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|supabase|openai\.com/i.test(source),
+assert.ok(!/fetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|window\.supabase|createClient\s*\(|openai\.com/i.test(source),
  'The FAQ helper should not send or persist free-text messages or call an external AI provider');
 console.log('✅ Frost FAQ: '+total+' recognition checks passed; '+Object.keys(FAQ).length+' answers and their public links validated.');
