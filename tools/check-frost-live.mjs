@@ -41,6 +41,8 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
  if(page==='index.html'){
    check('Frost Skaters entry intro markup',body.includes('id="frostWelcomeIntro"')&&body.includes('id="frostIntroSkip"')&&body.includes('id="frostIntroSound"'));
+   check('Visitors can choose intro sound or skip',body.includes('Intro mit Sound starten')&&body.includes('Ohne Ton weiter'));
+   check('Frost Skaters intro can be replayed',body.includes('id="frostReplayIntro"'));
    check('Frost Skaters entry intro assets linked',body.includes('assets/frost-intro.css')&&body.includes('assets/frost-intro.js'));
  }
 }
