@@ -108,3 +108,14 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Direktaufrufe auf einen Abschnitt (`#…`), Nutzer mit reduzierter Animation und Wiederbesuche im gleichen Tab öffnen sofort die Website. `?intro=1` zeigt das Intro zum Testen unabhängig von der Session; `?intro=0` überspringt es.
 - Der Sound wird lokal im Browser erzeugt, ohne Downloads, externe Player, personenbezogene Daten oder urheberrechtlich geschützte Musik. Es gibt einen sichtbaren Skip-Button und man kann per Esc schließen.
 - Code und Animation: `assets/frost-intro.js` und `assets/frost-intro.css`. Bestehende Anmeldungen, Owner Lounge und Team Lounge bleiben unverändert.
+
+## 📅 Geschützter Team-Kalender
+
+- URL: `https://raphifrost.github.io/frost-skaters-landing/team-kalender.html`. Die Seite ist nicht im öffentlichen Menü verlinkt, sondern erst aus der eingeloggten Team Lounge und den internen Dashboards erreichbar.
+- Nur Teamkonten mit vom Owner freigeschalteter Rolle (Owner, Co-Owner, Managerin oder Team-Supporter) dürfen den Kalender lesen. Die Supabase-Tabelle `frost_team_calendar` hat Row Level Security (RLS).
+- **Owner, Co-Owner, Managerin:** neue Termine anlegen, bearbeiten, absagen oder entfernen. **Supporter:** dürfen Termine ansehen, aber nicht schreiben oder löschen. Normale Mitglieder und anonyme Besucher erhalten keinen Zugriff.
+- Monatsübersicht mit Mo–So, Tagesauswahl, Kategorie-Filter (Ausflug, Teamtreffen, Training, sonstige), Anzeige geplanter/bestätigter/abgesagter Termine, „Demnächst“-Liste und Nächster-Termin-Karte.
+- Termine speichern Datum, optional Uhrzeit (lokale Uhrzeit in Deutschland), Ort, Kurzbeschreibung, Status, Ersteller-ID und Zeitstempel. Das Formular speichert keine E-Mail-Adressen von Mitgliedern. Sensible/private Angaben gehören nicht in Termintexte.
+- Die Berechtigungen werden serverseitig durch PostgreSQL-RLS geprüft; das Ausblenden der Schaltflächen ist nur Oberfläche. Echtzeit-Änderungen werden mit Supabase Realtime und einer regelmäßigen Aktualisierung synchronisiert.
+- **Keine erfundenen Einträge:** Der Kalender startet mit tatsächlichen, gespeicherten Terminen. Ausflüge aus den öffentlichen Eventseiten werden nicht ohne ausdrückliche Planung zu verbindlichen Team-Terminen erklärt.
+- Für den produktiven Einsatz sollten Termine, Löschung/Aufbewahrung und rechtliche Anforderungen mit einer volljährigen verantwortlichen Person geklärt werden.
