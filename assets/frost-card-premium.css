@@ -1,0 +1,28 @@
+
+.member-card.frost-premium{position:relative;isolation:isolate;min-height:340px;padding:28px;border:1.5px solid transparent;border-radius:24px;overflow:hidden;color:#fafcff;background:linear-gradient(125deg,#0b1122,#091d2b 55%,#1c1027) padding-box,linear-gradient(120deg,#fb6fdb,#8b84ff 45%,#67edf6) border-box;box-shadow:0 27px 70px #0008,0 0 38px #dd4fd322}
+.member-card.frost-premium::before{height:240px;width:240px;inset:-85px -50px auto auto;border-radius:50%;background:radial-gradient(circle,#63eaf22b,transparent 72%);z-index:-1}
+.member-card.frost-premium::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(130deg,transparent 15%,#8beffa0b 32%,transparent 45%,transparent 60%,#ff84e00c 73%,transparent 83%)}
+.frost-premium .member-card-head{display:flex;align-items:center;justify-content:space-between;gap:13px}
+.frost-premium .frost-card-brand{display:flex;align-items:center;gap:14px}
+.frost-premium .member-logo{max-width:none;width:100px;height:66px;object-fit:contain}
+.frost-premium .member-card-title{font-weight:1000;font-size:1.2rem;letter-spacing:.14em;line-height:1.1}
+.frost-premium .member-card-sub{font-size:.65rem;letter-spacing:.19em;color:#90e3ed;margin-top:7px}
+.frost-card-snow{color:#7cf0f5;text-shadow:0 0 24px #42edfc8c;font-size:1.9rem;font-weight:900;text-align:right}
+.frost-card-snow small{display:block;color:#f4a0df;font-size:.52rem;letter-spacing:.12em;text-shadow:none}
+.frost-premium .member-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px;margin-top:23px}
+.frost-premium .member-card-detail{margin:0 0 13px}
+.frost-premium .member-card-key{font-size:.65rem;letter-spacing:.15em;color:#9bb3c9;font-weight:800}
+.frost-premium .member-card-value{font-size:1.25rem;line-height:1.1}
+.frost-premium .frost-card-name{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:950;letter-spacing:-.04em}
+.frost-premium .frost-card-role{color:#f9abea}
+.frost-premium .frost-card-number{font:.95rem ui-monospace,Consolas,monospace;letter-spacing:.08em;color:#b4e8f3}
+.frost-qr-frame{align-self:center;text-align:center}
+.frost-premium .member-qr{width:168px;height:168px;min-width:168px;min-height:168px;padding:9px;background:#fff;border-radius:14px;box-shadow:0 9px 23px #0007}
+.frost-qr-note{font-size:.6rem;color:#94e9f6;letter-spacing:.13em;font-weight:850;margin-top:9px}
+.frost-card-footer{border-top:1px solid #c4dbfc28;margin-top:12px;padding-top:13px;display:flex;justify-content:space-between;gap:10px;font-size:.59rem;letter-spacing:.12em;color:#9fbecc;font-weight:800}
+.frost-card-footer span:last-child{color:#eca4e4}
+.member-card.frost-premium.is-passive{background:linear-gradient(130deg,#241b2a,#101925) padding-box,linear-gradient(120deg,#e8cb86,#92718a,#d8b379) border-box}
+.member-card.frost-premium.is-passive .frost-card-snow{color:#f4d38d}
+.frost-premium .member-badge{font-size:.67rem;padding:4px 6px}
+@media(max-width:620px){.member-card.frost-premium{min-height:0;padding:17px}.frost-premium .member-logo{width:61px;height:44px}.frost-premium .frost-card-brand{gap:8px}.frost-premium .member-card-title{font-size:.82rem;letter-spacing:.07em}.frost-premium .member-card-sub{font-size:.45rem;letter-spacing:.08em}.frost-card-snow{font-size:1.3rem}.frost-card-snow small{font-size:.4rem}.frost-premium .member-card-main{gap:10px;margin-top:14px}.frost-premium .member-card-key{font-size:.55rem}.frost-premium .member-card-detail{margin-bottom:9px}.frost-premium .frost-card-name{font-size:1.2rem}.frost-premium .member-card-value{font-size:.95rem}.frost-premium .frost-card-number{font-size:.73rem}.frost-premium .member-qr{width:105px;min-width:105px;height:105px;min-height:105px;padding:6px}.frost-qr-note{font-size:.43rem;letter-spacing:0}.frost-card-footer{font-size:.46rem;padding-top:9px}}
+@media print{@page{size:A5 landscape;margin:12mm}.member-card.frost-premium{box-shadow:none;min-height:90mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
