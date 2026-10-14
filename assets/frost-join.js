@@ -36,14 +36,7 @@ $('joinForm').addEventListener('submit',async ev=>{
  try{
   const {error}=await client.from('frost_member_requests').insert({display_name:firstName,request_code:requestCode});
   if(error)throw error;
-  // Optional notification. Applications remain saved even if email delivery fails.
-  try{
-   const res=await fetch('https://formsubmit.co/ajax/raphi.leibssle@gmx.de',{
-    method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({name:firstName,_subject:'Frost Skaters – neuer Antrag',message:'Neuer Antrag von '+firstName+'. Bitte im geschützten Owner-Dashboard prüfen.'})
-   });
-   if(!res.ok)console.info('Optional owner email alert unavailable');
-  }catch{console.info('Optional owner email alert unavailable');}
+  // GMX notification is queued by the database, even when the Owner Lounge is closed.
   savedLink=personalLink(requestCode);
   try{localStorage.setItem('frost-member-card-code',requestCode);}catch{}
   $('joinCardLink').href=savedLink;
