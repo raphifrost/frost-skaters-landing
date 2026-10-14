@@ -1,0 +1,44 @@
+
+/* Owner-only lounge interface; all data still requires Supabase owner RLS */
+.lounge-hero{position:relative;overflow:hidden;border:1px solid #75e9f163;border-radius:27px;background:radial-gradient(ellipse at 95% 12%,#e64cc72e,transparent 50%),radial-gradient(ellipse at 0 80%,#42def02a,transparent 60%),linear-gradient(115deg,#121527,#101f30);padding:clamp(24px,4vw,39px);margin-bottom:22px}
+.lounge-hero::after{content:"❄";font-size:13rem;line-height:1;position:absolute;right:-15px;top:-42px;opacity:.06;pointer-events:none}
+.lounge-kicker{display:block;font-size:.73rem;font-weight:900;color:#8ceaf1;letter-spacing:.2em;text-transform:uppercase}
+.lounge-hero h1{font-size:clamp(2.25rem,5vw,3.7rem);line-height:1.1;margin:12px 0}
+.lounge-hero h1 span{color:#81ebf4}
+.lounge-hero p{max-width:620px;color:#c5d4e4;line-height:1.7}
+.lounge-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.lounge-links a{display:inline-flex;align-items:center;min-height:40px;padding:10px 15px;border-radius:11px;border:1px solid #a3eeef3b;color:#c7eff8;text-decoration:none;background:#61bada11;font-weight:750}
+.lounge-links a:hover{background:#61bada22}
+.lounge-stat{background:linear-gradient(135deg,#122a37,#221c37);border:1px solid #6de9f32e;border-radius:15px;padding:18px}
+.lounge-stat strong{color:#91edf7;font-size:2rem}
+.lounge-stat span{display:block;font-size:.75rem;margin-top:7px}
+.lounge-subhead{display:flex;justify-content:space-between;gap:10px;align-items:start;flex-wrap:wrap}
+.lounge-inbox{border-left:4px solid #f5a2de;padding:13px 16px;border-radius:12px;background:#ff77dc12;line-height:1.5;margin-top:15px}
+.lounge-inbox strong{color:#f1b6e2}
+.lounge-mail-list{display:grid;gap:8px}
+.lounge-mail-entry{border:1px solid #8de6eb24;padding:12px 14px;border-radius:12px;background:#081723a8;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lounge-mail-entry strong{font-size:.92rem}
+.lounge-mail-entry small{color:#9fbac4;font-size:.78rem}
+.lounge-member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:18px 0}
+.lounge-member{position:relative;border-radius:19px;padding:18px;min-width:0;background:linear-gradient(145deg,#192037,#101a2b);border:1px solid #7cf4f331;box-shadow:0 10px 27px #0003}
+.lounge-member::before{content:"";position:absolute;inset:0 0 auto;height:3px;border-radius:19px 19px 0 0;background:linear-gradient(90deg,#ff5fdd,#5feaf4)}
+.lounge-member.pending::before{background:linear-gradient(90deg,#f5c978,#e9b6af)}
+.lounge-member.passive::before{background:linear-gradient(90deg,#e6cb89,#d5c6a8)}
+.lounge-member h3{margin:10px 0 5px;font-size:1.3rem;overflow-wrap:anywhere}
+.lounge-member p{font-size:.84rem;color:#bbcada;line-height:1.5;margin:6px 0}
+.lounge-member .member-status-pill{display:inline-flex}
+.lounge-member .member-row-actions{margin-top:13px}
+.lounge-member .member-row-actions .member-btn{font-size:.75rem}
+.lounge-empty{border-radius:15px;border:1px dashed #8ec7d15a;padding:20px;color:#b7d6e2}
+.lounge-preview{width:min(790px,calc(100vw - 18px));max-width:790px;padding:20px;background:#12182b;color:#fff;border:1px solid #86e3ee;border-radius:24px;max-height:90vh;overflow:auto}
+.lounge-preview::backdrop{background:#020613db;backdrop-filter:blur(7px)}
+.lounge-preview .member-card{margin:16px 0}
+.lounge-preview h2{margin:5px 0 10px}
+.lounge-preview .member-card{min-height:0}
+.lounge-mail-panel summary{cursor:pointer;font-weight:850;font-size:1.09rem;color:#a7ebf7}
+.lounge-mail-panel summary::marker{color:#6febf4}
+.lounge-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:17px 0}
+.lounge-toolbar .member-btn{font-size:.89rem}
+@media(max-width:910px){.lounge-member-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:610px){.lounge-member-grid{grid-template-columns:1fr}.lounge-hero{padding:22px}.lounge-hero::after{font-size:8rem}.lounge-preview{padding:12px}}
+@media print{.lounge-preview{border:0;box-shadow:none}.lounge-preview .member-card{break-inside:avoid}}
