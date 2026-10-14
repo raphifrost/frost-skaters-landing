@@ -293,7 +293,8 @@ $('adminLogin').addEventListener('submit',async event=>{
 $('signOut').addEventListener('click',async()=>{
   if(client)await client.auth.signOut();
   stopRequestUpdates();signedIn=false;rows=[];previewMember=null;
-  $('loungePreviewDialog').close?.();
+  if($('loungePreviewDialog').open)$('loungePreviewDialog').close();
+  $('loungePreviewName').textContent='';$('loungePreviewQr').replaceChildren();
   $('dashboard').hidden=true;$('signInPanel').hidden=false;
   $('memberRows').replaceChildren();$('loungeMemberTiles').replaceChildren();$('loungeMailFeed').replaceChildren();
 });
