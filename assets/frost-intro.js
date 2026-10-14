@@ -85,6 +85,7 @@
     if (event.key === 'Escape') { event.preventDefault(); close(); }
     // Accessible focus loop inside the short introductory dialog.
     if (event.key === 'Tab') {
+      if (isPlaying) { event.preventDefault(); skip.focus(); return; }
       if (event.shiftKey && document.activeElement === start) {
         event.preventDefault(); skip.focus();
       } else if (!event.shiftKey && document.activeElement === skip) {
