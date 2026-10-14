@@ -41,7 +41,7 @@ for(const file of pages){
  for(const match of html.matchAll(/<script\b([^>]+)\bsrc=["'](assets\/[^"']+\.js)(?:\?[^"']*)?["'][^>]*><\/script>/g)){
   const asset=match[2];
   if(!exists(asset))continue;
-  if(!/frost-(?:hub|members|recap|team-talk|intro)/.test(asset))continue;
+  if(!/frost-(?:hub|members|recap|team-talk|team-calendar|intro)/.test(asset))continue;
   const code=textFile(asset);
   for(const ref of new Set([...code.matchAll(/\$\(['"]([A-Za-z][A-Za-z0-9_-]*)['"]\)/g)].map(x=>x[1]))){
     verifiedPageIds++;
@@ -66,7 +66,8 @@ const mustExist=[
  'assets/frost-hub-public.js','assets/frost-hub-admin.js','assets/frost-members.js',
  'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest',
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
- 'assets/frost-intro.js','assets/frost-intro.css'
+ 'assets/frost-intro.js','assets/frost-intro.css',
+ 'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
