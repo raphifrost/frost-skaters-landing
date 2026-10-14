@@ -119,3 +119,13 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Die Berechtigungen werden serverseitig durch PostgreSQL-RLS geprüft; das Ausblenden der Schaltflächen ist nur Oberfläche. Echtzeit-Änderungen werden mit Supabase Realtime und einer regelmäßigen Aktualisierung synchronisiert.
 - **Keine erfundenen Einträge:** Der Kalender startet mit tatsächlichen, gespeicherten Terminen. Ausflüge aus den öffentlichen Eventseiten werden nicht ohne ausdrückliche Planung zu verbindlichen Team-Terminen erklärt.
 - Für den produktiven Einsatz sollten Termine, Löschung/Aufbewahrung und rechtliche Anforderungen mit einer volljährigen verantwortlichen Person geklärt werden.
+
+## 🤖 Frost FAQ-Helfer – kostenloser Fragen-Chat für Besucher
+
+- Der Button **„❄️ Fragen?“** öffnet einen kleinen, mobilfreundlichen FAQ-Chat auf den öffentlichen Frost-Skaters-Seiten (Startseite, Anmeldung, Mitgliedskarten, Events, Training, Leitung, Community, Eishallen, Rückblick, Datenschutz und QR-Druckkarten). **Nicht** auf Team Lounge, Kalender oder Owner-Admin.
+- Besucher können häufige Fragen anklicken oder maximal 180 Zeichen als Frage eingeben. Der Helfer erkennt Stichwörter und beantwortet nur bekannte Themen: Aufnahme, Kennenlernen, Mitgliedskarte, Kartenstatus, Heilbronn-Ausflug, Kosten, Ausrüstung, Training, Eltern, Datenschutz und Kontakt. Er zeigt zu jeder passenden Antwort konkrete öffentliche Links.
+- **Kein generatives KI-Modell, kein externer Anbieter, kein Geld, kein Account, kein API-Schlüssel**: Text wird nur im Browser verarbeitet. Es werden weder Eingaben noch Verlauf an Supabase, GMX oder externe Dienste gesendet oder in Browser-Speichern gespeichert.
+- Unbekannte Fragen erhalten eine ehrliche Standardantwort mit Verweis auf die Leitung. Keine Behauptungen über Freigabe, ungeprüfte Events oder private Karten.
+- Der Helfer verwendet ausschließlich auf der bestehenden Website belegte beziehungsweise bereits abgestimmte Aussagen. **Wichtig:** Der derzeitige Veranstaltungstext verweist auf Heilbronn am **3. Januar 2027**; wenn sich dieser Termin ändert, müssen auch die festen FAQ-Antworten in `assets/frost-faq.js` angepasst werden.
+- FAQ-Dateien: `assets/frost-faq.js` (Fragen und feste Antworten) und `assets/frost-faq.css` (Anzeige). Die automatischen Prüfungen `tools/check-frost-faq.mjs`, `tools/check-frost-site.mjs` und `tools/check-frost-live.mjs` kontrollieren häufige Fragen, nur öffentliche Links, die Einbindung und die Live-Dateien.
+- In der Datenschutzerklärung gibt es einen eigenen Hinweis zur lokalen FAQ-Verarbeitung. Keine Passwörter, privaten Karten-Codes oder personenbezogenen Notizen in den FAQ-Chat eingeben; Kontaktaufnahme per WhatsApp erfolgt ausschließlich nach bewusstem Wechsel auf die Anmeldeseite.
