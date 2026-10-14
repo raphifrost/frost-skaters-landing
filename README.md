@@ -3,6 +3,9 @@
 Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skaters**.
 
 - Öffentliche Startseite: `index.html`
+- QR-Anmeldung mit eigenem Formular und WhatsApp: `anmelden.html`
+- Zwei druckbare QR-Karten: `qr-karten.html`
+
 - Community (Deutsch): `community.html`
 - Community (English): `community-en.html`
 - Mitgliedskarten: `mitglieder.html`
@@ -62,3 +65,12 @@ Eine manuelle Test-Checkliste steht in `MITGLIEDER-SETUP.md`. Der ehemalige Klei
 Nur notwendige Angaben verarbeiten, grundsätzlich keine Nachnamen, Geburtsdaten, Fotos ohne Freigaben oder privaten Kontaktdaten speichern. Niemals Kartenlinks veröffentlichen, denn Personen mit dem Link können die Kartendaten abrufen.
 
 Die öffentlich sichtbaren Datenschutzinformationen sind ein **Entwurf**, keine bestätigte rechtlich vollständige Erklärung. Es fehlen noch die gesetzlich nötigen vollständigen Angaben zur verantwortlichen volljährigen Person und eine Prüfung der Rechtsgrundlagen, Aufbewahrungsfristen, Dienstleister und Einwilligungen. Erwachsene Verantwortliche vor weitergehender Nutzung einbeziehen.
+
+## Zwei QR-Karten statt einer überladenen Startseite
+
+- **QR-Karte 1 – Anmeldung:** `https://raphifrost.github.io/frost-skaters-landing/anmelden.html`. Zeigt direkt das datensparsame Anmeldeformular (nur Vorname) und WhatsApp als Kontaktalternative. Nach dem Absenden wird wie beim bestehenden Mitgliedersystem ein persönlicher Karten-Link erzeugt.
+- **QR-Karte 2 – Website:** `https://raphifrost.github.io/frost-skaters-landing/`. Zeigt die gewohnte öffentliche Website, **ohne Anmeldeformular und ohne WhatsApp-Anmeldeblock**. Wer beitreten möchte, kann selbst die separate Anmeldeseite öffnen.
+- Unter `qr-karten.html` sind beide mit dem echten Logo gestalteten QR-Karten druckbar. Die QR-Matrizen sind statisch im Projekt hinterlegt und benötigen keinen QR-Generator-Drittanbieter.
+- `mitglieder.html` und die bestehenden privaten Mitgliedskarten bleiben weiterhin erreichbar. Diese beiden neuen Werbe-QR-Karten sind **keine** persönlichen Mitgliedsausweise.
+
+Hinweis: Nach Änderungen an den URLs müssen neue QR-Codes erzeugt und neue physische Karten gedruckt werden. Vor dem Druck immer beide QR-Codes testen.
