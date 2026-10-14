@@ -10,6 +10,7 @@ Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skat
 - Community (English): `community-en.html`
 - Mitgliedskarten: `mitglieder.html`
 - **Owner Lounge:** `mitglieder-admin.html` – alle Mitglieder, Kartenfreigaben, manueller Zugang, QR-Vorschau, Mail-Übersicht
+- **Private Team Lounge:** `team-talk.html` – Gruppenchat, Gesprächsräume, Jitsi-Audio/Video und Owner-Freigaben für Co-Owner, Managerin und Supporter.
 - Geschützte Team-Zentrale für Beiträge und Aufgaben: `hub-admin.html`
 - Eishallen-Links: `eishallen.html`
 - Jahresrückblick: `jahresrueckblick.html`
@@ -84,3 +85,16 @@ Die digitalen Mitgliedskarten auf `mitglieder.html?code=…` haben ein neues Fro
 Für automatische E-Mail-Benachrichtigungen nutzt Supabase einen Datenbank-Trigger mit `pg_net` und FormSubmit. Nach einer Antragstellung wird eine Info an die auf der Website hinterlegte GMX-Adresse beauftragt. Nach Freigabe erhält der Owner eine zweite Benachrichtigung mit dem **privaten digitalen Karten-Link**, der die gestaltete Karte mit QR-Code öffnet. **Es wird keine PNG- oder PDF-Datei als E-Mail-Anhang verschickt**. Das System muss einen bestätigten FormSubmit-Empfänger haben; technisch angenommen ist nicht gleich vom Postfach empfangen. Die E-Mail darf nur an die betreffende Person weitergeleitet werden und ist nicht für öffentliche Verteiler geeignet.
 
 Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Neue Test-Mails können im Spamordner liegen. Bestehende Anträge werden durch die neue Automatik nicht erneut benachrichtigt. Bei sehr vielen unaufgeforderten Anträgen begrenzt eine einfache Schutzregel die Anzahl neuer E-Mail-Aufträge.
+
+## 🎙️ Team Lounge – nur für freigeschaltete Teammitglieder
+
+- Direktlink: `https://raphifrost.github.io/frost-skaters-landing/team-talk.html`
+- Vier Rollen: Owner, Co-Owner, Managerin und Team-Supporter. Die Freigabe erfolgt in der Team Lounge durch den Owner mit Supabase-Benutzer-ID, Vorname und Rolle.
+- Jede Person registriert ein eigenes Konto und bestätigt ggf. die E-Mail. Bis zur Owner-Freigabe ist kein Zugriff auf private Teamdaten möglich.
+- Alle freigeschalteten Teamrollen dürfen Gesprächsräume erstellen, Chatnachrichten senden und gemeinsame Audio-/Video-Gespräche über `meet.jit.si` öffnen. Der Teamchat nutzt Supabase Realtime mit RLS.
+- Team-Supporter erhalten **keine** zusätzlichen Rechte im Owner-/Community-Adminsystem; diese bleiben beim Owner bzw. den schon zugelassenen Co-Owner-/Manager-Rollen.
+- Der Owner kann Team-Zugänge entziehen und Gespräche mitsamt dem Chatverlauf löschen. Eigene Nachrichten können von den jeweiligen Absendern entfernt werden. Es ist keine automatische Aufbewahrungsfrist konfiguriert.
+- Die neue Team Lounge wird nicht über öffentliche Menüs beworben; die HTML-Login-Seite ist technisch dennoch direkt aufrufbar. Nur RLS und Teamfreigaben schützen die Daten.
+- Für Mikrofon, Kamera und Bildschirmfreigabe öffnet sich der externe Anbieter Jitsi erst nach einem bewussten Klick. **Ein weitergegebener Videolink kann auch Personen außerhalb des Teams einlassen.** Im Jitsi-Meeting deshalb Lobby oder entsprechende Zugangsbeschränkungen aktivieren. Die erste Person, die ein Meeting startet, benötigt ggf. einen Jitsi-kompatiblen Account; Jitsi begrenzt `meet.jit.si`-Meetings derzeit auf 95 Minuten.
+- Jitsi wird **nicht** innerhalb des GitHub-/Supabase-Datenschutzbereichs betrieben. Die Audio-/Video-Verbindungen laufen über den externen Anbieter; dessen Datenschutzbedingungen beachten. Keine Gespräche heimlich aufnehmen.
+- Automatische Code- und öffentliche Zugriffsprüfungen laufen via GitHub Actions. Ein vollständiger browserbasierter Live-Test mit echten Teamkonten steht vor dem produktiven Einsatz noch aus.
