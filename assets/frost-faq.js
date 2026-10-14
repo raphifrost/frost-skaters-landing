@@ -107,12 +107,12 @@
     if (/(foto|bilder|bildrecht|galerie|aufnahme)/.test(q)) return 'pictures';
     if (/(eltern|minderjahr|erlaubnis|einwilligung|alter|jugendlich)/.test(q)) return 'parents';
     if (/(mitgliedsbeitrag|mitgliedschaft.*(kost|preis|beitrag)|(?:kost|preis|beitrag).*(?:mitgliedschaft|mitglied werden))/.test(q)) return 'memberPrice';
-    if (/(kosten|preis|eintritt|bezahlen|geld|ticketpreis|fahrkarte|leihgebuhr)/.test(q)) return 'eventPrice';
+    if (/(kost|teuer|preis|eintritt|bezahlen|geld|ticketpreis|fahrkarte|leihgebuhr|ausleihe)/.test(q)) return 'eventPrice';
     if (/(schlittschuh|ausrustung|mitnehmen|ausleihen|leihen|packliste)/.test(q)) return 'equipment';
     if (/(treffpunkt|uhrzeit|abfahrt|bahnhof|zugfahrt|ankunft)/.test(q)) return 'eventTime';
     if (/(trainier|training|trainingsplan|ubung)/.test(q)) return 'training';
     if (/(k(e|a)nn?enlernen|gesprach|10 minuten|termin machen)/.test(q)) return 'firstMeet';
-    if (/(kartenstatus|karten code|kartenlink|karten link|karte finden|karte ansehen|karte prufen|status meiner|status der karte|mein qr code)/.test(q)) return 'findCard';
+    if (/(kartenstatus|karten code|kartenlink|karten link|karte finden|karte ansehen|karte prufen|finde ich (meine|die) karte|status meiner|status der karte|mein qr code)/.test(q)) return 'findCard';
     if (/(freischalt|genehmig|antrag dauert|antrag gepruft|wann bekomme ich die karte|wann bekomme ich meine karte|wann bekomme ich meine mitgliedskarte|warte auf)/.test(q)) return 'waiting';
     if (/(mitgliedskarte|mitgliedsnummer|community karte|member card|karte beantragen|karte bekommen|mitglieds ausweis|mitgliedsausweis)/.test(q)) return 'getCard';
     if (/(ausflug|event|heilbronn|eishalle|n[aä]chst(e|er|es) treff|wo geht es hin|wann fahren)/.test(q)) return 'event';
