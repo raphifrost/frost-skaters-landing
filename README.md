@@ -98,3 +98,11 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Für Mikrofon, Kamera und Bildschirmfreigabe öffnet sich der externe Anbieter Jitsi erst nach einem bewussten Klick. **Ein weitergegebener Videolink kann auch Personen außerhalb des Teams einlassen.** Im Jitsi-Meeting deshalb Lobby oder entsprechende Zugangsbeschränkungen aktivieren. Die erste Person, die ein Meeting startet, benötigt ggf. einen Jitsi-kompatiblen Account; Jitsi begrenzt `meet.jit.si`-Meetings derzeit auf 95 Minuten.
 - Jitsi wird **nicht** innerhalb des GitHub-/Supabase-Datenschutzbereichs betrieben. Die Audio-/Video-Verbindungen laufen über den externen Anbieter; dessen Datenschutzbedingungen beachten. Keine Gespräche heimlich aufnehmen.
 - Automatische Code- und öffentliche Zugriffsprüfungen laufen via GitHub Actions. Ein vollständiger browserbasierter Live-Test mit echten Teamkonten steht vor dem produktiven Einsatz noch aus.
+
+## ❄️ Kurzes Startseiten-Intro mit Eis-Sound
+
+- `index.html` zeigt beim ersten Einstieg in einer Browser-Tab-Sitzung ein ungefähr vier Sekunden langes animiertes Frost-Skaters-Logo mit eisiger Leucht- und Schneepartikel-Animation.
+- Der Button **„🔊 Eis-Sound abspielen“** erzeugt direkt per Web Audio API einen kurzen dezenten Eis-Knister-/Whoosh-Effekt ohne externe Audiodatei, Werbung oder urheberrechtlich geschützte Musik. Auf iOS und anderen Browsern ist hierfür das **aktive Antippen** notwendig, weil Autoplay-Ton blockiert wird.
+- **„Weiter zur Website →“** überspringt die Animation sofort. Für Nutzer mit `prefers-reduced-motion` oder für gezielt aufgerufene Abschnittslinks (#...) wird das Intro nicht angezeigt.
+- Erneute Anzeige zum Prüfen möglich über `https://raphifrost.github.io/frost-skaters-landing/?intro=1`. Mit `?intro=0` wird es übersprungen. Ansonsten pro Tab-Sitzung nur einmal, damit wiederholte Besuche nicht nerven.
+- Styles und Code sind lokal in `assets/frost-intro.css` und `assets/frost-intro.js`. Die restliche Homepage, Mitgliederverwaltung, das QR-Anmeldesystem sowie die internen Team-/Owner-Seiten werden dadurch nicht geändert.
