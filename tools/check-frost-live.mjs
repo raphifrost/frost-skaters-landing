@@ -34,11 +34,15 @@ function check(test,ok,explanation=''){
  if(!ok)throw Error('FAILED '+test+(explanation?': '+explanation:''));
  results.push('✅ '+test);
 }
-for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html','team-talk.html']){
+for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html','team-talk.html','team-kalender.html']){
  const response=await request(origin+page);
  const body=await response.text();
  check('GitHub Pages '+page,response.status===200,'HTTP '+response.status);
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
+ if(page==='team-kalender.html'){
+   check('Team-Kalender protected login markup',body.includes('id="tcLogin"')&&body.includes('id="tcPrivate"'));
+   check('Team-Kalender month navigation and event form',body.includes('id="tcGrid"')&&body.includes('id="tcEventForm"'));
+ }
  if(page==='index.html'){
    check('Frost Skaters entry intro markup',body.includes('id="frostWelcomeIntro"')&&body.includes('id="frostIntroSkip"')&&body.includes('id="frostIntroSound"'));
    check('Visitors can choose intro sound or skip',body.includes('Intro mit Sound starten')&&body.includes('Ohne Ton weiter'));
@@ -46,7 +50,7 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Frost Skaters entry intro assets linked',body.includes('assets/frost-intro.css')&&body.includes('assets/frost-intro.js'));
  }
 }
-for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
@@ -80,5 +84,7 @@ const roster=await api('/rest/v1/rpc/frost_team_roster','POST',{});
 check('Anonymous visitors cannot list team participants',!roster.ok,'HTTP '+roster.status);
 const teamRole=await api('/rest/v1/rpc/frost_team_my_role','POST',{});
 check('Anonymous visitors cannot query internal team roles',!teamRole.ok,'HTTP '+teamRole.status);
+const teamCalendar=await api('/rest/v1/frost_team_calendar?select=id,title,event_date&limit=1');
+check('Anonymous visitors cannot read private team calendar',!teamCalendar.ok,'HTTP '+teamCalendar.status);
 console.log('Frost Skaters live smoke tests: '+results.length+' checks passed.');
 for(const line of results)console.log(line);
