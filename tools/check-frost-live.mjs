@@ -34,13 +34,13 @@ function check(test,ok,explanation=''){
  if(!ok)throw Error('FAILED '+test+(explanation?': '+explanation:''));
  results.push('✅ '+test);
 }
-for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html']){
+for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html','team-talk.html']){
  const response=await request(origin+page);
  const body=await response.text();
  check('GitHub Pages '+page,response.status===200,'HTTP '+response.status);
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
 }
-for(const asset of ['assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
@@ -66,5 +66,13 @@ const owner=await api('/rest/v1/rpc/frost_hub_is_owner','POST',{});
 check('Anonymous owner privilege check is denied',!owner.ok,'HTTP '+owner.status);
 const history=await api('/rest/v1/frost_hub_member_history?select=*&limit=1');
 check('Anonymous member history read is denied',!history.ok,'HTTP '+history.status);
+const teamRoom=await api('/rest/v1/frost_team_rooms?select=*&limit=1');
+check('Anonymous visitors cannot read team rooms',!teamRoom.ok,'HTTP '+teamRoom.status);
+const teamChat=await api('/rest/v1/frost_team_messages?select=*&limit=1');
+check('Anonymous visitors cannot read team messages',!teamChat.ok,'HTTP '+teamChat.status);
+const roster=await api('/rest/v1/rpc/frost_team_roster','POST',{});
+check('Anonymous visitors cannot list team participants',!roster.ok,'HTTP '+roster.status);
+const teamRole=await api('/rest/v1/rpc/frost_team_my_role','POST',{});
+check('Anonymous visitors cannot query internal team roles',!teamRole.ok,'HTTP '+teamRole.status);
 console.log('Frost Skaters live smoke tests: '+results.length+' checks passed.');
 for(const line of results)console.log(line);
