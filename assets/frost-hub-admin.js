@@ -366,7 +366,7 @@ async function loadStaff(){
  const target=$('hubStaffList');target.replaceChildren();
  if(!people.length){target.append(make('p','fh-hint','Noch keine weiteren Team-Accounts freigeschaltet.'));return;}
  people.forEach(p=>{
-  const n=make('article','fh-panel');n.append(make('span','fh-chip',p.role==='coowner'?'Co-Owner':'Manager'),make('p','fh-hint','Benutzer-ID: '+p.user_id));
+  const n=make('article','fh-panel');n.append(make('span','fh-chip',({coowner:'Co-Owner',manager:'Managerin',supporter:'Team-Supporter'}[p.role]||p.role)),make('p','fh-hint','Benutzer-ID: '+p.user_id));
   n.append(nodeBtn('🔒 Zugang entziehen',async()=>{
    const ok=await confirmOperation('Team-Berechtigung wirklich entfernen?',async()=>{const {error}=await client.from('frost_hub_staff').delete().eq('user_id',p.user_id);if(error)throw error;});if(ok)await loadStaff();
   },'warn'));target.append(n);
