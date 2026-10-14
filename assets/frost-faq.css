@@ -1,0 +1,142 @@
+/* Frost FAQ — small, optional helper on public pages only.
+   Namespaced styles keep it isolated from Frost Skaters' page designs. */
+.fsfaq-root{
+  position:fixed;bottom:max(18px,env(safe-area-inset-bottom));
+  right:max(18px,env(safe-area-inset-right));
+  z-index:500;display:flex;align-items:flex-end;flex-direction:column;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color:#f7fcff;font-size:14px;line-height:1.45;isolation:isolate;
+}
+.fsfaq-root,.fsfaq-root *{box-sizing:border-box}
+.fsfaq-root button,.fsfaq-root input{font:inherit}
+.fsfaq-root button{cursor:pointer}
+.fsfaq-root button:focus-visible,.fsfaq-root input:focus-visible,
+.fsfaq-root a:focus-visible{outline:3px solid #f9a0df;outline-offset:3px}
+.fsfaq-launch{
+  appearance:none;display:inline-flex;align-items:center;justify-content:center;
+  gap:9px;min-height:52px;min-width:138px;padding:12px 18px;
+  color:#091827;font-weight:900;font-size:14px;letter-spacing:.01em;
+  border-radius:50px;border:1px solid #9ff9f8;
+  box-shadow:0 14px 35px #02060cd9,0 0 22px #40c8e24a;
+  background:linear-gradient(112deg,#a3fbf8,#63dce9 59%,#d3bfff);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.fsfaq-launch:hover{transform:translateY(-2px);box-shadow:0 17px 42px #02060cdd,0 0 27px #56f1ff60}
+.fsfaq-launch-icon{font-size:21px;line-height:1}
+.fsfaq-panel[hidden]{display:none!important}
+.fsfaq-panel{
+  display:flex;flex-direction:column;
+  position:absolute;bottom:calc(100% + 13px);right:0;
+  width:min(390px,calc(100vw - 24px));
+  height:min(590px,calc(100dvh - 99px));
+  max-height:calc(100vh - 99px);
+  overflow:hidden;border:1px solid #78ebf0aa;border-radius:20px;
+  color:#ecf8ff;background:linear-gradient(150deg,#101a2d,#0c1528 65%,#131630);
+  box-shadow:0 25px 80px #000d,0 0 25px #40d1ee20;
+}
+.fsfaq-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:15px 17px;border-bottom:1px solid #bdceec22;
+  background:radial-gradient(ellipse at right,#ff70db24,transparent 56%),
+    linear-gradient(110deg,#13263b,#171a34);
+  flex:0 0 auto;
+}
+.fsfaq-brand{display:flex;align-items:center;gap:11px;min-width:0}
+.fsfaq-emblem{width:46px;height:46px;object-fit:contain;border-radius:12px;background:#111a2c;padding:2px}
+.fsfaq-head-titles{min-width:0}
+.fsfaq-title{font-size:1.18rem!important;margin:0!important;line-height:1.2!important;color:#ecfeff!important;letter-spacing:-.02em;font-weight:900!important}
+.fsfaq-subtitle{font-size:.72rem!important;color:#acd7e9!important;margin:3px 0 0!important;line-height:1.35!important}
+.fsfaq-close{
+  appearance:none;min-width:38px;min-height:38px;
+  border:1px solid #afd7ea57;border-radius:12px;
+  color:#e9f7ff;background:#ffffff08;font-weight:800
+}
+.fsfaq-close:hover{background:#ffffff18}
+.fsfaq-messages{
+  padding:18px 15px;display:flex;flex-direction:column;gap:13px;
+  min-height:70px;flex:1;overflow:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:#60cde884 transparent;
+}
+.fsfaq-message{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.fsfaq-message--user{align-items:flex-end}
+.fsfaq-bubble{
+  color:#e5f4ff;background:#1b2b40;max-width:93%;
+  border:1px solid #829ac33d;border-radius:17px 17px 17px 5px;
+  padding:11px 13px;line-height:1.55;font-size:.88rem;
+  overflow-wrap:anywhere;white-space:pre-wrap;
+}
+.fsfaq-message--user .fsfaq-bubble{
+  color:#081a26;background:linear-gradient(120deg,#97f5f5,#7bd4f4);
+  border-color:#8eeaf7;border-radius:17px 17px 5px 17px;
+  font-weight:650;
+}
+.fsfaq-links{display:flex;flex-wrap:wrap;gap:7px;max-width:100%}
+.fsfaq-link{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:8px 10px;border-radius:10px;border:1px solid #70cfdd8b;
+  background:#0f3443;color:#acf8fc!important;text-decoration:none!important;
+  font-weight:850;font-size:.75rem;line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.fsfaq-link:hover{background:#15505e;color:#fff!important}
+.fsfaq-quick-title{
+  color:#bbd6e5!important;margin:0!important;font-size:.75rem!important;
+  font-weight:850;padding:8px 15px 0;flex:0 0 auto;
+}
+.fsfaq-quick{
+  display:flex;flex-wrap:wrap;gap:7px;padding:7px 15px 13px;
+  flex:0 0 auto;max-height:107px;overflow:auto;
+}
+.fsfaq-chip{
+  appearance:none;border:1px solid #718ca579;
+  background:#182941;color:#def7ff;
+  border-radius:99px;padding:7px 10px;min-height:32px;
+  font-size:.73rem!important;font-weight:780;white-space:nowrap;
+}
+.fsfaq-chip:hover{border-color:#7fe3ed;background:#1b3f54}
+.fsfaq-form{
+  display:flex;align-items:stretch;gap:7px;
+  padding:12px 13px;border-top:1px solid #adc1e129;
+  flex:0 0 auto;background:#111c30;
+}
+.fsfaq-input{
+  width:100%!important;min-width:0!important;min-height:44px!important;
+  background:#071320!important;color:#f4fdff!important;
+  border:1px solid #8ea5c365!important;
+  border-radius:12px!important;padding:11px 12px!important;
+  font-size:16px!important;line-height:1.25!important;
+  box-shadow:none!important;margin:0!important;
+}
+.fsfaq-input::placeholder{color:#a4bacd!important;opacity:1}
+.fsfaq-submit{
+  appearance:none;min-width:45px;border:1px solid #7fecf2;
+  border-radius:12px;background:#7ce9f1;color:#061a29;
+  font-size:1.2rem!important;font-weight:900!important;
+}
+.fsfaq-submit:hover{background:#a0fbfa}
+.fsfaq-foot{
+  padding:0 13px 10px;margin:0!important;
+  background:#111c30;color:#a8c2d3!important;
+  font-size:.67rem!important;line-height:1.5!important;
+  text-align:center!important;flex:0 0 auto;
+}
+@media(max-width:500px){
+ .fsfaq-root{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom))}
+ .fsfaq-launch{min-height:49px;min-width:130px;padding:10px 14px}
+ .fsfaq-panel{height:min(570px,calc(100dvh - 89px));width:calc(100vw - 24px);border-radius:17px}
+ .fsfaq-quick{max-height:120px}
+ .fsfaq-messages{padding:15px 13px}
+}
+@media(max-height:480px){
+ .fsfaq-panel{height:calc(100dvh - 78px);max-height:calc(100vh - 78px)}
+ .fsfaq-head{padding:8px 12px}
+ .fsfaq-emblem{width:30px;height:30px}
+ .fsfaq-quick{max-height:65px;padding-bottom:5px}
+ .fsfaq-quick-title{padding-top:4px}
+ .fsfaq-form{padding:7px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+ .fsfaq-launch{transition:none}
+ .fsfaq-launch:hover{transform:none}
+}
+@media print{.fsfaq-root{display:none!important}}
