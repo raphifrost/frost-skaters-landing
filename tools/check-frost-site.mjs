@@ -67,8 +67,7 @@ const mustExist=[
  'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest',
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
- 'assets/frost-intro.js','assets/frost-intro.css',
- 'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css'
+ 'assets/frost-intro.js','assets/frost-intro.css'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 // Make sure the protected calendar has its own login and is linked only from staff pages.
