@@ -3,7 +3,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Frost Skaters Community: Eislauf-Events, freiwillige Challenges, Umfragen, Crew-Geschichte und Ideenbox.">
 <meta name="theme-color" content="#080911">
-<title>Frost Skaters Community 3.0</title>
+<title>Frost Skaters | Aktuelles</title>
 <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="assets/site-menu.css">
 <link rel="stylesheet" href="assets/frost-hub.css?v=1">
@@ -11,33 +11,26 @@
 <header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:14px;flex-wrap:wrap"><a href="mitglieder.html" style="color:#76e5ec;text-decoration:none;font-weight:800">🪪 Member Card</a><a href="community-en.html" style="color:#76e5ec;font-weight:800">🇬🇧 English</a></nav></header>
 <main class="fh-wrap">
 <section class="fh-head fh-hero">
-<div><p class="fh-eye">Frost Skaters · Community 3.0</p><h1>Mehr als <span style="color:#68eaf1">Eislaufen.</span> ❄️</h1>
-<p>Unsere Events, Ideen, Abstimmungen, die Geschichte der Crew und hilfreiche Infos – alles an einem Ort. Gemeinsam, fair und mit Spaß auf dem Eis.</p>
-<div class="fh-actions"><a class="fh-btn" href="mitglieder.html">🪪 Mitgliedskarte</a><a class="fh-btn alt" href="#events">📅 Events</a><a class="fh-btn alt" href="#feedback">💬 Ideenbox</a></div></div>
+<div><p class="fh-eye">Frost Skaters · Aktuelles</p><h1>Neues von <span style="color:#68eaf1">Frost Skaters.</span> ❄️</h1>
+<p>Unsere wichtigsten Termine, Neuigkeiten und Möglichkeiten zum Mitmachen.</p>
+<div class="fh-actions"><a class="fh-btn" href="#events">📅 Events</a><a class="fh-btn alt" href="mitglieder.html">🪪 Mitgliedskarte</a></div></div>
 <img class="fh-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo">
 </section>
-<nav class="fh-menu" aria-label="Community-Bereiche">
-<a href="#news">Neuigkeiten</a><a href="#events">Ausflüge</a><a href="#polls">Abstimmungen</a><a href="#challenges">Challenges</a><a href="#gallery">Galerie</a><a href="#history">Geschichte</a><a href="#learn">Eislauf-Tipps</a><a href="#feedback">Ideenbox</a><a href="#stats">Statistik</a><a href="eishallen.html">📍 Eishallen-Finder</a><a href="jahresrueckblick.html">🎞️ Jahresrückblick</a><a href="#rules">Regeln</a>
-</nav>
-<div class="fh-actions"><a href="eishallen.html" class="fh-btn alt">📍 Eishallen entdecken</a><a href="jahresrueckblick.html" class="fh-btn alt">🎞️ Jahresrückblick ansehen</a><a href="hub-admin.html" class="fh-btn alt">👑 Für die Leitung</a></div><div class="fh-alert" id="hubConnection">Die Community lädt ihre aktuellen Inhalte …</div>
-<section class="fh-sec" id="season"><h2>⏳ Nächste Saison</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">Der nächste Saisontermin wird von der Leitung bekanntgegeben.</p><p id="welcomeText"></p></div></section>
+<nav class="fh-menu" aria-label="Community-Bereiche"><a href="#news">Neuigkeiten</a><a href="#events">Events</a><a href="#polls">Abstimmungen</a><a href="#feedback">Ideenbox</a></nav>
+<div class="fh-alert" id="hubConnection">Die Community lädt ihre aktuellen Inhalte …</div>
 <section class="fh-sec" id="news"><h2>📢 Neuigkeiten</h2><p>Offizielle Mitteilungen der Leitung.</p><div id="newsItems" class="fh-grid"><p class="fh-hint">Noch keine aktuellen Beiträge.</p></div></section>
+
 <section class="fh-sec" id="events"><h2>📅 Events &amp; Teilnahme</h2><p>Du kannst dich unverbindlich mit deinem Vornamen für ein veröffentlichtes Event vormerken lassen. Die Leitung muss die Teilnahme bestätigen. Bei Minderjährigen müssen die Erziehungsberechtigten einen Ausflug erlauben.</p><div id="eventItems" class="fh-grid"><p class="fh-hint">Events werden geladen.</p></div></section>
+
+<details class="fh-panel fh-more" id="statusDetails"><summary>📨 Meine Anmeldung prüfen</summary>
 <section class="fh-sec" id="requestStatus"><h2>📨 Meine Event-Anmeldung prüfen</h2>
  <p>Nach deiner Anmeldung bekommst du einen persönlichen Status-Link. Heb ihn sicher auf. Du musst deinen Vornamen nicht erneut eingeben.</p>
  <form class="fh-panel" id="requestStatusForm"><label class="fh-field">Dein privater Anmeldecode oder Link<input class="fh-input" id="requestStatusCode" type="text" autocomplete="off" required placeholder="Anmeldecode oder Link einfügen"></label>
  <button class="fh-btn" type="submit">Anmeldestatus prüfen</button><p id="requestStatusFeedback" class="fh-status" role="status"></p></form></section>
- <section class="fh-sec" id="polls"><h2>🗳️ Crew-Abstimmungen</h2><p>Entscheidet gemeinsam, welche Ideen als Nächstes drankommen. Eine Stimme pro Browser und Abstimmung; die Ergebnisse sind informell und nicht manipulationssicher.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Umfragen werden geladen.</p></div></section>
-<section class="fh-sec" id="challenges"><h2>🏅 Freiwillige Challenges</h2><p>Probiere einfache Eislauf-Übungen in deinem Tempo. Kein Wettbewerb und kein Leistungsdruck – bitte beachte die Regeln der Eishalle.</p><div id="challengeItems" class="fh-grid"><div class="fh-panel"><h3>Erste Runde ⛸️</h3><p>Fahre eine ruhige Runde, bleib aufmerksam und hab Spaß.</p></div></div></section>
-<section class="fh-sec" id="gallery"><h2>📸 Community-Galerie</h2><p>Hier erscheinen nur Fotos, für deren Veröffentlichung alle erkennbaren Personen zugestimmt haben. Insbesondere bei Minderjährigen braucht es geeignete Freigaben.</p><div id="galleryItems" class="fh-grid"><p class="fh-hint">Noch keine freigegebenen Fotos.</p></div></section>
-<section class="fh-sec" id="history"><h2>📖 Unsere Geschichte</h2><div class="fh-timeline"><div class="fh-panel"><span class="fh-meta">2025</span><h3>Gründung von Frost Skaters ❄️</h3><p>Seit 2025 wachsen wir als Eislauf-Community zusammen.</p></div><div id="historyItems"></div></div></section>
-<section class="fh-sec" id="learn"><h2>📚 Eislauf-Wissen &amp; Guide</h2>
-<div class="fh-grid">
-<article class="fh-panel"><span class="fh-chip">Für neue Mitglieder</span><h3>Deine ersten Schritte</h3><p>Mit Vorname anmelden, Community-Karte beantragen, Eishallenregeln lesen und mit anderen respektvoll umgehen. Fragen? Wende dich an die Leitung.</p><a href="mitglieder.html" class="fh-btn alt">Mitgliedskarte beantragen</a></article>
-<article class="fh-panel"><span class="fh-chip">Schlittschuhe</span><h3>Pflege nach dem Eis</h3><p>Kufen nach dem Laufen trocknen, außerhalb des Eises Schoner nutzen und Schlittschuhe vollständig trocknen lassen. Schleifen am besten vom Fachbetrieb prüfen lassen.</p></article>
-<article class="fh-panel"><span class="fh-chip">Sicherheit</span><h3>Rücksichtsvoll fahren</h3><p>Mit Abstand fahren, auf Anfänger achten, nur erlaubte Bereiche nutzen und bei Unsicherheit um Hilfe bitten. Geeignete Schutzausrüstung verwenden.</p></article>
-<article class="fh-panel"><span class="fh-chip">Für Ausflüge</span><h3>Checkliste</h3><ul class="fh-list"><li>Schlittschuhe oder Leihschuhe</li><li>Passende Kleidung und Handschuhe</li><li>Fahrkarte und Eintrittsgeld</li><li>Getränk für Hin- und Rückfahrt</li><li>Erlaubnis der Eltern bei Minderjährigen</li></ul></article>
-</div></section>
+</details>
+
+<section class="fh-sec" id="polls"><h2>🗳️ Crew-Abstimmungen</h2><p>Entscheidet gemeinsam, welche Ideen als Nächstes drankommen. Eine Stimme pro Browser und Abstimmung; die Ergebnisse sind informell und nicht manipulationssicher.</p><div id="pollItems" class="fh-grid"><p class="fh-hint">Umfragen werden geladen.</p></div></section>
+
 <section class="fh-sec" id="feedback"><h2>💬 Ideen- &amp; Feedbackbox</h2><p>Vorschläge für die Community? Du kannst sie anonym abschicken. Bitte keine Namen, Telefonnummern oder andere persönlichen Daten eintragen.</p>
 <div class="fh-grid"><div class="fh-panel"><h3>Deine Idee</h3>
 <form id="ideaForm"><label class="fh-field">Art der Nachricht<select class="fh-input" id="ideaKind"><option value="idea">Neue Idee</option><option value="feedback">Feedback</option></select></label>
@@ -45,10 +38,33 @@
 <label class="fh-field" style="display:flex;flex-direction:row;align-items:start;font-weight:400"><input type="checkbox" required> <span>Ich habe die <a href="datenschutz.html">Datenschutzhinweise</a> gelesen. Bitte keine personenbezogenen Angaben eingeben.</span></label>
 <button class="fh-btn" type="submit" id="ideaSend">An Leitung schicken</button><p id="ideaStatus" role="status" class="fh-status"></p></form></div>
 <div class="fh-panel"><h3>🫶 Gemeinsam besser</h3><p>Deine Idee wird nicht automatisch öffentlich angezeigt. Die Leitung sieht die Einsendung im geschützten Bereich und entscheidet, ob daraus ein Projekt wird.</p><a class="fh-btn alt" href="index.html#whatsapp">Kontakt aufnehmen</a></div></div></section>
+
+<details class="fh-panel fh-more" id="moreArea"><summary>❄️ Mehr über Frost Skaters</summary>
+<div class="fh-more-inner">
+<section class="fh-sec" id="season"><h2>⏳ Nächste Saison</h2><div class="fh-panel"><span class="fh-meta">Frost Skaters Countdown</span><p id="seasonCountdown">Der nächste Saisontermin wird von der Leitung bekanntgegeben.</p><p id="welcomeText"></p></div></section>
+
+<section class="fh-sec" id="challenges"><h2>🏅 Freiwillige Challenges</h2><p>Probiere einfache Eislauf-Übungen in deinem Tempo. Kein Wettbewerb und kein Leistungsdruck – bitte beachte die Regeln der Eishalle.</p><div id="challengeItems" class="fh-grid"><div class="fh-panel"><h3>Erste Runde ⛸️</h3><p>Fahre eine ruhige Runde, bleib aufmerksam und hab Spaß.</p></div></div></section>
+
+<section class="fh-sec" id="gallery"><h2>📸 Community-Galerie</h2><p>Hier erscheinen nur Fotos, für deren Veröffentlichung alle erkennbaren Personen zugestimmt haben. Insbesondere bei Minderjährigen braucht es geeignete Freigaben.</p><div id="galleryItems" class="fh-grid"><p class="fh-hint">Noch keine freigegebenen Fotos.</p></div></section>
+
+<section class="fh-sec" id="history"><h2>📖 Unsere Geschichte</h2><div class="fh-timeline"><div class="fh-panel"><span class="fh-meta">2025</span><h3>Gründung von Frost Skaters ❄️</h3><p>Seit 2025 wachsen wir als Eislauf-Community zusammen.</p></div><div id="historyItems"></div></div></section>
+
+<section class="fh-sec" id="learn"><h2>📚 Eislauf-Wissen &amp; Guide</h2>
+<div class="fh-grid">
+<article class="fh-panel"><span class="fh-chip">Für neue Mitglieder</span><h3>Deine ersten Schritte</h3><p>Mit Vorname anmelden, Community-Karte beantragen, Eishallenregeln lesen und mit anderen respektvoll umgehen. Fragen? Wende dich an die Leitung.</p><a href="mitglieder.html" class="fh-btn alt">Mitgliedskarte beantragen</a></article>
+<article class="fh-panel"><span class="fh-chip">Schlittschuhe</span><h3>Pflege nach dem Eis</h3><p>Kufen nach dem Laufen trocknen, außerhalb des Eises Schoner nutzen und Schlittschuhe vollständig trocknen lassen. Schleifen am besten vom Fachbetrieb prüfen lassen.</p></article>
+<article class="fh-panel"><span class="fh-chip">Sicherheit</span><h3>Rücksichtsvoll fahren</h3><p>Mit Abstand fahren, auf Anfänger achten, nur erlaubte Bereiche nutzen und bei Unsicherheit um Hilfe bitten. Geeignete Schutzausrüstung verwenden.</p></article>
+<article class="fh-panel"><span class="fh-chip">Für Ausflüge</span><h3>Checkliste</h3><ul class="fh-list"><li>Schlittschuhe oder Leihschuhe</li><li>Passende Kleidung und Handschuhe</li><li>Fahrkarte und Eintrittsgeld</li><li>Getränk für Hin- und Rückfahrt</li><li>Erlaubnis der Eltern bei Minderjährigen</li></ul></article>
+</div></section>
+
 <section class="fh-sec" id="stats"><h2>📈 Unsere Saison in Zahlen</h2><p>Statistik zu veröffentlichten Community-Inhalten – keine Leistungsbewertung einzelner Mitglieder.</p><div class="fh-grid" id="statsItems"><div class="fh-panel">Die Zahlen laden …</div></div></section>
+
 <section class="fh-sec" id="rules"><h2>🛡️ Unsere Regeln</h2><div class="fh-panel"><p id="communityRules">Alle respektieren. Eishallenregeln befolgen. Rücksichtsvoll fahren. Vor Fotos immer fragen.</p><p class="fh-hint">Bei einem Unfall oder ernsten Problem direkt das Eishallenpersonal und eine erwachsene Begleitperson informieren. In einem Notfall 112 anrufen.</p></div></section>
+
 <section class="fh-sec"><h2>🌍 Deutsch &amp; Englisch</h2><p>Die wichtigsten Infos kannst du auch auf Englisch lesen.</p>
 <details class="fh-panel"><summary style="cursor:pointer;font-weight:800">🇬🇧 English quick guide</summary><p>Frost Skaters is an independent ice-skating community. Check our events, share feedback, and apply for a community card using your first name only. Be respectful, follow rink rules, and ask permission before taking or posting photos. For minors, parental permission is needed for group trips.</p></details></section>
+<p class="fh-hint fh-more-links"><a href="eishallen.html">📍 Eishallen-Finder</a> · <a href="jahresrueckblick.html">🎞️ Jahresrückblick</a> · <a href="hub-admin.html">🔒 Team-Verwaltung</a></p>
+</div></details>
 <footer style="border-top:1px solid #485c73;padding-top:22px;display:flex;flex-wrap:wrap;gap:17px"><a href="index.html">🏠 Startseite</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="hub-admin.html">🔒 Team-Verwaltung</a></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
