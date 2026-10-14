@@ -58,3 +58,14 @@ textarea.fh-input{min-height:90px;resize:vertical}
 .fh-hidden,[hidden]{display:none!important}
 @media(max-width:680px){.fh-wrap{padding:22px 15px 70px}.fh-head{grid-template-columns:1fr}.fh-logo{width:104px}.fh-panel{padding:18px}.fh-grid{grid-template-columns:1fr}.fh-menu{gap:6px}.fh-menu a{font-size:.78rem}}
 @media print{.fh-menu,.fh-actions,.site-header,.fh-no-print{display:none!important}body.frost-hub{background:#fff;color:#101827}.fh-panel{color:#101827;border-color:#777}.fh-panel p{color:#222}}
+
+/* Optional content stays available without overwhelming new visitors. */
+.fh-more{margin:20px 0;border-color:#62758e55}
+.fh-more>summary{cursor:pointer;list-style:none;font-size:1rem;font-weight:800;color:#d7e9f7;display:flex;align-items:center;gap:10px}
+.fh-more>summary::-webkit-details-marker{display:none}
+.fh-more>summary::after{content:"+";margin-left:auto;font-size:1.3rem;color:#76e3ec}
+.fh-more[open]>summary::after{content:"−"}
+.fh-more-inner{padding-top:14px}
+.fh-more-inner>.fh-sec{margin:20px 0 28px}
+.fh-more-links{line-height:2;display:flex;flex-wrap:wrap;gap:12px}
+.fh-more-links a{color:#9ee9f5;text-decoration:underline}
