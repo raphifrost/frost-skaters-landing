@@ -9,7 +9,7 @@ Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skat
 - Community (Deutsch): `community.html`
 - Community (English): `community-en.html`
 - Mitgliedskarten: `mitglieder.html`
-- Geschützter Owner-Bereich für Mitgliedskarten: `mitglieder-admin.html`
+- **Owner Lounge:** `mitglieder-admin.html` – alle Mitglieder, Kartenfreigaben, manueller Zugang, QR-Vorschau, Mail-Übersicht
 - Geschützte Team-Zentrale für Beiträge und Aufgaben: `hub-admin.html`
 - Eishallen-Links: `eishallen.html`
 - Jahresrückblick: `jahresrueckblick.html`
@@ -74,3 +74,13 @@ Die öffentlich sichtbaren Datenschutzinformationen sind ein **Entwurf**, keine 
 - `mitglieder.html` und die bestehenden privaten Mitgliedskarten bleiben weiterhin erreichbar. Diese beiden neuen Werbe-QR-Karten sind **keine** persönlichen Mitgliedsausweise.
 
 Hinweis: Nach Änderungen an den URLs müssen neue QR-Codes erzeugt und neue physische Karten gedruckt werden. Vor dem Druck immer beide QR-Codes testen.
+
+## 👑 Owner Lounge & GMX-Benachrichtigungen
+
+Die Owner Lounge ist die bestehende geschützte Mitgliederdatenverwaltung `mitglieder-admin.html`, neu mit Mitgliedergalerie, interaktiver Kartenvorschau und übersichtlicher Liste. Alle bereits vorhandenen Mitgliederdatensätze bleiben gespeichert. Nur der freigeschaltete Owner sieht Namen, Anträge und private Terminnotizen.
+
+Die digitalen Mitgliedskarten auf `mitglieder.html?code=…` haben ein neues Frost-Skaters-Design mit persönlichem QR-Code. Sie bleiben auch für bestehende Mitgliedskarten gültig und können als PDF gedruckt werden.
+
+Für automatische E-Mail-Benachrichtigungen nutzt Supabase einen Datenbank-Trigger mit `pg_net` und FormSubmit. Nach einer Antragstellung wird eine Info an die auf der Website hinterlegte GMX-Adresse beauftragt. Nach Freigabe erhält der Owner eine zweite Benachrichtigung mit dem **privaten digitalen Karten-Link**, der die gestaltete Karte mit QR-Code öffnet. **Es wird keine PNG- oder PDF-Datei als E-Mail-Anhang verschickt**. Das System muss einen bestätigten FormSubmit-Empfänger haben; technisch angenommen ist nicht gleich vom Postfach empfangen. Die E-Mail darf nur an die betreffende Person weitergeleitet werden und ist nicht für öffentliche Verteiler geeignet.
+
+Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Neue Test-Mails können im Spamordner liegen. Bestehende Anträge werden durch die neue Automatik nicht erneut benachrichtigt. Bei sehr vielen unaufgeforderten Anträgen begrenzt eine einfache Schutzregel die Anzahl neuer E-Mail-Aufträge.
