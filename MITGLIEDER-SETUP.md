@@ -1,4 +1,4 @@
-# Frost Skaters 3.0 – Einrichtung und Tests
+# Frost Skaters – Einrichtung und Tests
 
 **Aktueller Stand:** GitHub-Pages-Repository `raphifrost/frost-skaters-landing`, Supabase-Projekt `chjkciknwutqdvefxhnl`. Die Owner-Rolle ist für genau ein existierendes Konto freigeschaltet. **Kein weiterer Owner-Account und keine zweite Datenbank notwendig.**
 
