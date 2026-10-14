@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#080911">
+<title>Zwei QR-Karten drucken | Frost Skaters</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="assets/site-menu.css">
+<link rel="stylesheet" href="assets/frost-qr-karten.css?v=1">
+</head>
+<body>
+<header class="qr-page-header"><a class="brand" href="index.html">FROST SKATERS</a><a class="back-link" href="hub-admin.html">← Team-Verwaltung</a></header>
+<main class="qr-page">
+<div class="qr-page-title"><span class="eyebrow">Frost Skaters · Seit 2025</span><h1>Zwei Karten. Zwei Wege. ❄️</h1>
+<p>Die erste QR-Karte führt direkt zur <strong>Anmeldung mit WhatsApp</strong>. Die zweite führt auf die <strong>normale Startseite ohne Anmeldeformular</strong>.</p></div>
+<div class="qr-controls"><button type="button" id="printBoth" class="action primary">🖨️ Beide Karten drucken</button><a class="action secondary" href="anmelden.html">Anmeldung ansehen</a><a class="action secondary" href="index.html">Startseite ansehen</a></div>
+<div class="qr-card-pair">
+<section class="qr-print-section">
+<h2 class="qr-outside-title">1. QR-Karte: Anmeldung &amp; WhatsApp</h2>
+<div class="qr-card qr-card-join">
+<div class="qr-copy">
+<img class="qr-brandmark" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo">
+<span class="qr-eyebrow">FROST SKATERS · COMMUNITY</span>
+<h3>WERDE TEIL<br><span>DER CREW.</span></h3>
+<p>Mit Vornamen anmelden<br>oder per WhatsApp schreiben.</p>
+<span class="qr-micro">SEIT 2025 · ⛸️</span>
+</div>
+<div class="qr-scan"><div id="signupQr" class="qr-symbol" aria-label="QR-Code für die Anmeldung"></div><strong>JETZT ANMELDEN</strong><small>Scan mich ❄️</small></div>
+</div>
+<a class="qr-url" href="anmelden.html">raphifrost.github.io/frost-skaters-landing/anmelden.html</a>
+</section>
+<section class="qr-print-section">
+<h2 class="qr-outside-title">2. QR-Karte: Startseite</h2>
+<div class="qr-card qr-card-home">
+<div class="qr-copy">
+<img class="qr-brandmark" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo">
+<span class="qr-eyebrow">FROST SKATERS · SEIT 2025</span>
+<h3>UNSERE CREW.<br><span>UNSERE STORY.</span></h3>
+<p>Entdecke unsere Events,<br>unser Team und mehr.</p>
+<span class="qr-micro">ZUSAMMEN AUF DEM EIS · ❄️</span>
+</div>
+<div class="qr-scan"><div id="homeQr" class="qr-symbol" aria-label="QR-Code zur Startseite"></div><strong>WEBSITE ÖFFNEN</strong><small>Scan mich ⛸️</small></div>
+</div>
+<a class="qr-url" href="index.html">raphifrost.github.io/frost-skaters-landing/</a>
+</section>
+</div>
+<p id="qrStatus" class="qr-status" role="status">Beide QR-Codes werden vorbereitet …</p>
+<p class="qr-info">Druck-Tipp: Auf A4 mit <strong>100 % Skalierung</strong> und aktivierten Hintergrundgrafiken drucken. Jede Karte ist im Druck 85,6 × 54 mm groß (Visitenkartenformat). Vor dem Verteilen die Codes einmal mit dem Handy testen.</p>
+</main>
+<script src="assets/frost-qr-karten.js?v=1"></script>
+</body>
+</html>
