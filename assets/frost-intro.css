@@ -1,0 +1,86 @@
+/* Frost Skaters — compact welcome intro, only the public homepage. */
+.frost-intro[hidden]{display:none!important}
+.frost-intro{
+  position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  padding:24px;overflow:hidden;isolation:isolate;color:#f5fbff;
+  background:
+    radial-gradient(ellipse at 16% 76%,#41c9ed21,transparent 53%),
+    radial-gradient(ellipse at 82% 19%,#fa4ade26,transparent 56%),
+    linear-gradient(125deg,#070b16,#101625 50%,#070d16);
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  opacity:1;transition:opacity .44s ease,visibility .44s ease;
+}
+.frost-intro.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.frost-intro::before{
+  content:"";position:absolute;inset:-32%;z-index:-1;
+  background:conic-gradient(from 50deg at 50% 60%,transparent,#70edfc0f,transparent,#ff6dda0d,transparent);
+  animation:frost-intro-aurora 6s linear infinite;
+}
+.frost-intro::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:
+    radial-gradient(2px 2px at 17% 22%,#c3f8ff 85%,transparent),
+    radial-gradient(2px 2px at 78% 17%,#fff 85%,transparent),
+    radial-gradient(3px 3px at 80% 68%,#f9d5fc 85%,transparent),
+    radial-gradient(2px 2px at 30% 73%,#fff 85%,transparent),
+    radial-gradient(2px 2px at 56% 30%,#b6f8ff 85%,transparent);
+  animation:frost-intro-snow 2.3s ease-in-out infinite alternate;
+}
+.frost-intro__scene{position:relative;width:min(100%,630px);text-align:center;display:grid;justify-items:center;gap:9px;transform:translateZ(0)}
+.frost-intro__eyebrow{color:#9ce8f2;letter-spacing:.32em;font-size:.72rem;font-weight:850;opacity:0;animation:frost-intro-up .55s .16s ease-out forwards}
+.frost-intro__emblem{
+  position:relative;width:clamp(155px,33vw,238px);aspect-ratio:1;display:grid;place-items:center;
+  transform:scale(.55) rotate(-8deg);opacity:0;
+  animation:frost-intro-logo 1.05s .08s cubic-bezier(.18,.92,.2,1.25) forwards;
+}
+.frost-intro__emblem::before{
+  content:"";position:absolute;inset:8%;border-radius:50%;
+  background:radial-gradient(circle,#6cecf125,transparent 65%);
+  box-shadow:0 0 72px 10px #70def71e,0 0 80px #f36ce21e;
+  animation:frost-intro-glow 1.65s ease-in-out infinite alternate;
+}
+.frost-intro__emblem::after{
+  content:"";position:absolute;inset:3%;border-radius:50%;border:1px solid #77e9ee4d;
+  box-shadow:0 0 0 1px #ec8bdd25 inset;animation:frost-intro-ring 1.4s .2s both;
+}
+.frost-intro__emblem img{width:88%;height:auto;display:block;position:relative;z-index:1;object-fit:contain;filter:drop-shadow(0 12px 22px #0007)}
+.frost-intro__title{
+  margin:1px 0 0;font-size:clamp(2.25rem,9vw,5rem);line-height:1.04;letter-spacing:-.07em;font-weight:950;
+  opacity:0;transform:translateY(18px);animation:frost-intro-up .62s .62s ease-out forwards;
+}
+.frost-intro__title span{background:linear-gradient(110deg,#a0f7fb,#f7f9ff 45%,#ff91e9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.frost-intro__tagline{
+  margin:3px 0 0;color:#bfcbdb;font-weight:750;font-size:clamp(.69rem,2.2vw,.95rem);
+  letter-spacing:clamp(.14em,.55vw,.3em);opacity:0;animation:frost-intro-up .6s .96s ease-out forwards;
+}
+.frost-intro__line{
+  margin:17px 0 0;width:min(260px,75vw);height:2px;position:relative;overflow:hidden;border-radius:8px;
+  background:#b9cde52b;box-shadow:0 0 12px #8eeef828;
+}
+.frost-intro__line::before{content:"";display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;
+  background:linear-gradient(90deg,#61ddeb,#a5f8fa,#ff87e8);animation:frost-intro-progress 3.1s .2s linear forwards}
+.frost-intro__spark{
+  position:absolute;inset:-6% -4%;z-index:-1;pointer-events:none;opacity:0;
+  background:repeating-conic-gradient(from 0deg at 50% 53%,transparent 0deg 16deg,#71e7f51d 17deg 18deg,transparent 19deg 35deg);
+  mask-image:radial-gradient(ellipse at center,transparent 18%,#000 43%,transparent 77%);
+  animation:frost-intro-spark 1.4s .72s ease-out both;
+}
+.frost-intro__controls{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin-top:18px}
+.frost-intro__button{
+  appearance:none;border:1px solid #87e2ed75;background:#7bd9eb0f;color:#ebfdff;
+  font:750 .9rem system-ui,Arial,sans-serif;min-height:44px;padding:10px 17px;
+  border-radius:13px;cursor:pointer;transition:background .2s,border-color .2s;
+}
+.frost-intro__button:hover,.frost-intro__button:focus-visible{background:#55ddef25;border-color:#9dffff}
+.frost-intro__button--skip{background:#ffffff0a;border-color:#ffffff36;color:#d1d6e2}
+.frost-intro__button:disabled{opacity:.55;cursor:default}
+@keyframes frost-intro-aurora{to{transform:rotate(360deg)}}
+@keyframes frost-intro-snow{from{transform:translateY(-7px);opacity:.34}to{transform:translateY(9px);opacity:.7}}
+@keyframes frost-intro-up{to{opacity:1;transform:translateY(0)}}
+@keyframes frost-intro-logo{to{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes frost-intro-glow{to{opacity:.68;transform:scale(1.12)}}
+@keyframes frost-intro-ring{from{transform:scale(.55);opacity:0}to{transform:scale(1.18);opacity:.8}}
+@keyframes frost-intro-progress{to{transform:scaleX(1)}}
+@keyframes frost-intro-spark{0%{opacity:0;transform:scale(.6) rotate(0deg)}45%{opacity:1}100%{opacity:0;transform:scale(1.2) rotate(12deg)}}
+@media(max-width:520px){.frost-intro__controls{flex-direction:column;width:100%}.frost-intro__button{min-width:175px}.frost-intro__emblem{width:160px}.frost-intro__tagline{letter-spacing:.1em}}
+@media(prefers-reduced-motion:reduce){.frost-intro,.frost-intro *{animation:none!important;transition:none!important}.frost-intro__eyebrow,.frost-intro__emblem,.frost-intro__title,.frost-intro__tagline{opacity:1;transform:none}.frost-intro__line::before{transform:scaleX(1)}}
