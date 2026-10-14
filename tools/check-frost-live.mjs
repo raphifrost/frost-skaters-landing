@@ -34,13 +34,13 @@ function check(test,ok,explanation=''){
  if(!ok)throw Error('FAILED '+test+(explanation?': '+explanation:''));
  results.push('✅ '+test);
 }
-for(const page of ['index.html','community.html','community-en.html','hub-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html']){
+for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html']){
  const response=await request(origin+page);
  const body=await response.text();
  check('GitHub Pages '+page,response.status===200,'HTTP '+response.status);
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
 }
-for(const asset of ['assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
