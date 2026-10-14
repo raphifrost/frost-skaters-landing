@@ -32,21 +32,7 @@ apply.addEventListener('submit',async event=>{
   try{
     const {error}=await client.from('frost_member_requests').insert({display_name,request_code});
     if(error)throw error;
-    // Best-effort email alert to the same FormSubmit contact already used
-    // by the main Frost Skaters website. Approval still happens only in Supabase.
-    try{
-      const emailResponse=await fetch('https://formsubmit.co/ajax/raphi.leibssle@gmx.de',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
-          name:display_name,
-          _subject:'Frost Skaters – Neuer Mitgliedskarten-Antrag',
-          message:'Neuer Mitgliedskarten-Antrag: '+display_name+'. Öffne dein geschütztes Frost Skaters Owner-Dashboard, um ihn anzunehmen oder abzulehnen.'
-        })
-      });
-      // The application is saved in Supabase even if FormSubmit cannot deliver.
-      if(!emailResponse.ok)console.info('E-Mail-Benachrichtigung derzeit nicht verfügbar');
-    }catch{console.info('Benachrichtigung per E-Mail derzeit nicht verfügbar');}
+    // GMX notification is queued securely by the database trigger (one message per request).
     try{localStorage.setItem(localKey,request_code);}catch{}
     $('lookupCode').value=request_code;
     const link=cardLink(request_code);
