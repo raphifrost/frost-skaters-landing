@@ -236,8 +236,26 @@
     <meta property="og:image" content="https://raphifrost.github.io/frost-skaters-landing/assets/frost-skaters-team.jpg" />
     <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
+    <link rel="stylesheet" href="assets/frost-intro.css?v=1" />
   </head>
   <body class="frost-page" data-page="home">
+    <!-- Non-blocking first-visit animation; hidden unless the local intro script starts it. -->
+    <div class="frost-intro" id="frostWelcomeIntro" role="dialog" aria-modal="true" aria-labelledby="frostIntroTitle" aria-describedby="frostIntroTagline" hidden>
+      <div class="frost-intro__scene">
+        <span class="frost-intro__eyebrow">❄ WILLKOMMEN AUF DEM EIS</span>
+        <div class="frost-intro__emblem">
+          <img src="assets/frost-skaters-logo.jpg" width="1280" height="799" alt="Frost Skaters Logo" />
+        </div>
+        <strong class="frost-intro__title" id="frostIntroTitle"><span>FROST SKATERS</span></strong>
+        <p class="frost-intro__tagline" id="frostIntroTagline">ICE · CREW · COMMUNITY</p>
+        <div class="frost-intro__line" aria-hidden="true"></div>
+        <div class="frost-intro__spark" aria-hidden="true"></div>
+        <div class="frost-intro__controls">
+          <button class="frost-intro__button" type="button" id="frostIntroSound" aria-label="Eis-Sound abspielen">🔊 Eis-Sound abspielen</button>
+          <button class="frost-intro__button frost-intro__button--skip" type="button" id="frostIntroSkip">Weiter zur Website →</button>
+        </div>
+      </div>
+    </div>
     <header class="site-header">
       <a class="site-brand" href="index.html">FROST SKATERS</a>
       <div class="site-nav">
@@ -328,5 +346,6 @@
 
     <script src="assets/site-menu.js"></script>
     <script src="assets/site-share.js"></script>
+    <script src="assets/frost-intro.js?v=1"></script>
   </body>
 </html>
