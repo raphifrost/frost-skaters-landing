@@ -67,7 +67,8 @@ const mustExist=[
  'assets/frost-members-admin.js','assets/frost-recap.js','hub.webmanifest',
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
- 'assets/frost-intro.js','assets/frost-intro.css'
+ 'assets/frost-intro.js','assets/frost-intro.css',
+ 'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 // Make sure the protected calendar has its own login and is linked only from staff pages.
@@ -81,6 +82,21 @@ if(!textFile('team-talk.html').includes('href="team-kalender.html"'))
 for(const page of ['index.html','community.html','mitglieder.html','anmelden.html'])
  if(/href=["']team-kalender\.html["']/.test(textFile(page)))
   fail('Private Team-Kalender should not appear in public menu on '+page);
+const publicFaqPages=[
+ 'index.html','anmelden.html','mitglieder.html','events.html','training.html','leitung.html',
+ 'community.html','eishallen.html','jahresrueckblick.html','datenschutz.html','qr-karten.html'
+];
+for (const page of publicFaqPages) {
+ const html=textFile(page);
+ if (!html.includes('assets/frost-faq.js') || !html.includes('assets/frost-faq.css'))
+  fail(page+': Frost FAQ helper JS/CSS not correctly linked');
+}
+for(const page of ['hub-admin.html','mitglieder-admin.html','team-talk.html','team-kalender.html']){
+ if(textFile(page).includes('assets/frost-faq.js'))
+  fail(page+': visitor FAQ must not interrupt private workflows');
+}
+if(!textFile('assets/frost-faq.js').includes('Fragen?'))
+ fail('Frost FAQ launcher is missing');
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
