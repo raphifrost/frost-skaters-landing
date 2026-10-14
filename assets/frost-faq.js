@@ -44,6 +44,10 @@
       text: 'Auf unserer Eventseite ist noch kein verbindlicher Preis veröffentlicht. Kosten für Eintritt, Leihschlittschuhe und Fahrt sollten vor dem Ausflug mit der Leitung geklärt werden.',
       links: [['Eventseite', 'events.html'], ['Kosten nachfragen', 'anmelden.html#whatsapp']]
     },
+    memberPrice: {
+      text: 'Ob für eine Frost Skaters Mitgliedschaft ein Beitrag anfällt, ist auf unserer Website nicht verbindlich angegeben. Bitte frag die Leitung. Für gemeinsame Ausflüge können zusätzlich Eintritts- oder Fahrtkosten entstehen.',
+      links: [['Leitung fragen', 'anmelden.html#whatsapp']]
+    },
     equipment: {
       text: 'Für gemeinsame Eishallen-Ausflüge brauchst du geeignete Schlittschuhe – eigene oder, falls vor Ort verfügbar, geliehene. Frag für ein bestimmtes Event nach den genauen Regeln und was du mitnehmen sollst.',
       links: [['Zum Event', 'events.html'], ['Infos anfragen', 'anmelden.html#whatsapp']]
@@ -102,13 +106,14 @@
     if (/(datenschutz|daten|gespeichert|passwort|privat|sicherheit|personlich)/.test(q)) return 'privacy';
     if (/(foto|bilder|bildrecht|galerie|aufnahme)/.test(q)) return 'pictures';
     if (/(eltern|minderjahr|erlaubnis|einwilligung|alter|jugendlich)/.test(q)) return 'parents';
+    if (/(mitgliedsbeitrag|mitgliedschaft.*(kost|preis|beitrag)|(?:kost|preis|beitrag).*(?:mitgliedschaft|mitglied werden))/.test(q)) return 'memberPrice';
     if (/(kosten|preis|eintritt|bezahlen|geld|ticketpreis|fahrkarte|leihgebuhr)/.test(q)) return 'eventPrice';
     if (/(schlittschuh|ausrustung|mitnehmen|ausleihen|leihen|packliste)/.test(q)) return 'equipment';
     if (/(treffpunkt|uhrzeit|abfahrt|bahnhof|zugfahrt|ankunft)/.test(q)) return 'eventTime';
     if (/(trainier|training|trainingsplan|ubung)/.test(q)) return 'training';
     if (/(k(e|a)nn?enlernen|gesprach|10 minuten|termin machen)/.test(q)) return 'firstMeet';
     if (/(kartenstatus|karten code|kartenlink|karten link|karte finden|karte ansehen|karte prufen|status meiner|status der karte|mein qr code)/.test(q)) return 'findCard';
-    if (/(freischalt|genehmig|antrag dauert|antrag gepruft|wann bekomme ich die karte|warte auf)/.test(q)) return 'waiting';
+    if (/(freischalt|genehmig|antrag dauert|antrag gepruft|wann bekomme ich die karte|wann bekomme ich meine karte|wann bekomme ich meine mitgliedskarte|warte auf)/.test(q)) return 'waiting';
     if (/(mitgliedskarte|mitgliedsnummer|community karte|member card|karte beantragen|karte bekommen|mitglieds ausweis|mitgliedsausweis)/.test(q)) return 'getCard';
     if (/(ausflug|event|heilbronn|eishalle|n[aä]chst(e|er|es) treff|wo geht es hin|wann fahren)/.test(q)) return 'event';
     if (/(kontakt|whatsapp|anschreiben|schreiben|nachricht|erreich|telefon|nummer)/.test(q)) return 'contact';
