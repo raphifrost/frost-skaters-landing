@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Frost Skaters 3.0 non-destructive live smoke checks.
+ * Frost Skaters non-destructive live smoke checks.
  * Only public / anonymous requests. Never registers users or writes personal data.
  */
 import fs from 'node:fs';
