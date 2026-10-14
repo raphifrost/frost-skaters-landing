@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Geschützter Treffpunkt für das Leitungsteam der Frost Skaters.">
+<meta name="theme-color" content="#080c18">
+<title>Team Lounge | Frost Skaters</title>
+<link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="assets/frost-skaters-logo.jpg">
+<link rel="manifest" href="team-talk.webmanifest">
+<link rel="stylesheet" href="assets/frost-team-talk.css?v=1">
+</head>
+<body>
+<header class="tt-top">
+ <a class="tt-brand" href="index.html"><span>❄️</span> FROST SKATERS</a>
+ <span class="tt-top-tag"><span class="tt-dot"></span> TEAM INTERN</span>
+</header>
+<main class="tt-wrap">
+ <section class="tt-hero">
+  <div class="tt-hero-copy">
+   <span class="tt-eyebrow">FROST SKATERS · SEIT 2025</span>
+   <h1>Unsere <span>Team Lounge.</span></h1>
+   <p>Ein eigener Ort für Owner, Co-Owner, Managerin und Team-Supporter. Gemeinsam planen, im Teamchat schreiben und Online-Gespräche starten.</p>
+   <div class="tt-tag-row"><span>🔒 Nur freigegebenes Team</span><span>💬 Teamchat</span><span>🎙️ Audio &amp; Video</span></div>
+  </div>
+  <img class="tt-hero-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo">
+ </section>
+
+ <section class="tt-panel tt-auth" id="ttLogin">
+  <span class="tt-section-kicker">🔐 GESCHÜTZTER ZUGANG</span>
+  <h2>Mit deinem Teamkonto anmelden</h2>
+  <p>Hier kommt niemand mit einer normalen Mitgliedskarte rein. Dein Account muss vom Owner als Co-Owner, Managerin oder Team-Supporter freigeschaltet worden sein.</p>
+  <form id="ttLoginForm" class="tt-form">
+   <label for="ttEmail">E-Mail-Adresse</label>
+   <input id="ttEmail" type="email" required autocomplete="username" placeholder="deine@email.de">
+   <label for="ttPassword">Passwort</label>
+   <input id="ttPassword" type="password" required autocomplete="current-password" placeholder="Dein Passwort">
+   <button class="tt-button tt-primary" id="ttLoginButton" type="submit">🔓 Team Lounge betreten</button>
+   <p id="ttLoginFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+  </form>
+  <details class="tt-signup">
+   <summary>Noch kein Teamkonto? Jetzt registrieren</summary>
+   <p>Du brauchst einen eigenen Login. Nach der Registrierung bestätigst du deine E-Mail. Der Owner muss deine Benutzer-ID anschließend freischalten. Teile niemals dein Passwort.</p>
+   <form id="ttSignupForm" class="tt-form">
+    <label for="ttSignupEmail">E-Mail-Adresse</label><input id="ttSignupEmail" type="email" required autocomplete="email">
+    <label for="ttSignupPassword">Passwort (mindestens 12 Zeichen)</label><input id="ttSignupPassword" type="password" minlength="12" required autocomplete="new-password">
+    <label for="ttSignupPassword2">Passwort wiederholen</label><input id="ttSignupPassword2" type="password" minlength="12" required autocomplete="new-password">
+    <button id="ttSignupButton" class="tt-button tt-outline" type="submit">Teamkonto beantragen</button>
+    <p id="ttSignupFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+   </form>
+  </details>
+ </section>
+
+ <section id="ttPrivate" hidden>
+  <div class="tt-toolbar">
+   <div><span class="tt-live-pill"><span class="tt-dot"></span> TEAM-BEREICH</span><strong id="ttWho">Freigeschaltet</strong></div>
+   <div class="tt-toolbar-actions">
+     <button type="button" class="tt-button tt-outline tt-small" id="ttRefresh">↻ Aktualisieren</button>
+     <button type="button" class="tt-button tt-muted tt-small" id="ttLogout">Abmelden</button>
+   </div>
+  </div>
+  <p id="ttDashboardFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+  <div class="tt-quickstats">
+   <div><strong id="ttRoomCount">0</strong><span>Gesprächsräume</span></div>
+   <div><strong id="ttActiveCount">0</strong><span>Aktuell geöffnet</span></div>
+   <div><strong id="ttTeamCount">0</strong><span>Team-Zugänge</span></div>
+  </div>
+  <div class="tt-main-grid">
+   <div class="tt-main-column">
+    <section class="tt-panel" id="ttCreateArea">
+     <span class="tt-section-kicker">✦ GEMEINSAM PLANEN</span>
+     <h2>Neues Gespräch starten</h2>
+     <p>Erstelle einen privaten Teamraum. Alle freigeschalteten Teammitglieder sehen ihn danach in der Übersicht.</p>
+     <form id="ttNewRoomForm" class="tt-form">
+      <label for="ttTopic">Worüber wollt ihr reden?</label>
+      <input type="text" id="ttTopic" maxlength="100" minlength="3" placeholder="z. B. Nächster Eishallen-Ausflug" required>
+      <label for="ttAgenda">Kurze Beschreibung (optional)</label>
+      <textarea id="ttAgenda" maxlength="500" rows="3" placeholder="Wichtige Fragen oder Themen für das Gespräch"></textarea>
+      <button class="tt-button tt-primary" id="ttNewRoomButton" type="submit">＋ Gesprächsraum erstellen</button>
+      <p id="ttCreateFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+     </form>
+    </section>
+    <section class="tt-panel" id="ttRoomsArea">
+     <div class="tt-heading-row"><div><span class="tt-section-kicker">🧊 TEAM-GESPRÄCHE</span><h2>Eure Gesprächsräume</h2></div><span class="tt-hint">Nur für das Team</span></div>
+     <div class="tt-rooms" id="ttRooms"><p class="tt-hint">Räume werden geladen …</p></div>
+    </section>
+   </div>
+   <aside class="tt-side-column">
+    <section class="tt-panel tt-roster-panel">
+     <span class="tt-section-kicker">👥 EUER TEAM</span>
+     <h2>Wer gehört dazu?</h2>
+     <div id="ttRoster" class="tt-roster"><p class="tt-hint">Team wird geladen …</p></div>
+    </section>
+    <section class="tt-panel tt-guide">
+     <span class="tt-section-kicker">🎙️ LIVE-GESPRÄCHE</span>
+     <h2>So funktioniert’s</h2>
+     <ol>
+      <li>Öffne einen Teamraum.</li>
+      <li>Nutze den Chat oder tippe auf „Audio/Video starten“.</li>
+      <li>Das Meeting öffnet sich bei Jitsi. Wähle dort Mikrofon und Kamera aus.</li>
+     </ol>
+     <p><strong>Privatsphäre:</strong> Der Teamchat ist durch euren Login geschützt. Der externe Videolink ist dagegen nur schwer zu erraten, aber mit dem Link können auch andere beitreten. Aktiviert beim Meeting die Lobby und teilt den Link nicht weiter.</p>
+     <p class="tt-hint">Auf meet.jit.si benötigt die Person, die ein Meeting startet, einen unterstützten Account. Jitsi begrenzt Meetings dort aktuell auf 95 Minuten.</p>
+    </section>
+   </aside>
+  </div>
+  <section class="tt-panel tt-conversation" id="ttConversation" hidden>
+    <div class="tt-heading-row">
+      <div><span class="tt-section-kicker">💬 EUER PRIVATER TEAMRAUM</span><h2 id="ttOpenTopic">Gespräch</h2><p id="ttOpenAgenda"></p></div>
+      <button class="tt-button tt-muted tt-small" id="ttCloseRoomView" type="button">✕ Schließen</button>
+    </div>
+    <div class="tt-room-actions">
+      <button class="tt-button tt-primary" id="ttVideoButton" type="button">🎙️ Audio / Video starten</button>
+      <button class="tt-button tt-outline" id="ttCopyMeet" type="button">🔗 Meeting-Link kopieren</button>
+      <button class="tt-button tt-muted" id="ttArchiveRoom" type="button" hidden>✓ Raum archivieren</button>
+      <button class="tt-button tt-danger" id="ttDeleteRoom" type="button" hidden>🗑️ Raum löschen</button>
+    </div>
+    <p id="ttMeetingNotice" class="tt-feedback" role="status" aria-live="polite"></p>
+    <div id="ttMessages" class="tt-chat-log" role="log" aria-label="Private Teamnachrichten" aria-live="polite" aria-relevant="additions"></div>
+    <form id="ttMessageForm" class="tt-chat-form">
+      <label class="tt-sr-only" for="ttMessage">Nachricht an das Team</label>
+      <textarea id="ttMessage" rows="2" maxlength="1000" placeholder="Nachricht ans Team schreiben …" required></textarea>
+      <button class="tt-button tt-primary" id="ttSend" type="submit">➤ Senden</button>
+    </form>
+    <p id="ttMessageFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+    <p class="tt-hint">Keine privaten Telefonnummern, Adressen oder persönlichen Notizen zu Mitgliedern in den Teamchat schreiben. Keine Gesprächsaufzeichnung ohne passende Einwilligung.</p>
+  </section>
+  <section class="tt-panel tt-owner-area" id="ttOwner" hidden>
+    <span class="tt-section-kicker">👑 NUR FÜR DEN OWNER</span>
+    <h2>Team-Zugänge verwalten</h2>
+    <p>Füge Co-Owner, Managerin und Supporter mit ihrer Supabase-Benutzer-ID hinzu. Jede Person braucht vorher ein eigenes bestätigtes Teamkonto; fremde Personen dürfen nicht mit deinem Passwort arbeiten.</p>
+    <form id="ttStaffForm" class="tt-form tt-staff-form">
+      <div><label for="ttStaffId">Benutzer-ID (UUID)</label><input id="ttStaffId" type="text" maxlength="36" required placeholder="00000000-0000-4000-8000-000000000000"></div>
+      <div><label for="ttStaffName">Vorname</label><input id="ttStaffName" type="text" maxlength="40" minlength="2" required placeholder="z. B. Alina"></div>
+      <div><label for="ttStaffRole">Rolle</label><select id="ttStaffRole"><option value="coowner">Co-Owner</option><option value="manager">Managerin</option><option value="supporter">Team-Supporter</option></select></div>
+      <button type="submit" class="tt-button tt-primary" id="ttStaffSave">Team-Zugang freischalten</button>
+    </form>
+    <p id="ttStaffFeedback" class="tt-feedback" role="status" aria-live="polite"></p>
+    <div id="ttStaffList" class="tt-staff-list"></div>
+    <p class="tt-hint">Team-Supporter sehen nur diese Team Lounge. Co-Owner und Managerin können zusätzlich die bereits freigegebenen Community-Werkzeuge nutzen. Private Mitgliederdaten bleiben Owner-Sache.</p>
+  </section>
+ </section>
+ <footer class="tt-footer"><a href="index.html">← Frost Skaters Startseite</a><a href="datenschutz.html">Datenschutz</a><span>❄️ Frost Skaters Team Lounge</span></footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
+<script src="assets/frost-members-config.js"></script>
+<script src="assets/frost-team-talk.js?v=1"></script>
+</body>
+</html>
