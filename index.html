@@ -239,6 +239,8 @@
     <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
     <link rel="stylesheet" href="assets/frost-intro.css?v=2" />
     <link rel="stylesheet" href="assets/frost-v11-home.css?v=1" />
+    <link rel="stylesheet" href="assets/frostverse-teaser.css?v=1" />
+    <link rel="stylesheet" href="assets/frost-command.css?v=1" />
   <link rel="stylesheet" href="assets/frost-faq.css?v=1">
 </head>
   <body class="frost-page frost-v11-home" data-page="home">
@@ -272,6 +274,7 @@
           <a href="mitglieder.html">Mitgliedskarten</a>
           <a href="anmelden.html">Mitmachen</a>
           <a href="index.html#fragen">Fragen</a>
+          <a href="frostverse.html" class="v11-menu-updates">✦ Frostverse <span>NEU</span></a>
           <a href="website-updates.html" class="v11-menu-updates">✦ Website-Updates <span>1.1</span></a>
         </nav>
       </div>
@@ -292,6 +295,7 @@
             <a class="btn primary" href="anmelden.html">Mitmachen</a>
             <a class="btn secondary" href="#entdecken">Entdecken</a>
             <a class="btn secondary" href="mitglieder.html#findSection">🪪 Meine Karte</a>
+            <button class="btn secondary" type="button" data-frost-command-open>⌕ Frost Command</button>
           </div>
           <div class="v11-hero-pillars" aria-label="Das zeichnet Frost Skaters aus">
             <span><b>2025</b><small>UNSER START</small></span>
@@ -325,6 +329,23 @@
           <span class="v11-release-snow">✳</span>
           <strong>1.1</strong>
           <small>THE FROST EDITION</small>
+        </div>
+      </section>
+
+
+      <section class="fv-home-feature" id="frostverse" aria-labelledby="fvHomeTitle">
+        <div class="fv-home-content">
+          <span class="fv-home-eyebrow">✦ NEW INTERACTIVE EXPERIENCE / 1.1</span>
+          <h2 id="fvHomeTitle">Welcome to<br><span>the Frostverse.</span></h2>
+          <p>Sechs Welten zum Entdecken – mit Event-Countdown, Crew Cards, Frost TV, Expeditionskarte, Skate Customizer und persönlicher Zeitkapsel. Alles im neuen Frost-Look.</p>
+          <div class="fv-home-pills"><span>🌌 FROSTVERSE</span><span>🎨 SKATE STUDIO</span><span>❄ FROST EFFECTS</span></div>
+          <a href="frostverse.html" class="fv-home-action">Jetzt Frostverse entdecken <span aria-hidden="true">↗</span></a>
+          <span class="fv-home-footnote">EXPERIENCE / 15 WEBSITE-UPGRADES</span>
+        </div>
+        <div class="fv-home-visual" aria-hidden="true">
+          <div class="fv-home-ring fv-home-ring-one"></div><div class="fv-home-ring fv-home-ring-two"></div>
+          <div class="fv-home-snow">❄</div><strong>FS</strong><small>YOUR WORLD · YOUR CREW</small>
+          <div class="fv-home-label">PORTAL IS OPEN ↗</div>
         </div>
       </section>
 
@@ -373,13 +394,14 @@
         <div><p class="section-eyebrow">GUTE LEUTE MITBRINGEN</p><h2 id="shareTitle">Frost teilen.</h2><p>Kennst du jemanden, der zu uns passt? Gib unseren Website-Link weiter.</p><a class="contact-link" href="tel:+4915234646842">+49 152 34646842</a></div>
         <div class="share-controls"><button class="btn primary" id="shareSite" type="button"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4m-6 8 6 4"/></svg>Website teilen</button><p id="shareStatus" role="status" aria-live="polite"></p><div id="shareFallback" hidden><label for="shareLink">Website-Adresse zum Kopieren</label><input id="shareLink" type="text" readonly /></div><span class="share-hint">In Chrome, Safari und anderen Browsern öffnen.</span></div>
       </section>
-      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="community.html">Aktuelles</a><a href="training.html">Training</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="website-updates.html">✦ Updates</a><a href="#fragen">Fragen</a></nav><span><a href="website-updates.html" class="v11-footer-version">FROST SKATERS · VERSION 1.1 ↗</a><br>Zusammen seit 2025.</span></footer>
+      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="community.html">Aktuelles</a><a href="training.html">Training</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="frostverse.html">✦ Frostverse</a><a href="website-updates.html">✦ Updates</a><a href="#fragen">Fragen</a></nav><span><a href="website-updates.html" class="v11-footer-version">FROST SKATERS · VERSION 1.1 ↗</a><br>Zusammen seit 2025.</span></footer>
     </main>
 
 
     <script src="assets/site-menu.js"></script>
     <script src="assets/site-share.js"></script>
     <script src="assets/frost-intro.js?v=2"></script>
+  <script defer src="assets/frost-command.js?v=1"></script>
   <script defer src="assets/frost-faq.js?v=1"></script>
 </body>
 </html>
