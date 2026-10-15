@@ -34,13 +34,20 @@ function check(test,ok,explanation=''){
  if(!ok)throw Error('FAILED '+test+(explanation?': '+explanation:''));
  results.push('✅ '+test);
 }
-for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html','team-talk.html','team-kalender.html','events.html','training.html','leitung.html','website-updates.html']){
+for(const page of ['index.html','anmelden.html','qr-karten.html','community.html','community-en.html','hub-admin.html','mitglieder-admin.html','mitglieder.html','datenschutz.html','eishallen.html','jahresrueckblick.html','team-talk.html','team-kalender.html','events.html','training.html','leitung.html','website-updates.html,'frostverse.html']){
  const response=await request(origin+page);
  const body=await response.text();
  check('GitHub Pages '+page,response.status===200,'HTTP '+response.status);
  check('HTML returned '+page,/<html\b/i.test(body)&&body.includes('Frost'),'Unexpected content');
  if (['index.html','anmelden.html','mitglieder.html','events.html','training.html','leitung.html','community.html','eishallen.html','jahresrueckblick.html','datenschutz.html','qr-karten.html'].includes(page)) {
    check('FAQ assets linked '+page,body.includes('assets/frost-faq.js')&&body.includes('assets/frost-faq.css'));
+ }
+ if(page==='frostverse.html'){
+   check('Frostverse page interactive world sections',body.includes('id="fvTitle"')&&body.includes('id="worlds"')&&body.includes('id="event"')&&body.includes('id="crew"')&&body.includes('id="studio"'));
+   check('Frostverse effects and season switches',body.includes('id="fvSound"')&&body.includes('id="fvEffects"')&&body.includes('id="fvSeasonPick"'));
+   check('Frostverse event date-only countdown',body.includes('2027')&&body.includes('id="fvTimer"')&&body.includes('keine Treffzeit'));
+   check('Frostverse customizer and local capsule',body.includes('id="fvSkateSvg"')&&body.includes('id="fvCapsuleForm"')&&body.includes('id="fvCapsuleDelete"'));
+   check('Frostverse links to Team login, no Owner links',body.includes('href="team-talk.html"')&&!body.includes('href="mitglieder-admin.html"')&&!body.includes('href="team-kalender.html"'));
  }
  if(page==='website-updates.html'){
    check('Website Updates latest release and 1.0 history',body.includes('Version 1.1')&&body.includes('1.0')&&body.includes('15. OKTOBER 2026'));
@@ -57,6 +64,9 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Owner Toolkit account / history / health assets loaded',body.includes('assets/frost-owner-tools.js')&&body.includes('assets/frost-owner-tools.css'));
    check('Owner Toolkit role editor fields',body.includes('id="ownerStaffForm"')&&body.includes('id="ownerStaffRole"')&&body.includes('id="ownerStaffList"'));
    check('Owner Toolkit audit and health markup',body.includes('id="ownerActivityList"')&&body.includes('id="ownerHealthWeb"')&&body.includes('id="ownerHealthDb"'));
+   check('Owner God Mode remains login-gated',body.includes('id="ownerGodMode"')&&body.includes('<section id="dashboard" hidden>'));
+   check('Owner Command and god mode assets',body.includes('assets/frost-god-mode.js')&&body.includes('assets/frost-command.js'));
+
 
  }
  if(page==='team-kalender.html'){
@@ -65,6 +75,8 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Team-Kalender month navigation and event form',body.includes('id="tcGrid"')&&body.includes('id="tcEventForm"'));
  }
  if(page==='team-talk.html')check('Team Lounge calendar shortcut is present',body.includes('href="team-kalender.html"'));
+ if(page==='team-talk.html')check('Private Team Hub remains behind login',body.includes('<section id="ttPrivate" hidden>')&&body.includes('id="ttPortalGate"')&&body.includes('id="ttPortalOwner"'));
+
  if(page==='index.html'){
    check('Frost Skaters entry intro markup',body.includes('id="frostWelcomeIntro"')&&body.includes('id="frostIntroSkip"')&&body.includes('id="frostIntroSound"'));
    check('Visitors can choose intro sound or skip',body.includes('Intro mit Sound starten')&&body.includes('Ohne Ton weiter'));
@@ -72,10 +84,12 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Frost Skaters entry intro assets linked',body.includes('assets/frost-intro.css')&&body.includes('assets/frost-intro.js'));
    check('Version 1.1 hero and updates showcase',body.includes('class="hero v11-hero"')&&body.includes('id="version11"')&&body.includes('assets/frost-v11-home.css'));
    check('Website Updates 1.1 homepage entry',body.includes('href="website-updates.html"')&&body.includes('v11-brand-version'));
+   check('Homepage Frostverse and command',body.includes('class="fv-home-feature"')&&body.includes('href="frostverse.html"')&&body.includes('assets/frost-command.js'));
+
 
  }
 }
-for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frost-owner-v11.css','assets/frost-owner-v11.js','assets/frost-owner-tools.css','assets/frost-owner-tools.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frostverse.css','assets/frostverse.js','assets/frostverse-teaser.css','assets/frost-command.css','assets/frost-command.js','assets/frost-id-pro.css','assets/frost-id-pro.js','assets/frost-god-mode.css','assets/frost-god-mode.js','assets/frost-team-portal.css','assets/frost-owner-v11.css','assets/frost-owner-v11.js','assets/frost-owner-tools.css','assets/frost-owner-tools.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
