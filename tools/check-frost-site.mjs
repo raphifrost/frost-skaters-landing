@@ -68,7 +68,7 @@ const mustExist=[
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
  'assets/frost-intro.js','assets/frost-intro.css',
- 'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs',
+ 'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs','assets/frost-owner-v11.css','assets/frost-owner-v11.js',
  'website-updates.html','assets/frost-updates.css','assets/frost-updates.js','assets/frost-v11-home.css','CHANGELOG.md'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
@@ -126,6 +126,48 @@ for(const page of ['index.html','events.html','training.html','leitung.html','mi
  if(!textFile(page).includes('href="website-updates.html"'))
   fail(page+': no navigation to Website Updates');
 }
+
+// Frost Skaters Owner Control Center 1.1: existing form contract must remain intact.
+// The private dashboard must remain inside the original hidden, authenticated section.
+const ownerPage=textFile('mitglieder-admin.html');
+const ownerLogic=textFile('assets/frost-members-admin.js');
+const ownerVisual=textFile('assets/frost-owner-v11.js');
+const ownerCss=textFile('assets/frost-owner-v11.css');
+const ownerIds=getIds(ownerPage);
+const requiredOwnerIds=[
+ 'adminLogin','adminSignup','signInPanel','ownerEmailBlock','ownerEmail','ownerPassword',
+ 'ownerAccountRemembered','changeOwnerEmail','loginButton','signupEmail','signupPassword','signupPasswordRepeat',
+ 'signupButton','signupDetails','signupFeedback','loginFeedback','dashboard',
+ 'reloadMembers','signOut','loungeOverview','statAll','statPending','statApproved','statOther',
+ 'loungeNew','addMember','manualName','manualStatus','manualRole','manualButton','manualFeedback',
+ 'loungeRoster','loungeMemberTiles','loungeMail','loungeMailFeed','loungeRequests',
+ 'incomingFeedback','filterStatus','filterName','memberRows','tableFeedback','conversationFeedback',
+ 'talkDialog','talkForm','talkHeading','talkForName','talkAt','talkNote','talkSaveButton','talkCancelButton','talkFeedback',
+ 'loungePreviewDialog','loungePreviewClose','loungePreviewCard','loungePreviewName','loungePreviewRole',
+ 'loungePreviewNumber','loungePreviewStatus','loungePreviewQr','loungePreviewCopy','loungePreviewOpen','loungePreviewFeedback',
+ 'ownerDashboardTop','ownerWelcomeMessage','ownerLocalDate','ownerSyncStatus'
+];
+for(const id of requiredOwnerIds)if(!ownerIds.includes(id))fail('Owner Control Center missing required element #'+id);
+if(!/<section id="dashboard" hidden>/.test(ownerPage))
+ fail('Owner dashboard must remain hidden before authentication');
+const dashboardMarkup=ownerPage.split('<section id="dashboard" hidden>')[1]?.split('</section>\n<dialog id="talkDialog"')[0]||'';
+for(const id of ['loungeOverview','loungeRoster','loungeNew','loungeRequests','loungeMail','ownerDashboardTop']){
+ if(!dashboardMarkup.includes('id="'+id+'"'))fail('Private owner section exposed outside hidden dashboard: '+id);
+}
+if(!ownerPage.includes('frost-owner-v11')||!ownerPage.includes('assets/frost-owner-v11.css')||!ownerPage.includes('assets/frost-owner-v11.js'))
+ fail('Owner Control Center 1.1 theme assets not linked');
+if(!ownerPage.includes('class="owner-workspace-grid"')||!ownerPage.includes('class="owner-command-nav"'))
+ fail('Owner Control Center shortcuts missing');
+if(!ownerPage.includes('Frost Skaters 1.1')||!ownerPage.includes('OWNER ACCESS'))
+ fail('Owner Control Center 1.1 branding missing');
+if(!ownerLogic.includes("client.from('frost_admins').select('user_id')")||!ownerLogic.includes("const client=ready?window.supabase.createClient"))
+ fail('Existing Owner authentication checks were unexpectedly removed');
+if(!ownerLogic.includes("client.from('frost_member_requests')")||!ownerLogic.includes('renderLoungeTiles(data)'))
+ fail('Existing Owner membership data logic was unexpectedly removed');
+if(/(?:fetch\s*\(|XMLHttpRequest|sendBeacon|createClient|localStorage|sessionStorage)/.test(ownerVisual))
+ fail('Visual-only Owner Control Center script must not open network connections or store personal data');
+if(!ownerCss.includes('prefers-reduced-motion')||!ownerCss.includes('max-width:540px'))
+ fail('Owner Control Center accessibility and mobile CSS required');
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
