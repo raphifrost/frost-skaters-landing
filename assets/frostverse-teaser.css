@@ -1,0 +1,28 @@
+/* Homepage portal teaser · Frostverse / 1.1 */
+.frost-v11-home .fv-home-feature{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:center;isolation:isolate;overflow:hidden;border-radius:29px;border:1px solid #9eebeb7d;background:radial-gradient(ellipse at 98% 0%,#df83e039,transparent 45%),radial-gradient(ellipse at 4% 90%,#61dde932,transparent 46%),linear-gradient(125deg,#142c45,#171c39 62%,#22162c);box-shadow:0 25px 90px #03071470;min-height:365px;padding:clamp(27px,4.2vw,55px);margin:7px 0 66px;scroll-margin-top:110px}
+.frost-v11-home .fv-home-feature::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#a9c8fa0c 1px,transparent 1px),linear-gradient(90deg,#a9c8fa0c 1px,transparent 1px);background-size:50px 50px;mask-image:linear-gradient(90deg,transparent 30%,#000)}
+.frost-v11-home .fv-home-content{position:relative;z-index:2;min-width:0}
+.frost-v11-home .fv-home-eyebrow{color:#a9eafa;font-size:.65rem;font-weight:950;letter-spacing:.17em}
+.frost-v11-home .fv-home-content h2{color:#f8ffff;font-weight:950;letter-spacing:-.08em;line-height:1.04;font-size:clamp(2.95rem,5.5vw,5.7rem);margin:17px 0 20px}
+.frost-v11-home .fv-home-content h2 span{background:linear-gradient(100deg,#8bf4ef,#b6eaff,#e3a7f1);color:transparent;background-clip:text;-webkit-background-clip:text}
+.frost-v11-home .fv-home-content p{max-width:560px;font-size:.94rem;line-height:1.85;color:#bbcedd;margin:0 0 20px}
+.frost-v11-home .fv-home-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:27px}
+.frost-v11-home .fv-home-pills span{display:inline-flex;padding:8px 11px;border-radius:99px;border:1px solid #a5e7ef48;background:#9cdbeb12;color:#b8eaf0;font-size:.59rem;letter-spacing:.1em;font-weight:950}
+.frost-v11-home .fv-home-action{display:inline-flex;justify-content:space-between;align-items:center;gap:22px;min-height:54px;border-radius:13px;border:1px solid #c6ffff;background:linear-gradient(110deg,#abf8f1,#78e2e9 55%,#c6bdfb);padding:13px 19px;text-decoration:none;color:#07232d;font-size:.87rem;font-weight:950;box-shadow:0 13px 34px #6ad8dd45;transition:transform .2s}
+.frost-v11-home .fv-home-action:hover{transform:translateY(-3px)}
+.frost-v11-home .fv-home-action span{font-size:1.2rem}
+.frost-v11-home .fv-home-footnote{display:block;color:#8eaac1;font-size:.59rem;letter-spacing:.14em;font-weight:900;margin-top:18px}
+.frost-v11-home .fv-home-visual{position:relative;min-height:290px;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:1}
+.frost-v11-home .fv-home-ring{position:absolute;border:1px solid #abecf287;border-radius:50%;width:300px;height:300px;max-width:95%}
+.frost-v11-home .fv-home-ring-one{border-style:dashed;animation:fv-home-spin 42s linear infinite}
+.frost-v11-home .fv-home-ring-two{height:120px;width:325px;border-color:#f4b4fa96;transform:rotate(-33deg)}
+.frost-v11-home .fv-home-snow{font-size:300px;position:absolute;line-height:1;color:#97eefa0c;transform:rotate(-18deg)}
+.frost-v11-home .fv-home-visual strong{font-size:8.7rem;letter-spacing:-.16em;padding-right:15px;font-weight:1000;color:#eaffff;line-height:1;text-shadow:0 0 48px #a1faff8c}
+.frost-v11-home .fv-home-visual small{font-size:.62rem;color:#b5f4f2;letter-spacing:.16em;font-weight:950;margin-top:13px}
+.frost-v11-home .fv-home-label{position:absolute;right:0;top:12%;font-size:.56rem;letter-spacing:.14em;font-weight:900;color:#d9f8ff;border:1px solid #a8e7ef82;border-radius:9px;padding:10px 12px;background:#12233acc;transform:rotate(7deg)}
+.frost-v11-home .v11-hero .btn[data-frost-command-open]{cursor:pointer;font:inherit;font-weight:800}
+@keyframes fv-home-spin{to{transform:rotate(360deg)}}
+@media(max-width:820px){.frost-v11-home .fv-home-feature{grid-template-columns:1fr;gap:0}.frost-v11-home .fv-home-visual{min-height:260px;margin-top:8px}.frost-v11-home .fv-home-ring{width:250px;height:250px}.frost-v11-home .fv-home-ring-two{width:280px;height:110px}.frost-v11-home .fv-home-visual strong{font-size:7.5rem}}
+@media(max-width:600px){.frost-v11-home .fv-home-feature{margin:0 0 35px;border-radius:24px;padding:29px 23px}.frost-v11-home .fv-home-content h2{font-size:clamp(2.8rem,10vw,4.5rem)}.frost-v11-home .fv-home-eyebrow{font-size:.58rem;letter-spacing:.12em}.frost-v11-home .fv-home-content p{font-size:.88rem}.frost-v11-home .fv-home-action{width:100%}.frost-v11-home .fv-home-visual{min-height:230px}.frost-v11-home .fv-home-ring{width:215px;height:215px}.frost-v11-home .fv-home-ring-two{width:240px;height:95px}.frost-v11-home .fv-home-visual strong{font-size:6.9rem}.frost-v11-home .fv-home-snow{font-size:235px}.frost-v11-home .fv-home-label{font-size:.47rem;top:8%}}
+@media(prefers-reduced-motion:reduce){.frost-v11-home .fv-home-ring-one{animation:none}.frost-v11-home .fv-home-action{transition:none}.frost-v11-home .fv-home-action:hover{transform:none}}
+@media print{.frost-v11-home .fv-home-feature{break-inside:avoid}.frost-v11-home .fv-home-visual{display:none}}
