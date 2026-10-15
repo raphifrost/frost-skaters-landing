@@ -22,3 +22,5 @@ jobs:
         run: node tools/check-frost-site.mjs
       - name: Validate Frost FAQ responses and privacy
         run: node tools/check-frost-faq.mjs
+      - name: Validate Owner role tools, audit timeline and System Monitor
+        run: node tools/check-frost-owner-tools.mjs
