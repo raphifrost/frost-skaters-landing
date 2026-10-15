@@ -6,7 +6,7 @@
  'use strict';
  const section=document.getElementById('approvedSection');
  const card=document.getElementById('memberCard');
- const toggle=document.getElementById('frostId3dToggle');
+ const toggle=document.getElementById('frostIdTilt')||document.getElementById('frostId3dToggle');
  if(!section||!card||!toggle)return;
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
  let active=false;
