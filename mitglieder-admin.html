@@ -2,36 +2,61 @@
 <html lang="de"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#080911">
+<meta name="theme-color" content="#080c1b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Frost Owner">
 <link rel="apple-touch-icon" href="assets/frost-skaters-logo.jpg">
 <link rel="manifest" href="owner.webmanifest">
-<title>Owner Lounge | Frost Skaters</title>
+<title>Owner Control Center · Frost Skaters 1.1</title>
 <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg">
 <link rel="stylesheet" href="assets/site-menu.css">
 <link rel="stylesheet" href="assets/frost-theme.css?v=1">
 <link rel="stylesheet" href="assets/frost-members.css?v=3">
 <link rel="stylesheet" href="assets/frost-card-premium.css?v=1">
 <link rel="stylesheet" href="assets/frost-owner-lounge.css?v=1">
-</head><body class="frost-page">
-<header class="site-header"><a class="site-brand" href="index.html">FROST SKATERS</a><nav style="display:flex;gap:15px;flex-wrap:wrap"><a href="index.html" style="color:#78e9f1">🏠 Startseite</a><a href="mitglieder.html" style="color:#78e9f1">← Mitgliedskarten</a><a href="hub-admin.html" style="color:#78e9f1">👑 Weitere Owner-Funktionen</a><a href="team-talk.html" style="color:#78e9f1">🎙️ Team Lounge</a><a href="qr-karten.html" style="color:#78e9f1">🪪 QR-Karten drucken</a></nav></header>
+<link rel="stylesheet" href="assets/frost-owner-v11.css?v=1">
+</head><body class="frost-page frost-owner-v11">
+<header class="site-header owner-topbar">
+  <div class="owner-brand-row">
+    <a class="site-brand" href="index.html">FROST SKATERS</a>
+    <span class="owner-brand-divider" aria-hidden="true"></span>
+    <span class="owner-brand-edition">OWNER <strong>1.1</strong></span>
+  </div>
+  <nav class="owner-public-nav" aria-label="Owner Lounge Navigation">
+    <span class="owner-nav-privacy"><span aria-hidden="true">●</span> PRIVATE AREA</span>
+    <a href="index.html" class="owner-home-link">↗ Zur Website</a>
+  </nav>
+</header>
 <main class="member-layout">
-<section class="lounge-hero">
-<span class="lounge-kicker">❄ Frost Skaters · Exklusiv für den Owner</span>
-<h1>👑 Deine <span>Owner Lounge.</span></h1>
-<p>Alle Mitglieder an einem Ort. Neue Anmeldungen prüfen, Mitglieder selbst hinzufügen, digitale Karten anschauen und den Überblick behalten. Persönliche Angaben bleiben geschützt.</p>
-<div class="lounge-links"><a href="#loungeRoster">👥 Mitglieder</a><a href="#loungeNew">➕ Hinzufügen</a><a href="#loungeRequests">📥 Anträge</a><a href="#loungeMail">✉️ GMX-Nachrichten</a><a href="hub-admin.html">⚙️ Weitere Verwaltung</a></div>
+<section class="lounge-hero owner-intro-hero" aria-labelledby="ownerHeroHeading">
+  <div class="owner-hero-content">
+    <span class="lounge-kicker"><i class="owner-pulse-dot" aria-hidden="true"></i> FROST SKATERS / OWNER ACCESS</span>
+    <span class="owner-hero-overline">YOUR SPACE. YOUR CREW.</span>
+    <h1 id="ownerHeroHeading">Welcome to<br><span>your kingdom.</span></h1>
+    <p>Dein persönliches Frost Skaters Control Center: Mitglieder verwalten, Karten freigeben, Anträge prüfen und die Crew organisieren – alles an einem Ort.</p>
+    <div class="owner-hero-cta"><a href="#signInPanel" class="owner-hero-login-link">👑 Zum Owner-Login <span aria-hidden="true">↗</span></a><span class="owner-hero-note">NUR MIT OWNER-FREIGABE</span></div>
+    <div class="owner-hero-foot"><span>EST. 2025</span><span>FROST SYSTEMS / 01</span><span>V 1.1</span></div>
+  </div>
+  <div class="owner-hero-visual" aria-hidden="true">
+    <div class="owner-hero-circles"></div>
+    <div class="owner-hero-orbit"></div>
+    <div class="owner-hero-logo-circle"><img src="assets/frost-skaters-logo.jpg" alt="" width="1280" height="799"></div>
+    <div class="owner-hero-crown">♛</div>
+    <div class="owner-hero-chip owner-hero-chip-a"><span>❄</span> FROST CONTROL</div>
+    <div class="owner-hero-chip owner-hero-chip-b"><span>◆</span> PRIVATE ACCESS</div>
+    <span class="owner-hero-visual-code">FS // 01.1</span>
+  </div>
 </section>
-<details class="member-panel" style="margin:18px 0">
+<details class="member-panel owner-app-guide" style="margin:18px 0">
 <summary style="cursor:pointer;font-weight:800;color:#9af3fb">📱 Owner-Dashboard als App zum Startbildschirm hinzufügen</summary>
 <p>Öffne diese Seite im <strong>Safari-Browser</strong> auf deinem iPhone. Tippe auf <strong>Teilen</strong> (Quadrat mit Pfeil) und dann auf <strong>„Zum Home-Bildschirm“</strong> oder „Zum Home-Bildschirm hinzufügen“. Gib dem Symbol den Namen „Frost Owner“ und tippe auf „Hinzufügen“.</p>
 <p>Ab dann öffnet sich dein Owner-Dashboard mit einem Fingertipp. Dein Passwort bleibt erforderlich; der Shortcut gibt niemandem automatisch Zugang.</p>
 </details>
 
-<section class="member-panel" id="signInPanel">
-<h2>🔒 Owner-Login</h2>
+<section class="member-panel owner-login-panel" id="signInPanel">
+  <div class="owner-panel-eyebrow"><span>01 / AUTHORIZATION</span><span class="owner-panel-spark" aria-hidden="true">✦</span></div>
+  <div class="owner-login-intro"><span class="owner-login-icon" aria-hidden="true">♛</span><div><h2>Owner Access.</h2><p class="owner-login-subtitle">Melde dich sicher mit deinem freigegebenen Owner-Konto an.</p></div></div>
 <form id="adminLogin">
 <div id="ownerAccountRemembered" hidden>
   <p class="member-hint" style="margin:2px 0 7px">👑 Dein Owner-Konto ist auf diesem Gerät gemerkt. Du brauchst nur dein Passwort.</p>
@@ -64,24 +89,52 @@
 </section>
 
 <section id="dashboard" hidden>
-<div class="member-panel" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-<div><strong>📅 Team-Kalender</strong><p class="member-hint" style="margin:4px 0">Ausflüge, Besprechungen und Team-Termine planen.</p></div>
-<a class="member-btn" href="team-kalender.html" style="text-decoration:none">Kalender öffnen →</a>
-</div>
-<div class="lounge-inbox"><strong>🔒 Nur für dich.</strong> Mitgliederdaten, Gesprächsnotizen und Karten-Links sind erst nach Owner-Login verfügbar.</div>
-<div class="member-actions"><button type="button" class="member-btn secondary" id="signOut">Abmelden</button><button type="button" class="member-btn secondary" id="reloadMembers">Liste aktualisieren</button></div>
-<section class="member-panel" id="loungeOverview">
-<h2>📊 Deine Lounge auf einen Blick</h2>
-<div class="member-stat-grid">
-<div class="member-stat"><strong id="statAll">0</strong><span>Anträge gesamt</span></div>
-<div class="member-stat"><strong id="statPending">0</strong><span>Offen</span></div>
-<div class="member-stat"><strong id="statApproved">0</strong><span>Aktive Karten</span></div>
-<div class="member-stat"><strong id="statOther">0</strong><span>Passiv / andere</span></div>
-</div>
+  <div class="owner-control-head" id="ownerDashboardTop">
+    <div class="owner-control-topline"><span><i class="owner-pulse-dot" aria-hidden="true"></i> OWNER AUTHENTICATED</span><span>FROST SKATERS · CONTROL CENTER / 1.1</span></div>
+    <div class="owner-control-content">
+      <div>
+        <p class="owner-control-eyebrow">DEIN PRIVATER BEREICH</p>
+        <h2>Control <span>Center.</span></h2>
+        <p id="ownerWelcomeMessage" class="owner-control-message">Deine Crew. Dein Überblick. Willkommen zurück, Owner.</p>
+        <div class="owner-session-line"><span class="owner-session-icon" aria-hidden="true">◆</span> Sicherer Owner-Bereich <span aria-hidden="true">•</span> <span id="ownerLocalDate">Übersicht</span></div>
+      </div>
+      <div class="owner-control-art" aria-hidden="true"><span class="owner-control-glow">❄</span><strong>FS</strong><small>OWNER / 1.1</small></div>
+    </div>
+    <div class="owner-control-actions">
+      <button type="button" class="member-btn owner-sync-btn" id="reloadMembers">↻ Daten aktualisieren</button>
+      <button type="button" class="member-btn secondary owner-signout-btn" id="signOut">⎋ Abmelden</button>
+      <span class="owner-sync-status" role="status" id="ownerSyncStatus">Übersicht wird geladen …</span>
+    </div>
+  </div>
+  <nav class="owner-command-nav" aria-label="Owner Dashboard Schnellnavigation">
+    <a href="#loungeOverview"><span aria-hidden="true">◈</span> Übersicht</a>
+    <a href="#loungeRequests"><span aria-hidden="true">▤</span> Anträge</a>
+    <a href="#loungeRoster"><span aria-hidden="true">♟</span> Mitglieder</a>
+    <a href="#loungeNew"><span aria-hidden="true">＋</span> Neu hinzufügen</a>
+    <a href="#loungeMail"><span aria-hidden="true">✉</span> Nachrichten</a>
+  </nav>
+<section class="member-panel owner-overview" id="loungeOverview">
+  <div class="owner-section-heading"><div><p class="owner-section-kicker">01 / LIVE OVERVIEW</p><h2>Dein Dashboard <span>auf einen Blick.</span></h2></div><span class="owner-heading-aside">AKTUELLER KARTENBESTAND</span></div>
+  <div class="member-stat-grid">
+    <div class="member-stat owner-stat-all"><span class="owner-stat-icon" aria-hidden="true">◈</span><span class="owner-stat-top">ALLE EINTRÄGE <span aria-hidden="true">↗</span></span><strong id="statAll">0</strong><span class="owner-stat-label">Anträge gesamt</span><span class="owner-stat-bottom">Dein gesamter Überblick</span></div>
+    <div class="member-stat owner-stat-pending"><span class="owner-stat-icon" aria-hidden="true">✳</span><span class="owner-stat-top">ZUR PRÜFUNG <span aria-hidden="true">↗</span></span><strong id="statPending">0</strong><span class="owner-stat-label">Offene Anträge</span><span class="owner-stat-bottom">Benötigen deine Entscheidung</span></div>
+    <div class="member-stat owner-stat-approved"><span class="owner-stat-icon" aria-hidden="true">✓</span><span class="owner-stat-top">DEINE CREW <span aria-hidden="true">↗</span></span><strong id="statApproved">0</strong><span class="owner-stat-label">Aktive Karten</span><span class="owner-stat-bottom">Aktive Mitgliedschaften</span></div>
+    <div class="member-stat owner-stat-other"><span class="owner-stat-icon" aria-hidden="true">❄</span><span class="owner-stat-top">WEITERE STATUS <span aria-hidden="true">↗</span></span><strong id="statOther">0</strong><span class="owner-stat-label">Passiv / andere</span><span class="owner-stat-bottom">Weitere Kartenstatus</span></div>
+  </div>
+  <div class="owner-overview-footer"><span><span class="owner-overview-dot" aria-hidden="true"></span> Werte stammen aus deiner geschützten Mitgliederliste.</span><a href="#loungeRequests">Alle Einträge verwalten <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="owner-workspace" aria-labelledby="ownerWorkspaceHeading">
+  <div class="owner-section-heading"><div><p class="owner-section-kicker">02 / QUICK ACCESS</p><h2 id="ownerWorkspaceHeading">Dein <span>Workspace.</span></h2></div><span class="owner-heading-aside">ALLE TOOLS AN EINEM ORT</span></div>
+  <div class="owner-workspace-grid">
+    <a class="owner-workspace-card owner-workspace-requests" href="#loungeRequests"><span class="owner-workspace-mark" aria-hidden="true">▤</span><span class="owner-workspace-caption">MEMBER MANAGEMENT</span><strong>Anträge<br>prüfen.</strong><span class="owner-workspace-link">Neue Einträge bearbeiten <b aria-hidden="true">↗</b></span></a>
+    <a class="owner-workspace-card owner-workspace-new" href="#loungeNew"><span class="owner-workspace-mark" aria-hidden="true">＋</span><span class="owner-workspace-caption">ADD NEW MEMBER</span><strong>Neue Karten<br>erstellen.</strong><span class="owner-workspace-link">Mitglied hinzufügen <b aria-hidden="true">↗</b></span></a>
+    <a class="owner-workspace-card owner-workspace-calendar" href="team-kalender.html"><span class="owner-workspace-mark" aria-hidden="true">▦</span><span class="owner-workspace-caption">TEAM PLANNING</span><strong>Termine<br>planen.</strong><span class="owner-workspace-link">Team-Kalender öffnen <b aria-hidden="true">↗</b></span></a>
+    <a class="owner-workspace-card owner-workspace-mail" href="#loungeMail"><span class="owner-workspace-mark" aria-hidden="true">✉</span><span class="owner-workspace-caption">OWNER MESSAGES</span><strong>Benachrichtigungen<br>ansehen.</strong><span class="owner-workspace-link">GMX-Übersicht öffnen <b aria-hidden="true">↗</b></span></a>
+  </div>
+  <div class="owner-extras"><span>WEITERE OWNER-TOOLS</span><a href="hub-admin.html">⚙ Team-Verwaltung <b aria-hidden="true">↗</b></a><a href="team-talk.html">🎙 Team Lounge <b aria-hidden="true">↗</b></a><a href="qr-karten.html">▦ QR-Karten drucken <b aria-hidden="true">↗</b></a></div>
 </section>
 
-<section class="member-panel" id="loungeNew">
-<h2>➕ Neues Mitglied hinzufügen</h2>
+<section class="member-panel owner-form-panel" id="loungeNew"><div class="owner-section-heading"><div><p class="owner-section-kicker">03 / CREATE MEMBER</p><h2>Neues <span>Mitglied hinzufügen.</span></h2></div><span class="owner-section-icon" aria-hidden="true">＋</span></div>
 <p>Trage nur den Vornamen ein. Aktive Karten bestätigen eine Mitgliedschaft, passive Karten zeigen den Status PASSIV und keine aktive Mitgliedschaft. Der private Karten-Link erscheint anschließend.</p>
 <form id="addMember">
 <label for="manualName" class="member-label">Vorname</label>
@@ -95,19 +148,18 @@
 <div id="manualFeedback" role="status" aria-live="polite"></div>
 </section>
 
-<section class="member-panel" id="loungeRoster">
-  <div class="lounge-subhead"><div><h2>👥 Deine Mitglieder</h2><p class="member-hint">Alle vorhandenen Karten – übersichtlich dargestellt. Tippe bei aktiven Mitgliedern auf „Karte ansehen“, um die neue Gestaltung und den persönlichen QR-Code zu prüfen.</p></div><a class="member-btn secondary" href="qr-karten.html" style="text-decoration:none">🪪 Werbe-QR-Karten</a></div>
+<section class="member-panel owner-roster-panel" id="loungeRoster">
+  <div class="lounge-subhead"><div><p class="owner-section-kicker">04 / MEMBER DIRECTORY</p><h2>Deine <span>Mitglieder.</span></h2><p class="member-hint">Alle vorhandenen Karten – übersichtlich dargestellt. Tippe bei aktiven Mitgliedern auf „Karte ansehen“, um die neue Gestaltung und den persönlichen QR-Code zu prüfen.</p></div><a class="member-btn secondary" href="qr-karten.html" style="text-decoration:none">🪪 Werbe-QR-Karten</a></div>
   <div id="loungeMemberTiles" class="lounge-member-grid" aria-live="polite"></div>
 </section>
-<section class="member-panel" id="loungeMail">
+<section class="member-panel owner-mail-section" id="loungeMail"><p class="owner-section-kicker">05 / NOTIFICATIONS</p>
 <details class="lounge-mail-panel" open><summary>✉️ Automatische GMX-Benachrichtigungen</summary>
 <p>Neue Anträge lösen eine E-Mail an dein GMX-Postfach aus. Sobald du eine Karte freigibst, wird eine zweite E-Mail mit dem <strong>privaten Karten-Link</strong> angefordert. Der QR-Code erscheint beim Öffnen dieses Links.</p>
 <p class="member-hint"><strong>Wichtig:</strong> FormSubmit muss deine GMX-Adresse bestätigt haben. Die Liste zeigt beauftragte Nachrichten, keine Garantie der Zustellung. Bitte auch den Spamordner prüfen.</p>
 <div id="loungeMailFeed" class="lounge-mail-list"><p class="member-hint">Nachrichten werden geladen …</p></div>
 </details>
 </section>
-<section class="member-panel" id="loungeRequests">
-<h2>📥 Alle Einträge &amp; Anträge</h2>
+<section class="member-panel owner-requests-panel" id="loungeRequests"><div class="owner-section-heading"><div><p class="owner-section-kicker">06 / REQUEST CENTER</p><h2>Alle Einträge <span>&amp; Anträge.</span></h2></div><span class="owner-section-icon" aria-hidden="true">▤</span></div>
 <p class="member-hint">Neue Anträge werden bei geöffnetem Dashboard automatisch angezeigt. Falls dein Handy die Seite im Hintergrund anhält, siehst du sie beim nächsten Öffnen.</p>
 <div id="incomingFeedback" role="status" aria-live="polite"></div>
 <p>Du kannst eingegangene Anträge annehmen oder ablehnen. Du kannst aktive oder passive Karten verwalten und für jede Person ein privates Gespräch eintragen. Nur eingeloggte Owner sehen diese Angaben. Ein gesperrter QR-Code zeigt keine gültige Karte mehr.</p>
@@ -123,8 +175,8 @@
 <table class="member-table"><thead><tr><th>Name</th><th>Status</th><th>Rolle</th><th>Mitgliedsnummer</th><th>Datum</th><th>Aktionen</th></tr></thead><tbody id="memberRows"></tbody></table>
 </div>
 </section>
-<section class="member-panel">
-  <h2>🗣 Gespräch nur für Owner</h2>
+<section class="member-panel owner-conversation-help"><p class="owner-section-kicker">OWNER ONLY / PRIVATE NOTES</p>
+  <h2>🗣 Private Gespräche</h2>
   <p>Über „Gespräch“ bei einer Person kannst du einen Gesprächstermin und eine kurze private Notiz hinterlegen. Diese Informationen erscheinen nicht auf öffentlichen QR-Karten.</p>
   <div id="conversationFeedback" role="status" aria-live="polite"></div>
 </section>
@@ -165,10 +217,11 @@
 <div class="member-actions"><button class="member-btn" id="loungePreviewCopy" type="button">🔗 Karten-Link kopieren</button><a id="loungePreviewOpen" class="member-btn secondary" href="mitglieder.html" target="_blank" rel="noopener noreferrer" style="text-decoration:none">Karte zum Drucken öffnen ↗</a></div>
 <div id="loungePreviewFeedback" role="status"></div>
 </dialog>
-<footer style="max-width:1050px;margin:0 auto;padding:15px 20px 40px"><a href="index.html">🏠 Startseite</a> · <a href="datenschutz.html">Datenschutz</a></footer>
+<footer class="owner-footer"><div><a href="index.html" class="owner-footer-brand">❄ FROST SKATERS</a><span>PRIVATE OWNER CONTROL CENTER · VERSION 1.1</span></div><nav aria-label="Rechtliche Infos"><a href="index.html">Startseite</a><a href="datenschutz.html">Datenschutz</a></nav></footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.8/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
 <script src="assets/frost-members-admin.js?v=6"></script>
+<script defer src="assets/frost-owner-v11.js?v=1"></script>
 </body></html>
