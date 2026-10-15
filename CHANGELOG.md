@@ -32,3 +32,9 @@ Der erste öffentliche Web-Auftritt für Frost Skaters: Vorstellung der Communit
 ---
 
 **Für zukünftige Updates:** Ergänze hier und auf \`website-updates.html\` nur Änderungen, die wirklich umgesetzt und getestet wurden. Nicht freigegebene Veranstaltungstermine, unangekündigte Termine und sensible Team-Daten nicht öffentlich machen.
+
+### Owner Lounge / Control Center 1.1
+
+- Innerhalb von Version 1.1 zusätzliches Premium-Redesign der geschützten Owner Lounge: Aurora-Startmotiv, Login-Karte, Live-Statistik-Kacheln, Schnellzugriffe, Mitgliedskarten-Kacheln und aufgeräumte Verwaltung.
+- Bestehende Mitglieder-, Antrags-, Karten-, GMX- und Gesprächsfunktionen bleiben erhalten; Owner-Sicherheit/RLS unverändert.
+- Neue Dateien: `assets/frost-owner-v11.css`, `assets/frost-owner-v11.js`. Keine neuen Datenbanktabellen oder Rechte.
