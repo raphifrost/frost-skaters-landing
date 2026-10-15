@@ -48,6 +48,12 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Website Updates visual styles and script',body.includes('assets/frost-updates.css')&&body.includes('assets/frost-updates.js'));
    check('Release page has no admin links',!/href=["'](?:team-talk|team-kalender|mitglieder-admin|hub-admin)\.html/.test(body));
  }
+ if(page==='mitglieder-admin.html'){
+   check('Owner Control Center 1.1 login and dashboard',body.includes('Owner Control Center')&&body.includes('assets/frost-owner-v11.css')&&body.includes('assets/frost-owner-v11.js'));
+   check('Owner dashboard remains login-gated',body.includes('<section id="dashboard" hidden>')&&body.includes('id="signInPanel"'));
+   check('Owner legacy membership tools preserved',body.includes('id="loungeMemberTiles"')&&body.includes('id="memberRows"')&&body.includes('id="addMember"')&&body.includes('id="talkDialog"'));
+   check('Owner premium dashboard controls',body.includes('id="ownerDashboardTop"')&&body.includes('owner-workspace-grid')&&body.includes('owner-command-nav'));
+ }
  if(page==='team-kalender.html'){
    check('Live calendar assets are linked',body.includes('assets/frost-team-calendar.js')&&body.includes('assets/frost-team-calendar.css'));
    check('Team-Kalender protected login markup',body.includes('id="tcLogin"')&&body.includes('id="tcPrivate"'));
@@ -64,7 +70,7 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
 
  }
 }
-for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frost-owner-v11.css','assets/frost-owner-v11.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
