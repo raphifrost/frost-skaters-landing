@@ -154,3 +154,32 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Das optionale `assets/frost-owner-v11.js` formatiert nur bereits sichtbare Summenzahlen, Tagesgruß und einen lokalen Zeitpunkt auf dem eingeloggten Dashboard. **Keine eigenen Datenbankabfragen, Speicherung oder Tracking.**
 - **Unveränderte Zugriffsrechte:** Bestehendes Supabase-Login, Owner-Abfrage und RLS in `assets/frost-members-admin.js` bleiben unverändert. Verstecken von Oberfläche ist nicht der Zugriffsschutz.
 - `tools/check-frost-site.mjs` prüft die vorhandenen wichtigen IDs und Funktionen; `tools/check-frost-live.mjs` stellt sicher, dass das neue Design veröffentlicht ist und die Seite vor Anmeldung weiterhin nur den Login zeigt. Echte Owner-Login-/Bearbeitungs-Tests wurden nicht durchgeführt.
+
+## 👑 Owner-Tools 3, 4 und 12 – Rollen, Protokoll & System-Monitor
+
+**Erreichbar ausschließlich nach Owner-Login** auf `mitglieder-admin.html` unter „Owner Tools“. Der vorhandene Login und alle Owner-Mitgliederfunktionen bleiben bestehen.
+
+### 3. Teamrechte verwalten
+
+- Eingeloggter Owner darf registrierte Benutzer-IDs als **Co-Owner**, **Managerin/Manager** oder **Supporter** freischalten, vorhandene Rollen verändern und Zugänge entziehen.
+- Datenquelle: die bereits vorhandene, durch **Supabase RLS auf Owner-Zugriff beschränkte** Tabelle `public.frost_hub_staff`. Die Owner-Rolle selbst kann **nicht** über Teamrollen vergeben werden; die Datenbank verhindert zudem nachträgliches Ändern der Team-Benutzer-ID oder das Eintragen vorhandener Owner-Konten als zusätzliche Staff-Mitglieder.
+- Co-Owner und Managerin/Manager haben aktuell dieselben Team-Bearbeitungsrechte (Team Hub und Kalender), Supporter dürfen im Teamchat teilnehmen und im Team-Kalender nur lesen. Kein Teamkonto darf dadurch private Owner-Mitgliedskarten verwalten.
+- Neue Teamkonten müssen sich zunächst mit eigenen Zugangsdaten bei der Team Lounge registrieren und dem Owner ihre **Benutzer-ID**, niemals ihr Passwort, mitteilen. Die Staff-Verwaltung erzeugt keine Konten und verschickt keine Einladungsmails.
+
+### 4. Owner-Aktivitätsprotokoll
+
+- Tabelle `public.frost_owner_activity` mit INSERT/UPDATE/DELETE-Triggern auf Mitglieder und Teamrollen. Protokolliert Kartenanträge, Kartenerstellung, Statuswechsel, Kartenrollenwechsel, Löschen von Karten sowie Staff-Zugänge, Rollen- und Anzeigenamensänderungen.
+- Der neue Verlauf startet ab Einrichtung des Protokolls; bereits existierende Einträge der bisherigen `frost_hub_member_history` werden getrennt angeboten, wenn vorhanden. Es wurden keine alten Ereignisse erfunden oder künstlich zurückdatiert.
+- Eigentümerzugriff ausschließlich über RLS + SELECT; **keine direkten Client-Schreibrechte** auf das Protokoll. Keine Passwörter, E-Mails, Kartencodes, Gesprächsnotizen oder Namen im neuen Protokoll. Eine verknüpfte Mitglieds-ID wird bei Löschung der Mitgliedskarte entfernt.
+- Einträge älter als 180 Tage werden **bei späteren protokollierten Ereignissen** bereinigt; ohne neue Ereignisse gibt es noch keinen eigenständigen nächtlichen Löschjob. Speicherfristen des alten Bestandsprotokolls müssen separat geprüft werden.
+
+### 12. System-Monitor
+
+- Öffentliche GitHub-Pages-Seite via **same-origin HTTP HEAD**; tatsächliche HTTP-Antwort wird als „Erreichbar“ oder „Nicht erreichbar“ angezeigt.
+- Geschützte Supabase-Owner-Abfrage prüft, ob die Datenbank/API aus dem aktuellen Browser über die bestehende Authentifizierung antwortet. Wird der Owner-Zugang nachträglich serverseitig aberkannt, beendet die Seite die Sitzung, sobald die Owner-Abfrage dies eindeutig bestätigt.
+- Versionskarte zeigt die bekannte **Version 1.1 und deren Release-Datum** aus der Website-Chronik, **nicht** eine live vom GitHub-Deployment gelesene Aktualisierungszeit.
+- Automatischer Check höchstens etwa alle 60 Sekunden, solange die Owner Lounge geöffnet und sichtbar ist; zusätzlich manuell. Keine dauerhafte Uptime-Messung, kein Echtzeit-Überwachungssystem, kein Monitoring von GMX-Mails, Jitsi oder Nutzergeräten.
+- Die UI-Erweiterung `assets/frost-owner-tools.js` nutzt die bereits authentifizierte Supabase-Sitzung und speichert keine neuen Zugangsdaten oder Besucheranalysen.
+
+**Tests:** `node tools/check-frost-owner-tools.mjs` prüft Rollenvalidierung, Aktionsbezeichnungen und geschützte UI-Verknüpfungen; GitHub Actions führt außerdem statische und anonyme Live-Prüfungen durch. Echt authentifizierte Owner-Aktionen sind ohne ein freigegebenes Testkonto **nicht** End-to-End ausgeführt worden.
+
