@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="assets/frost-theme.css?v=1">
 <link rel="stylesheet" href="assets/frost-members.css?v=3">
 <link rel="stylesheet" href="assets/frost-card-premium.css?v=1">
+<link rel="stylesheet" href="assets/frost-id-pro.css?v=1">
 <link rel="stylesheet" href="assets/frost-faq.css?v=1">
 </head>
 <body class="frost-page" data-page="mitglieder">
@@ -47,9 +48,10 @@
 </section>
 
 <section class="member-panel" id="approvedSection" hidden>
-<h2>🪪 Deine Frost Skaters Karte</h2>
+<h2>🪪 Deine Frost ID Pro</h2>
+<p class="member-hint">Neue Hologramm-Optik und ein freiwilliger 3D-Effekt. Dein Karten-Code bleibt privat und der Kartenstatus wird weiterhin sicher geprüft.</p>
 <p>Dein QR-Code führt auf diese Karte. Eine passive Karte zeigt keine aktive Mitgliedschaft an. Es handelt sich nicht um einen amtlichen Ausweis.</p>
-<div class="member-card frost-premium" id="memberCard">
+<div class="member-card frost-premium frost-id-pro" id="memberCard">
 <div class="member-card-head">
   <div class="frost-card-brand">
     <img src="assets/frost-skaters-logo.jpg" alt="Frost Skaters Logo" class="member-logo">
@@ -72,6 +74,7 @@
 <div class="member-actions">
 <button class="member-btn" id="printCard" type="button">🖨️ Als PDF speichern / Drucken</button>
 <button class="member-btn secondary" id="copyCardLink" type="button">🔗 Karten-Link kopieren</button>
+<button class="member-btn secondary" id="frostIdTilt" type="button" aria-pressed="false">✦ 3D-Hologramm einschalten</button>
 </div>
 <p class="member-hint">Teile deinen Karten-Link nur mit Personen, die deinen Mitgliedsnamen sehen dürfen. Ein QR-Code ersetzt keinen amtlichen Ausweis.</p>
 <div id="cardFeedback" role="status" aria-live="polite"></div>
@@ -87,6 +90,7 @@
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script src="assets/frost-members-config.js"></script>
 <script src="assets/frost-members.js?v=6"></script>
+<script defer src="assets/frost-id-pro.js?v=1"></script>
 <script src="assets/site-menu.js"></script>
 <script defer src="assets/frost-faq.js?v=1"></script>
 </body></html>
