@@ -24,3 +24,5 @@ jobs:
         run: node tools/check-frost-faq.mjs
       - name: Validate Owner role tools, audit timeline and System Monitor
         run: node tools/check-frost-owner-tools.mjs
+      - name: Validate Frostverse, ID Pro, command search and private portals
+        run: node tools/check-frostverse.mjs
