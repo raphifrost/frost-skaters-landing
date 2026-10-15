@@ -69,6 +69,7 @@ const mustExist=[
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
  'assets/frost-intro.js','assets/frost-intro.css',
  'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs','assets/frost-owner-v11.css','assets/frost-owner-v11.js',
+ 'assets/frost-owner-tools.js','assets/frost-owner-tools.css','tools/check-frost-owner-tools.mjs',
  'website-updates.html','assets/frost-updates.css','assets/frost-updates.js','assets/frost-v11-home.css','CHANGELOG.md'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
@@ -145,7 +146,10 @@ const requiredOwnerIds=[
  'talkDialog','talkForm','talkHeading','talkForName','talkAt','talkNote','talkSaveButton','talkCancelButton','talkFeedback',
  'loungePreviewDialog','loungePreviewClose','loungePreviewCard','loungePreviewName','loungePreviewRole',
  'loungePreviewNumber','loungePreviewStatus','loungePreviewQr','loungePreviewCopy','loungePreviewOpen','loungePreviewFeedback',
- 'ownerDashboardTop','ownerWelcomeMessage','ownerLocalDate','ownerSyncStatus'
+ 'ownerDashboardTop','ownerWelcomeMessage','ownerLocalDate','ownerSyncStatus',
+ 'ownerOps','ownerRoles','ownerActivity','ownerSystem','ownerStaffForm','ownerStaffId','ownerStaffName','ownerStaffRole',
+ 'ownerStaffSave','ownerStaffCancel','ownerStaffReload','ownerStaffList','ownerStaffCount','ownerActivityList',
+ 'ownerLegacyHistoryList','ownerActivityReload','ownerHealthWeb','ownerHealthDb','ownerHealthChecked','ownerHealthRefresh'
 ];
 for(const id of requiredOwnerIds)if(!ownerIds.includes(id))fail('Owner Control Center missing required element #'+id);
 if(!/<section id="dashboard" hidden>/.test(ownerPage))
@@ -168,6 +172,17 @@ if(/(?:fetch\s*\(|XMLHttpRequest|sendBeacon|createClient|localStorage|sessionSto
  fail('Visual-only Owner Control Center script must not open network connections or store personal data');
 if(!ownerCss.includes('prefers-reduced-motion')||!ownerCss.includes('max-width:540px'))
  fail('Owner Control Center accessibility and mobile CSS required');
+if(!ownerPage.includes('assets/frost-owner-tools.js')||!ownerPage.includes('assets/frost-owner-tools.css'))
+ fail('Owner Toolkit 3/4/12 assets missing from authenticated page');
+if(!ownerPage.includes('owner-ops-grid')||!ownerPage.includes('id="ownerStaffForm"'))
+ fail('Owner Toolkit card container or protected role form missing');
+for(const id of ['ownerRoles','ownerActivity','ownerSystem','ownerStaffForm','ownerActivityList','ownerHealthWeb']){
+ if(!dashboardMarkup.includes('id="'+id+'"'))
+  fail('Owner Toolkit contains private control outside hidden dashboard #'+id);
+}
+if(!ownerLogic.includes('window.FrostOwnerTools.open(client)')||
+   !ownerLogic.includes('window.FrostOwnerTools.close()'))
+ fail('Owner Toolkit not correctly integrated into existing Owner login/logout');
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
