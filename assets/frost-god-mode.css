@@ -1,0 +1,31 @@
+/* Owner God Mode 1.1 — pure design & local summary of already authorized owner counts */
+.frost-owner-v11 .owner-god{position:relative;scroll-margin-top:100px;isolation:isolate;overflow:hidden;border:1px solid #8df0f18a;border-radius:26px;background:radial-gradient(ellipse at 94% 3%,#ba7ddd44,transparent 44%),radial-gradient(ellipse at 8% 90%,#4bd8ec29,transparent 47%),linear-gradient(125deg,#112a3b,#111932 65%,#1c1731);box-shadow:0 24px 74px #02040c7e;margin:22px 0 34px}
+.frost-owner-v11 .owner-god::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#a6dff00a 1px,transparent 1px),linear-gradient(90deg,#a6dff00a 1px,transparent 1px);background-size:51px 51px;mask-image:linear-gradient(90deg,transparent 26%,#000)}
+.frost-owner-v11 .owner-god-head{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:1px solid #a2cfe74e;padding:18px clamp(20px,3vw,37px);font-size:.62rem;color:#acd6de;letter-spacing:.16em;font-weight:900}
+.frost-owner-v11 .owner-god-head span:first-child{display:flex;align-items:center;gap:9px;color:#b4f9f4}
+.frost-owner-v11 .owner-god-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#93ffd7;box-shadow:0 0 0 4px #93ffd721,0 0 15px #93ffd7}
+.frost-owner-v11 .owner-god-content{display:flex;justify-content:space-between;gap:25px;align-items:center;padding:clamp(26px,4vw,50px);position:relative;z-index:2}
+.frost-owner-v11 .owner-god-intro{max-width:760px}
+.frost-owner-v11 .owner-god h2{font-size:clamp(3rem,5.9vw,6rem);font-weight:950;letter-spacing:-.085em;line-height:1.05;color:#faffff;margin:12px 0 19px}
+.frost-owner-v11 .owner-god h2 span{background:linear-gradient(110deg,#8dfbf4,#b6dcfd,#e6a3f7);background-clip:text;-webkit-background-clip:text;color:transparent}
+.frost-owner-v11 .owner-god-intro>p:not(.owner-section-kicker){font-size:.91rem;color:#b2c7d9;line-height:1.85;max-width:620px}
+.frost-owner-v11 .owner-god-actions{display:flex;flex-wrap:wrap;align-items:center;gap:11px;margin-top:27px}
+.frost-owner-v11 .owner-god-actions .member-btn{display:inline-flex;align-items:center;gap:18px;min-height:52px;padding:13px 19px;text-decoration:none;font-size:.84rem}
+.frost-owner-v11 .owner-god-actions .member-btn span{font-size:.66rem;border:1px solid #0b384536;border-radius:5px;padding:3px 5px}
+.frost-owner-v11 .owner-god-orb{flex:0 0 min(29%,220px);width:min(29%,220px);aspect-ratio:1;display:grid;place-items:center;align-content:center;position:relative;border:1px solid #bbfbff88;border-radius:50%;box-shadow:0 0 0 18px #99e9f319,0 0 0 44px #99e9f309,0 0 100px #68e9f036;background:radial-gradient(ellipse at 25% 10%,#b9f0ff50,transparent 45%),linear-gradient(125deg,#355475a3,#21254b);transform:rotate(-10deg)}
+.frost-owner-v11 .owner-god-orb>span{position:absolute;font-size:11rem;line-height:1;color:#c1ffff0d}
+.frost-owner-v11 .owner-god-orb strong{font-size:6rem;line-height:1;color:#edffff;letter-spacing:-.14em;padding-right:14px;text-shadow:0 0 29px #96f3f39b}
+.frost-owner-v11 .owner-god-orb small{font-size:.56rem;letter-spacing:.16em;font-weight:900;color:#b1f5f5;margin-top:10px}
+.frost-owner-v11 .owner-god-data{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;z-index:2;border-top:1px solid #b7d9e946;border-bottom:1px solid #b7d9e946;background:#0915283d}
+.frost-owner-v11 .owner-god-data>a{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:24px 27px;border-right:1px solid #add7e936;color:#efffff;text-decoration:none;transition:background .2s}
+.frost-owner-v11 .owner-god-data>a:last-child{border-right:0}
+.frost-owner-v11 .owner-god-data>a:hover{background:#9aeef01a}
+.frost-owner-v11 .owner-god-data>a>span{font-size:.62rem;letter-spacing:.13em;color:#a0c2d6;font-weight:950}
+.frost-owner-v11 .owner-god-data strong{color:#edfdff;font-size:3rem;letter-spacing:-.075em;font-weight:950;line-height:1.2;font-variant-numeric:tabular-nums}
+.frost-owner-v11 .owner-god-data small{font-size:.73rem;font-weight:850;color:#9df2ef}
+.frost-owner-v11 .owner-god-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:15px clamp(20px,3vw,37px);font-size:.6rem;color:#9cafc7;letter-spacing:.14em;font-weight:900}
+.frost-owner-v11 .owner-god-foot>span:first-child{color:#ecc2ee}
+@media(max-width:870px){.frost-owner-v11 .owner-god-data{grid-template-columns:repeat(2,minmax(0,1fr))}.frost-owner-v11 .owner-god-data>a:nth-child(2){border-right:0}.frost-owner-v11 .owner-god-data>a:nth-child(-n+2){border-bottom:1px solid #add7e936}.frost-owner-v11 .owner-god-orb{flex-basis:175px;width:175px}}
+@media(max-width:540px){.frost-owner-v11 .owner-god{border-radius:20px;margin:17px 0 25px}.frost-owner-v11 .owner-god-head{padding:15px 19px;font-size:.55rem}.frost-owner-v11 .owner-god-head>span:last-child{display:none}.frost-owner-v11 .owner-god-content{padding:27px 21px;display:block}.frost-owner-v11 .owner-god h2{font-size:clamp(2.95rem,11vw,4.25rem)}.frost-owner-v11 .owner-god-orb{display:none}.frost-owner-v11 .owner-god-actions .member-btn{flex:1;justify-content:space-between;padding:11px 13px;font-size:.72rem;min-height:47px}.frost-owner-v11 .owner-god-data>a{padding:18px 12px}.frost-owner-v11 .owner-god-data>a>span{font-size:.51rem;letter-spacing:.04em}.frost-owner-v11 .owner-god-data strong{font-size:2.25rem}.frost-owner-v11 .owner-god-data small{font-size:.61rem}.frost-owner-v11 .owner-god-foot{font-size:.54rem;padding:14px 18px;letter-spacing:.05em}}
+@media(prefers-reduced-motion:reduce){.frost-owner-v11 .owner-god-data>a{transition:none}}
+@media print{.frost-owner-v11 .owner-god{display:none!important}}
