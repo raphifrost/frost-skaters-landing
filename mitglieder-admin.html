@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/frost-card-premium.css?v=1">
 <link rel="stylesheet" href="assets/frost-owner-lounge.css?v=1">
 <link rel="stylesheet" href="assets/frost-owner-v11.css?v=1">
+<link rel="stylesheet" href="assets/frost-owner-tools.css?v=1">
 </head><body class="frost-page frost-owner-v11">
 <header class="site-header owner-topbar">
   <div class="owner-brand-row">
@@ -112,6 +113,7 @@
     <a href="#loungeRoster"><span aria-hidden="true">♟</span> Mitglieder</a>
     <a href="#loungeNew"><span aria-hidden="true">＋</span> Neu hinzufügen</a>
     <a href="#loungeMail"><span aria-hidden="true">✉</span> Nachrichten</a>
+    <a href="#ownerOps"><span aria-hidden="true">✦</span> Owner Tools</a>
   </nav>
 <section class="member-panel owner-overview" id="loungeOverview">
   <div class="owner-section-heading"><div><p class="owner-section-kicker">01 / LIVE OVERVIEW</p><h2>Dein Dashboard <span>auf einen Blick.</span></h2></div><span class="owner-heading-aside">AKTUELLER KARTENBESTAND</span></div>
@@ -132,6 +134,82 @@
     <a class="owner-workspace-card owner-workspace-mail" href="#loungeMail"><span class="owner-workspace-mark" aria-hidden="true">✉</span><span class="owner-workspace-caption">OWNER MESSAGES</span><strong>Benachrichtigungen<br>ansehen.</strong><span class="owner-workspace-link">GMX-Übersicht öffnen <b aria-hidden="true">↗</b></span></a>
   </div>
   <div class="owner-extras"><span>WEITERE OWNER-TOOLS</span><a href="hub-admin.html">⚙ Team-Verwaltung <b aria-hidden="true">↗</b></a><a href="team-talk.html">🎙 Team Lounge <b aria-hidden="true">↗</b></a><a href="qr-karten.html">▦ QR-Karten drucken <b aria-hidden="true">↗</b></a></div>
+</section>
+
+<section class="owner-ops" id="ownerOps" aria-labelledby="ownerOpsHeading">
+  <div class="owner-section-heading"><div><p class="owner-section-kicker">03 / OWNER TOOLKIT</p><h2 id="ownerOpsHeading">Dein nächstes <span>Level.</span></h2><p class="owner-ops-lead">Drei neue Funktionen – nur nach deinem Owner-Login. Öffne eine Karte, um sie zu benutzen.</p></div><span class="owner-heading-aside">ROLE CONTROL · ACTIVITY · SYSTEM</span></div>
+  <div class="owner-ops-grid">
+    <details class="owner-ops-card" id="ownerRoles">
+      <summary><span class="owner-ops-symbol owner-ops-purple" aria-hidden="true">♛</span><span class="owner-ops-card-head"><span class="owner-ops-type">03 / ACCESS MANAGEMENT</span><strong>Team-Rechte<br>verwalten.</strong><small>Co-Owner · Managerin · Supporter</small></span><span class="owner-ops-expand" aria-hidden="true">＋</span></summary>
+      <div class="owner-ops-content">
+        <p class="owner-ops-description">Hier vergibst du Rollen für <strong>registrierte Teamkonten</strong>. Eine Rolle bestimmt, welche internen Frost-Skaters-Funktionen genutzt werden dürfen. Änderungen werden in Supabase geprüft – nicht nur auf der Website.</p>
+        <div class="owner-roles-layout">
+          <div class="owner-roles-form-shell">
+            <h3 id="ownerRoleFormTitle">Teamzugang freischalten</h3>
+            <form id="ownerStaffForm">
+              <label class="member-label" for="ownerStaffId">Benutzer-ID des registrierten Teamkontos</label>
+              <input type="text" inputmode="text" spellcheck="false" autocomplete="off" id="ownerStaffId" class="member-input" maxlength="36" placeholder="xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx" required>
+              <p class="member-hint">Die Person registriert sich vorher in der Team Lounge und gibt dir ihre <strong>Benutzer-ID</strong>. Niemals Passwort oder Zugangscode anfordern.</p>
+              <label class="member-label" for="ownerStaffName">Vorname oder Teamname (2–40 Zeichen)</label>
+              <input id="ownerStaffName" class="member-input" type="text" maxlength="40" minlength="2" autocomplete="off" required placeholder="z. B. Alina">
+              <label class="member-label" for="ownerStaffRole">Teamrolle</label>
+              <select id="ownerStaffRole" class="member-select" required>
+                <option value="supporter">Supporter · Chat + Kalender ansehen</option>
+                <option value="manager">Managerin / Manager · Teamverwaltung</option>
+                <option value="coowner">Co-Owner · Teamverwaltung</option>
+              </select>
+              <div class="member-actions"><button type="submit" class="member-btn" id="ownerStaffSave">Teamzugang speichern ↗</button><button type="button" id="ownerStaffCancel" class="member-btn secondary" hidden>Bearbeitung abbrechen</button></div>
+            </form>
+            <p id="ownerStaffFeedback" class="owner-tools-feedback" role="status" aria-live="polite"></p>
+            <p class="owner-tools-note">Die <strong>Owner-Rolle</strong> kann hier absichtlich nicht vergeben werden. Mitgliedskarten-Rollen sind getrennt von Login-Berechtigungen.</p>
+          </div>
+          <div class="owner-roles-permissions">
+            <h3>Wer darf was?</h3>
+            <div class="owner-roles-matrix" role="table" aria-label="Berechtigungen der Teamrollen">
+              <div role="row"><span role="columnheader">Berechtigung</span><span role="columnheader">Co</span><span role="columnheader">Mgmt</span><span role="columnheader">Support</span></div>
+              <div role="row"><span role="rowheader">Teamchat</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">✓</span></div>
+              <div role="row"><span role="rowheader">Kalender lesen</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">✓</span></div>
+              <div role="row"><span role="rowheader">Kalender bearbeiten</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">–</span></div>
+              <div role="row"><span role="rowheader">Team-Beiträge verwalten</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">–</span></div>
+              <div role="row"><span role="rowheader">Mitglieder-/Owner-Daten</span><span role="cell">–</span><span role="cell">–</span><span role="cell">–</span></div>
+            </div>
+            <p class="member-hint">Co-Owner und Managerin haben im aktuellen System dieselben internen Bearbeitungsrechte. Nur der Owner kann Teamrollen zuweisen oder entziehen.</p>
+          </div>
+        </div>
+        <div class="owner-roles-roster-head"><h3>Aktuelle Teamkonten <span id="ownerStaffCount" class="owner-ops-count">–</span></h3><button type="button" class="member-btn secondary" id="ownerStaffReload">↻ Aktualisieren</button></div>
+        <div id="ownerStaffList" class="owner-staff-grid"><p class="member-hint">Teamkonten werden nach dem Login geladen.</p></div>
+      </div>
+    </details>
+
+    <details class="owner-ops-card" id="ownerActivity">
+      <summary><span class="owner-ops-symbol owner-ops-blue" aria-hidden="true">◷</span><span class="owner-ops-card-head"><span class="owner-ops-type">04 / OWNER HISTORY</span><strong>Aktivitäts-<br>protokoll.</strong><small>Kartenänderungen &amp; Teamzugänge</small></span><span class="owner-ops-expand" aria-hidden="true">＋</span></summary>
+      <div class="owner-ops-content">
+        <p class="owner-ops-description">Das Protokoll zeigt, wann Karten beantragt, erstellt, freigegeben oder gesperrt und wann Teamrollen geändert wurden. Neue Aktionen werden ab Aktivierung automatisch erfasst; ältere Aktionen können nur angezeigt werden, soweit sie bereits im früheren System dokumentiert wurden.</p>
+        <div class="owner-activity-toolbar"><span class="owner-activity-private">🔒 NUR FÜR OWNER</span><button class="member-btn secondary" type="button" id="ownerActivityReload">↻ Protokoll aktualisieren</button></div>
+        <div id="ownerActivityList" class="owner-activity-list" aria-live="polite"><p class="member-hint">Aktivitäten werden nach dem Login geladen.</p></div>
+        <details class="owner-activity-old">
+          <summary>Ältere Mitgliedskarten-Historie ansehen</summary>
+          <p class="member-hint">Einträge des bisherigen Systems können keine bearbeitende Person nennen. Die Historie enthält keine gelöschten Mitgliederdaten.</p>
+          <div id="ownerLegacyHistoryList" class="owner-activity-list"><p class="member-hint">Ältere Einträge werden geladen.</p></div>
+        </details>
+        <p class="owner-tools-note">Das neue Protokoll enthält keine Passwörter, privaten Kartenlinks oder Gesprächsnotizen. Einträge, die älter als 180 Tage sind, werden bei neuen Aktionen bereinigt.</p>
+      </div>
+    </details>
+
+    <details class="owner-ops-card" id="ownerSystem">
+      <summary><span class="owner-ops-symbol owner-ops-green" aria-hidden="true">◉</span><span class="owner-ops-card-head"><span class="owner-ops-type">12 / SYSTEM STATUS</span><strong>System-<br>Monitor.</strong><small>Website · Datenbank · Version</small></span><span class="owner-ops-expand" aria-hidden="true">＋</span></summary>
+      <div class="owner-ops-content">
+        <p class="owner-ops-description">Echte Erreichbarkeitschecks aus deinem Browser, keine Demo-Werte. Die Website wird über GitHub Pages geprüft; die Datenbank über deine geschützte Owner-Verbindung. Die Version stammt aus eurer Release-Chronik.</p>
+        <div class="owner-health-grid">
+          <div class="owner-health-item"><span class="owner-health-label">GITHUB PAGES</span><strong id="ownerHealthWeb" class="owner-health-value"><span class="owner-health-dot"></span> Nicht geprüft</strong><small id="ownerHealthWebDetail">Startseite wird beim Check angefragt.</small></div>
+          <div class="owner-health-item"><span class="owner-health-label">SUPABASE / OWNER-DATEN</span><strong id="ownerHealthDb" class="owner-health-value"><span class="owner-health-dot"></span> Nicht geprüft</strong><small id="ownerHealthDbDetail">Owner-Abfrage über dein Login.</small></div>
+          <div class="owner-health-item"><span class="owner-health-label">WEBSITE VERSION</span><strong class="owner-health-value owner-health-version">1.1 <span aria-hidden="true">✦</span></strong><small>Version 1.1 · veröffentlicht am 15.10.2026</small></div>
+        </div>
+        <div class="owner-health-footer"><span id="ownerHealthChecked" role="status" aria-live="polite">Noch kein Check durchgeführt.</span><button type="button" id="ownerHealthRefresh" class="member-btn">◌ System jetzt prüfen</button><a href="website-updates.html">Alle Website-Updates ↗</a></div>
+        <p class="owner-tools-note">Der Monitor prüft die Erreichbarkeit <strong>von deinem Gerät aus</strong>. Er misst keine garantierte Verfügbarkeit, keine E-Mail-Zustellung und keine externen Jitsi-Anrufe. Er prüft bei offener Seite höchstens einmal pro Minute automatisch.</p>
+      </div>
+    </details>
+  </div>
 </section>
 
 <section class="member-panel owner-form-panel" id="loungeNew"><div class="owner-section-heading"><div><p class="owner-section-kicker">03 / CREATE MEMBER</p><h2>Neues <span>Mitglied hinzufügen.</span></h2></div><span class="owner-section-icon" aria-hidden="true">＋</span></div>
@@ -224,4 +302,5 @@
 <script src="assets/frost-members-config.js"></script>
 <script src="assets/frost-members-admin.js?v=6"></script>
 <script defer src="assets/frost-owner-v11.js?v=1"></script>
+<script defer src="assets/frost-owner-tools.js?v=1"></script>
 </body></html>
