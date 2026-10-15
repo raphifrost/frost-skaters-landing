@@ -183,3 +183,19 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 
 **Tests:** `node tools/check-frost-owner-tools.mjs` prüft Rollenvalidierung, Aktionsbezeichnungen und geschützte UI-Verknüpfungen; GitHub Actions führt außerdem statische und anonyme Live-Prüfungen durch. Echt authentifizierte Owner-Aktionen sind ohne ein freigegebenes Testkonto **nicht** End-to-End ausgeführt worden.
 
+
+## ✦ Frostverse · 15 Upgrades in Version 1.1
+
+**Jetzt öffentlich:** https://raphifrost.github.io/frost-skaters-landing/frostverse.html
+
+Die neue Frostverse-Welt verbindet Event Launch, Teamkarten (nur bereits öffentlich genannte Leitung), Hall of Frost, Expedition, Frost TV, Skate Customizer, Frost Audio, Frost Effects, Time Capsule und Season Transformation. Frost Command ergänzt eine lokale Command-Palette auf der Startseite, im Frostverse und auf der Owner-Seite.
+
+**Privat bleibt privat:** Der neue Owner God Mode nutzt ausschließlich das vorhandene `mitglieder-admin.html`-Login und zeigt nur schon freigegebene Daten an. Der Geheime Team-Hub nutzt weiterhin das rollenbasierte `team-talk.html`-Login mit Supabase RLS. Die Frost ID Pro ist eine optionale, bewegliche Darstellung der bereits per Code geprüften Mitgliedskarte; die Kartenprüfung bleibt unverändert.
+
+**Datenschutz:** Die lokale Time Capsule speichert nur auf dem jeweiligen Gerät in `localStorage` (nicht verschlüsselt); Saison-Designpräferenzen werden ebenfalls nur dort gespeichert. Kein Standortzugriff, Audio erst nach Klick, keine externen Such- oder KI-Anfragen durch Frost Command. Die öffentlichen Crew-Karten enthalten keine privaten Teamkonto-Daten.
+
+**Wichtige Grenzen:** Frost TV zeigt redaktionelle Text-Slides, keinen echten Video-Livestream. Die Expedition Map ist eine gestalterische Regionsauswahl, keine präzise Straßenkarte. Beim Event-Countdown wird das bekannte Datum verwendet, nicht eine unbestätigte Treffzeit. Skate Customizer erstellt ein fiktives 2D-Motiv mit PNG-Export, keinen realen Kaufartikel.
+
+**Tests:** `node tools/check-frostverse.mjs` prüft 89 Versions-/Sicherheits-/Integrationsbedingungen zusätzlich zu den bestehenden Website-, Owner- und Live-Tests. Reale Besitzer- und Teamkonto-Aktionen sowie browserabhängige PNG-Ausgaben erfordern noch manuelle QA.
+
+**Pflege:** Aktualisiere bei Rollenwechseln sowohl `leitung.html` als auch `frostverse.html`. Neue Frost TV-Slides nur aus wirklich bestätigten Quellen ergänzen. Datenschutztext ist kein Ersatz für die erforderliche Prüfung durch eine tatsächlich verantwortliche erwachsene Person.
