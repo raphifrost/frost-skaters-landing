@@ -38,3 +38,11 @@ Der erste öffentliche Web-Auftritt für Frost Skaters: Vorstellung der Communit
 - Innerhalb von Version 1.1 zusätzliches Premium-Redesign der geschützten Owner Lounge: Aurora-Startmotiv, Login-Karte, Live-Statistik-Kacheln, Schnellzugriffe, Mitgliedskarten-Kacheln und aufgeräumte Verwaltung.
 - Bestehende Mitglieder-, Antrags-, Karten-, GMX- und Gesprächsfunktionen bleiben erhalten; Owner-Sicherheit/RLS unverändert.
 - Neue Dateien: `assets/frost-owner-v11.css`, `assets/frost-owner-v11.js`. Keine neuen Datenbanktabellen oder Rechte.
+
+### Zusätzliche Owner-Tools 3, 4 und 12 – 15. Oktober 2026
+
+- **Team-Rechte verwalten:** Im eingeloggten Owner Control Center werden registrierte Teamkonten mit Co-Owner-, Manager/in- oder Supporter-Rolle freigeschaltet, bearbeitet oder entfernt. Serverseitige Owner-RLS prüft Zugriffe.
+- **Aktivitätsprotokoll:** Neue Kartenanträge, Kartenerstellung, Status- und Rollenänderungen sowie Teamzugangsänderungen werden ab Einrichtung protokolliert. Owner-exklusiv; keine Namen, privaten Kartenlinks, Gesprächsnotizen oder Passwörter in neuen Protokolleinträgen; Zuordnungen gelöschter Karten entfallen.
+- **System-Monitor:** Echte Erreichbarkeit von GitHub Pages und der geschützten Supabase-Owner-Abfrage, regelmäßige Checks beim geöffneten Dashboard und manuelle Aktualisierung. Versionskarte zeigt das **1.1-Release-Datum**, keine erfundene letzte GitHub-Deployment-Zeit.
+- Datenschutztext und automatisierte RLS-/Link-/UI-Prüfungen ergänzt. Das bestehende Login- und Mitgliederverwaltungssystem wurde nicht ersetzt.
+- Einschränkung: Keine Live-Prüfung mit einem echten Owner-Testkonto; ein umfassender Bedienungstest muss nach dem Login erfolgen.
