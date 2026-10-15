@@ -287,10 +287,14 @@ $('adminLogin').addEventListener('submit',async event=>{
       return;
     }
     signedIn=true;$('signInPanel').hidden=true;$('dashboard').hidden=false;await reload();startRequestUpdates();
+    // Owner Toolkit reuses this authenticated session; RLS still controls all access.
+    if(window.FrostOwnerTools?.open)void window.FrostOwnerTools.open(client);
   }catch(e){feedback('loginFeedback','Login nicht möglich. Bitte kontrolliere die E-Mail und das Passwort. Wenn du gerade auf localhost:3000 gelandet bist, kann die Bestätigung trotzdem erfolgreich gewesen sein — probiere deinen Login hier erneut.',true);console.error(e);}
   finally{btn.disabled=false;btn.textContent='Einloggen';}
 });
 $('signOut').addEventListener('click',async()=>{
+  // Wipe the supplementary Owner-only interface before signing out.
+  if(window.FrostOwnerTools?.close)window.FrostOwnerTools.close();
   if(client)await client.auth.signOut();
   stopRequestUpdates();signedIn=false;rows=[];previewMember=null;
   if($('loungePreviewDialog').open)$('loungePreviewDialog').close();
