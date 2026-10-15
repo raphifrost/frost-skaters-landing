@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="assets/frost-skaters-logo.jpg">
 <link rel="manifest" href="team-talk.webmanifest">
 <link rel="stylesheet" href="assets/frost-team-talk.css?v=2">
+<link rel="stylesheet" href="assets/frost-team-portal.css?v=1">
 </head>
 <body>
 <header class="tt-top">
@@ -54,6 +55,20 @@
  </section>
 
  <section id="ttPrivate" hidden>
+  <section class="tt-portal" id="ttPortalGate" aria-labelledby="ttPortalTitle">
+    <div class="tt-portal-top"><span><span class="tt-dot" aria-hidden="true"></span> FROST SECRET HUB / VERIFIED TEAM</span><span>INTERNAL ACCESS</span></div>
+    <div class="tt-portal-content"><div><p class="tt-section-kicker">37 / PRIVATE FROST WORLD</p><h2 id="ttPortalTitle">Welcome to<br><span>the inner circle.</span></h2>
+      <p>Das ist eure echte interne Team-Welt. Nur freigeschaltete Supabase-Teamkonten erhalten Zugriff auf Chat, Kalender und rollenabhängige Werkzeuge. Der öffentliche Frostverse-Bereich zeigt keine privaten Inhalte.</p>
+      <div class="tt-portal-session"><span aria-hidden="true">◆</span> DEIN ZUGANG: <strong id="ttPortalAccess">Freigeschaltet</strong></div>
+    </div><div class="tt-portal-orb" aria-hidden="true"><span>❄</span><strong>FS</strong><small>INNER CIRCLE</small></div></div>
+    <div class="tt-portal-actions">
+      <a href="#ttRoomsArea"><span aria-hidden="true">💬</span><strong>Teamchat</strong><small>Private Gesprächsräume →</small></a>
+      <a href="team-kalender.html"><span aria-hidden="true">▦</span><strong>Team-Kalender</strong><small>Interne Termine →</small></a>
+      <a href="hub-admin.html" id="ttPortalManagement" hidden><span aria-hidden="true">⚙</span><strong>Community Hub</strong><small>Nur Management &amp; Owner →</small></a>
+      <a href="mitglieder-admin.html" id="ttPortalOwner" hidden><span aria-hidden="true">♛</span><strong>Owner Control</strong><small>Nur Owner →</small></a>
+    </div>
+    <div class="tt-portal-foot"><span>AUTHENTICATED · ROLE CHECKED</span><span>FROST SKATERS / TEAM HUB 1.1</span></div>
+  </section>
   <section class="tt-panel tt-calendar-teaser">
     <div><span class="tt-section-kicker">📅 TERMINE &amp; TREFFEN</span>
       <h2>Euer Team-Kalender</h2>
