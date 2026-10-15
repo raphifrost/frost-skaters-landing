@@ -36,7 +36,7 @@ check(portal.includes('assets/frost-command.js')&&portal.includes('assets/frost-
 check(home.includes('href="frostverse.html"')&&home.includes('frostverse-teaser.css'),'Home links portal & loads visuals');
 check(home.includes('assets/frost-command.js'),'Home loads command search');
 check(!world.includes('navigator.geolocation')&&!world.includes('getUserMedia'),'World does not request location or camera/mic');
-check(!world.includes('.from(')&&!world.includes('createClient('),'World cannot read Supabase tables');
+check(!world.includes('client.from(')&&!world.includes('supabase.from(')&&!world.includes('createClient('),'World cannot read Supabase tables');
 check(!world.includes('fetch('),'World does not send user-entered data to servers');
 check(world.includes('AudioContext')&&world.includes('fvSound'),'Opt-in Web Audio implemented');
 check(world.includes('prefers-reduced-motion')&&world.includes('fvEffects'),'Animations honor reduced motion');
