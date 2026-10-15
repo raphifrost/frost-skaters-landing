@@ -40,6 +40,7 @@ function stopLive(){
 function logoutUI(){
  stopLive();me=null;role=null;roster=[];rooms=[];selectedRoom=null;
  $('ttPrivate').hidden=true;$('ttConversation').hidden=true;$('ttOwner').hidden=true;$('ttLogin').hidden=false;
+ $('ttPortalAccess').textContent='Nicht angemeldet';$('ttPortalManagement').hidden=true;$('ttPortalOwner').hidden=true;
  $('ttMessages').replaceChildren();$('ttRoster').replaceChildren();$('ttRooms').replaceChildren();
  $('ttRoomCount').textContent='0';$('ttActiveCount').textContent='0';$('ttTeamCount').textContent='0';
 }
@@ -56,6 +57,10 @@ async function loginReady(){
  me=userData.user;role=newRole;
  $('ttLogin').hidden=true;$('ttPrivate').hidden=false;
  $('ttOwner').hidden=role!=='owner';
+ // New Inner Circle portal is part of the already authorized Team Lounge.
+ $('ttPortalAccess').textContent=roleLabels[role]||'Freigegeben';
+ $('ttPortalManagement').hidden=!['owner','coowner','manager'].includes(role);
+ $('ttPortalOwner').hidden=role!=='owner';
  $('ttWho').textContent=(roleLabels[role]||role)+' · '+(me.email||'Teamkonto');
  await loadAll();
  startLive();
