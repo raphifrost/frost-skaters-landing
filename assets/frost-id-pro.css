@@ -1,0 +1,21 @@
+/* Frost ID Pro: optional holographic styling for cards already verified by
+   frost_find_member. This does not expose codes or bypass verification. */
+#approvedSection .frost-id-intro{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 17px;padding:14px 19px;border:1px solid #92e4ee6e;border-radius:15px;background:linear-gradient(115deg,#112e41,#221b39)}
+#approvedSection .frost-id-intro>div{display:flex;align-items:center;gap:12px}
+#approvedSection .frost-id-intro-icon{display:grid;place-items:center;border-radius:11px;background:#91f5f529;border:1px solid #94f2f577;width:43px;height:43px;font-size:23px;color:#aaf6fb}
+#approvedSection .frost-id-intro strong{display:block;font-size:.92rem;font-weight:950;color:#eafeff;letter-spacing:.06em}
+#approvedSection .frost-id-intro small{display:block;color:#abc3d5;font-size:.71rem;font-weight:750;margin-top:3px}
+#approvedSection .frost-id-intro button{border:1px solid #abf4ef70;color:#e4faff;background:#9ce1f714;min-height:42px;padding:10px 13px;border-radius:11px;font-size:.81rem;font-weight:900;cursor:pointer}
+#approvedSection .frost-id-intro button[aria-pressed=true]{background:#aafaf1;color:#081e2d}
+#approvedSection .frost-id-intro button:hover{border-color:#ceffff}
+#approvedSection .frost-id-card-wrap{position:relative;transform-style:preserve-3d;perspective:1200px;border-radius:26px}
+#approvedSection .member-card.frost-premium.frost-id-pro{--frost-tilt-x:0deg;--frost-tilt-y:0deg;--frost-shine-x:50%;--frost-shine-y:45%;position:relative;transform-style:preserve-3d;transform:perspective(1300px) rotateX(var(--frost-tilt-x)) rotateY(var(--frost-tilt-y));transition:transform .2s ease,box-shadow .23s ease;border-color:transparent;box-shadow:0 31px 77px #000b,0 0 38px #b06dea30;overflow:hidden}
+#approvedSection .member-card.frost-premium.frost-id-pro::after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--frost-shine-x) var(--frost-shine-y),#ffffff5c,transparent 44%);mix-blend-mode:screen;transition:opacity .2s}
+#approvedSection .member-card.frost-premium.frost-id-pro.is-tilting::after{opacity:.32}
+#approvedSection .member-card.frost-premium.frost-id-pro::before{content:"";position:absolute;z-index:-1;inset:-60px;background:conic-gradient(from 18deg,#d4b2fa29,#92eaf137,#f99bde36,#93eaf03b,#d4b2fa29);filter:blur(30px);pointer-events:none}
+#approvedSection .frost-id-badge{position:absolute;z-index:5;left:28px;bottom:42px;display:inline-flex;gap:6px;align-items:center;color:#b7fff7;font-size:.56rem;font-weight:950;letter-spacing:.14em;opacity:.8;pointer-events:none}
+#approvedSection .frost-id-status-caption{font-size:.78rem;color:#a8d5e9;margin:14px 0 0;line-height:1.65}
+#approvedSection .frost-id-status-caption strong{color:#d2fcff}
+@media(max-width:650px){#approvedSection .frost-id-badge{left:18px;bottom:29px;font-size:.46rem}#approvedSection .frost-id-intro{padding:12px}#approvedSection .frost-id-intro button{width:100%}}
+@media(prefers-reduced-motion:reduce){#approvedSection .member-card.frost-premium.frost-id-pro{transform:none!important;transition:none!important}#approvedSection .member-card.frost-premium.frost-id-pro::after{display:none!important}}
+@media print{#approvedSection .frost-id-intro,#approvedSection .frost-id-status-caption,#approvedSection .frost-id-badge{display:none!important}#approvedSection .member-card.frost-premium.frost-id-pro{transform:none!important;box-shadow:none}}
