@@ -1,0 +1,29 @@
+/* Frost Skaters Inner Circle / Protected Team Hub 1.1 */
+.tt-portal{position:relative;overflow:hidden;isolation:isolate;border:1px solid #a5effb80;border-radius:25px;margin:18px 0 27px;background:radial-gradient(ellipse at 95% 4%,#d88ad638,transparent 47%),radial-gradient(ellipse at 10% 91%,#46deeb2d,transparent 43%),linear-gradient(123deg,#142f43,#161b38 65%,#20172f);box-shadow:0 24px 80px #01061084}
+.tt-portal::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#addbed0a 1px,transparent 1px),linear-gradient(90deg,#addbed0a 1px,transparent 1px);background-size:50px 50px;mask-image:linear-gradient(90deg,transparent 28%,#000);pointer-events:none}
+.tt-portal-top,.tt-portal-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:.59rem;letter-spacing:.17em;color:#a7d1e6;font-weight:900;padding:18px 28px}
+.tt-portal-top{border-bottom:1px solid #b9e7fa42}.tt-portal-foot{border-top:1px solid #b9e7fa42}
+.tt-portal-top>span:first-child{display:flex;align-items:center;gap:9px;color:#b7faf5}
+.tt-portal-content{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:28px;padding:33px 36px 35px}
+.tt-portal-content>div:first-child{max-width:730px}
+.tt-portal h2{font-size:clamp(2.9rem,5.2vw,5.4rem);font-weight:950;line-height:1.06;letter-spacing:-.075em;margin:18px 0!important;color:#fcfeff}
+.tt-portal h2 span{background:linear-gradient(110deg,#9df8f3,#b8ddff,#e9a3f7);background-clip:text;-webkit-background-clip:text;color:transparent}
+.tt-portal-content p:not(.tt-section-kicker){max-width:640px;color:#b9cfe0;font-size:.9rem;line-height:1.83}
+.tt-portal-session{display:inline-flex;align-items:center;gap:11px;padding:10px 14px;border:1px solid #a2e6ec69;border-radius:99px;background:#9cdfec11;color:#d3f6f7;font-size:.64rem;letter-spacing:.1em;font-weight:900;margin-top:15px;flex-wrap:wrap}
+.tt-portal-session>span{font-size:1.1rem;color:#a7ffee}
+.tt-portal-session strong{color:#f4c1ea}
+.tt-portal-orb{width:190px;height:190px;flex:0 0 190px;position:relative;display:grid;place-items:center;align-content:center;border:1px solid #a2f7fd7f;border-radius:50%;box-shadow:0 0 0 16px #88e3f017,0 0 0 43px #a3e0fa0a,0 0 75px #93dff54d;background:radial-gradient(ellipse at 27% 18%,#cee8f44b,transparent 50%),linear-gradient(139deg,#345176a6,#231e50a1);transform:rotate(-10deg)}
+.tt-portal-orb span{position:absolute;font-size:8rem;line-height:1;color:#ecffff0c}
+.tt-portal-orb strong{font-size:5rem;letter-spacing:-.17em;padding-right:15px;color:#ebffff;line-height:1;font-weight:1000;text-shadow:0 0 32px #98ffff7a}
+.tt-portal-orb small{font-size:.47rem;color:#affafa;letter-spacing:.18em;font-weight:900;margin-top:11px}
+.tt-portal-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;z-index:2;border-top:1px solid #b9e7fa42}
+.tt-portal-actions>a{display:flex;flex-direction:column;gap:7px;min-width:0;border-right:1px solid #a7d5e837;padding:23px 19px;text-decoration:none;color:#f0fcff;background:#07162955;transition:background .2s}
+.tt-portal-actions>a:last-child{border-right:0}
+.tt-portal-actions>a:hover{background:#92ebf11c}
+.tt-portal-actions>a>span{font-size:1.7rem;color:#c3faff}
+.tt-portal-actions>a strong{font-size:.96rem;font-weight:900;letter-spacing:-.025em}
+.tt-portal-actions>a small{color:#add3e5;font-size:.72rem}
+.tt-portal-actions>a[hidden]{display:none!important}
+@media(max-width:800px){.tt-portal-content{padding:30px}.tt-portal-actions{grid-template-columns:repeat(2,minmax(0,1fr))}.tt-portal-actions>a:nth-child(2){border-right:0}.tt-portal-actions>a:nth-child(-n+2){border-bottom:1px solid #a7d5e837}.tt-portal-orb{height:140px;width:140px;flex-basis:140px}.tt-portal-orb strong{font-size:4rem}}
+@media(max-width:560px){.tt-portal{border-radius:20px}.tt-portal-top,.tt-portal-foot{font-size:.52rem;letter-spacing:.06em;padding:15px 18px}.tt-portal-top>span:last-child{display:none}.tt-portal-content{display:block;padding:25px 19px}.tt-portal h2{font-size:clamp(2.65rem,9.5vw,4rem)}.tt-portal-content p:not(.tt-section-kicker){font-size:.84rem}.tt-portal-session{font-size:.59rem}.tt-portal-orb{display:none}.tt-portal-actions>a{padding:18px 15px}.tt-portal-actions>a>span{font-size:1.4rem}.tt-portal-actions>a strong{font-size:.87rem}.tt-portal-actions>a small{font-size:.65rem}}
+@media(prefers-reduced-motion:reduce){.tt-portal-actions>a{transition:none}}
