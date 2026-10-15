@@ -53,6 +53,11 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
    check('Owner dashboard remains login-gated',body.includes('<section id="dashboard" hidden>')&&body.includes('id="signInPanel"'));
    check('Owner legacy membership tools preserved',body.includes('id="loungeMemberTiles"')&&body.includes('id="memberRows"')&&body.includes('id="addMember"')&&body.includes('id="talkDialog"'));
    check('Owner premium dashboard controls',body.includes('id="ownerDashboardTop"')&&body.includes('owner-workspace-grid')&&body.includes('owner-command-nav'));
+   check('Owner Toolkit 3,4,12 panels login-gated',body.includes('id="ownerRoles"')&&body.includes('id="ownerActivity"')&&body.includes('id="ownerSystem"')&&body.includes('<section id="dashboard" hidden>'));
+   check('Owner Toolkit account / history / health assets loaded',body.includes('assets/frost-owner-tools.js')&&body.includes('assets/frost-owner-tools.css'));
+   check('Owner Toolkit role editor fields',body.includes('id="ownerStaffForm"')&&body.includes('id="ownerStaffRole"')&&body.includes('id="ownerStaffList"'));
+   check('Owner Toolkit audit and health markup',body.includes('id="ownerActivityList"')&&body.includes('id="ownerHealthWeb"')&&body.includes('id="ownerHealthDb"'));
+
  }
  if(page==='team-kalender.html'){
    check('Live calendar assets are linked',body.includes('assets/frost-team-calendar.js')&&body.includes('assets/frost-team-calendar.css'));
@@ -70,7 +75,7 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
 
  }
 }
-for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frost-owner-v11.css','assets/frost-owner-v11.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
+for(const asset of ['assets/frost-intro.js','assets/frost-intro.css','assets/frost-v11-home.css','assets/frost-updates.css','assets/frost-updates.js','assets/frost-owner-v11.css','assets/frost-owner-v11.js','assets/frost-owner-tools.css','assets/frost-owner-tools.js','assets/frost-faq.js','assets/frost-faq.css','assets/frost-team-calendar.js','assets/frost-team-calendar.css','assets/frost-team-talk.js','assets/frost-team-talk.css','team-talk.webmanifest','assets/frost-card-premium.css','assets/frost-owner-lounge.css','assets/frost-members-admin.js','assets/frost-join.js','assets/frost-join.css','assets/frost-qr-karten.js','assets/frost-qr-karten.css','assets/frost-hub-admin.js','assets/frost-hub-public.js','assets/frost-members.js','assets/frost-hub.css','assets/frost-skaters-logo.jpg']){
  const response=await request(origin+asset);
  check('Static asset '+asset,response.ok,'HTTP '+response.status);
 }
@@ -104,6 +109,10 @@ const roster=await api('/rest/v1/rpc/frost_team_roster','POST',{});
 check('Anonymous visitors cannot list team participants',!roster.ok,'HTTP '+roster.status);
 const teamRole=await api('/rest/v1/rpc/frost_team_my_role','POST',{});
 check('Anonymous visitors cannot query internal team roles',!teamRole.ok,'HTTP '+teamRole.status);
+const activity=await api('/rest/v1/frost_owner_activity?select=id,kind,occurred_at&limit=1');
+check('Anonymous visitors cannot read Owner activity history',!activity.ok,'HTTP '+activity.status);
+const staff=await api('/rest/v1/frost_hub_staff?select=user_id,role&limit=1');
+check('Anonymous visitors cannot list private team accounts',!staff.ok,'HTTP '+staff.status);
 const teamCalendar=await api('/rest/v1/frost_team_calendar?select=id,title,event_date&limit=1');
 check('Anonymous visitors cannot read private team calendar',!teamCalendar.ok,'HTTP '+teamCalendar.status);
 console.log('Frost Skaters live smoke tests: '+results.length+' checks passed.');
