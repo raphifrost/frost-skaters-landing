@@ -70,7 +70,10 @@ const mustExist=[
  'assets/frost-intro.js','assets/frost-intro.css',
  'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs','assets/frost-owner-v11.css','assets/frost-owner-v11.js',
  'assets/frost-owner-tools.js','assets/frost-owner-tools.css','tools/check-frost-owner-tools.mjs',
- 'website-updates.html','assets/frost-updates.css','assets/frost-updates.js','assets/frost-v11-home.css','CHANGELOG.md'
+ 'website-updates.html','assets/frost-updates.css','assets/frost-updates.js','assets/frost-v11-home.css','CHANGELOG.md',
+ 'frostverse.html','assets/frostverse.css','assets/frostverse.js','assets/frostverse-teaser.css',
+ 'assets/frost-command.css','assets/frost-command.js','assets/frost-god-mode.css','assets/frost-god-mode.js',
+ 'assets/frost-id-pro.css','assets/frost-id-pro.js','assets/frost-team-portal.css','tools/check-frostverse.mjs'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 // Make sure the protected calendar has its own login and is linked only from staff pages.
@@ -86,7 +89,7 @@ for(const page of ['index.html','community.html','mitglieder.html','anmelden.htm
   fail('Private Team-Kalender should not appear in public menu on '+page);
 const publicFaqPages=[
  'index.html','anmelden.html','mitglieder.html','events.html','training.html','leitung.html',
- 'community.html','eishallen.html','jahresrueckblick.html','datenschutz.html','qr-karten.html'
+ 'community.html','eishallen.html','jahresrueckblick.html','datenschutz.html','qr-karten.html','frostverse.html'
 ];
 for (const page of publicFaqPages) {
  const html=textFile(page);
@@ -183,6 +186,44 @@ for(const id of ['ownerRoles','ownerActivity','ownerSystem','ownerStaffForm','ow
 if(!ownerLogic.includes('window.FrostOwnerTools.open(client)')||
    !ownerLogic.includes('window.FrostOwnerTools.close()'))
  fail('Owner Toolkit not correctly integrated into existing Owner login/logout');
+
+// Frostverse 1.1: opt-in visual worlds, protected Owner/Team reuse and no external AI engine.
+const world=textFile('frostverse.html');
+const worldScript=textFile('assets/frostverse.js');
+const homePage=textFile('index.html');
+const members=textFile('mitglieder.html');
+const staffPage=textFile('team-talk.html');
+const ownerFull=textFile('mitglieder-admin.html');
+for(const id of ['fvTitle','worlds','event','crew','hall','map','tv','studio','capsule','season',
+ 'fvSound','fvEffects','fvSnow','fvDays','fvHours','fvMinutes','fvMapPlace','fvTvSlide',
+ 'fvSkateSvg','fvSkateExport','fvCapsuleForm','fvCapsuleDelete','fvSeasonPick']){
+ if(!getIds(world).includes(id))fail('Frostverse missing '+id);
+}
+if(!homePage.includes('href="frostverse.html"')||!homePage.includes('assets/frostverse-teaser.css'))
+ fail('Homepage missing new Frostverse portal');
+if(!homePage.includes('assets/frost-command.js')||!world.includes('assets/frost-command.js'))
+ fail('Frost Command assets must be linked in home and Frostverse');
+if(!worldScript.includes('prefers-reduced-motion')||!worldScript.includes('frostverse.capsule.v1')||
+  !worldScript.includes('fvSkateExport'))
+ fail('Frostverse accessibility/local-only interaction contracts missing');
+if(worldScript.includes('navigator.geolocation')||worldScript.includes('getUserMedia(')||
+ worldScript.includes('createClient('))
+ fail('Frostverse should not request device permissions or open member database sessions');
+if(!members.includes('frost-id-pro')||!members.includes('assets/frost-id-pro.js')||
+ !members.includes('id="approvedSection" hidden>'))
+ fail('Frost ID Pro must remain gated by original member verification');
+if(!staffPage.includes('<section id="ttPrivate" hidden>')||!staffPage.includes('id="ttPortalGate"'))
+ fail('Inner Circle must remain inside hidden Team Lounge');
+if(!textFile('assets/frost-team-talk.js').includes("client.rpc('frost_team_my_role')"))
+ fail('Team Hub Supabase role-check no longer present');
+if(!ownerFull.includes('id="ownerGodMode"')||!ownerFull.includes('assets/frost-god-mode.js')||
+ !ownerFull.includes('assets/frost-command.js'))
+ fail('Owner God Mode & Command missing in authenticated Owner Lounge');
+const ownerGuarded=ownerFull.split('<section id="dashboard" hidden>')[1]?.split('</section>\n<dialog id="talkDialog"')[0]||'';
+if(!ownerGuarded.includes('id="ownerGodMode"'))
+ fail('Owner God Mode must stay in the authenticated dashboard');
+if(!textFile('datenschutz.html').includes('Frost Time Capsule'))
+ fail('Privacy notice must cover local time capsule and seasonal preference');
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
