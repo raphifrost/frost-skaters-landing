@@ -1,8 +1,9 @@
-# ❄️ Frost Skaters
+# ❄️ Frost Skaters – Website Version 1.1
 
 Offizielle GitHub-Pages-Website der unabhängigen Eislauf-Community **Frost Skaters**.
 
-- Öffentliche Startseite: `index.html`
+- **Aktuelle Version 1.1 (15. Oktober 2026):** Startseite `index.html`
+- **Website-Updates & Versionschronik:** `website-updates.html` (Verlauf 1.0 → 1.1; detailliert in `CHANGELOG.md`)
 - QR-Anmeldung mit eigenem Formular und WhatsApp: `anmelden.html`
 - Zwei druckbare QR-Karten: `qr-karten.html`
 
@@ -129,3 +130,16 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - Der Helfer verwendet ausschließlich auf der bestehenden Website belegte beziehungsweise bereits abgestimmte Aussagen. **Wichtig:** Der derzeitige Veranstaltungstext verweist auf Heilbronn am **3. Januar 2027**; wenn sich dieser Termin ändert, müssen auch die festen FAQ-Antworten in `assets/frost-faq.js` angepasst werden.
 - FAQ-Dateien: `assets/frost-faq.js` (Fragen und feste Antworten) und `assets/frost-faq.css` (Anzeige). Die automatischen Prüfungen `tools/check-frost-faq.mjs`, `tools/check-frost-site.mjs` und `tools/check-frost-live.mjs` kontrollieren häufige Fragen, nur öffentliche Links, die Einbindung und die Live-Dateien.
 - In der Datenschutzerklärung gibt es einen eigenen Hinweis zur lokalen FAQ-Verarbeitung. Keine Passwörter, privaten Karten-Codes oder personenbezogenen Notizen in den FAQ-Chat eingeben; Kontaktaufnahme per WhatsApp erfolgt ausschließlich nach bewusstem Wechsel auf die Anmeldeseite.
+
+## ✦ Frost Skaters 1.1 — The Frost Edition
+
+- **Website-Version**: 1.1, veröffentlicht als Update vom 15. Oktober 2026.
+- **Neue Release-Seite**: \`website-updates.html\` mit großem Frost-1.1-Motiv, Aurora-/Eisglas-Design, Versionsverlauf von 1.0 bis 1.1 und Filtern für „Neu in 1.1“ und „Schon dabei“.
+- **Startseite erneuert**: \`assets/frost-v11-home.css\` und aktualisierte \`index.html\` zeigen den modernen Hero, einen klaren 1.1-Hinweis, überarbeitete Funktionskacheln, eine kompakte Release-Vorschau und eine aufgewertete Community-Vorstellung.
+- **Zusammenhängende Navigation**: Öffentliche Hauptseiten verlinken die Website-Updates, sodass man die Version leicht findet. Interne Zugriffe werden nicht beworben.
+- **Kein externer Tracking-/Designservice** für die Release-Grafik: Die dekorativen Orbital-/Eis-Effekte sind reines CSS; das kleine \`assets/frost-updates.js\` steuert nur Filter, Lesefortschritt und Kopieren des Website-Links.
+- **Barrierearme Darstellung**: Geräte mit reduzierten Animationen bekommen eine statische Variante, die mobile Darstellung nutzt kleinere Typografie und die Buttons sind mit der Tastatur erreichbar.
+- **Vorhandene Funktionen bleiben unverändert**: Frost FAQ, Intro, QR-Karten, Anmeldung, Team Lounge, Kalender und Admin-Werkzeuge sind **nicht erst in 1.1 entstanden**; die neue Updates-Seite unterscheidet diese bestehenden Funktionen von tatsächlich neuen Änderungen.
+- **Release-Dokumentation**: \`CHANGELOG.md\`. Aktualisiere künftig sowohl die sichtbare Update-Seite als auch den Changelog, ohne unbestätigte Funktionen als live zu bezeichnen.
+- **Prüfungen**: \`tools/check-frost-site.mjs\` und \`tools/check-frost-live.mjs\` prüfen Seite, Versionsangaben, Links, Assets und die anonyme Zugriffssperre in Supabase. Live-Rendering auf echten iPhones muss bei Bedarf noch separat geprüft werden.
+
