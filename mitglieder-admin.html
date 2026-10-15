@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="assets/frost-owner-lounge.css?v=1">
 <link rel="stylesheet" href="assets/frost-owner-v11.css?v=1">
 <link rel="stylesheet" href="assets/frost-owner-tools.css?v=1">
+<link rel="stylesheet" href="assets/frost-god-mode.css?v=1">
+<link rel="stylesheet" href="assets/frost-command.css?v=1">
 </head><body class="frost-page frost-owner-v11">
 <header class="site-header owner-topbar">
   <div class="owner-brand-row">
@@ -113,8 +115,25 @@
     <a href="#loungeRoster"><span aria-hidden="true">♟</span> Mitglieder</a>
     <a href="#loungeNew"><span aria-hidden="true">＋</span> Neu hinzufügen</a>
     <a href="#loungeMail"><span aria-hidden="true">✉</span> Nachrichten</a>
+    <a href="#ownerGodMode"><span aria-hidden="true">♛</span> God Mode</a>
     <a href="#ownerOps"><span aria-hidden="true">✦</span> Owner Tools</a>
   </nav>
+<section class="owner-god" id="ownerGodMode" aria-labelledby="ownerGodTitle">
+ <div class="owner-god-head"><span><span class="owner-god-pulse" aria-hidden="true"></span> FROST OPERATIONS / PRIVATE SESSION</span><span>COMMAND LEVEL / OWNER</span></div>
+ <div class="owner-god-content">
+  <div class="owner-god-intro"><p class="owner-section-kicker">28 / OWNER GOD MODE</p><h2 id="ownerGodTitle">Your crew.<br><span>Your command.</span></h2><p>Eine zentrale Ansicht für deine nächsten Owner-Aktionen. Keine neuen Freigaben oder Sonderrechte – alles nutzt weiterhin deinen sicheren Owner-Login.</p>
+   <div class="owner-god-actions"><button class="member-btn" data-frost-command-open type="button">⌕ Frost Command öffnen <span aria-hidden="true">⌘K</span></button><a href="#ownerOps" class="member-btn secondary">⚙ Owner-Tools öffnen</a></div>
+  </div>
+  <div class="owner-god-orb" aria-hidden="true"><span>❄</span><strong>FS</strong><small>GOD MODE / 1.1</small></div>
+ </div>
+ <div class="owner-god-data">
+  <a href="#loungeRequests"><span>ANTRÄGE ZUR PRÜFUNG</span><strong id="godPending">–</strong><small>Zu den Anträgen ↗</small></a>
+  <a href="#loungeRoster"><span>AKTIVE KARTEN</span><strong id="godActive">–</strong><small>Mitglieder öffnen ↗</small></a>
+  <a href="#ownerRoles"><span>TEAM-ROLLEN</span><strong>03</strong><small>Rollen verwalten ↗</small></a>
+  <a href="#ownerSystem"><span>SYSTEM STATUS</span><strong id="godHealth">–</strong><small>System prüfen ↗</small></a>
+ </div>
+ <div class="owner-god-foot"><span>♛ PERSONAL CONTROL CENTER</span><span id="godUpdated" aria-live="polite">Die geschützte Übersicht wird geladen …</span></div>
+</section>
 <section class="member-panel owner-overview" id="loungeOverview">
   <div class="owner-section-heading"><div><p class="owner-section-kicker">01 / LIVE OVERVIEW</p><h2>Dein Dashboard <span>auf einen Blick.</span></h2></div><span class="owner-heading-aside">AKTUELLER KARTENBESTAND</span></div>
   <div class="member-stat-grid">
@@ -303,4 +322,6 @@
 <script src="assets/frost-members-admin.js?v=6"></script>
 <script defer src="assets/frost-owner-v11.js?v=1"></script>
 <script defer src="assets/frost-owner-tools.js?v=1"></script>
+<script defer src="assets/frost-god-mode.js?v=1"></script>
+<script defer src="assets/frost-command.js?v=1"></script>
 </body></html>
