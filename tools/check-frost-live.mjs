@@ -45,7 +45,7 @@ for(const page of ['index.html','anmelden.html','qr-karten.html','community.html
  if(page==='frostverse.html'){
    check('Frostverse page interactive world sections',body.includes('id="fvTitle"')&&body.includes('id="worlds"')&&body.includes('id="event"')&&body.includes('id="crew"')&&body.includes('id="studio"'));
    check('Frostverse effects and season switches',body.includes('id="fvSound"')&&body.includes('id="fvEffects"')&&body.includes('id="fvSeasonPick"'));
-   check('Frostverse event date-only countdown',body.includes('2027')&&body.includes('id="fvTimer"')&&body.includes('keine Treffzeit'));
+   check('Frostverse event date-only countdown',body.includes('2027')&&body.includes('id="fvTimer"')&&body.includes('nicht bis zu einer bestätigten Treffzeit'));
    check('Frostverse customizer and local capsule',body.includes('id="fvSkateSvg"')&&body.includes('id="fvCapsuleForm"')&&body.includes('id="fvCapsuleDelete"'));
    check('Frostverse links to Team login, no Owner links',body.includes('href="team-talk.html"')&&!body.includes('href="mitglieder-admin.html"')&&!body.includes('href="team-kalender.html"'));
  }
