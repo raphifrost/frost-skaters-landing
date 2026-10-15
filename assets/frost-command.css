@@ -1,0 +1,26 @@
+/* Frost Command 1.1 · accessible keyboard navigation, no search backend */
+.frost-command-layer{position:fixed;z-index:11000;inset:0;background:#020712dd;backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);padding:8vh 18px 18px;overflow-y:auto;display:flex;align-items:flex-start;justify-content:center}
+.frost-command-layer[hidden]{display:none!important}
+.frost-command-shell{width:min(100%,670px);background:radial-gradient(ellipse at 90% 0,#876fd52d,transparent 48%),linear-gradient(142deg,#17243c,#10182a);border:1px solid #98eaf19b;border-radius:23px;box-shadow:0 33px 100px #000c;overflow:hidden;color:#f4fcff;font-family:Inter,system-ui,Arial,sans-serif}
+.frost-command-bar{display:flex;align-items:center;gap:13px;padding:19px;border-bottom:1px solid #b8dbe435}
+.frost-command-search-icon{font-size:1.5rem;color:#9af4f4}
+.frost-command-input{flex:1;min-width:0;color:#f4fdff!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:9px 3px!important;font:600 1rem system-ui,sans-serif!important;border-radius:0!important;outline:0!important;width:100%;min-height:39px}
+.frost-command-input::placeholder{color:#94adca!important}
+.frost-command-close{border:1px solid #b6cdec54;background:#b4d6f214;color:#edf9ff;border-radius:8px;cursor:pointer;padding:7px 10px;font-size:.73rem;font-weight:900;min-height:34px}
+.frost-command-heading{padding:16px 21px 10px;color:#9bb7ca;font-size:.65rem;letter-spacing:.17em;font-weight:900}
+.frost-command-items{display:grid;gap:5px;max-height:min(65vh,520px);overflow:auto;padding:4px 12px 13px}
+.frost-command-item{display:flex;align-items:center;gap:13px;text-align:left;cursor:pointer;border:1px solid transparent;border-radius:13px;min-height:62px;background:#a2d9f307;color:#f7fcff;padding:11px 15px;font:inherit;width:100%}
+.frost-command-item:hover,.frost-command-item:focus-visible,.frost-command-item.is-selected{border-color:#a0f0ef7c;background:#9adced19;outline-offset:1px}
+.frost-command-item-symbol{height:39px;width:39px;flex:0 0 39px;display:grid;place-items:center;color:#a7f8f4;border:1px solid #93e3ee5f;background:#a3e2ff0d;border-radius:10px;font-size:1.13rem}
+.frost-command-item-name{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.frost-command-item-name strong{font-size:.85rem;color:#f7feff;font-weight:900}
+.frost-command-item-name small{font-size:.73rem;color:#a1b8d0;line-height:1.5}
+.frost-command-item-arrow{font-size:1.1rem;color:#8bf1ef}
+.frost-command-empty{padding:22px;color:#b6cad9;font-size:.9rem}
+.frost-command-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #a9def136;background:#0b1627b9;padding:14px 20px;color:#a9c2d4;font-size:.72rem}
+.frost-command-footer b{font-weight:900;color:#97f0ee}
+.frost-command-open-compact{display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:1px solid #a8d7ef53;border-radius:11px;background:#abdbf010;color:#dafcff;padding:12px 15px;font:800 .84rem system-ui,Arial,sans-serif;min-height:46px}
+.frost-command-open-compact:hover{border-color:#8df1f5;background:#7feaf019}
+.frost-command-layer :focus-visible{outline:3px solid #a6fdf9;outline-offset:2px}
+@media(max-width:560px){.frost-command-layer{padding:10vh 10px 10px}.frost-command-shell{border-radius:17px}.frost-command-bar{padding:12px 14px}.frost-command-input{font-size:.89rem!important}.frost-command-item{padding:9px 12px}.frost-command-footer{padding:11px 14px}}
+@media(prefers-reduced-motion:reduce){.frost-command-layer{scroll-behavior:auto}}
