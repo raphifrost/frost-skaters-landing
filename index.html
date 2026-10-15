@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Frost Skaters - Eine kleine Gruppe mit Zusammenhalt, Freude und Leidenschaft." />
-    <title>Frost Skaters</title>
+    <meta name="description" content="Frost Skaters 1.1 – Unsere Eislauf-Community, gemeinsame Events, digitale Mitgliedskarten und ein ganz neuer Frost-Look." />
+    <meta name="theme-color" content="#080c19" />
+    <title>Frost Skaters 1.1 · Zusammen auf dem Eis</title>
     <style>
       :root {
         --bg: #050b12;
@@ -237,9 +238,10 @@
     <link rel="icon" href="assets/frost-skaters-logo.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="assets/frost-theme.css?v=1" />
     <link rel="stylesheet" href="assets/frost-intro.css?v=2" />
+    <link rel="stylesheet" href="assets/frost-v11-home.css?v=1" />
   <link rel="stylesheet" href="assets/frost-faq.css?v=1">
 </head>
-  <body class="frost-page" data-page="home">
+  <body class="frost-page frost-v11-home" data-page="home">
     <!-- Non-blocking first-visit animation; hidden unless the local intro script starts it. -->
     <div class="frost-intro" id="frostWelcomeIntro" role="dialog" aria-modal="true" aria-labelledby="frostIntroTitle" aria-describedby="frostIntroTagline" hidden>
       <div class="frost-intro__scene">
@@ -259,7 +261,7 @@
       </div>
     </div>
     <header class="site-header">
-      <a class="site-brand" href="index.html">FROST SKATERS</a>
+      <div class="v11-brand-wrap"><a class="site-brand" href="index.html">FROST SKATERS</a><a href="website-updates.html" class="v11-brand-version" aria-label="Frost Skaters Website Version 1.1 – Updates ansehen">1.1 <span aria-hidden="true">↗</span></a></div>
       <div class="site-nav">
         <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
         <nav class="site-menu" id="siteMenu" aria-label="Hauptnavigation" hidden>
@@ -270,15 +272,17 @@
           <a href="mitglieder.html">Mitgliedskarten</a>
           <a href="anmelden.html">Mitmachen</a>
           <a href="index.html#fragen">Fragen</a>
+          <a href="website-updates.html" class="v11-menu-updates">✦ Website-Updates <span>1.1</span></a>
         </nav>
       </div>
     </header>
     <main class="container">
-      <section class="hero">
+      <section class="hero v11-hero" aria-labelledby="v11HeroTitle">
         <div>
           <img class="brand-logo" src="assets/frost-skaters-logo.jpg" alt="Frost Skaters – Logo mit pinken Flammen, türkisen Eiszapfen und der Jahreszahl 2025" width="1280" height="799" />
-          <p class="hero-eyebrow">FROST SKATERS · SEIT 2025</p>
-          <h1>Skaten.<br /><span>Zusammen wachsen.</span></h1>
+          <a class="v11-launch-note" href="website-updates.html"><span class="v11-launch-dot" aria-hidden="true"></span> VERSION 1.1 IST DA <span class="v11-launch-arrow" aria-hidden="true">↗</span></a>
+          <p class="hero-eyebrow">FROST SKATERS · SEIT 2025 · ICE CREW</p>
+          <h1 id="v11HeroTitle">Skaten.<br /><span>Zusammen wachsen.</span></h1>
           <p class="lead">
             Wir sind eine kleine, liebevolle Gruppe mit viel Freude, Leidenschaft und Teamgeist.
             Seit 2025 sind wir dabei und lernen jeden Tag dazu. Lust mitzumachen? Schreib uns und lerne uns in einem kurzen Gespräch kennen!
@@ -289,6 +293,11 @@
             <a class="btn secondary" href="#entdecken">Entdecken</a>
             <a class="btn secondary" href="mitglieder.html#findSection">🪪 Meine Karte</a>
           </div>
+          <div class="v11-hero-pillars" aria-label="Das zeichnet Frost Skaters aus">
+            <span><b>2025</b><small>UNSER START</small></span>
+            <span><b>1.1</b><small>NEUER WEBSITE-LOOK</small></span>
+            <span><b>❄</b><small>EINE GEMEINSAME CREW</small></span>
+          </div>
           <div class="frost-intro-replay-wrap">
             <button id="frostReplayIntro" class="frost-intro-replay" type="button">❄️ Intro nochmal abspielen</button>
           </div>
@@ -296,10 +305,27 @@
           <a class="phone" href="tel:+4915234646842">📞 +49 152 34646842</a>
         </div>
 
-        <figure class="image-box">
+        <figure class="image-box v11-photo-frame">
+          <span class="v11-photo-corner v11-photo-corner-top" aria-hidden="true">FROST · COMMUNITY / 2025</span>
           <img src="assets/frost-skaters-team.jpg" alt="Drei Mitglieder von Frost Skaters mit ihren Team-Hoodies im Schnee" width="640" height="640" />
           <figcaption class="hero-photo-caption"><span>UNSERE CREW</span><strong>Zusammen. Seit 2025.</strong></figcaption>
         </figure>
+      </section>
+
+
+      <section class="v11-release-banner" id="version11" aria-labelledby="v11ReleaseHeading">
+        <div class="v11-release-info">
+          <p class="v11-section-tag"><span>✦</span> WEBSITE RELEASE / 15.10.2026</p>
+          <h2 id="v11ReleaseHeading">Ein neuer Look.<br><span>Gleicher Teamgeist.</span></h2>
+          <p>Frost Skaters ist jetzt bei <strong>Version 1.1</strong>. Die Startseite hat einen frischen Look bekommen und unsere eigene Update-Seite zeigt dir, was sich verändert hat.</p>
+          <div class="v11-release-actions"><a href="website-updates.html" class="v11-release-link">Was ist neu in 1.1? <span aria-hidden="true">↗</span></a><span>DESIGN UPDATE · CHANGELOG</span></div>
+        </div>
+        <div class="v11-release-art" aria-hidden="true">
+          <span class="v11-release-orbit"></span>
+          <span class="v11-release-snow">✳</span>
+          <strong>1.1</strong>
+          <small>THE FROST EDITION</small>
+        </div>
       </section>
 
       <section class="discover-section" id="entdecken" aria-labelledby="discoverTitle">
@@ -320,16 +346,18 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="card" style="grid-column: 1 / -1;">
-          <p class="section-eyebrow">ZUSAMMEN STATT ALLEIN</p>
-          <h2>Über uns</h2>
-          <p>Wir sind Frost Skaters – eine kleine Gruppe, die seit 2025 zusammen skatet.
-            Bei uns zählen Zusammenhalt, Spaß und gegenseitige Unterstützung.
-            Wir lernen gemeinsam und freuen uns auf neue Leute!</p>
+      <section class="section v11-about-section" aria-labelledby="v11AboutHeading">
+        <div class="card v11-about-card" style="grid-column: 1 / -1;">
+          <div class="v11-about-heading">
+            <div><p class="section-eyebrow">ZUSAMMEN STATT ALLEIN</p>
+              <h2 id="v11AboutHeading">Mehr als <span>nur Eislaufen.</span></h2>
+            </div>
+            <span class="v11-about-label">ICE · CREW<br>· COMMUNITY</span>
+          </div>
+          <p>Wir sind Frost Skaters – eine kleine Gruppe, die seit 2025 zusammen skatet. Bei uns zählen Zusammenhalt, Spaß und gegenseitige Unterstützung. Wir lernen gemeinsam und freuen uns auf neue Leute!</p>
+          <a href="leitung.html" class="v11-about-link">Lerne unsere Crew kennen <span aria-hidden="true">↗</span></a>
+          <span class="v11-about-flake" aria-hidden="true">❄</span>
         </div>
-
-
       </section>
 
       <section class="faq-section" id="fragen" aria-labelledby="faqTitle">
@@ -345,7 +373,7 @@
         <div><p class="section-eyebrow">GUTE LEUTE MITBRINGEN</p><h2 id="shareTitle">Frost teilen.</h2><p>Kennst du jemanden, der zu uns passt? Gib unseren Website-Link weiter.</p><a class="contact-link" href="tel:+4915234646842">+49 152 34646842</a></div>
         <div class="share-controls"><button class="btn primary" id="shareSite" type="button"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-4m-6 8 6 4"/></svg>Website teilen</button><p id="shareStatus" role="status" aria-live="polite"></p><div id="shareFallback" hidden><label for="shareLink">Website-Adresse zum Kopieren</label><input id="shareLink" type="text" readonly /></div><span class="share-hint">In Chrome, Safari und anderen Browsern öffnen.</span></div>
       </section>
-      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="community.html">Aktuelles</a><a href="training.html">Training</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="#fragen">Fragen</a></nav><span>Zusammen seit 2025.</span></footer>
+      <footer class="home-footer"><a class="footer-brand" href="index.html">FROST SKATERS</a><nav aria-label="Weitere Seiten"><a href="events.html">Events</a><a href="community.html">Aktuelles</a><a href="training.html">Training</a><a href="leitung.html">Leitung</a><a href="mitglieder.html">Mitgliedskarten</a><a href="datenschutz.html">Datenschutz</a><a href="website-updates.html">✦ Updates</a><a href="#fragen">Fragen</a></nav><span><a href="website-updates.html" class="v11-footer-version">FROST SKATERS · VERSION 1.1 ↗</a><br>Zusammen seit 2025.</span></footer>
     </main>
 
 
