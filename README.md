@@ -199,3 +199,36 @@ Die neue Frostverse-Welt verbindet Event Launch, Teamkarten (nur bereits öffent
 **Tests:** `node tools/check-frostverse.mjs` prüft 89 Versions-/Sicherheits-/Integrationsbedingungen zusätzlich zu den bestehenden Website-, Owner- und Live-Tests. Reale Besitzer- und Teamkonto-Aktionen sowie browserabhängige PNG-Ausgaben erfordern noch manuelle QA.
 
 **Pflege:** Aktualisiere bei Rollenwechseln sowohl `leitung.html` als auch `frostverse.html`. Neue Frost TV-Slides nur aus wirklich bestätigten Quellen ergänzen. Datenschutztext ist kein Ersatz für die erforderliche Prüfung durch eine tatsächlich verantwortliche erwachsene Person.
+
+## 🌌 Frostverse – 15 neue Website-Features (Ideen 28–42)
+
+**Website-Version bleibt 1.1.** Die neuen öffentlichen Erlebnisse findest du in
+[**Frostverse**](https://raphifrost.github.io/frost-skaters-landing/frostverse.html)
+sowie über den Button und die Navigation der Startseite. Interne Werkzeuge bleiben
+unter dem existierenden Owner- beziehungsweise Team-Login.
+
+| Nummer | Feature | Umsetzung / Einschränkung |
+| --- | --- | --- |
+| **28** | Owner God Mode | Schick gestaltetes, privates Owner Control Center mit bestehenden Statistikzahlen und Schnellaktionen, nur im angemeldeten \`#dashboard\`. **Keine zusätzlichen Rechte.** |
+| **29** | Frostverse | Eigene responsive Erlebniswelt mit sechs miteinander verknüpften Welten und weiteren Bereichen. |
+| **30** | Frost ID Pro | Holografischer Stil und optionaler Cursor-gesteuerter 3D-Effekt der bereits **über Code geprüften** Mitgliedskarte. Status und QR-Verifikation unverändert. |
+| **31** | Frost Command | \`Ctrl+K\`/\`⌘+K\` oder \`/\` öffnet eine lokale Tastatur-/Touch-Navigation. Privatreiter werden nur bei sichtbarem, nach Owner-Login freigeschaltetem Dashboard angeboten. Kein KI-Modell, kein Suchserver und keine Möglichkeit, Rechte ohne Login zu umgehen. |
+| **32** | Event Launch Mode | Öffentlicher Countdown zum **Kalendertag 3. Januar 2027 (Heilbronn)**. **Keine Uhrzeit/Treffpunkt erfunden**; bei vergangenem Datum weist die Seite auf die Eventseite hin. |
+| **33** | Frost Crew Cards | Visuelle Karten der **bereits öffentlich genannten** Leitungsrollen auf \`leitung.html\`. Keine privaten Teamkonten-Details. |
+| **34** | Hall of Frost | Nachprüfbare Meilensteine der Website/Community, Link zum Jahresrückblick – keine erfundenen Rekorde. |
+| **35** | Frost Audio Experience | Kurze, selbst generierte WebAudio-Sounds; nur nach bewusstem Einschalten, nie Autoplay oder fremde Musik. |
+| **36** | Frost Effect Engine | Freiwillig zuschaltbare Schneeflocken aus CSS und JavaScript; berücksichtigt \`prefers-reduced-motion\`, Standard ist **aus**. |
+| **37** | Geheimer Team-Hub / Inner Circle | Neues Portal innerhalb von \`team-talk.html\` **hinter bereits geschützter Supabase-Authentifizierung**, rollenabhängige Links; keine zweite ungesicherte Datenbank. |
+| **38** | Frost Expedition Map | **Schematische**, bewusst nicht maßstabsgetreue Regionsübersicht. Klick führt auf eine öffentliche Kartensuche, **keine Live-Standorte** oder ungeprüfte Eintrittspreise. |
+| **39** | Frost Time Capsule | Nachricht und Freigabedatum ausschließlich im **lokalen Speicher dieses Browsers**; ohne Encryption und ohne serverseitige Erinnerung. Freiwillig, Löschknopf vorhanden. Auf einem anderen Gerät nicht automatisch verfügbar. |
+| **40** | Frost TV | Eigenes visuelles News-Format als animierbare und pausable Text-Slides aus bestehenden öffentlichen Informationen. **Kein echter Video-Livestream** oder fremdes Videomaterial. |
+| **41** | Skate Customizer | CSS/SVG-Illustration mit drei Farbfeldern, Presets und lokalem **PNG-Export**. Kein echtes Produkt oder Shop. |
+| **42** | Season Transformation | Der Frostverse-Farbstil folgt standardmäßig dem Monat. Optional wählbare alternative Farbwelt bleibt lokal auf diesem Gerät gespeichert. |
+
+### Datenschutz, Sicherheit und Tests
+
+- Das neue Frostverse-Skript (\`assets/frostverse.js\`) liest keine Supabase-Mitglieder- oder Owner-Tabellen, benötigt keine Benutzerkonten und benutzt keinen externen Trackingdienst.
+- Audio, animierter Schnee, private Zeitkapsel und 3D-Mitgliedskarte respektieren Freiwilligkeit bzw. die reduzierten Animationen des Geräts. Browserlocal gespeicherte Zeitkapseln **nicht** für Passwörter, Kontaktdaten oder andere private Informationen verwenden.
+- Die Rollenrechte von Owner und Team sind **weiterhin** in Supabase erzwungen. Ein ausgeblendeter Browser-Link allein ist keine Sicherheitskontrolle.
+- \`tools/check-frostverse.mjs\`, \`tools/check-frost-site.mjs\` und \`tools/check-frost-live.mjs\` prüfen per CI Feature-Verknüpfungen, Syntax, öffentliche Erreichbarkeit und anonyme Zugriffsverweigerungen. **Ein echter Login-/Bedienungstest mit Owner- und Teamkonten wurde nicht durchgeführt.**
+- Wenn du die öffentlichen Teamrollen, neuen Eventdaten oder die tatsächlichen News änderst, müssen die vorgefertigten Crew Cards, Countdown- bzw. News-Slides aktualisiert werden.
