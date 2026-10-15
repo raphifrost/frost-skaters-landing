@@ -143,3 +143,14 @@ Die Website speichert keinen GMX- oder SMTP-Zugang und benötigt auch keinen. Ne
 - **Release-Dokumentation**: \`CHANGELOG.md\`. Aktualisiere künftig sowohl die sichtbare Update-Seite als auch den Changelog, ohne unbestätigte Funktionen als live zu bezeichnen.
 - **Prüfungen**: \`tools/check-frost-site.mjs\` und \`tools/check-frost-live.mjs\` prüfen Seite, Versionsangaben, Links, Assets und die anonyme Zugriffssperre in Supabase. Live-Rendering auf echten iPhones muss bei Bedarf noch separat geprüft werden.
 
+
+## 👑 Owner Control Center 1.1 – Premium-Design
+
+- Private Besitzer-Verwaltung weiterhin unter `mitglieder-admin.html` (direkter Link); **kein zusätzlicher Admin-Link in der öffentlichen Website-Navigation**.
+- Neues Frost-/Aurora-Layout mit Owner-Login-Karte, animiertem Markenmotiv, großzügigem Dashboard und übersichtlichen Bereichen für Mitglieder, Anträge, manuelle Karten und GMX-Versandübersicht.
+- Nach dem Owner-Login gibt es ein privates **Control Center** mit Live-Zahlen für Anträge, aktive Karten und weitere Status sowie vier Schnellzugriffen (Anträge, Karten erstellen, Team-Kalender, Benachrichtigungen).
+- Große Mitgliedskacheln mit Statusfarben und den bisherigen Aktionen für Kartenvorschau, persönliche Links, Freigaben, Sperren, Löschung und private Gesprächsnotizen.
+- Neue Optik ist responsiv und berücksichtigt reduzierte Animationen. `assets/frost-owner-v11.css` ist nur auf der Owner-Lounge-Seite eingebunden.
+- Das optionale `assets/frost-owner-v11.js` formatiert nur bereits sichtbare Summenzahlen, Tagesgruß und einen lokalen Zeitpunkt auf dem eingeloggten Dashboard. **Keine eigenen Datenbankabfragen, Speicherung oder Tracking.**
+- **Unveränderte Zugriffsrechte:** Bestehendes Supabase-Login, Owner-Abfrage und RLS in `assets/frost-members-admin.js` bleiben unverändert. Verstecken von Oberfläche ist nicht der Zugriffsschutz.
+- `tools/check-frost-site.mjs` prüft die vorhandenen wichtigen IDs und Funktionen; `tools/check-frost-live.mjs` stellt sicher, dass das neue Design veröffentlicht ist und die Seite vor Anmeldung weiterhin nur den Login zeigt. Echte Owner-Login-/Bearbeitungs-Tests wurden nicht durchgeführt.
