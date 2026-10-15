@@ -1,0 +1,15 @@
+/* Seasonal shared color accents for public homepage, based on Frostverse preference */
+.frost-v11-home #homeSeasonLabel{display:inline-flex;align-items:center;margin:12px 0 13px;padding:9px 13px;border:1px solid #91eaf061;border-radius:99px;color:#b2eef0;background:#8be8ef12;font-size:.62rem;font-weight:950;letter-spacing:.14em;line-height:1.5}
+.frost-v11-home[data-frost-season=autumn]{background-image:radial-gradient(ellipse at 70% -10%,#744d7133,transparent 44%),radial-gradient(ellipse at 0 40%,#8e683028,transparent 41%),radial-gradient(ellipse at 100% 76%,#552c4530,transparent 48%),linear-gradient(#0a0b17,#130f23 53%,#080b18)}
+.frost-v11-home[data-frost-season=autumn] #homeSeasonLabel{color:#ffdbb6;border-color:#e8ae8c72;background:#e8ad6c19}
+.frost-v11-home[data-frost-season=autumn] .v11-hero h1 span{background:linear-gradient(112deg,#aaf4ee,#dfc7a1 53%,#efb0d7);background-clip:text;-webkit-background-clip:text}
+.frost-v11-home[data-frost-season=autumn] .v11-launch-note{border-color:#dfc2a076}
+.frost-v11-home[data-frost-season=autumn] .fv-home-content h2 span{background:linear-gradient(100deg,#a5efe9,#ecc69e,#e6afe9);background-clip:text;-webkit-background-clip:text}
+.frost-v11-home[data-frost-season=spring]{background-image:radial-gradient(ellipse at 57% -13%,#4e7f7360,transparent 41%),radial-gradient(ellipse at 0 40%,#1b69603b,transparent 40%),radial-gradient(ellipse at 100% 70%,#684a7c33,transparent 46%),linear-gradient(#080d17,#101c2a 52%,#080c16)}
+.frost-v11-home[data-frost-season=spring] #homeSeasonLabel{color:#bbf7d1;border-color:#9aedc283;background:#8eedb41b}
+.frost-v11-home[data-frost-season=spring] .v11-hero h1 span{background:linear-gradient(112deg,#a0ffe1,#b5ebea 52%,#e2b2ef);background-clip:text;-webkit-background-clip:text}
+.frost-v11-home[data-frost-season=summer]{background-image:radial-gradient(ellipse at 50% -12%,#5b586f60,transparent 44%),radial-gradient(ellipse at 0 44%,#236f8753,transparent 41%),radial-gradient(ellipse at 100% 70%,#8a53553a,transparent 48%),linear-gradient(#080e18,#0d2230 54%,#0a101b)}
+.frost-v11-home[data-frost-season=summer] #homeSeasonLabel{color:#ffe0a4;border-color:#e8c38683;background:#e8c38619}
+.frost-v11-home[data-frost-season=summer] .v11-hero h1 span{background:linear-gradient(112deg,#86fcf5,#fee1b1 55%,#ffb6c7);background-clip:text;-webkit-background-clip:text}
+.frost-v11-home[data-frost-season=winter] #homeSeasonLabel{color:#aaf3ff;border-color:#93e9ec79;background:#85dff71c}
+@media print{.frost-v11-home #homeSeasonLabel{display:none}}
