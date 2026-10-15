@@ -68,7 +68,8 @@ const mustExist=[
  'team-talk.html','team-talk.webmanifest','assets/frost-team-talk.js','assets/frost-team-talk.css',
  'team-kalender.html','assets/frost-team-calendar.js','assets/frost-team-calendar.css',
  'assets/frost-intro.js','assets/frost-intro.css',
- 'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs'
+ 'assets/frost-faq.js','assets/frost-faq.css','tools/check-frost-faq.mjs',
+ 'website-updates.html','assets/frost-updates.css','assets/frost-updates.js','assets/frost-v11-home.css','CHANGELOG.md'
 ];
 for(const file of mustExist)if(!exists(file))fail('Required project file missing: '+file);
 // Make sure the protected calendar has its own login and is linked only from staff pages.
@@ -97,6 +98,34 @@ for(const page of ['hub-admin.html','mitglieder-admin.html','team-talk.html','te
 }
 if(!textFile('assets/frost-faq.js').includes('Fragen?'))
  fail('Frost FAQ launcher is missing');
+// Public 1.1 release experience and honest version changelog.
+const v11home=textFile('index.html');
+const releases=textFile('website-updates.html');
+const notes=textFile('CHANGELOG.md');
+if(!v11home.includes('frost-v11-home')||!v11home.includes('assets/frost-v11-home.css'))
+ fail('Version 1.1 home design is missing');
+if(!v11home.includes('id="version11"')||!v11home.includes('href="website-updates.html"'))
+ fail('Version 1.1 release teaser or link is missing from homepage');
+for(const token of ['Version 1.1','1.0','website-updates.html']){
+ if(!notes.includes(token))fail('CHANGELOG.md missing '+token);
+}
+for(const id of ['fuTitle','fuNewTitle','fuHistoryTitle','fuFeatures','fuCopyLink','fuCopyStatus','fuScrollProgress']){
+ if(!getIds(releases).includes(id))fail('Website Updates missing element #'+id);
+}
+if(!releases.includes('Version 1.1')||!releases.includes('1.0')||!releases.includes('15. OKTOBER 2026'))
+ fail('Release page is missing the correct version history');
+if(!releases.includes('assets/frost-updates.css')||!releases.includes('assets/frost-updates.js'))
+ fail('Release visual/interactive assets are not linked');
+if(!releases.includes('data-fu-filter="all"')||!releases.includes('data-fu-filter="new"')||!releases.includes('data-fu-filter="existing"'))
+ fail('Release filters are missing options');
+if(!releases.includes('data-fu-kind="new"')||!releases.includes('data-fu-kind="existing"'))
+ fail('Release feature types are not identified');
+if(/href=["'](?:team-talk|team-kalender|mitglieder-admin|hub-admin)\.html/.test(releases))
+ fail('Release page must not link directly to private team/member management');
+for(const page of ['index.html','events.html','training.html','leitung.html','mitglieder.html','anmelden.html','community.html','datenschutz.html']){
+ if(!textFile(page).includes('href="website-updates.html"'))
+  fail(page+': no navigation to Website Updates');
+}
 console.log('Frost Skaters: '+pages.length+' HTML pages, '+verifiedLinks+' local links, '+verifiedScripts+' JS syntax checks and '+verifiedPageIds+' page-element checks.');
 if(errors.length){for(const e of errors)console.error('❌ '+e);process.exitCode=1;}
 else console.log('✅ All static website checks passed. Browser/Supabase end-to-end behavior must still be verified separately.');
