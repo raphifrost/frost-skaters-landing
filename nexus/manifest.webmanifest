@@ -1,0 +1,19 @@
+{
+  "name": "NEXUS – Dein persönlicher Space",
+  "short_name": "NEXUS",
+  "description": "Dashboard für Aufgaben, Kalender, Notizen, Routinen und Fokus.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090d18",
+  "theme_color": "#090d18",
+  "lang": "de-DE",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
